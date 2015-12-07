@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{606E7529-0C30-4379-A852-E6E59FC52F55}</ProjectGuid>
+    <RootNamespace>raytracer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\cygwin\home\chris\projects\raytracer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\cygwin\home\chris\projects\raytracer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\Cameras\Camera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\FisheyeCamera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\OrthoCamera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\PinholeCamera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\SphericalCamera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\StereoCamera.h" />
+    <ClInclude Include="..\..\..\include\Cameras\ThinLensCamera.h" />
+    <ClInclude Include="..\..\..\include\Color.h" />
+    <ClInclude Include="..\..\..\include\Core.h" />
+    <ClInclude Include="..\..\..\include\MathUtils.h" />
+    <ClInclude Include="..\..\..\include\Object.h" />
+    <ClInclude Include="..\..\..\include\Plane.h" />
+    <ClInclude Include="..\..\..\include\Raytracer.h" />
+    <ClInclude Include="..\..\..\include\Samplers\HammersleySampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\JitteredSampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\MultiJitteredSampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\NRooksSampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\RandomSampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\Sampler.h" />
+    <ClInclude Include="..\..\..\include\Samplers\SimpleSampler.h" />
+    <ClInclude Include="..\..\..\include\Sphere.h" />
+    <ClInclude Include="..\..\..\include\Array.h" />
+    <ClInclude Include="..\..\..\include\ViewingPlane.h" />
+    <ClInclude Include="..\..\..\include\World.h" />
+    <ClInclude Include="FrameBuffer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\Array.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\Color.cpp" />
+    <ClCompile Include="..\..\..\source\HammersleySampler.cpp" />
+    <ClCompile Include="..\..\..\source\JitteredSampler.cpp" />
+    <ClCompile Include="..\..\..\source\main.cpp" />
+    <ClCompile Include="..\..\..\source\MathUtils.cpp" />
+    <ClCompile Include="..\..\..\source\MultiJitteredSampler.cpp" />
+    <ClCompile Include="..\..\..\source\NRooksSampler.cpp" />
+    <ClCompile Include="..\..\..\source\Plane.cpp" />
+    <ClCompile Include="..\..\..\source\RandomSampler.cpp" />
+    <ClCompile Include="..\..\..\source\Sampler.cpp" />
+    <ClCompile Include="..\..\..\source\SimpleSampler.cpp" />
+    <ClCompile Include="..\..\..\source\Sphere.cpp" />
+    <ClCompile Include="..\..\..\source\ViewingPlane.cpp" />
+    <ClCompile Include="..\..\..\source\World.cpp" />
+    <ClCompile Include="FrameBuffer.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
