@@ -2,8 +2,8 @@
 #ifndef SAMPLER_H
 #define SAMPLER_H
 
-#include "MathUtils.h"
-#include "Array.h"
+#include "Core\MathUtils.h"
+#include "Core\Array.h"
 
 class Sampler
 {

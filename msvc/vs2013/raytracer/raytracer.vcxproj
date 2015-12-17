@@ -44,10 +44,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\cygwin\home\chris\projects\raytracer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\qdbmp;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -57,60 +60,104 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\cygwin\home\chris\projects\raytracer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\qdbmp;..\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\BRDFs\BRDF.h" />
+    <ClInclude Include="..\..\..\include\BRDFs\GlossySpecular.h" />
+    <ClInclude Include="..\..\..\include\BRDFs\Lambertian.h" />
+    <ClInclude Include="..\..\..\include\BRDFs\PerfectSpecular.h" />
     <ClInclude Include="..\..\..\include\Cameras\Camera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\FisheyeCamera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\OrthoCamera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\PinholeCamera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\SphericalCamera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\StereoCamera.h" />
-    <ClInclude Include="..\..\..\include\Cameras\ThinLensCamera.h" />
-    <ClInclude Include="..\..\..\include\Color.h" />
-    <ClInclude Include="..\..\..\include\Core.h" />
-    <ClInclude Include="..\..\..\include\MathUtils.h" />
-    <ClInclude Include="..\..\..\include\Object.h" />
-    <ClInclude Include="..\..\..\include\Plane.h" />
+    <ClInclude Include="..\..\..\include\Cameras\Fisheye.h" />
+    <ClInclude Include="..\..\..\include\Cameras\Ortho.h" />
+    <ClInclude Include="..\..\..\include\Cameras\Pinhole.h" />
+    <ClInclude Include="..\..\..\include\Cameras\Spherical.h" />
+    <ClInclude Include="..\..\..\include\Cameras\ThinLens.h" />
+    <ClInclude Include="..\..\..\include\Core\Array.h" />
+    <ClInclude Include="..\..\..\include\Core\Color.h" />
+    <ClInclude Include="..\..\..\include\Core\Core.h" />
+    <ClInclude Include="..\..\..\include\Core\MathUtils.h" />
+    <ClInclude Include="..\..\..\include\Lights\AmbientLight.h" />
+    <ClInclude Include="..\..\..\include\Lights\DirectionalLight.h" />
+    <ClInclude Include="..\..\..\include\Lights\PointLight.h" />
+    <ClInclude Include="..\..\..\include\Lights\Light.h" />
+    <ClInclude Include="..\..\..\include\Materials\Material.h" />
+    <ClInclude Include="..\..\..\include\Materials\Matte.h" />
+    <ClInclude Include="..\..\..\include\Materials\Phong.h" />
+    <ClInclude Include="..\..\..\include\Objects\Object.h" />
+    <ClInclude Include="..\..\..\include\Objects\Plane.h" />
+    <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
     <ClInclude Include="..\..\..\include\Raytracer.h" />
-    <ClInclude Include="..\..\..\include\Samplers\HammersleySampler.h" />
-    <ClInclude Include="..\..\..\include\Samplers\JitteredSampler.h" />
-    <ClInclude Include="..\..\..\include\Samplers\MultiJitteredSampler.h" />
-    <ClInclude Include="..\..\..\include\Samplers\NRooksSampler.h" />
-    <ClInclude Include="..\..\..\include\Samplers\RandomSampler.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\Raycaster.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\Whitted.h" />
+    <ClInclude Include="..\..\..\include\Samplers\Hammersley.h" />
+    <ClInclude Include="..\..\..\include\Samplers\Jittered.h" />
+    <ClInclude Include="..\..\..\include\Samplers\MultiJittered.h" />
+    <ClInclude Include="..\..\..\include\Samplers\NRooks.h" />
+    <ClInclude Include="..\..\..\include\Samplers\PureRandom.h" />
     <ClInclude Include="..\..\..\include\Samplers\Sampler.h" />
-    <ClInclude Include="..\..\..\include\Samplers\SimpleSampler.h" />
-    <ClInclude Include="..\..\..\include\Sphere.h" />
-    <ClInclude Include="..\..\..\include\Array.h" />
-    <ClInclude Include="..\..\..\include\ViewingPlane.h" />
-    <ClInclude Include="..\..\..\include\World.h" />
-    <ClInclude Include="FrameBuffer.h" />
+    <ClInclude Include="..\..\..\include\Samplers\Simple.h" />
+    <ClInclude Include="..\..\..\include\World\Bitmap.h" />
+    <ClInclude Include="..\..\..\include\World\ColorBuffer.h" />
+    <ClInclude Include="..\..\..\include\World\ViewingPlane.h" />
+    <ClInclude Include="..\..\..\include\World\World.h" />
+    <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\include\Array.inl" />
+    <None Include="..\..\..\include\Core\Array.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\Color.cpp" />
-    <ClCompile Include="..\..\..\source\HammersleySampler.cpp" />
-    <ClCompile Include="..\..\..\source\JitteredSampler.cpp" />
+    <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp" />
+    <ClCompile Include="..\..\..\source\BRDF\BRDF.cpp" />
+    <ClCompile Include="..\..\..\source\BRDF\GlossySpecular.cpp" />
+    <ClCompile Include="..\..\..\source\BRDF\Lambertian.cpp" />
+    <ClCompile Include="..\..\..\source\BRDF\PerfectSpecular.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\Camera.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\Fisheye.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\Ortho.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\Pinhole.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\Spherical.cpp" />
+    <ClCompile Include="..\..\..\source\Cameras\ThinLens.cpp" />
+    <ClCompile Include="..\..\..\source\Core\Color.cpp" />
+    <ClCompile Include="..\..\..\source\Core\MathUtils.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\AmbientLight.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\DirectionalLight.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\Light.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\PointLight.cpp" />
     <ClCompile Include="..\..\..\source\main.cpp" />
-    <ClCompile Include="..\..\..\source\MathUtils.cpp" />
-    <ClCompile Include="..\..\..\source\MultiJitteredSampler.cpp" />
-    <ClCompile Include="..\..\..\source\NRooksSampler.cpp" />
-    <ClCompile Include="..\..\..\source\Plane.cpp" />
-    <ClCompile Include="..\..\..\source\RandomSampler.cpp" />
-    <ClCompile Include="..\..\..\source\Sampler.cpp" />
-    <ClCompile Include="..\..\..\source\SimpleSampler.cpp" />
-    <ClCompile Include="..\..\..\source\Sphere.cpp" />
-    <ClCompile Include="..\..\..\source\ViewingPlane.cpp" />
-    <ClCompile Include="..\..\..\source\World.cpp" />
-    <ClCompile Include="FrameBuffer.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\Raycaster.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\Whitted.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\Hammersley.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\Jittered.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\MultiJittered.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\NRooks.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\PureRandom.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\Sampler.cpp" />
+    <ClCompile Include="..\..\..\source\Samplers\Simple.cpp" />
+    <ClCompile Include="..\..\..\source\World\Bitmap.cpp" />
+    <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />
+    <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp" />
+    <ClCompile Include="..\..\..\source\World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 
-#include "MathUtils.h"
-#include "Color.h"
+#include "Core\MathUtils.h"
+#include "Core\Color.h"
 
 Color::Color()
     : r(1.f)

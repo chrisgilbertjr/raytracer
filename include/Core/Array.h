@@ -7,9 +7,9 @@ template <typename T>
 class Array
 {
 private:
-    T* m_array;          /// array on the heap
-    unsigned int m_size; /// size of the array
-    unsigned int m_max;  /// max size of the arary
+    T* m_array;      /// array on the heap
+    unsigned m_size; /// size of the array
+    unsigned m_max;  /// max size of the arary
 
 public:
     /// constructor. max is set to 8
@@ -28,7 +28,7 @@ public:
     void operator=(const Array<T>& data);
 
     /// index operator
-    T operator[](int index) const;
+    T operator[](unsigned index) const;
 
     /// push object to the back of the array
     void Push(const T& object);
@@ -40,7 +40,7 @@ public:
     void Remove(const T& object);
 
     /// remove an object at a specific index
-    T Remove(int index);
+    T Remove(unsigned index);
 
     /// check if an object is inside of an array
     bool Contains(const T& object);

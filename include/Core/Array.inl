@@ -43,7 +43,7 @@ Array<T>::operator=(const Array<T>& data)
 
 template <typename T> 
 T 
-Array<T>::operator[](int index) const
+Array<T>::operator[](unsigned index) const
 {
     /// make sure the index is valid
     if (index >= m_size && index >= 0)
@@ -114,7 +114,7 @@ Array<T>::Remove(const T& object)
     }
 
     /// check if the object is in the array
-    for (int i = 0; i < m_size; ++i)
+    for (unsigned i = 0; i < m_size; ++i)
     {
         if (m_array[i] == object)
         {
@@ -128,7 +128,7 @@ Array<T>::Remove(const T& object)
 
 template <typename T>
 T 
-Array<T>::Remove(int index)
+Array<T>::Remove(unsigned index)
 {
     /// check if there is something in the array
     if (!m_size && !m_max)
@@ -148,7 +148,7 @@ Array<T>::Remove(int index)
     m_size--;
 
     /// move the contents of the array
-    for (int i = index; i < m_size-1; ++i)
+    for (unsigned i = index; i < m_size-1; ++i)
     {
         m_array[i] = m_array[i+1];
     }
@@ -168,12 +168,12 @@ Array<T>::Contains(const T& object)
     }
 
     /// check if the object is in the array
-    for (int i = 0; i < m_size; ++i)
+    for (unsigned i = 0; i < m_size; ++i)
     {
         if (m_array[i] == obj)
         {
             return true;
         }
     }
-    return false
+    return false;
 }

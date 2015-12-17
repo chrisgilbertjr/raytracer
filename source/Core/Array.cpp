@@ -1,6 +1,6 @@
 
-#include "Array.h"
-#include "Core.h"
+#include "Core\Array.h"
+#include "Core\Core.h"
 
 Array::Array()
     : m_data(0)
