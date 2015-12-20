@@ -6,13 +6,17 @@
 #include "Core.h"
 
 #ifdef SINGLE_PRECISION
-    #define Abs  fabs
-    #define Sqrt sqrtf
-    #define Pow powf
+    #define Abs   fabs
+    #define Sqrt  sqrtf
+    #define Pow   powf
+    #define Pi    3.1415926f
+    #define InvPi 1.0f/3.1415926f
 #else
-    #define Abs abs
-    #define Sqrt sqrt
-    #define Pow pow
+    #define Abs   abs
+    #define Sqrt  sqrt
+    #define Pow   pow
+    #define Pi    3.141592653589793
+    #define InvPi 1.0/3.141592653589793
 #endif
 
 /// vector/point in 3D space
@@ -43,7 +47,7 @@ struct Vector
     void Set(real x, real y, real z);
 
     /// assignment operator
-    Vector& operator=(const Vector& vector);
+    Vector& operator=(Vector vector);
 
     /// equality operator
     bool operator==(const Vector& vector) const;
@@ -106,6 +110,22 @@ struct Ray
 
     /// inequality operator
     bool operator!=(const Ray& ray);
+};
+
+/// struct for raycast results
+struct Raycast
+{
+    Vector localPoint;
+    Vector normal;
+    real tmin;
+    real t;
+    bool hit;
+};
+
+/// struct for shade records
+struct ShadeRecord
+{
+    Vector normal;
 };
 
 /// check if two float values are equal within epsilon

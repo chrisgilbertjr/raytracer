@@ -5,21 +5,43 @@ Array<T>::Array()
     , m_size(0)
     , m_max(8)
 {
+    memcpy(m_array, 0, sizeof(T)*m_max);
 }
 
 template <typename T>
 Array<T>::Array(const Array<T>& data)
 {
-    Error("Dynamic arrays should not be copied\n");
+    m_size = data.m_size;
+    m_max  = data.m_max;
+
+    if (data.m_array)
+    {
+        m_array = static_cast<T*>(calloc(m_max, sizeof(T)));
+        if (m_size > 0 && m_max > 0 && m_array)
+        {
+            memcpy(m_array, data.m_array, sizeof(T)*m_max)
+        }
+        else if (m_max > 0)
+        {
+            memcpy(m_array, 0, sizeof(T)*m_max);
+        }
+        else
+        {
+            Error("Array max is 0.\n");
+        }
+    }
+    else
+    {
+        m_array = NULL;
+    }
 }
 
 template <typename T>
-Array<T>::Array(unsigned int max)
+Array<T>::Array(const unsigned max)
     : m_array(static_cast<T*>(calloc((max > 0 ? max : 8), sizeof(T))))
     , m_size(0)
     , m_max(max > 0 ? max : 8)
-{
-}
+{}
 
 template <typename T>
 Array<T>::~Array()
@@ -29,16 +51,19 @@ Array<T>::~Array()
         free(m_array);
     }
 
-    m_array = 0;
+    m_array = NULL;
     m_size = 0;
     m_max = 0;
 }
 
 template <typename T> 
-void 
-Array<T>::operator=(const Array<T>& data)
+Array<T>& 
+Array<T>::operator=(Array<T> data)
 {
-    Error("Dynamic arrays should not be copied\n");
+    Swap<unsigned>(m_size, data.m_size);
+    Swap<unsigned>(m_max,  data.m_max);
+    Swap<T*>(m_array, data.m_array);
+    return *this;
 }
 
 template <typename T> 
@@ -57,25 +82,32 @@ Array<T>::operator[](unsigned index) const
 
 template <typename T>
 void 
+Array<T>::Resize(const unsigned size)
+{
+    T* resized = static_cast<T*>(realloc(m_array, sizeof(T)*size));
+    if (!resized)
+    {
+        Error("realloc array failed in Array::Resize()...\n");
+    }
+
+    m_array = resized;
+    m_size = m_size > size ? size : m_size;
+    m_max = size;
+
+    resized = 0;
+}
+
+template <typename T>
+void 
 Array<T>::Push(const T& object)
 {
+    if (m_max <= 0) this->Resize(8);
+
     /// make sure the array isnt full
     if (m_size >= m_max)
     {
-        /// the array is to big, resize the array and copy over memory
-        m_max *= 2;
-        T* data = (T*)realloc((void*)m_array, m_max);
-
-        /// make sure new pointer is valid
-        if (!data)
-        {
-            Error("realloc array failed in Array::Push()...\n");
-        }
-        else
-        {
-            m_array = data;
-            data = 0;
-        }
+        /// resize the array
+        this->Resize(m_max*2);
     }
 
     /// push the obj to the back and inc the array size
@@ -87,7 +119,7 @@ T
 Array<T>::Pop()
 {
     /// check if there is something in the array
-    if (!m_size && !m_max)
+    if (m_size > 0 && m_max > 0)
     {
         Error("Cannot pop an empty array...\n");
     }
@@ -97,7 +129,6 @@ Array<T>::Pop()
 
     /// set the old obj to 0
     m_array[m_size] = 0;
-    int index = -1;
 
     /// return the obj
     return obj;
@@ -108,7 +139,7 @@ void
 Array<T>::Remove(const T& object)
 {
     /// check if there is something in the array
-    if (!m_size && !m_max)
+    if (m_size > 0 && m_max > 0)
     {
         Error("Cannot remove from an empty array...\n");
     }
@@ -128,10 +159,10 @@ Array<T>::Remove(const T& object)
 
 template <typename T>
 T 
-Array<T>::Remove(unsigned index)
+Array<T>::Remove(const unsigned index)
 {
     /// check if there is something in the array
-    if (!m_size && !m_max)
+    if (m_size > 0 && m_max > 0)
     {
         Error("Cannot remove from an empty array...\n");
     }
@@ -162,7 +193,7 @@ bool
 Array<T>::Contains(const T& object)
 {
     /// check if there is something in the array
-    if (!m_size && !m_max)
+    if (m_size > 0 && m_max > 0)
     {
         Error("The object cannot be in an empty array...\n");
     }

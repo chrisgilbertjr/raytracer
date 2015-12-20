@@ -6,9 +6,11 @@
 #include <stdio.h>
 #include <memory>
 
+
 /// lets use single precision floating points for now...
 #define SINGLE_PRECISION
 #define RELEASE
+
 
 /// real are typedef floating point values
 #ifdef SINGLE_PRECISION
@@ -17,8 +19,30 @@
     typedef double real; /// use doubles
 #endif
 
+
 /// magic numbers...
 #define EPSILON 1e-5f
+
+
+/// default swap
+template <typename T>
+inline void
+Swap(T& lhs, T& rhs)
+{
+    T tmp(lhs);
+    lhs = rhs;
+    rhs = tmp;
+}
+
+
+/// default clone
+template <typename T>
+inline T*
+Clone(const T& obj)
+{
+    return new T(obj);
+}
+
 
 /// some debug macros to make things easier
 #ifdef RELEASE

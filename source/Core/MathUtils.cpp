@@ -6,40 +6,35 @@ Vector::Vector()
     , y(0)
     , z(0)
     , w(1)
-{
-}
+{}
 
 Vector::Vector (const Vector& vector)
     : x(vector.x)
     , y(vector.y)
     , z(vector.z)
     , w(vector.w)
-{
-}
+{}
 
 Vector::Vector (real val)
     : x(val)
     , y(val)
     , z(val)
     , w(1.0)
-{
-}
+{}
 
 Vector::Vector(real x, real y, real z)
     : x(x)
     , y(y)
     , z(z)
     , w(1)
-{
-}
+{}
 
 Vector::Vector(real x, real y, real z, real w)
     : x(x)
     , y(y)
     , z(z)
     , w(w)
-{
-}
+{}
 
 Vector::~Vector() {}
 
@@ -50,13 +45,12 @@ void Vector::Set(real x, real y, real z)
     z = z;
 }
 
-Vector& Vector::operator=(const Vector& vector)
+Vector& Vector::operator=(Vector vector)
 {
-    x = vector.x;
-    y = vector.y;
-    z = vector.z;
-    w = vector.w;
-
+    Swap<real>(x, vector.x);
+    Swap<real>(y, vector.y);
+    Swap<real>(z, vector.z);
+    Swap<real>(w, vector.w);
     return *this;
 }
 

@@ -1,6 +1,7 @@
 
 #include "Core\Array.h"
 #include "qdbmp.h"
+#include "BRDFs\BRDF.h"
 
 //static void
 //SimpleSphere()
@@ -10,6 +11,9 @@
 int 
 main(void)
 {
+    //BRDF brdf1;
+    //BRDF brdf2;
+    //brdf1 = brdf2;
     //BMP* bmp;
 
     //bmp = BMP_Create(16, 16, 8);
@@ -29,6 +33,7 @@ main(void)
     //BMP_CHECK_ERROR(stderr, -5);
     // 
     //BMP_Free(bmp);
+    while (1) {};
 
     return 0;
 }

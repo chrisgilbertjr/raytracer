@@ -15,6 +15,9 @@ struct Color
     /// constructor, copy
     Color(const Color& color);
 
+    /// constructor given ints in range [0, 255]
+    //Color(int r, int g, int b);
+
     /// constructor given red, green, and blue values
     Color(real r, real g, real b);
 
@@ -25,7 +28,7 @@ struct Color
     ~Color();
 
     /// equality operator
-    Color& operator=(const Color& color);
+    Color& operator=(Color color);
 
     /// mix two colors via addition, modify this color
     Color& operator+=(const Color& color);

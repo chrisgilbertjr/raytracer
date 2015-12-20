@@ -7,44 +7,38 @@ Color::Color()
     , g(1.f)
     , b(1.f)
     , a(1.f)
-{
-}
+{}
 
 Color::Color(const Color& color)
     : r(color.r)
     , g(color.g)
     , b(color.b)
     , a(color.a)
-{
-}
+{}
 
 Color::Color(real r, real g, real b)
     : r(r)
     , g(g)
     , b(b)
     , a(1.f)
-{
-}
+{}
 
 Color::Color(real r, real g, real b, real a)
     : r(r)
     , g(g)
     , b(b)
     , a(a)
-{
-}
+{}
 
 Color::~Color()
-{
-}
+{}
 
-Color& Color::operator=(const Color& color)
+Color& Color::operator=(Color color)
 {
-    r = color.r;
-    g = color.g;
-    b = color.b;
-    a = color.a;
-
+    Swap<real>(r, color.r);
+    Swap<real>(g, color.g);
+    Swap<real>(b, color.b);
+    Swap<real>(a, color.a);
     return *this;
 }
 
