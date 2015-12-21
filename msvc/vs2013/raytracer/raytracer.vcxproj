@@ -96,10 +96,10 @@
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
-    <ClInclude Include="..\..\..\include\Raytracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raycaster.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Whitted.h" />
     <ClInclude Include="..\..\..\include\Samplers\Hammersley.h" />
     <ClInclude Include="..\..\..\include\Samplers\Jittered.h" />

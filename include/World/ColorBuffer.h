@@ -13,11 +13,13 @@ private:
 public:
     ColorBuffer();
 
+    ColorBuffer(const ColorBuffer& buffer);
+
     ColorBuffer(int width, int height);
 
     ~ColorBuffer();
 
-    void operator=(const ColorBuffer& buffer);
+    ColorBuffer operator=(ColorBuffer buffer);
 
     void SetColor(int x, int y, const Color& color);
 };

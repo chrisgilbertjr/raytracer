@@ -16,6 +16,9 @@ private:
 public:
     /// default constructor
     ViewingPlane();
+
+    /// copy constructor
+    ViewingPlane(const ViewingPlane& plane);
     
     /// constructor
     ViewingPlane(int width, int height);

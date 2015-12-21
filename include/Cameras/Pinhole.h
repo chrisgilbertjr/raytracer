@@ -11,7 +11,13 @@ private:
 public:
     Pinhole();
 
-    ~Pinhole();
+    Pinhole(const Pinhole& pinhole);
+
+    virtual ~Pinhole();
+
+    Pinhole& operator=(Pinhole pinhole);
+
+    virtual Camera* Clone() const;
 
     virtual void Render(const World& world);
 };

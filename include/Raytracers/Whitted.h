@@ -11,7 +11,13 @@ private:
 public:
     Whitted();
 
-    ~Whitted();
+    Whitted(const Whitted& whitted);
+
+    virtual ~Whitted();
+
+    virtual Raytracer* Clone() const;
+
+    Whitted& operator=(Whitted whitted);
 };
 
 #endif

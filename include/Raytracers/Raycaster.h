@@ -11,7 +11,13 @@ private:
 public:
     Raycaster();
 
-    ~Raycaster();
+    Raycaster(const Raycaster& raycaster);
+
+    virtual ~Raycaster();
+
+    virtual Raytracer* Clone() const;
+
+    Raycaster& operator=(Raycaster raycaster);
 };
 
 #endif

@@ -119,9 +119,6 @@
     <ClInclude Include="..\..\..\include\World\ColorBuffer.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\Raytracer.h">
-      <Filter>Header Files\Raytracers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h">
       <Filter>Header Files\qndbmp</Filter>
     </ClInclude>
@@ -193,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\World\World.h">
       <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h">
+      <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

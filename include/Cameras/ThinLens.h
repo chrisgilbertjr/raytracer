@@ -6,12 +6,16 @@
 
 class ThinLens : public Camera
 {
-private:
-
 public:
     ThinLens();
 
-    ~ThinLens();
+    ThinLens(const ThinLens& thinlens);
+
+    virtual ~ThinLens();
+
+    ThinLens& operator=(ThinLens thinlens);
+
+    virtual Camera* Clone() const;
 
     virtual void Render(const World& world);
 };

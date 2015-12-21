@@ -3,14 +3,11 @@
 #include "qdbmp.h"
 #include "BRDFs\BRDF.h"
 
-//static void
-//SimpleSphere()
-//{
-//}
-
 int 
 main(void)
 {
+    /// testing qndbmp ...
+
     //BRDF brdf1;
     //BRDF brdf2;
     //brdf1 = brdf2;

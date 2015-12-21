@@ -11,7 +11,13 @@ private:
 public:
     Ortho();
 
-    ~Ortho();
+    Ortho(const Ortho& ortho);
+
+    virtual ~Ortho();
+
+    Ortho& operator=(Ortho ortho);
+
+    virtual Camera* Clone() const;
 
     virtual void Render(const World& world);
 };

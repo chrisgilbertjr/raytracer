@@ -18,7 +18,11 @@ private:
 public:
     World();
 
+    World(const World& world);
+
     ~World();
+
+    World& operator=(World world);
 
     void SetBackgroundColor(const Color& color);
 

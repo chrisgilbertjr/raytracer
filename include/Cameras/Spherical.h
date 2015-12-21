@@ -11,7 +11,13 @@ private:
 public:
     Spherical();
 
-    ~Spherical();
+    Spherical(const Spherical& spherical);
+
+    virtual ~Spherical();
+
+    Spherical& operator=(Spherical spherical);
+
+    virtual Camera* Clone() const;
 
     virtual void Render(const World& world);
 };

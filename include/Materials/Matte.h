@@ -11,7 +11,13 @@ private:
 public:
     Matte();
 
-    ~Matte();
+    Matte(const Matte& matte);
+
+    virtual ~Matte();
+
+    Material& operator=(Matte matte);
+
+    virtual Material* Clone() const;
 };
 
 #endif

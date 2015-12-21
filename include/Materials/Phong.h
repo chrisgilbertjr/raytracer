@@ -11,6 +11,12 @@ private:
 public:
     Phong();
 
-    ~Phong();
+    Phong(const Phong& phong);
+
+    virtual ~Phong();
+
+    Phong& operator=(Phong phong);
+
+    virtual Material* Clone() const;
 };
 #endif

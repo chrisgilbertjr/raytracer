@@ -16,9 +16,9 @@ public:
 
     BRDF(const BRDF& brdf);
 
-    BRDF& operator=(BRDF brdf);
-
     virtual ~BRDF();
+
+    BRDF& operator=(BRDF brdf);
 
     virtual BRDF* Clone() const;
 

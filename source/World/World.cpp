@@ -3,10 +3,23 @@
 
 World::World()
 {
+    /// @TODO:
+}
+
+World::World(const World& world)
+{
+    /// @TODO:
 }
 
 World::~World()
 {
+    /// @TODO:
+}
+
+World& World::operator=(World world)
+{
+    /// @TODO:
+    return *this;
 }
 
 void 

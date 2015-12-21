@@ -11,7 +11,13 @@ private:
 public:
     PathTracer();
 
-    ~PathTracer();
+    PathTracer(const PathTracer& pathtracer);
+
+    virtual ~PathTracer();
+
+    virtual Raytracer* Clone() const;
+
+    PathTracer& operator=(PathTracer pathtracer);
 };
 
 #endif

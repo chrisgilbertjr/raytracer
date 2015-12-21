@@ -14,11 +14,20 @@ public:
     /// constructor
     Raytracer();
 
+    /// copy constructor
+    Raytracer(const Raytracer& raytracer);
+
     /// constructor given a world pointer
     Raytracer(const World* world);
 
     /// destructor
-    ~Raytracer();
+    virtual ~Raytracer();
+
+    /// clone a raytracer object
+    virtual Raytracer* Clone() const;
+
+    /// copy assignment operator
+    Raytracer& operator=(Raytracer raytracer);
 
     /// trace a ray and return its color
     virtual Color TraceRay(const Ray& ray) const;

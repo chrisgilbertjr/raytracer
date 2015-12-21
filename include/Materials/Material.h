@@ -9,7 +9,13 @@ protected:
 public:
     Material();
 
-    ~Material();
+    Material(const Material& material);
+
+    virtual ~Material();
+
+    Material& operator=(Material material);
+
+    virtual Material* Clone() const;
 };
 
 #endif

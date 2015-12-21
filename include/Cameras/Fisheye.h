@@ -11,7 +11,13 @@ private:
 public:
     Fisheye();
 
-    ~Fisheye();
+    Fisheye(const Fisheye& fisheye);
+
+    virtual ~Fisheye();
+
+    Fisheye& operator=(Fisheye fisheye);
+
+    virtual Camera* Clone() const;
 
     virtual void Render(const World& world);
 };

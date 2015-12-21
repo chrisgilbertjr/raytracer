@@ -10,6 +10,11 @@ ViewingPlane::ViewingPlane()
 {
 }
 
+ViewingPlane::ViewingPlane(const ViewingPlane& plane)
+{
+    /// @TODO:
+}
+
 ViewingPlane::ViewingPlane(int width, int height)
     : m_width(width)
     , m_height(height)

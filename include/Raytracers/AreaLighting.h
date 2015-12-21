@@ -11,7 +11,13 @@ private:
 public:
     AreaLighting();
 
-    ~AreaLighting();
+    AreaLighting(const AreaLighting& area);
+
+    virtual ~AreaLighting();
+
+    virtual Raytracer* Clone() const;
+
+    AreaLighting& operator=(AreaLighting area);
 };
 
 #endif

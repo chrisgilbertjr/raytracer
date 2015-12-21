@@ -13,9 +13,10 @@ ColorBuffer::~ColorBuffer()
 {
 }
 
-void
+ColorBuffer&
 ColorBuffer::operator=(const ColorBuffer& buffer)
 {
+    return *this;
 }
 
 void
