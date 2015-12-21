@@ -1,5 +1,6 @@
 
 template <typename T>
+inline 
 Array<T>::Array()
     : m_array(static_cast<T*>(calloc(8, sizeof(T))))
     , m_size(0)
@@ -9,6 +10,7 @@ Array<T>::Array()
 }
 
 template <typename T>
+inline
 Array<T>::Array(const Array<T>& data)
 {
     m_size = data.m_size;
@@ -17,9 +19,10 @@ Array<T>::Array(const Array<T>& data)
     if (data.m_array)
     {
         m_array = static_cast<T*>(calloc(m_max, sizeof(T)));
+
         if (m_size > 0 && m_max > 0 && m_array)
         {
-            memcpy(m_array, data.m_array, sizeof(T)*m_max)
+            memcpy(m_array, data.m_array, sizeof(T)*m_max);
         }
         else if (m_max > 0)
         {
@@ -37,6 +40,7 @@ Array<T>::Array(const Array<T>& data)
 }
 
 template <typename T>
+inline
 Array<T>::Array(const unsigned max)
     : m_array(static_cast<T*>(calloc((max > 0 ? max : 8), sizeof(T))))
     , m_size(0)
@@ -44,6 +48,7 @@ Array<T>::Array(const unsigned max)
 {}
 
 template <typename T>
+inline
 Array<T>::~Array()
 {
     if (m_array)
@@ -57,7 +62,7 @@ Array<T>::~Array()
 }
 
 template <typename T> 
-Array<T>& 
+inline Array<T>& 
 Array<T>::operator=(Array<T> data)
 {
     Swap<unsigned>(m_size, data.m_size);
@@ -67,7 +72,7 @@ Array<T>::operator=(Array<T> data)
 }
 
 template <typename T> 
-T 
+inline T& 
 Array<T>::operator[](unsigned index) const
 {
     /// make sure the index is valid
@@ -81,7 +86,7 @@ Array<T>::operator[](unsigned index) const
 }
 
 template <typename T>
-void 
+inline void 
 Array<T>::Resize(const unsigned size)
 {
     T* resized = static_cast<T*>(realloc(m_array, sizeof(T)*size));
@@ -98,7 +103,7 @@ Array<T>::Resize(const unsigned size)
 }
 
 template <typename T>
-void 
+inline void 
 Array<T>::Push(const T& object)
 {
     if (m_max <= 0) this->Resize(8);
@@ -115,7 +120,7 @@ Array<T>::Push(const T& object)
 }
 
 template <typename T>
-T 
+inline T 
 Array<T>::Pop()
 {
     /// check if there is something in the array
@@ -135,7 +140,7 @@ Array<T>::Pop()
 }
 
 template <typename T>
-void 
+inline void 
 Array<T>::Remove(const T& object)
 {
     /// check if there is something in the array
@@ -158,7 +163,7 @@ Array<T>::Remove(const T& object)
 }
 
 template <typename T>
-T 
+inline T 
 Array<T>::Remove(const unsigned index)
 {
     /// check if there is something in the array
@@ -189,7 +194,7 @@ Array<T>::Remove(const unsigned index)
 }
 
 template <typename T>
-bool 
+inline bool 
 Array<T>::Contains(const T& object)
 {
     /// check if there is something in the array
@@ -207,4 +212,26 @@ Array<T>::Contains(const T& object)
         }
     }
     return false;
+}
+
+template <typename T>
+inline void 
+ShuffleArray(Array<T>& data)
+{
+    ShuffleArray<T>(data, 0, array.GetSize());
+}
+
+template <typename T>
+inline void 
+ShuffleArray(Array<T>& data, const unsigned start, const unsigned end)
+{
+    if (end < 2) return;
+
+    for (int i = start; i < (int)end-1; ++i)
+    {
+        int j = i + rand() / (RAND_MAX / (end-i)+1);
+        int tmp = data[i];
+        data[j] = data[i];
+        data[i] = tmp;
+    }
 }

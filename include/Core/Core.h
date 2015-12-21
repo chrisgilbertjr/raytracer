@@ -24,6 +24,24 @@
 #define EPSILON 1e-5f
 
 
+/// random seed flag
+extern bool g_seeded;
+
+/// init random seed
+void InitializeRandomSeed();
+
+/// random int betweem [0, RAND_MAX]
+int RandInt();
+
+/// random int betweem [0, max]
+int RandInt(int max);
+
+/// random int between [start, end]
+int RandInt(int start, int end);
+
+/// random real between [0, RAND_MAX]
+real RandReal();
+
 /// default swap
 template <typename T>
 inline void

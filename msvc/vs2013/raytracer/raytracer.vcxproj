@@ -131,6 +131,7 @@
     <ClCompile Include="..\..\..\source\Cameras\ThinLens.cpp" />
     <ClCompile Include="..\..\..\source\Core\Color.cpp" />
     <ClCompile Include="..\..\..\source\Core\MathUtils.cpp" />
+    <ClCompile Include="..\..\..\source\Core\Rand.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\DirectionalLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\Light.cpp" />

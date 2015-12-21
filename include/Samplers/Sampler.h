@@ -7,6 +7,9 @@
 
 class Sampler
 {
+private:
+    Vector DoSample(const Array<Vector>& samples);
+
 protected:
     Array<Vector> m_samples;
     Array<Vector> m_diskSamples;

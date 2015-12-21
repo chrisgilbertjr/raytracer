@@ -28,7 +28,7 @@ public:
     Array<T>& operator=(Array<T> data);
 
     /// index operator
-    T operator[](unsigned index) const;
+    T& operator[](unsigned index) const;
 
     /// resize the array. 
     /// data is retained if the array is larger or the same size.
@@ -52,7 +52,18 @@ public:
     /// check if an object is inside of an array
     /// operator== must be implemented
     bool Contains(const T& object);
+
+    /// gets the current size of the array
+    inline unsigned GetSize() const { return m_size; }
 };
+
+/// random shuffle all array elements
+template <typename T>
+void ShuffleArray(Array<T>& array);
+
+/// random shuffle array elements in range [start, end]
+template <typename T>
+void ShuffleArray(Array<T>& array, const unsigned start, const unsigned end);
 
 /// inline implementation
 #include "Array.inl"

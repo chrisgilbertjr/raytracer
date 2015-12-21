@@ -321,5 +321,8 @@
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp">
       <Filter>Source Files\World</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\Core\Rand.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
