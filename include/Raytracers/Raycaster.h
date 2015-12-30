@@ -15,9 +15,9 @@ public:
 
     virtual ~Raycaster();
 
-    virtual Raytracer* Clone() const;
-
     Raycaster& operator=(Raycaster raycaster);
+
+    virtual Raytracer* Clone() const;
 };
 
 #endif

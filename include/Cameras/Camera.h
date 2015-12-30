@@ -13,7 +13,7 @@ protected:
     Vector m_up;     /// up vector
     Vector m_u;      /// basis x vector
     Vector m_v;      /// basis y vector
-    Vector m_w;      /// basis z vector (-z)
+    Vector m_w;      /// basis z vector
     real m_roll;     /// roll angle
     real m_exposure; /// exposure time
 

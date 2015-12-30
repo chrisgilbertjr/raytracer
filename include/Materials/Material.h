@@ -2,6 +2,8 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+#include "..\Core\Color.h"
+
 class Material
 {
 protected:

@@ -7,11 +7,13 @@
 class ViewingPlane
 {
 private:
-    int m_width;
-    int m_height;
-    real m_gamma;
-    real m_gammaInv;
-    real m_pixelSize;
+    int m_width;              /// width of the viewing plane
+    int m_height;             /// height of the viewing plane
+    int m_sampleCount;        /// number of samples per pixel
+    real m_gamma;             /// gamma of the viewing plane
+    real m_gammaInv;          /// inverse gamma of the viewing plane
+    real m_pixelSize;         /// pixel size of the viewing plane
+    class Sampler* m_sampler; /// sampler pointer
 
 public:
     /// default constructor
@@ -21,40 +23,57 @@ public:
     ViewingPlane(const ViewingPlane& plane);
     
     /// constructor
-    ViewingPlane(int width, int height);
+    ViewingPlane(const int width, const int height);
 
     /// constructor
-    ViewingPlane(int width, int height, real gamma, real pizelSize);
+    ViewingPlane(const int width, const int height, const int sampleCount);
+
+    /// constructor
+    ViewingPlane(const int width, const int height, const real gamma, const real pizelSize);
 
     /// destructor
     ~ViewingPlane();
 
+    /// copy assignment operator
+    ViewingPlane& operator=(ViewingPlane plane);
+
+    //// inline member functions ----------------------------------------------
+
     /// set the width of the viewing plane
-    void SetWidth(int width);
+    void SetWidth(const int width)          { m_width = width; }
 
     /// set the height of the viewing plane
-    void SetHeight(int height);
+    void SetHeight(const int height)        { m_height = height; }
+
+    /// set the samples per pixel
+    void SetSampleCount(const int samples)  { m_sampleCount = samples; }
 
     /// set the gamma of the viewing plane
-    void SetGamma(real gamma);
+    void SetGamma(const real gamma)         { m_gamma = gamma; m_gammaInv = (gamma > 0.f) ? (1.f / gamma) : (0.f); }
 
     /// set the pizel size of the viewing plane
-    void SetPizelSize(real pizelSize);
+    void SetPizelSize(const real pixelSize) { m_pixelSize = pixelSize; }
 
     /// get a copy of the width of the viewing plane
-    int GetWidth() const;
+    int GetWidth() const                    { return m_width; }
 
     /// get a copy of the height of the viewing plane
-    int GetHeight() const;
+    int GetHeight() const                   { return m_height; }
+
+    /// get the sample count per pixel
+    int GetSampleCount() const              { return m_sampleCount; }
 
     /// get a copy of the gamma of the viewing plane
-    real GetGamma() const;
+    real GetGamma() const                   { return m_gamma; }
 
     /// get a copy of the inverse gamma of the viewing plane
-    real GetGammaInv() const;
+    real GetGammaInv() const                { return m_gammaInv; }
 
     /// get a copy of the pizel size of the viewing plane
-    real GetPizelSize() const;
+    real GetPizelSize() const               { return m_pixelSize; }
+
+    /// get the sampler of the viewing plane
+    Sampler* GetSampler() const       { return m_sampler; }
 };
 
 #endif

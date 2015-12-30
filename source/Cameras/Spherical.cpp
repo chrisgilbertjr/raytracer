@@ -20,12 +20,14 @@ Spherical&
 Spherical::operator=(Spherical spherical)
 {
     /// @TODO:
+    return *this;
 }
 
 Camera*
 Spherical::Clone() const
 {
     /// @TODO:
+    return static_cast<Camera*>(new Spherical(*this));
 }
 
 void

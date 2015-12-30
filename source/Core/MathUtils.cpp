@@ -1,12 +1,16 @@
 
 #include "Core\MathUtils.h"
 
+
+/// Vector --------------------------------------------------------------------
+
 Vector::Vector()
     : x(0)
     , y(0)
     , z(0)
     , w(1)
 {}
+
 
 Vector::Vector (const Vector& vector)
     : x(vector.x)
@@ -15,12 +19,14 @@ Vector::Vector (const Vector& vector)
     , w(vector.w)
 {}
 
+
 Vector::Vector (real val)
     : x(val)
     , y(val)
     , z(val)
     , w(1.0)
 {}
+
 
 Vector::Vector(real x, real y, real z)
     : x(x)
@@ -29,6 +35,7 @@ Vector::Vector(real x, real y, real z)
     , w(1)
 {}
 
+
 Vector::Vector(real x, real y, real z, real w)
     : x(x)
     , y(y)
@@ -36,7 +43,9 @@ Vector::Vector(real x, real y, real z, real w)
     , w(w)
 {}
 
+
 Vector::~Vector() {}
+
 
 void Vector::Set(real x, real y, real z)
 {
@@ -44,6 +53,7 @@ void Vector::Set(real x, real y, real z)
     y = y;
     z = z;
 }
+
 
 Vector& Vector::operator=(Vector vector)
 {
@@ -54,11 +64,13 @@ Vector& Vector::operator=(Vector vector)
     return *this;
 }
 
+
 bool 
 Vector::operator==(const Vector& vector) const
 {
     return Equal(*this, vector);
 }
+
 
 bool 
 Vector::operator!=(const Vector& vector) const
@@ -66,11 +78,13 @@ Vector::operator!=(const Vector& vector) const
     return !Equal(*this, vector);
 }
 
+
 Vector 
 Vector::operator*(const real scalar) const
 {
     return Vector(x*scalar, y*scalar, z*scalar);
 }
+
 
 Vector 
 Vector::operator+(const Vector& vector) const
@@ -78,11 +92,13 @@ Vector::operator+(const Vector& vector) const
     return Vector(x+vector.x, y+vector.y, z+vector.z);
 }
 
+
 Vector 
 Vector::operator-(const Vector& vector) const
 {
     return Vector(x-vector.x, y-vector.y, z-vector.z);
 }
+
 
 Vector 
 Vector::operator-() const
@@ -90,11 +106,13 @@ Vector::operator-() const
     return Vector(-x, -y, -z, w);
 }
 
+
 Vector 
 Vector::Cross(const Vector& vector) const
 {
     return Vector(y*vector.z - z*vector.y, z*vector.x - x*vector.z, x*vector.y - y*vector.x);
 }
+
 
 void 
 Vector::Normalize(const real epsilon)
@@ -117,11 +135,13 @@ Vector::Normalize(const real epsilon)
     }
 }
 
+
 real 
 Vector::Dot(const Vector& vector) const
 {
     return x*vector.x + y*vector.y * z*vector.z;
 }
+
 
 real 
 Vector::Length() const
@@ -129,17 +149,73 @@ Vector::Length() const
     return Sqrt(this->LengthSquared());
 }
 
+
 real 
 Vector::LengthSquared() const
 {
     return x*x + y*y + z*z;
 }
 
+/// ---------------------------------------------------------------------------
+
+
+/// Ray -----------------------------------------------------------------------
+
+Ray::Ray()
+    : origin(0.f)
+    , direction(0.f)
+{}
+
+
+Ray::Ray(const Ray& ray)
+    : origin(ray.origin)
+    , direction(ray.direction)
+{}
+
+
+Ray::Ray(const Vector& origin, const Vector& direction)
+    : origin(origin)
+    , direction(direction)
+{}
+
+
+Ray::~Ray() {}
+
+
+Ray& 
+Ray::operator=(Ray ray)
+{
+    Swap<Vector>(origin, ray.origin);
+    Swap<Vector>(direction, ray.direction);
+
+    return *this;
+}
+
+
+bool 
+Ray::operator==(const Ray& ray)
+{
+    return (Equal(origin, ray.origin) && Equal(direction, ray.direction));
+}
+
+
+bool 
+Ray::operator!=(const Ray& ray)
+{
+    return (!Equal(origin, ray.origin) || !Equal(direction, ray.direction));
+}
+
+/// ---------------------------------------------------------------------------
+
+
+/// MathUtils -----------------------------------------------------------------
+
 bool 
 Equal(real a, real b, real epsilon)
 {
     return Abs(a - b) <= epsilon;
 }
+
 
 bool 
 Equal(const Vector& a, const Vector& b, real epsilon)
@@ -150,11 +226,13 @@ Equal(const Vector& a, const Vector& b, real epsilon)
            Equal(a.w, b.w, epsilon);
 }
 
+
 Vector 
 Add(const Vector& a, const Vector& b)
 {
     return a + b;
 }
+
 
 Vector 
 Sub(const Vector& a, const Vector& b)
@@ -162,11 +240,13 @@ Sub(const Vector& a, const Vector& b)
     return a - b;
 }
 
+
 Vector 
 Mult(const Vector& a, const real b)
 {
     return a * b;
 }
+
 
 Vector 
 Mult(const real a, const Vector& b)
@@ -174,43 +254,41 @@ Mult(const real a, const Vector& b)
     return b * a;
 }
 
-Vector 
-Normalize(const Vector& vector, const real epsilon)
-{
-    Vector result = vector;
-    result.Normalize(epsilon);
 
-    return result;
+Vector 
+Normalize(Vector vector, const real epsilon)
+{
+    vector.Normalize(epsilon);
+
+    return vector;
 }
+
 
 Vector 
 Cross(const Vector& a, const Vector& b)
 {
-    Vector result = a.Cross(b);
-
-    return result;
+    return a.Cross(b);
 }
+
 
 real 
 Dot(const Vector& a, const Vector& b)
 {
-    real result = a.Dot(b);
-
-    return result;
+    return a.Dot(b);
 }
+
 
 real 
 Length(const Vector& a)
 {
-    real result = a.Length();
-
-    return result;
+    return a.Length();
 }
+
 
 real 
 LengthSquared(const Vector& a)
 {
-    real result = a.LengthSquared();
-
-    return result;
+    return a.LengthSquared();
 }
+
+/// ---------------------------------------------------------------------------

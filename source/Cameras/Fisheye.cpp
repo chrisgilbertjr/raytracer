@@ -20,12 +20,14 @@ Fisheye&
 Fisheye::operator=(Fisheye fisheye)
 {
     /// @TODO:
+    return *this;
 }
 
 Camera*
 Fisheye::Clone() const
 {
     /// @TODO:
+    return static_cast<Camera*>(new Fisheye(*this));
 }
 
 void 

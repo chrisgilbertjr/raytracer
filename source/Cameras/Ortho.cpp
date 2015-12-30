@@ -20,12 +20,14 @@ Ortho&
 Ortho::operator=(Ortho ortho)
 {
     /// @TODO:
+    return *this;
 }
 
 Camera*
 Ortho::Clone() const
 {
     /// @TODO:
+    return static_cast<Camera*>(new Ortho(*this));
 }
 
 void

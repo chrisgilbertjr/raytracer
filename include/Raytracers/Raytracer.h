@@ -23,14 +23,14 @@ public:
     /// destructor
     virtual ~Raytracer();
 
-    /// clone a raytracer object
-    virtual Raytracer* Clone() const;
-
     /// copy assignment operator
     Raytracer& operator=(Raytracer raytracer);
 
+    /// clone a raytracer object
+    virtual Raytracer* Clone() const;
+
     /// trace a ray and return its color
-    virtual Color TraceRay(const Ray& ray) const;
+    virtual Color TraceRay(const Ray& ray, const int depth) const;
 };
 
 #endif

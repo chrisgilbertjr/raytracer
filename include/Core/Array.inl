@@ -1,4 +1,5 @@
 
+
 template <typename T>
 inline 
 Array<T>::Array()
@@ -8,6 +9,7 @@ Array<T>::Array()
 {
     memcpy(m_array, 0, sizeof(T)*m_max);
 }
+
 
 template <typename T>
 inline
@@ -39,6 +41,7 @@ Array<T>::Array(const Array<T>& data)
     }
 }
 
+
 template <typename T>
 inline
 Array<T>::Array(const unsigned max)
@@ -46,6 +49,7 @@ Array<T>::Array(const unsigned max)
     , m_size(0)
     , m_max(max > 0 ? max : 8)
 {}
+
 
 template <typename T>
 inline
@@ -61,6 +65,7 @@ Array<T>::~Array()
     m_max = 0;
 }
 
+
 template <typename T> 
 inline Array<T>& 
 Array<T>::operator=(Array<T> data)
@@ -70,6 +75,7 @@ Array<T>::operator=(Array<T> data)
     Swap<T*>(m_array, data.m_array);
     return *this;
 }
+
 
 template <typename T> 
 inline T& 
@@ -84,6 +90,7 @@ Array<T>::operator[](unsigned index) const
     /// return the object
     return m_array[index];
 }
+
 
 template <typename T>
 inline void 
@@ -102,6 +109,7 @@ Array<T>::Resize(const unsigned size)
     resized = 0;
 }
 
+
 template <typename T>
 inline void 
 Array<T>::Push(const T& object)
@@ -118,6 +126,7 @@ Array<T>::Push(const T& object)
     /// push the obj to the back and inc the array size
     m_array[m_size++] = object;
 }
+
 
 template <typename T>
 inline T 
@@ -138,6 +147,7 @@ Array<T>::Pop()
     /// return the obj
     return obj;
 }
+
 
 template <typename T>
 inline void 
@@ -161,6 +171,7 @@ Array<T>::Remove(const T& object)
 
     Error("The object is not in the array...\n");
 }
+
 
 template <typename T>
 inline T 
@@ -193,6 +204,7 @@ Array<T>::Remove(const unsigned index)
     return ptr;
 }
 
+
 template <typename T>
 inline bool 
 Array<T>::Contains(const T& object)
@@ -214,12 +226,14 @@ Array<T>::Contains(const T& object)
     return false;
 }
 
+
 template <typename T>
 inline void 
 ShuffleArray(Array<T>& data)
 {
     ShuffleArray<T>(data, 0, array.GetSize());
 }
+
 
 template <typename T>
 inline void 

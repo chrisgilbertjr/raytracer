@@ -15,9 +15,9 @@ public:
 
     virtual ~PathTracer();
 
-    virtual Raytracer* Clone() const;
-
     PathTracer& operator=(PathTracer pathtracer);
+
+    virtual Raytracer* Clone() const;
 };
 
 #endif

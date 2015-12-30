@@ -15,9 +15,9 @@ public:
 
     virtual ~Whitted();
 
-    virtual Raytracer* Clone() const;
-
     Whitted& operator=(Whitted whitted);
+
+    virtual Raytracer* Clone() const;
 };
 
 #endif

@@ -5,6 +5,10 @@
 #include <cmath>
 #include "Core.h"
 
+
+/// @ingroup Core
+/// @{
+
 #ifdef SINGLE_PRECISION
     #define Abs   fabs
     #define Sqrt  sqrtf
@@ -18,6 +22,12 @@
     #define Pi    3.141592653589793
     #define InvPi 1.0/3.141592653589793
 #endif
+
+/// @}
+
+
+/// @defgroup Vector Vector
+/// @{
 
 /// vector/point in 3D space
 struct Vector
@@ -83,12 +93,17 @@ struct Vector
     real LengthSquared() const;
 };
 
+/// @}
+
+
+/// @defgroup Ray Ray
+/// @{
+
 /// a ray in 3D space
 struct Ray
 {
-    /// o - origin of the ray
-    /// d - direction vector of the ray
-    Vector o, d;
+    Vector origin;    /// origin point of the ray
+    Vector direction; /// direction of the ray
 
     /// constructor
     Ray();
@@ -103,7 +118,7 @@ struct Ray
     ~Ray();
 
     /// assignment operator
-    Vector& operator=(const Ray& ray);
+    Ray& operator=(Ray ray);
 
     /// equality operator
     bool operator==(const Ray& ray);
@@ -122,11 +137,23 @@ struct Raycast
     bool hit;
 };
 
+/// @}
+
+
+/// @defgroup ShadeRecord ShadeRecord
+/// @{
+
 /// struct for shade records
 struct ShadeRecord
 {
     Vector normal;
 };
+
+/// @}
+
+
+/// @defgroup MathUtils MathUtils
+/// @{
 
 /// check if two float values are equal within epsilon
 bool Equal(real a, real b, real epsilon = EPSILON);
@@ -147,7 +174,7 @@ Vector Mult(const Vector& a, const real b);
 Vector Mult(const real a, const Vector& b);
 
 /// normalize a vector and return a copy of the vector
-Vector Normalize(const Vector& vector, const real epsilon = EPSILON);
+Vector Normalize(Vector vector, const real epsilon = EPSILON);
 
 /// cross product of two vectors
 Vector Cross(const Vector& a, const Vector& b);
@@ -160,5 +187,8 @@ real Length(const Vector& a);
 
 /// get the squared length of a vector
 real LengthSquared(const Vector& a);
+
+/// @}
+
 
 #endif /// MATH_UTILS_H

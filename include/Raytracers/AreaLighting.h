@@ -15,9 +15,9 @@ public:
 
     virtual ~AreaLighting();
 
-    virtual Raytracer* Clone() const;
-
     AreaLighting& operator=(AreaLighting area);
+
+    virtual Raytracer* Clone() const;
 };
 
 #endif

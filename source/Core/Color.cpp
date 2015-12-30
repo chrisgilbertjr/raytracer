@@ -146,3 +146,20 @@ Color operator*(real scalar, const Color& color)
 {
     return color * scalar;
 }
+
+static unsigned char
+Map255(real x)
+{
+    return (unsigned char)(x * 255.f);
+}
+
+Color255 
+MapColor255(const Color& color)
+{
+    Color255 color255;
+    color255.r = Map255(color.r);
+    color255.g = Map255(color.g);
+    color255.b = Map255(color.b);
+    color255.a = Map255(color.a);
+    return color255;
+}

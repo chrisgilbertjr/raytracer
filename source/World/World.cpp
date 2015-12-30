@@ -1,65 +1,71 @@
 
 #include "World\World.h"
+#include "qdbmp.h"
+
+/// --------------------------------------------------------------------------- ExportBMP
+
+static void 
+ExportBMP(const ColorBuffer& buffer, const OutputOptions& options)
+{
+    unsigned height = buffer.GetHeight();
+    unsigned width = buffer.GetWidth();
+
+    BMP* bmp = BMP_Create(width, height, 8);
+
+    for (unsigned y = 0; y < height; ++y)
+    {
+        for (unsigned x = 0; x < width; ++x)
+        {
+            Color255 color = MapColor255(buffer.GetColor(x, y));
+            BMP_SetPixelRGB(bmp, x, y, color.r, color.g, color.b);
+        }
+    }
+
+    BMP_WriteFile(bmp, options.filename.c_str());
+
+    BMP_Free(bmp);
+}
+
+/// --------------------------------------------------------------------------- Constructor
 
 World::World()
-{
-    /// @TODO:
-}
+    : m_viewingPlane()
+    , m_objects(8)
+    , m_tracer(NULL)
+    , m_background(0.f, 0.f, 0.f)
+{}
+
+/// --------------------------------------------------------------------------- Copy Constructor
 
 World::World(const World& world)
-{
-    /// @TODO:
-}
+    : m_viewingPlane(world.m_viewingPlane)
+    , m_objects(world.m_objects)
+    , m_tracer(world.m_tracer)
+    , m_background(world.m_background)
+{}
 
-World::~World()
-{
-    /// @TODO:
-}
+/// --------------------------------------------------------------------------- Destructor
+
+World::~World() {}
+
+/// --------------------------------------------------------------------------- Copy Assignment operator
 
 World& World::operator=(World world)
 {
-    /// @TODO:
+    Swap<ViewingPlane>(m_viewingPlane, world.m_viewingPlane);
+    Swap<Array<Object*> >(m_objects, world.m_objects);
+    Swap<Raytracer*>(m_tracer, world.m_tracer);
+    Swap<Color>(m_background, world.m_background);
+
     return *this;
 }
 
-void 
-World::SetBackgroundColor(const Color& color)
-{
-    m_background = color;
-}
-
-const ViewingPlane* 
-World::GetViewingPlane() const
-{
-    return &m_viewingPlane;
-}
-
-const Array<Object*>* 
-World::GetObjects() const
-{
-    return &m_objects;
-}
-
-const Raytracer* 
-World::GetRaytracer() const
-{
-    return m_tracer;
-}
-
-Color 
-World::GetBackgroundColor() const
-{
-    return m_background;
-}
+/// --------------------------------------------------------------------------- Render
 
 void 
-World::PushObject(Object* object)
+World::Render(const ColorBuffer& buffer) const
 {
-    m_objects.Push(object);
+    /// @TODO:
 }
 
-void 
-World::RemoveObject(Object* object)
-{
-    m_objects.Remove(object);
-}
+/// --------------------------------------------------------------------------- EOF

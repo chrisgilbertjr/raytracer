@@ -4,6 +4,12 @@
 
 #include "Core.h"
 
+/// mapped color to unsigned bytes [0, 255] for BMP images
+struct Color255
+{
+    unsigned char r, g, b, a;
+};
+
 /// an RGBA color scheme
 struct Color
 {
@@ -81,5 +87,8 @@ struct Color
 
 /// mix a color and scalar, return a copy
 Color operator*(real scalar, const Color& color);
+
+/// map a Color to a Color255 for image formats
+Color255 MapColor255(const Color& color);
 
 #endif

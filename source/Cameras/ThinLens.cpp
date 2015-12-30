@@ -20,12 +20,14 @@ ThinLens&
 ThinLens::operator=(ThinLens thinlens)
 {
     /// @TODO:
+    return *this;
 }
 
 Camera*
 ThinLens::Clone() const
 {
     /// @TODO:
+    return static_cast<Camera*>(new ThinLens(*this));
 }
 
 void

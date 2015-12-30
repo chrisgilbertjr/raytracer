@@ -47,9 +47,9 @@ Sphere::Query(const Ray& ray) const
     result.tmin = result.t = 0.0f;
     result.normal = result.localPoint = Vector(0.0f);
 
-    Vector tmp = ray.o - m_center;
-    real a = Dot(ray.d, ray.d);
-    real b = 2.0f * Dot(tmp, ray.d);
+    Vector tmp = ray.origin - m_center;
+    real a = Dot(ray.direction, ray.direction);
+    real b = 2.0f * Dot(tmp, ray.direction);
     real c = Dot(tmp, tmp) - m_radius * m_radius;
     real discriminant = b * b - 4.0f * a * c;
 
@@ -63,10 +63,10 @@ Sphere::Query(const Ray& ray) const
 
             if (quadtratic > EPSILON)
             {
-                Vector mag = ray.d * quadtratic;
+                Vector mag = ray.direction * quadtratic;
                 result.tmin = result.t = quadtratic;
                 result.normal = (tmp + mag) *  (1.0f/m_radius);
-                result.localPoint = ray.o + mag;
+                result.localPoint = ray.origin + mag;
                 result.hit = true;
             }
         }
