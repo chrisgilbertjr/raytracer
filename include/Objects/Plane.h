@@ -31,7 +31,7 @@ public:
     Plane& operator=(const Plane& plane);
 
     /// virtual function for ray plane raycast queries
-    virtual Raycast Query(const Ray& ray) const;
+    virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 };
 
 #endif

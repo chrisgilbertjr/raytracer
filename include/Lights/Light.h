@@ -11,28 +11,22 @@ class ShadeRecord;
 /// base class for all lights
 class Light
 {
-public:
+protected:
     /// default constructor
     Light();
 
-    /// copy constructor
-    Light(const Light& light);
-
+public:
     /// destructor
     virtual ~Light();
 
-    /// nothing to copy, I dont not need to use copy and swap
-    /// so i can use pure virtual functions here.
-    Light& operator=(const Light& light);
-
-    /// clone a light onject
+    /// clone a light object
     virtual Light* Clone() const = 0;
 
     /// get the direction of the light source
     virtual Vector GetDirection(ShadeRecord& record) = 0;
 
     /// compute the radiance of the light
-    virtual Color L(ShadeRecord& record) = 0;
+    virtual Color Radiance(ShadeRecord& record) = 0;
 };
 
 #endif

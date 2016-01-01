@@ -15,7 +15,7 @@ public:
     ~Object();
 
     /// pure virtual function for raycast queries
-    virtual Raycast Query(const Ray& ray) const = 0;
+    virtual Raycast Query(const Ray& ray, ShadeRecord& record) const = 0;
 };
 
 #endif

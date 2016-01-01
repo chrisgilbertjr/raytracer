@@ -68,4 +68,14 @@ World::Render(const ColorBuffer& buffer) const
     /// @TODO:
 }
 
+/// --------------------------------------------------------------------------- Query Objects
+
+void 
+World::QueryObjects(const Ray& ray) const
+{
+    ShadeRecord record;
+
+    int objectCount = m_objects.GetSize();
+}
+
 /// --------------------------------------------------------------------------- EOF

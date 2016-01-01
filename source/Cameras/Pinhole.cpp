@@ -50,6 +50,7 @@ Pinhole::ComputeRayDirection(const Vector& point) const
 void
 Pinhole::Render(const World& world)
 {
+    /// get the needed vars
     const Raytracer* tracer = world.GetRaytracer();
     Color background = world.GetBackground();
     ViewingPlane plane = world.GetViewingPlane();
@@ -59,15 +60,16 @@ Pinhole::Render(const World& world)
     int height = plane.GetHeight();
     int width = plane.GetWidth();
 
-    Vector direction;
-    Vector sample;
-    Vector point;
-    Color pixel;
-    Ray ray;
+    Vector sample; /// the initialize sample point from the sampler
+    Vector point;  /// the sampled point on the pixel
+    Color pixel;   /// the color of the pixel
+    Ray ray;       /// the ray being traced
     ray.origin = m_eye;
 
+    /// create the color buffer used for the output image
     ColorBuffer buffer(width, height, background);
 
+    /// loop over each pixel
     for (int y = 0; y < height; ++y)
     {
         for (int x = 0; x < width; ++x)
@@ -91,7 +93,7 @@ Pinhole::Render(const World& world)
             }
 
             /// average the pixel over the number of samples and the cameras exposure time
-            pixel /= samples;
+            pixel /= (real)samples;
             pixel *= m_exposure;
 
             /// set the color of the color buffer

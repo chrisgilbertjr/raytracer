@@ -40,7 +40,7 @@ Sphere::GetRadius() const
 }
 
 Raycast
-Sphere::Query(const Ray& ray) const
+Sphere::Query(const Ray& ray, ShadeRecord& record) const
 {
     Raycast result;
     result.hit = false;
@@ -61,7 +61,7 @@ Sphere::Query(const Ray& ray) const
             real denominator = 2.0f * a;
             real quadtratic = (-b + sDiscriminant * i) / denominator;
 
-            if (quadtratic > EPSILON)
+            if (quadtratic >= EPSILON)
             {
                 Vector mag = ray.direction * quadtratic;
                 result.tmin = result.t = quadtratic;

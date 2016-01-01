@@ -28,7 +28,7 @@ Plane::operator=(const Plane& plane)
 }
 
 Raycast 
-Plane::Query(const Ray& ray) const
+Plane::Query(const Ray& ray, ShadeRecord& record) const
 {
     Raycast result;
 

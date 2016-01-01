@@ -34,7 +34,7 @@ public:
     virtual ~Sphere();
 
     /// virtual function for raycast queries
-    virtual Raycast Query(const Ray& ray) const;
+    virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 };
 
 #endif

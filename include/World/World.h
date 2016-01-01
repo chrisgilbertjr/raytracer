@@ -46,6 +46,8 @@ public:
 
     void Render(const ColorBuffer& buffer) const;
 
+    void QueryObjects(const Ray& ray) const;
+
     /// inline member functions -----------------------------------------------
 
     inline void PushObject(Object* object)             { m_objects.Push(object); }

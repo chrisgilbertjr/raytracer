@@ -1,21 +1,13 @@
 
 #include "Lights\Light.h"
 
+// ---------------------------------------------------------------------------- Constructor
 
-Light::Light()
-{}
+Light::Light() {}
 
-
-Light::Light(const Light& light)
-{}
-
+// ---------------------------------------------------------------------------- Destructor
 
 Light::~Light()
 {}
 
-
-Light& 
-Light::operator=(const Light& light)
-{
-    return *this;
-}
+// ---------------------------------------------------------------------------- EOF
