@@ -12,17 +12,20 @@
 /// @defgroup World World
 /// @{
 
+/// output of the raytraced image
 enum Output
 {
     EXPORT_BMP = 0,
 };
 
+/// output options for the raytraced image
 typedef struct OutputOptions
 {
-    Output output;
-    std::string filename;
+    Output output;        /// the raytraced image output
+    std::string filename; /// the filename of the output
 } OutputOptions;
 
+/// the world class contains everything needed for the raytracer
 class World
 {
 private:
@@ -44,25 +47,34 @@ public:
     /// copy assignment operator
     World& operator=(World world);
 
+    /// render a color buffer into an image
     void Render(const ColorBuffer& buffer) const;
 
-    void QueryObjects(const Ray& ray) const;
+    /// query all objects in the world given a ray
+    ShadeRecord QueryObjects(const Ray& ray) const;
 
     /// inline member functions -----------------------------------------------
 
+    /// push an object into the list
     inline void PushObject(Object* object)             { m_objects.Push(object); }
 
+    /// remove and object from the list
     inline void RemoveObject(Object* object)           { m_objects.Remove(object); }
 
+    /// get the viewing plane
     inline ViewingPlane GetViewingPlane() const        { return m_viewingPlane; }
 
+    /// get a pointer to the list of objects in the world
     inline const Array<Object*>* GetObjects() const    { return &m_objects; }
 
+    /// get a pointer to the raytracer being used
     inline const Raytracer* GetRaytracer() const       { return m_tracer; }
 
     /// get the background color of the world
     Color GetBackground() const                        { return m_background; }
 };
+
+void ExportBMP(const ColorBuffer& buffer, const OutputOptions& options);
 
 /// @}
 

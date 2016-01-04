@@ -1,36 +1,27 @@
 
-#include "Core\Array.h"
-#include "qdbmp.h"
-#include "BRDFs\BRDF.h"
+#include "World\World.h"
 
 int 
 main(void)
 {
-    /// testing qndbmp ...
+    int x = 64;
+    int y = 64;
+    ColorBuffer cb(x, y);
 
-    //BRDF brdf1;
-    //BRDF brdf2;
-    //brdf1 = brdf2;
-    //BMP* bmp;
+    for (int i = 0; i < x; ++i)
+    {
+        for (int j = 0; j < y; ++j)
+        {
+            cb.SetColor(i, j, Color::Red());
+        }
+    }
+    cb.SetColor(0, 0, Color::Black());
 
-    //bmp = BMP_Create(16, 16, 8);
-    //BMP_CHECK_ERROR(stderr, -3);
+    OutputOptions options = { EXPORT_BMP, "test.bmp" };
 
-    //BMP_SetPaletteColor(bmp, 0, 255, 0, 0);
+    ExportBMP(cb, options);
 
-    //for (int x = 0; x < 16; ++x)
-    //{
-    //    for (int y = 0; y < 16; ++y)
-    //    {
-    //        BMP_SetPixelIndex(bmp, x, y, 0);
-    //    }
-    //}
-
-    //BMP_WriteFile(bmp,  "test.bmp");
-    //BMP_CHECK_ERROR(stderr, -5);
-    // 
-    //BMP_Free(bmp);
-    while (1) {};
+    while (1) {}
 
     return 0;
 }

@@ -7,7 +7,7 @@
 /// color buffer used to create BMP images
 class ColorBuffer
 {
-private:
+public:
     Color* m_buffer;   /// color buffer
     unsigned m_height; /// height of the buffer
     unsigned m_width;  /// width of the buffer

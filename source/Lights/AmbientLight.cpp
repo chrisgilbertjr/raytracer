@@ -59,7 +59,7 @@ AmbientLight::GetDirection(ShadeRecord& record)
 Color 
 AmbientLight::Radiance(ShadeRecord& record)
 {
-    return Color::Black();
+    return m_intensity * m_color;
 }
 
 /// --------------------------------------------------------------------------- EOF

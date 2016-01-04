@@ -2,12 +2,14 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "Core\MathUtils.h"
+#include "..\Materials\Material.h"
+#include "..\BRDFs\ShadeRecord.h"
 
 /// base object for object raycast queries
 class Object
 {
 protected:
+    Material* m_material;
 
 public:
     Object();

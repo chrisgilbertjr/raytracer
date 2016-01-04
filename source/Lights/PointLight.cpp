@@ -53,6 +53,8 @@ PointLight::operator=(PointLight light)
     Swap<Vector>(m_position, light.m_position);
     Swap<Color>(m_color, light.m_color);
     Swap<real>(m_intensity, light.m_intensity);
+
+    return *this;
 }
 
 /// --------------------------------------------------------------------------- Clone

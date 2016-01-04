@@ -4,13 +4,13 @@
 
 /// --------------------------------------------------------------------------- ExportBMP
 
-static void 
+void 
 ExportBMP(const ColorBuffer& buffer, const OutputOptions& options)
 {
     unsigned height = buffer.GetHeight();
     unsigned width = buffer.GetWidth();
 
-    BMP* bmp = BMP_Create(width, height, 8);
+    BMP* bmp = BMP_Create(width, height, 32);
 
     for (unsigned y = 0; y < height; ++y)
     {
@@ -50,7 +50,8 @@ World::~World() {}
 
 /// --------------------------------------------------------------------------- Copy Assignment operator
 
-World& World::operator=(World world)
+World& 
+World::operator=(World world)
 {
     Swap<ViewingPlane>(m_viewingPlane, world.m_viewingPlane);
     Swap<Array<Object*> >(m_objects, world.m_objects);
@@ -70,12 +71,38 @@ World::Render(const ColorBuffer& buffer) const
 
 /// --------------------------------------------------------------------------- Query Objects
 
-void 
+ShadeRecord 
 World::QueryObjects(const Ray& ray) const
 {
-    ShadeRecord record;
+    ShadeRecord record = ShadeRecordConstruct(this);
+    ShadeRecord result = ShadeRecordConstruct(this);
 
-    int objectCount = m_objects.GetSize();
+    float tmin = 1e5;
+    int count = m_objects.GetSize();
+
+    for (int i = 0; i < count; ++i)
+    {
+        Object* object = m_objects[i];
+
+        /// do the raycast
+        Raycast raycast = object->Query(ray, record);
+
+        /// check if this is the earliest raycast collision
+        if (raycast.hit && raycast.t < tmin)
+        {
+            /// its the earliest collision so far, init the result
+            tmin = raycast.t;
+
+            /// copy the shade record to the result record
+            result = ShadeRecordCopy(record);
+            result.worldPoint = ray.origin + Mult(tmin, ray.direction);
+            //result.material = GET_MATERIAL(); @TODO:
+            result.hit = true;
+        }
+    }
+
+    /// return the result
+    return result;
 }
 
 /// --------------------------------------------------------------------------- EOF

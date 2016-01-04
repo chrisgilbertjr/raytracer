@@ -76,6 +76,7 @@
     <ClInclude Include="..\..\..\include\BRDFs\GlossySpecular.h" />
     <ClInclude Include="..\..\..\include\BRDFs\Lambertian.h" />
     <ClInclude Include="..\..\..\include\BRDFs\PerfectSpecular.h" />
+    <ClInclude Include="..\..\..\include\BRDFs\ShadeRecord.h" />
     <ClInclude Include="..\..\..\include\Cameras\Camera.h" />
     <ClInclude Include="..\..\..\include\Cameras\Fisheye.h" />
     <ClInclude Include="..\..\..\include\Cameras\Ortho.h" />

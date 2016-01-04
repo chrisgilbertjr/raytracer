@@ -2,8 +2,7 @@
 #ifndef BRDF_H
 #define BRDF_H
 
-#include "..\Core\MathUtils.h"
-#include "..\Core\Color.h"
+#include "ShadeRecord.h"
 #include "..\Samplers\Sampler.h"
 
 class BRDF

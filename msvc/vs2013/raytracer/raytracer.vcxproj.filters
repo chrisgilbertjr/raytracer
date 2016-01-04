@@ -194,6 +194,9 @@
     <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\BRDFs\ShadeRecord.h">
+      <Filter>Header Files\BRDFs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">

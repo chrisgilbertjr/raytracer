@@ -70,7 +70,7 @@ DirectionalLight::Clone() const
 Vector 
 DirectionalLight::GetDirection(ShadeRecord& record)
 {
-    return Vector(0.f, 0.f, 0.f);
+    return m_direction;
 }
 
 /// --------------------------------------------------------------------------- Radiance
@@ -78,7 +78,7 @@ DirectionalLight::GetDirection(ShadeRecord& record)
 Color 
 DirectionalLight::Radiance(ShadeRecord& record)
 {
-    return Color::White();
+    return m_intensity * m_color;
 }
 
 /// --------------------------------------------------------------------------- EOF

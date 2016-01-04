@@ -130,23 +130,9 @@ struct Ray
 /// struct for raycast results
 struct Raycast
 {
-    Vector localPoint;
-    Vector normal;
-    real tmin;
+    Ray ray;
     real t;
     bool hit;
-};
-
-/// @}
-
-
-/// @defgroup ShadeRecord ShadeRecord
-/// @{
-
-/// struct for shade records
-struct ShadeRecord
-{
-    Vector normal;
 };
 
 /// @}
