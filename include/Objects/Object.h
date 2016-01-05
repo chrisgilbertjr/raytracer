@@ -9,7 +9,7 @@
 class Object
 {
 protected:
-    Material* m_material;
+    Material* m_material; /// the objects material
 
 public:
     Object();
@@ -18,6 +18,14 @@ public:
 
     /// pure virtual function for raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const = 0;
+
+    /// ----------------------------------------------------------------------- Inline member functions
+
+    /// get the objects material
+    inline Material* GetMaterial() const        { return m_material; }
+
+    /// set the objects material
+    inline void SetMaterial(Material* material) { m_material = material; }
 };
 
 #endif

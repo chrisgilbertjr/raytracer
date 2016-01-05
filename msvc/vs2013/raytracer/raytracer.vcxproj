@@ -99,6 +99,7 @@
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raycaster.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Whitted.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Raycaster.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Whitted.cpp" />

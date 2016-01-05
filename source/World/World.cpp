@@ -96,7 +96,7 @@ World::QueryObjects(const Ray& ray) const
             /// copy the shade record to the result record
             result = ShadeRecordCopy(record);
             result.worldPoint = ray.origin + Mult(tmin, ray.direction);
-            //result.material = GET_MATERIAL(); @TODO:
+            result.material = object->GetMaterial();
             result.hit = true;
         }
     }

@@ -197,6 +197,9 @@
     <ClInclude Include="..\..\..\include\BRDFs\ShadeRecord.h">
       <Filter>Header Files\BRDFs</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Raytracers\PureColor.h">
+      <Filter>Header Files\Raytracers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -326,6 +329,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Core\Rand.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp">
+      <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
