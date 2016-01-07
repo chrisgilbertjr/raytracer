@@ -2,7 +2,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "World\World.h"
+#include "..\Core\MathUtils.h"
+#include "..\World\Output.h"
+
+class World;
 
 /// base camera class
 class Camera
@@ -34,7 +37,7 @@ public:
     virtual Camera* Clone() const;
 
     /// render  the world from this cameras POV
-    virtual void Render(const World& world);
+    virtual void Render(const World* world, const OutputOptions& output);
 
     /// compute the cameras orthonormal basis
     void ComputeBasis();

@@ -200,6 +200,9 @@
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\World\Output.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">

@@ -31,7 +31,7 @@ public:
     Vector ComputeRayDirection(const Vector& point) const;
 
     /// render the world through the pinhole camera
-    virtual void Render(const World& world);
+    virtual void Render(const World* world, const OutputOptions& output);
 
     /// inline member functions -----------------------------------------------
 

@@ -1,6 +1,7 @@
 
 #include "Cameras\Pinhole.h"
 #include "Samplers\sampler.h"
+#include "World\World.h"
 
 
 Pinhole::Pinhole()
@@ -48,12 +49,12 @@ Pinhole::ComputeRayDirection(const Vector& point) const
 
 
 void
-Pinhole::Render(const World& world)
+Pinhole::Render(const World* world, const OutputOptions& options)
 {
     /// get the needed vars
-    const Raytracer* tracer = world.GetRaytracer();
-    Color background = world.GetBackground();
-    ViewingPlane plane = world.GetViewingPlane();
+    const Raytracer* tracer = world->GetRaytracer();
+    Color background = world->GetBackground();
+    ViewingPlane plane = world->GetViewingPlane();
     Sampler* sampler = plane.GetSampler();
     real size = plane.GetPizelSize() / m_zoom;
     int samples = plane.GetSampleCount();
@@ -89,7 +90,7 @@ Pinhole::Render(const World& world)
                     ray.direction = this->ComputeRayDirection(point);
 
                     /// trace the ray and accumulate the pixel color
-                    pixel += tracer->TraceRay(ray, 0);
+                    pixel += tracer->TraceRay(world, ray, 0);
             }
 
             /// average the pixel over the number of samples and the cameras exposure time
@@ -97,10 +98,10 @@ Pinhole::Render(const World& world)
             pixel *= m_exposure;
 
             /// set the color of the color buffer
-            buffer.SetColor(x, y, pixel);
+            buffer.SetColor(x, y, plane.RemapColor(pixel));
         }
     }
 
-    /// output the buffer according to the worlds output options
-    world.Render(buffer);
+    /// export the color buffer according to the output options
+    world->Export(buffer, options);
 }

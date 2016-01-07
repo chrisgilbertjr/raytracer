@@ -1,5 +1,6 @@
 
 #include "Cameras\Spherical.h"
+#include "World\World.h"
 
 Spherical::Spherical()
 {
@@ -31,7 +32,7 @@ Spherical::Clone() const
 }
 
 void
-Spherical::Render(const World& world)
+Spherical::Render(const World* world, const OutputOptions& options)
 {
     /// @TODO:
 }

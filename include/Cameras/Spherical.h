@@ -19,7 +19,7 @@ public:
 
     virtual Camera* Clone() const;
 
-    virtual void Render(const World& world);
+    virtual void Render(const World* world, const OutputOptions& output);
 };
 
 #endif

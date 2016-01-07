@@ -1,5 +1,6 @@
 
 #include "Cameras\ThinLens.h"
+#include "World\World.h"
 
 ThinLens::ThinLens()
 {
@@ -31,7 +32,7 @@ ThinLens::Clone() const
 }
 
 void
-ThinLens::Render(const World& world)
+ThinLens::Render(const World* world, const OutputOptions& options)
 {
     /// @TODO:
 }

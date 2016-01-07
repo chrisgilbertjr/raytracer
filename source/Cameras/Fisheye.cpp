@@ -1,5 +1,6 @@
 
 #include "Cameras\Fisheye.h"
+#include "World\World.h"
 
 Fisheye::Fisheye()
 {
@@ -30,8 +31,8 @@ Fisheye::Clone() const
     return static_cast<Camera*>(new Fisheye(*this));
 }
 
-void 
-Fisheye::Render(const World& world)
+void
+Fisheye::Render(const World* world, const OutputOptions& options)
 {
     /// @TODO:
 }

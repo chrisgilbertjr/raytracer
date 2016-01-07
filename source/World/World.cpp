@@ -5,7 +5,7 @@
 /// --------------------------------------------------------------------------- ExportBMP
 
 void 
-ExportBMP(const ColorBuffer& buffer, const OutputOptions& options)
+ExportBMP(const ColorBuffer& buffer, const char* filename)
 {
     unsigned height = buffer.GetHeight();
     unsigned width = buffer.GetWidth();
@@ -21,7 +21,7 @@ ExportBMP(const ColorBuffer& buffer, const OutputOptions& options)
         }
     }
 
-    BMP_WriteFile(bmp, options.filename.c_str());
+    BMP_WriteFile(bmp, filename);
 
     BMP_Free(bmp);
 }
@@ -32,17 +32,17 @@ World::World()
     : m_viewingPlane()
     , m_objects(8)
     , m_tracer(NULL)
+    , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
 {}
 
 /// --------------------------------------------------------------------------- Copy Constructor
 
 World::World(const World& world)
-    : m_viewingPlane(world.m_viewingPlane)
-    , m_objects(world.m_objects)
-    , m_tracer(world.m_tracer)
-    , m_background(world.m_background)
-{}
+{
+    /// world objects should not be copied
+    Assert(false);
+}
 
 /// --------------------------------------------------------------------------- Destructor
 
@@ -53,20 +53,32 @@ World::~World() {}
 World& 
 World::operator=(World world)
 {
-    Swap<ViewingPlane>(m_viewingPlane, world.m_viewingPlane);
-    Swap<Array<Object*> >(m_objects, world.m_objects);
-    Swap<Raytracer*>(m_tracer, world.m_tracer);
-    Swap<Color>(m_background, world.m_background);
-
+    /// world objects should not be copied
+    Assert(false);
     return *this;
 }
 
 /// --------------------------------------------------------------------------- Render
 
 void 
-World::Render(const ColorBuffer& buffer) const
+World::Render(const OutputOptions& options) const
 {
-    /// @TODO:
+    if (m_camera)
+    {
+        m_camera->Render(this, options);
+        return;
+    }
+}
+
+/// --------------------------------------------------------------------------- Export
+
+void
+World::Export(const ColorBuffer& buffer, const OutputOptions& options) const
+{
+    if (options.output == EXPORT_BMP)
+    {
+        ExportBMP(buffer, options.filename.c_str());
+    }
 }
 
 /// --------------------------------------------------------------------------- Query Objects

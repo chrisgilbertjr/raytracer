@@ -37,7 +37,7 @@ Raytracer::Clone() const
 }
 
 Color 
-Raytracer::TraceRay(const Ray& ray, const int depth) const
+Raytracer::TraceRay(const World* world, const Ray& ray, const int depth) const
 {
     return Color(0.f, 0.f, 0.f);
 }

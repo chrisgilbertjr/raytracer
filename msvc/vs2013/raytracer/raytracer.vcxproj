@@ -112,6 +112,7 @@
     <ClInclude Include="..\..\..\include\Samplers\Simple.h" />
     <ClInclude Include="..\..\..\include\World\Bitmap.h" />
     <ClInclude Include="..\..\..\include\World\ColorBuffer.h" />
+    <ClInclude Include="..\..\..\include\World\Output.h" />
     <ClInclude Include="..\..\..\include\World\ViewingPlane.h" />
     <ClInclude Include="..\..\..\include\World\World.h" />
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />

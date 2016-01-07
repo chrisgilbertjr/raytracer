@@ -32,6 +32,7 @@ PureColor::~PureColor()
 PureColor& 
 PureColor::operator=(PureColor color)
 {
+    return *this;
 }
 
 /// --------------------------------------------------------------------------- Clone

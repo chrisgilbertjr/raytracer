@@ -1,5 +1,6 @@
 
 #include "Cameras\Ortho.h"
+#include "World\World.h"
 
 Ortho::Ortho()
 {
@@ -31,7 +32,7 @@ Ortho::Clone() const
 }
 
 void
-Ortho::Render(const World& world)
+Ortho::Render(const World* world, const OutputOptions& options)
 {
     /// @TODO:
 }

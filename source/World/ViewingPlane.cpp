@@ -1,5 +1,6 @@
 
 #include "World\ViewingPlane.h"
+#include "Core\MathUtils.h"
 
 
 ViewingPlane::ViewingPlane()
@@ -64,4 +65,19 @@ ViewingPlane::operator=(ViewingPlane plane)
     Swap<real>(m_pixelSize, plane.m_pixelSize);
 
     return *this;
+}
+
+Color 
+ViewingPlane::RemapColor(const Color& color) const
+{
+    Color remapped = color;
+
+    /// TODO: out of gamut colors
+
+    if (!Equal(this->m_gamma, 1.f))
+    {
+        remapped.pow(this->m_gammaInv);
+    }
+
+    return remapped;
 }

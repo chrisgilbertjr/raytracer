@@ -17,9 +17,9 @@ main(void)
     }
     cb.SetColor(0, 0, Color::Black());
 
-    OutputOptions options = { EXPORT_BMP, "test.bmp" };
+    OutputOptions options = Options(EXPORT_BMP, "test.bmp");
 
-    ExportBMP(cb, options);
+    //ExportBMP(cb, options);
 
     while (1) {}
 

@@ -1,5 +1,6 @@
 
 #include "Cameras\Camera.h"
+#include "World\World.h"
 
 
 Camera::Camera()
@@ -53,8 +54,8 @@ Camera::Clone() const
 }
 
 
-void 
-Camera::Render(const World& world)
+void
+Camera::Render(const World* world, const OutputOptions& options)
 {
     Assert(false);
 }

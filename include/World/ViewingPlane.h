@@ -37,6 +37,9 @@ public:
     /// copy assignment operator
     ViewingPlane& operator=(ViewingPlane plane);
 
+    /// remap a color by handling out of gamut colors and gamma correction
+    Color RemapColor(const Color& color) const;
+
     //// inline member functions ----------------------------------------------
 
     /// set the width of the viewing plane
