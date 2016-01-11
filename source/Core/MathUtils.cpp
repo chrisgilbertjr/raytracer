@@ -139,7 +139,7 @@ Vector::Normalize(const real epsilon)
 real 
 Vector::Dot(const Vector& vector) const
 {
-    return x*vector.x + y*vector.y * z*vector.z;
+    return x*vector.x + y*vector.y + z*vector.z;
 }
 
 

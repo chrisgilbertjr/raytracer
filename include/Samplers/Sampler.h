@@ -59,6 +59,8 @@ public:
     Vector SampleHemisphere();
 
     Vector SampleSphere();
+
+    inline int GetSampleCount() const { return m_sampleCount; }
 };
 
 #endif

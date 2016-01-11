@@ -45,10 +45,22 @@ public:
     /// query all objects in the world given a ray
     ShadeRecord QueryObjects(const Ray& ray) const;
 
+    /// free all objects in the world
+    void Free();
+
     /// inline member functions -----------------------------------------------
+
+    /// set the viewing planes sampler
+    inline void SetSampler(Sampler* sampler)           { Assert(sampler); m_viewingPlane.SetSampler(sampler); }
 
     /// set the worlds camera
     inline void SetCamera(Camera* camera)              { Assert(camera); m_camera = camera; }
+
+    /// set the worlds ratracer
+    inline void SetRaytracer(Raytracer* raytracer)     { Assert(raytracer); m_tracer = raytracer; }
+
+    /// set the background of the world
+    inline void SetBackground(const Color& color)      { m_background = color; }
 
     /// push an object into the list
     inline void PushObject(Object* object)             { Assert(object); m_objects.Push(object); }

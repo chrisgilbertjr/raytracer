@@ -52,8 +52,7 @@ PureColor::TraceRay(const World* world, const Ray& ray, const int depth) const
 
     if (record.hit)
     {
-        /// get material from shade record
-        /// return the color
+        return record.material->GetColor();
     }
     else
     {

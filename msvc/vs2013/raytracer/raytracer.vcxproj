@@ -69,6 +69,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -116,6 +117,7 @@
     <ClInclude Include="..\..\..\include\World\ViewingPlane.h" />
     <ClInclude Include="..\..\..\include\World\World.h" />
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />
+    <ClInclude Include="..\..\..\source\Examples\Examples.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl" />

@@ -43,8 +43,9 @@ Raycast
 Sphere::Query(const Ray& ray, ShadeRecord& record) const
 {
     Raycast result;
-    record.hit = false;
-    record.t = 0.0f;
+    result.ray = ray;
+    result.hit = record.hit = false;
+    result.t = record.t = 0.0f;
     record.normal = record.localPoint = Vector(0.0f);
 
     Vector tmp = ray.origin - m_center;
@@ -55,19 +56,20 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
 
     if (discriminant >= 0.0f)
     {
-        for (real i = -1.0f; i != 1.0f; i = 1.0f)
+        real sDiscriminant = Sqrt(discriminant);
+        real invDenominator = 1.0f / 2.0f * a;
+        for (real i = -1.0f; i < 2.0f; i += 2.0f)
         {
-            real sDiscriminant = Sqrt(discriminant);
-            real denominator = 2.0f * a;
-            real quadtratic = (-b + sDiscriminant * i) / denominator;
+            real quadtratic = (-b + sDiscriminant * i) * invDenominator;
 
             if (quadtratic >= EPSILON)
             {
                 Vector mag = ray.direction * quadtratic;
-                record.t = quadtratic;
-                record.normal = (tmp + mag) *  (1.0f/m_radius);
+                record.normal = (tmp + mag) * (1.0f/m_radius);
                 record.localPoint = ray.origin + mag;
-                record.hit = true;
+                result.t = record.t = quadtratic;
+                result.hit = record.hit = true;
+                return result;
             }
         }
     }

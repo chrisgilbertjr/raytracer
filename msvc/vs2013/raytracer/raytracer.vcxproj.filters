@@ -203,6 +203,9 @@
     <ClInclude Include="..\..\..\include\World\Output.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\Examples\Examples.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">

@@ -83,16 +83,17 @@ ColorBuffer::SetColor(int x, int y, const Color& color)
 {
     Assert(x < 0 || y < 0 || x >= m_width || y >= m_height);
 
-    m_buffer[x*(int)m_width + y] = color;
+    //m_buffer[x*(int)m_width + y] = color;
+    m_buffer[y*(int)m_height + x] = color;
 }
 
 
 void 
 ColorBuffer::SetBackground(const Color& color)
 {
-    for (int y = 0; y < m_height; ++y)
+    for (int y = 0; y < (int)m_height; ++y)
     {
-        for (int x = 0; x < m_width; ++x)
+        for (int x = 0; x < (int)m_width; ++x)
         {
             SetColor(x, y, color);
         }
@@ -104,5 +105,6 @@ ColorBuffer::GetColor(int x, int y) const
 {
     Assert(x < 0 || y < 0 || x >= m_width || y >= m_height);
 
-    return m_buffer[x*m_width + y];
+    //return m_buffer[x*m_width + y];
+    return m_buffer[y*(int)m_height + x];
 }

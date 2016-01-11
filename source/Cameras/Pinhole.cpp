@@ -101,6 +101,7 @@ Pinhole::Render(const World* world, const OutputOptions& options)
             buffer.SetColor(x, y, plane.RemapColor(pixel));
         }
     }
+    int x = 0;
 
     /// export the color buffer according to the output options
     world->Export(buffer, options);

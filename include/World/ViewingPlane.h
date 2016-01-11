@@ -2,18 +2,19 @@
 #ifndef VIEWING_PLANE_H
 #define VIEWING_PLANE_H
 
+#include "..\Samplers\Sampler.h"
 #include "Core\Color.h"
 
 class ViewingPlane
 {
 private:
-    int m_width;              /// width of the viewing plane
-    int m_height;             /// height of the viewing plane
-    int m_sampleCount;        /// number of samples per pixel
-    real m_gamma;             /// gamma of the viewing plane
-    real m_gammaInv;          /// inverse gamma of the viewing plane
-    real m_pixelSize;         /// pixel size of the viewing plane
-    class Sampler* m_sampler; /// sampler pointer
+    int m_width;        /// width of the viewing plane
+    int m_height;       /// height of the viewing plane
+    int m_sampleCount;  /// number of samples per pixel
+    real m_gamma;       /// gamma of the viewing plane
+    real m_gammaInv;    /// inverse gamma of the viewing plane
+    real m_pixelSize;   /// pixel size of the viewing plane
+    Sampler* m_sampler; /// sampler pointer
 
 public:
     /// default constructor
@@ -57,6 +58,9 @@ public:
     /// set the pizel size of the viewing plane
     void SetPizelSize(const real pixelSize) { m_pixelSize = pixelSize; }
 
+    /// set the sampler of the viewing plane
+    inline void SetSampler(Sampler* sampler){ Assert(sampler); m_sampler = sampler; m_sampleCount = sampler->GetSampleCount(); }
+
     /// get a copy of the width of the viewing plane
     int GetWidth() const                    { return m_width; }
 
@@ -76,7 +80,7 @@ public:
     real GetPizelSize() const               { return m_pixelSize; }
 
     /// get the sampler of the viewing plane
-    Sampler* GetSampler() const       { return m_sampler; }
+    Sampler* GetSampler() const             { return m_sampler; }
 };
 
 #endif

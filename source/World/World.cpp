@@ -46,7 +46,7 @@ World::World(const World& world)
 
 /// --------------------------------------------------------------------------- Destructor
 
-World::~World() {}
+World::~World() { this->Free(); }
 
 /// --------------------------------------------------------------------------- Copy Assignment operator
 
@@ -110,11 +110,33 @@ World::QueryObjects(const Ray& ray) const
             result.worldPoint = ray.origin + Mult(tmin, ray.direction);
             result.material = object->GetMaterial();
             result.hit = true;
+            int x = 0;
         }
     }
 
     /// return the result
     return result;
+}
+
+/// --------------------------------------------------------------------------- Free
+
+void 
+World::Free()
+{
+    if (m_camera)
+    {
+        delete m_camera;
+    }
+
+    if (m_tracer)
+    {
+        delete m_tracer;
+    }
+
+    for (int i = 0; i < (int)m_objects.GetSize(); ++i)
+    {
+        delete m_objects[i];
+    }
 }
 
 /// --------------------------------------------------------------------------- EOF

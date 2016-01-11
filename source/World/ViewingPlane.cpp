@@ -10,6 +10,7 @@ ViewingPlane::ViewingPlane()
     , m_gamma(1.0f)
     , m_gammaInv(0.0f)
     , m_pixelSize(1.0f)
+    , m_sampler(NULL)
 {}
 
 
@@ -20,6 +21,7 @@ ViewingPlane::ViewingPlane(const ViewingPlane& plane)
     , m_gamma(plane.m_gamma)
     , m_gammaInv(plane.m_gammaInv)
     , m_pixelSize(plane.m_pixelSize)
+    , m_sampler(plane.m_sampler)
 {}
 
 
@@ -30,6 +32,7 @@ ViewingPlane::ViewingPlane(const int width, const int height)
     , m_gamma(1.0f)
     , m_gammaInv(0.0f)
     , m_pixelSize(1.0f)
+    , m_sampler(NULL)
 {}
 
 
@@ -40,6 +43,7 @@ ViewingPlane::ViewingPlane(const int width, const int height, const int sampleCo
     , m_gamma(1.0f)
     , m_gammaInv(0.0f)
     , m_pixelSize(1.0f)
+    , m_sampler(NULL)
 {}
 
 
@@ -47,8 +51,10 @@ ViewingPlane::ViewingPlane(const int width, const int height, const real gamma, 
     : m_width(width)
     , m_height(height)
     , m_gamma(gamma)
+    , m_sampleCount(0)
     , m_gammaInv((gamma > 0.0f) ? (1.f/gamma) : (0.0f))
     , m_pixelSize(1.0f)
+    , m_sampler(NULL)
 {}
 
 
@@ -60,9 +66,11 @@ ViewingPlane::operator=(ViewingPlane plane)
 {
     Swap<int>(m_width, plane.m_width);
     Swap<int>(m_height, plane.m_height);
+    Swap<int>(m_sampleCount, plane.m_sampleCount);
     Swap<real>(m_gamma, plane.m_gamma);
     Swap<real>(m_gammaInv, plane.m_gammaInv);
     Swap<real>(m_pixelSize, plane.m_pixelSize);
+    Swap<Sampler*>(m_sampler, plane.m_sampler);
 
     return *this;
 }

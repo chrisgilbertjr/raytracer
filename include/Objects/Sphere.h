@@ -5,7 +5,7 @@
 #include "Object.h"
 
 /// a 3D sphere
-class Sphere
+class Sphere : public Object
 {
 private:
     Vector m_center; /// center in world space
