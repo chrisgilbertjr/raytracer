@@ -7,8 +7,8 @@
 class Lambertian : public BRDF
 {
 private:
-    real  m_kd;
-    Color m_cd;
+    real  m_scale;
+    Color m_color;
 
     /// compute Rho without extram params
     Color Hue() const;
@@ -30,13 +30,13 @@ public:
 
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
 
-    inline void SetKd(const real kd)   { m_kd = kd; }
+    inline void SetScale(const real scale)   { m_scale = scale; }
 
-    inline void SetCd(const Color& cd) { m_cd = cd; }
+    inline void SetColor(const Color& color) { m_color = color; }
 
-    inline real  GetKd() { return m_kd; }
+    inline real  GetScale() { return m_scale; }
 
-    inline Color GetCd() { return m_cd; }
+    inline Color GetColor() { return m_color; }
 };
 
 #endif

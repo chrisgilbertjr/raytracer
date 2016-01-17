@@ -143,15 +143,6 @@
     <ClInclude Include="..\..\..\include\Raytracers\Whitted.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\Raytracers\Raycaster.h">
-      <Filter>Header Files\Raytracers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h">
-      <Filter>Header Files\Raytracers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h">
-      <Filter>Header Files\Raytracers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\BRDFs\BRDF.h">
       <Filter>Header Files\BRDFs</Filter>
     </ClInclude>
@@ -206,6 +197,9 @@
     <ClInclude Include="..\..\..\source\Examples\Examples.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Raytracers\Shaded.h">
+      <Filter>Header Files\Raytracers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -227,9 +221,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Samplers\Sampler.cpp">
       <Filter>Source Files\Samplers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\main.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\Samplers\Hammersley.cpp">
       <Filter>Source Files\Samplers</Filter>
@@ -318,15 +309,6 @@
     <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp">
       <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\Raytracers\Raycaster.cpp">
-      <Filter>Source Files\Raytracers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp">
-      <Filter>Source Files\Raytracers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp">
-      <Filter>Source Files\Raytracers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\Raytracers\Whitted.cpp">
       <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
@@ -337,6 +319,15 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp">
+      <Filter>Source Files\Raytracers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp">
       <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
   </ItemGroup>

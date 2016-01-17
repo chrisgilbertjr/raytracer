@@ -31,6 +31,7 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
 World::World()
     : m_viewingPlane()
     , m_objects(8)
+    , m_lights(8)
     , m_tracer(NULL)
     , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
@@ -66,7 +67,6 @@ World::Render(const OutputOptions& options) const
     if (m_camera)
     {
         m_camera->Render(this, options);
-        return;
     }
 }
 

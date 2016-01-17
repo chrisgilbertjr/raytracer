@@ -34,4 +34,12 @@ Material* Material::Clone() const
     return NULL;
 }
 
+/// --------------------------------------------------------------------------- Shade
+
+Color 
+Material::Shade(ShadeRecord& record) const
+{
+    return Color::Black();
+}
+
 /// --------------------------------------------------------------------------- EOF

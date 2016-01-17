@@ -9,6 +9,7 @@
 #include "ColorBuffer.h"
 #include "..\Cameras\Camera.h"
 #include "Output.h"
+#include "..\Lights\Light.h"
 
 /// @defgroup World World
 /// @{
@@ -19,6 +20,8 @@ class World
 private:
     ViewingPlane m_viewingPlane; /// world view plane
     Array<Object*> m_objects;    /// array of geometric objects in the world
+    Array<Light*> m_lights;      /// array of lights in the world
+    Light* m_ambient;            /// ambient world lighting
     Raytracer* m_tracer;         /// ray tracer 
     Camera* m_camera;            /// camera used to render a scene
     Color m_background;          /// background color
@@ -74,8 +77,14 @@ public:
     /// get a pointer to the list of objects in the world
     inline const Array<Object*>* GetObjects() const    { return &m_objects; }
 
+    /// get a pointer to the list of objects in the world
+    inline const Array<Light*>* GetLights() const      { return &m_lights; }
+
     /// get a pointer to the raytracer being used
     inline const Raytracer* GetRaytracer() const       { return m_tracer; }
+
+    /// get the ambient lighting of the world
+    inline Color GetAmbientRadiance() const            { return Color::Black(); /* TODO: */ }
 
     /// get the background color of the world
     Color GetBackground() const                        { return m_background; }

@@ -98,10 +98,8 @@
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
-    <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
-    <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
-    <ClInclude Include="..\..\..\include\Raytracers\Raycaster.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\Shaded.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Whitted.h" />
     <ClInclude Include="..\..\..\include\Samplers\Hammersley.h" />
@@ -148,10 +146,8 @@
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
-    <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
-    <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp" />
-    <ClCompile Include="..\..\..\source\Raytracers\Raycaster.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Whitted.cpp" />
     <ClCompile Include="..\..\..\source\Samplers\Hammersley.cpp" />
@@ -165,6 +161,7 @@
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />
     <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp" />
     <ClCompile Include="..\..\..\source\World\World.cpp" />
+    <ClCompile Include="Examples.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

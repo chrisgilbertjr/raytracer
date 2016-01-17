@@ -4,6 +4,8 @@
 
 #include "..\Core\Color.h"
 
+struct ShadeRecord;
+
 class Material
 {
 protected:
@@ -13,12 +15,14 @@ public:
     Material();
 
     Material(const Material& material);
-    virtual ~Material();
 
+    virtual ~Material();
 
     Material& operator=(Material material);
 
     virtual Material* Clone() const;
+
+    virtual Color Shade(ShadeRecord& record) const;
 
     inline Color GetColor() const            { return m_color; }
 

@@ -6,7 +6,7 @@
 #include "..\Core\Color.h"
 
 /// forward declaration
-class ShadeRecord;
+struct ShadeRecord;
 
 /// base class for all lights
 class Light

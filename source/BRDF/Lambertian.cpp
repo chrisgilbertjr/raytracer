@@ -3,17 +3,16 @@
 
 Lambertian::Lambertian()
     : BRDF()
-    , m_kd(0.0f)
-    , m_cd(0.f, 0.f, 0.f)
+    , m_scale(0.0f)
+    , m_color(0.f, 0.f, 0.f)
 {
 }
 
 Lambertian::Lambertian(const Lambertian& brdf)
     : BRDF(brdf)
-    , m_kd(brdf.m_kd)
-    , m_cd(brdf.m_cd)
-{
-}
+    , m_scale(brdf.m_scale)
+    , m_color(brdf.m_color)
+{} 
 
 Lambertian::~Lambertian() {}
 
@@ -21,8 +20,8 @@ Lambertian&
 Lambertian::operator=(Lambertian brdf)
 {
     BRDF::operator=(brdf);
-    Swap<real>(m_kd, brdf.m_kd);
-    Swap<Color>(m_cd, brdf.m_cd);
+    Swap<real>(m_scale, brdf.m_scale);
+    Swap<Color>(m_color, brdf.m_color);
     return *this;
 }
 
@@ -35,7 +34,7 @@ Lambertian::Clone() const
 Color
 Lambertian::Hue() const
 {
-    return m_cd * m_kd;
+    return m_color * m_scale;
 }
 
 Color 
