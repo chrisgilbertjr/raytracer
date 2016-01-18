@@ -70,6 +70,7 @@ PointLight::Clone() const
 Vector 
 PointLight::GetDirection(ShadeRecord& record)
 {
+    /// @TODO:
     return Vector(0.f, 0.f, 0.f);
 }
 
@@ -78,6 +79,7 @@ PointLight::GetDirection(ShadeRecord& record)
 Color 
 PointLight::Radiance(ShadeRecord& record)
 {
+    /// @TODO:
     return Color::White();
 }
 

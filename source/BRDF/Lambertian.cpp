@@ -3,15 +3,15 @@
 
 Lambertian::Lambertian()
     : BRDF()
-    , m_scale(0.0f)
     , m_color(0.f, 0.f, 0.f)
+    , m_intensity(1.0f)
 {
 }
 
 Lambertian::Lambertian(const Lambertian& brdf)
     : BRDF(brdf)
-    , m_scale(brdf.m_scale)
     , m_color(brdf.m_color)
+    , m_intensity(brdf.m_intensity)
 {} 
 
 Lambertian::~Lambertian() {}
@@ -20,8 +20,8 @@ Lambertian&
 Lambertian::operator=(Lambertian brdf)
 {
     BRDF::operator=(brdf);
-    Swap<real>(m_scale, brdf.m_scale);
     Swap<Color>(m_color, brdf.m_color);
+    Swap<real>(m_intensity, brdf.m_intensity);
     return *this;
 }
 
@@ -34,7 +34,7 @@ Lambertian::Clone() const
 Color
 Lambertian::Hue() const
 {
-    return m_color * m_scale;
+    return m_color * m_intensity;
 }
 
 Color 

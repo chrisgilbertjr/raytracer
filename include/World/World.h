@@ -54,40 +54,45 @@ public:
     /// inline member functions -----------------------------------------------
 
     /// set the viewing planes sampler
-    inline void SetSampler(Sampler* sampler)           { Assert(sampler); m_viewingPlane.SetSampler(sampler); }
+    inline void SetSampler(Sampler* sampler)                   { Assert(sampler); m_viewingPlane.SetSampler(sampler); }
 
     /// set the worlds camera
-    inline void SetCamera(Camera* camera)              { Assert(camera); m_camera = camera; }
+    inline void SetCamera(Camera* camera)                      { Assert(camera); m_camera = camera; }
 
     /// set the worlds ratracer
-    inline void SetRaytracer(Raytracer* raytracer)     { Assert(raytracer); m_tracer = raytracer; }
+    inline void SetRaytracer(Raytracer* raytracer)             { Assert(raytracer); m_tracer = raytracer; }
 
     /// set the background of the world
-    inline void SetBackground(const Color& color)      { m_background = color; }
+    inline void SetBackground(const Color& color)              { m_background = color; }
 
     /// push an object into the list
-    inline void PushObject(Object* object)             { Assert(object); m_objects.Push(object); }
+    inline void PushObject(Object* object)                     { Assert(object); m_objects.Push(object); }
 
     /// remove and object from the list
-    inline void RemoveObject(Object* object)           { Assert(object); m_objects.Remove(object); }
+    inline void RemoveObject(Object* object)                   { Assert(object); m_objects.Remove(object); }
+
+    /// push an object into the list
+    inline void PushLight(Light* light)                        { Assert(light); m_lights.Push(light); }
+
+    /// remove and object from the list
+    inline void RemoveLight(Light* light)                      { Assert(light); m_lights.Remove(light); }
 
     /// get the viewing plane
-    inline ViewingPlane GetViewingPlane() const        { return m_viewingPlane; }
+    inline ViewingPlane GetViewingPlane() const                { return m_viewingPlane; }
 
     /// get a pointer to the list of objects in the world
-    inline const Array<Object*>* GetObjects() const    { return &m_objects; }
+    inline const Array<Object*>* GetObjects() const            { return &m_objects; }
 
     /// get a pointer to the list of objects in the world
-    inline const Array<Light*>* GetLights() const      { return &m_lights; }
+    inline const Array<Light*>* GetLights() const              { return &m_lights; }
 
     /// get a pointer to the raytracer being used
-    inline const Raytracer* GetRaytracer() const       { return m_tracer; }
+    inline const Raytracer* GetRaytracer() const               { return m_tracer; }
 
     /// get the ambient lighting of the world
-    inline Color GetAmbientRadiance() const            { return Color::Black(); /* TODO: */ }
-
+    inline Color GetAmbientRadiance(ShadeRecord& record) const { return m_ambient->Radiance(record); } 
     /// get the background color of the world
-    Color GetBackground() const                        { return m_background; }
+    inline Color GetBackground() const                         { return m_background; }
 };
 
 /// @}

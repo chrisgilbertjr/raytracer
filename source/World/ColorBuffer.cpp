@@ -2,19 +2,6 @@
 #include "World\ColorBuffer.h"
 
 
-static void
-LogColor(ColorBuffer* buffer)
-{
-    for (unsigned y = 0; y < buffer->m_height; ++y)
-    {
-        for (unsigned x = 0; x < buffer->m_width; ++x)
-        {
-            Color c = buffer->m_buffer[x*buffer->m_height + y];
-            fprintf(stdout, "x: %d  y: %d  - c: %0.1f %0.1f %0.1f %0.1f \n", x, y, c.r, c.g, c.b, c.a);
-        }
-    }
-}
-
 ColorBuffer::ColorBuffer()
     : m_buffer(NULL)
     , m_height(0)
@@ -84,7 +71,8 @@ ColorBuffer::SetColor(int x, int y, const Color& color)
     Assert(x < 0 || y < 0 || x >= m_width || y >= m_height);
 
     //m_buffer[x*(int)m_width + y] = color;
-    m_buffer[y*(int)m_height + x] = color;
+    //m_buffer[y*(int)m_height + x] = color;
+    m_buffer[x*(int)m_height + y] = color;
 }
 
 
@@ -106,5 +94,6 @@ ColorBuffer::GetColor(int x, int y) const
     Assert(x < 0 || y < 0 || x >= m_width || y >= m_height);
 
     //return m_buffer[x*m_width + y];
-    return m_buffer[y*(int)m_height + x];
+    //return m_buffer[y*(int)m_height + x];
+    return m_buffer[x*(int)m_height + y];
 }

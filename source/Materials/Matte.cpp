@@ -42,6 +42,8 @@ Matte::Clone() const
 
 /// --------------------------------------------------------------------------- Shade
 
+static float max = 0.f;
+
 Color 
 Matte::Shade(ShadeRecord& record) const
 {
@@ -50,11 +52,12 @@ Matte::Shade(ShadeRecord& record) const
     Vector R = -record.ray.direction;
 
     /// compute the ambient radiance in the world
-    Color radiance = m_ambient.P(record, R) * record.world->GetAmbientRadiance();
+    Color radiance = m_ambient.P(record, R) * record.world->GetAmbientRadiance(record);
 
     /// get all lights in the world
     const Array<Light*>* lights = record.world->GetLights();
     const int lightCount = lights->GetSize();
+    int x = 0;
 
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)
@@ -70,6 +73,10 @@ Matte::Shade(ShadeRecord& record) const
         if (NoL > 0.f && NoR > 0.f)
         {
             radiance += m_diffuse.F(record, L, R) * lights->operator[](i)->Radiance(record)  * NoL;
+            if (radiance.r > max)
+            {
+                max = radiance.r;
+            }
         }
     }
 

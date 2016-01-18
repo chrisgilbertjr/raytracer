@@ -1,4 +1,5 @@
 
+#include "Lights\AmbientLight.h"
 #include "World\World.h"
 #include "qdbmp.h"
 
@@ -10,19 +11,24 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
     unsigned height = buffer.GetHeight();
     unsigned width = buffer.GetWidth();
 
+    /// create the BMP image
     BMP* bmp = BMP_Create(width, height, 32);
 
+    /// loop through the color buffer and write each pixel
     for (unsigned y = 0; y < height; ++y)
     {
         for (unsigned x = 0; x < width; ++x)
         {
             Color255 color = MapColor255(buffer.GetColor(x, y));
+            //Color255 color = MapColor255(buffer.GetColor(x, (height-y)));
             BMP_SetPixelRGB(bmp, x, y, color.r, color.g, color.b);
         }
     }
 
+    /// write the bitmap
     BMP_WriteFile(bmp, filename);
 
+    /// free all data used by the bitmap
     BMP_Free(bmp);
 }
 
@@ -32,6 +38,7 @@ World::World()
     : m_viewingPlane()
     , m_objects(8)
     , m_lights(8)
+    , m_ambient(new AmbientLight(Color::White(), 1.0f))
     , m_tracer(NULL)
     , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
@@ -86,8 +93,8 @@ World::Export(const ColorBuffer& buffer, const OutputOptions& options) const
 ShadeRecord 
 World::QueryObjects(const Ray& ray) const
 {
-    ShadeRecord record = ShadeRecordConstruct(this);
-    ShadeRecord result = ShadeRecordConstruct(this);
+    ShadeRecord record = ShadeRecordConstruct(this, ray);
+    ShadeRecord result = ShadeRecordConstruct(this, ray);
 
     float tmin = 1e5;
     int count = m_objects.GetSize();
@@ -123,6 +130,11 @@ World::QueryObjects(const Ray& ray) const
 void 
 World::Free()
 {
+    if (m_ambient)
+    {
+        delete m_ambient;
+    }
+
     if (m_camera)
     {
         delete m_camera;

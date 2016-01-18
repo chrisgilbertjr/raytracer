@@ -26,7 +26,7 @@ struct ShadeRecord
 
 /// --------------------------------------------------------------------------- ShadeRecordConstruct
 
-inline ShadeRecord ShadeRecordConstruct(const class World* world)
+inline ShadeRecord ShadeRecordConstruct(const class World* world, const Ray& ray)
 {
     ShadeRecord record;
     record.material = NULL;
@@ -39,7 +39,7 @@ inline ShadeRecord ShadeRecordConstruct(const class World* world)
     record.t = 0.f;
     record.hit = false;
     record.depth = 0;
-    record.ray = Ray();
+    record.ray = Ray(ray);
 
     return record;
 }

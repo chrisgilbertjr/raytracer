@@ -5,7 +5,7 @@
 
 Camera::Camera()
     : m_view(0.f, 0.f, 0.f)
-    , m_eye(0.f, 0.f, 100.f)
+    , m_eye(0.f, 0.f, 500.f)
     , m_up(0.f, 1.f, 0.f)
     , m_u(1.f, 0.f, 0.f)
     , m_v(0.f, 1.f, 0.f)
