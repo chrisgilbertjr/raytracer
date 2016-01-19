@@ -24,15 +24,15 @@ public:
 
     virtual Color Shade(ShadeRecord& record) const;
 
-    void SetAmbient(const Color& color, const float intensity = 1.0f);
+    void SetAmbient(const Color& color, const real intensity = 1.0f);
 
-    void SetDiffuse(const Color& color, const float intensity = 1.0f);
+    void SetDiffuse(const Color& color, const real intensity = 1.0f);
 };
 
 /// --------------------------------------------------------------------------- SetAmbient
 
 inline void 
-Matte::SetAmbient(const Color& color, const float intensity)
+Matte::SetAmbient(const Color& color, const real intensity)
 {
     m_ambient.SetColor(color);
     m_ambient.SetIntensity(intensity);
@@ -41,7 +41,7 @@ Matte::SetAmbient(const Color& color, const float intensity)
 /// --------------------------------------------------------------------------- SetDiffuse
 
 inline void 
-Matte::SetDiffuse(const Color& color, const float intensity)
+Matte::SetDiffuse(const Color& color, const real intensity)
 {
     m_diffuse.SetColor(color);
     m_diffuse.SetIntensity(intensity);

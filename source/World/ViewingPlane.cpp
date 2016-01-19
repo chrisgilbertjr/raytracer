@@ -81,6 +81,7 @@ ViewingPlane::RemapColor(const Color& color) const
     Color remapped = color;
 
     /// TODO: out of gamut colors
+    remapped.clamp01();
 
     if (!Equal(this->m_gamma, 1.f))
     {

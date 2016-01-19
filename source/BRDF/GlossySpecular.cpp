@@ -4,15 +4,15 @@
 GlossySpecular::GlossySpecular()
     : BRDF()
     , m_exp(1.0f)
-    , m_ks(0.0f)
-    , m_cs(0.f, 0.f, 0.f)
+    , m_intensity(1.0f)
+    , m_color(0.f, 0.f, 0.f)
 {}
 
 GlossySpecular::GlossySpecular(const GlossySpecular& brdf)
     : BRDF(brdf)
     , m_exp(brdf.m_exp)
-    , m_ks(brdf.m_ks)
-    , m_cs(brdf.m_cs)
+    , m_intensity(brdf.m_intensity)
+    , m_color(brdf.m_color)
 {}
 
 GlossySpecular::~GlossySpecular()
@@ -23,8 +23,8 @@ GlossySpecular::operator=(GlossySpecular brdf)
 {
     BRDF::operator=(brdf);
     Swap<real>(m_exp, brdf.m_exp);
-    Swap<real>(m_ks, brdf.m_ks);
-    Swap<Color>(m_cs, brdf.m_cs);
+    Swap<real>(m_intensity, brdf.m_intensity);
+    Swap<Color>(m_color, brdf.m_color);
     return *this;
 }
 
@@ -37,27 +37,27 @@ GlossySpecular::Clone() const
 Color
 GlossySpecular::Hue() const
 {
-    return m_cs * m_ks;
+    return m_color * m_intensity;
 }
 
 Color 
 GlossySpecular::F(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
 {
-    Color L(0.f, 0.f, 0.f);
+    Color radiance(0.f, 0.f, 0.f);
 
     Vector E = wi; /// incoming 
-    Vector V = wo; /// outgoing
+    Vector L = wo; /// outgoing
     Vector N = record.normal; /// normal
-    Vector R = -E + (N * 2.0f) * Dot(N, E); /// reflection
+    Vector R = -E + N * 2.0f * Dot(N, E); /// reflection
 
-    real k = Dot(R, V); /// phong reflection: L = Color * Max(0, (R, V)^exp)
+    real k = Dot(R, L); /// phong reflection: L = Color * Max(0, (R, V)^exp)
 
     if (k > 0.f)
     {
-        L = Hue() * Pow(k, m_exp);
+        radiance = Hue() * Pow(k, m_exp);
     }
 
-    return L;
+    return radiance;
 }
 
 Color 

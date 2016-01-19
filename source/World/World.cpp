@@ -20,7 +20,6 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
         for (unsigned x = 0; x < width; ++x)
         {
             Color255 color = MapColor255(buffer.GetColor(x, y));
-            //Color255 color = MapColor255(buffer.GetColor(x, (height-y)));
             BMP_SetPixelRGB(bmp, x, y, color.r, color.g, color.b);
         }
     }

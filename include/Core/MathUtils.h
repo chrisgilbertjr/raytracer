@@ -174,6 +174,9 @@ real Length(const Vector& a);
 /// get the squared length of a vector
 real LengthSquared(const Vector& a);
 
+/// clamp val between min and max
+real Clamp(real val, real min, real max);
+
 /// @}
 
 

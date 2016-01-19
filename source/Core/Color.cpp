@@ -117,6 +117,18 @@ Color Color::pow(real pow) const
     return Color(Pow(r, pow), Pow(g, pow), Pow(b, pow), a);
 }
 
+void Color::clamp(real min, real max)
+{
+    r = Clamp(r, min, max);
+    g = Clamp(g, min, max);
+    b = Clamp(b, min, max);
+}
+
+void Color::clamp01()
+{
+    this->clamp(0.f, 1.0f);
+}
+
 Color Color::Black(real alpha)
 {
     return Color(0.f, 0.f, 0.f, alpha);

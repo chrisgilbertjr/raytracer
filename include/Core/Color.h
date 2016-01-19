@@ -69,6 +69,10 @@ struct Color
     /// exp each RGB component, return a copy
     Color pow(real pow) const;
 
+    void clamp(real min, real max);
+
+    void clamp01();
+
     /// black (1,1,1,1)
     static Color Black(real alpha = 1.0f);
 

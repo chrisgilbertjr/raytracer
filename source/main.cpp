@@ -8,13 +8,15 @@
 #include "Samplers\Hammersley.h"
 #include "Objects\Sphere.h"
 #include "Materials\Matte.h"
+#include "Materials\Phong.h"
 #include "Lights\DirectionalLight.h"
 
 int 
 main(void)
 {
-    Matte* material = new Matte();
-    material->SetDiffuse(Color::Red());
+    Phong* material = new Phong();
+    material->SetDiffuse(Color::Red(), 1.0f);
+    material->SetSpecular(Color::White(), 6.0f, 0.5f);
 
     Matte* material1 = new Matte();
     material1->SetDiffuse(Color::Green());

@@ -26,6 +26,7 @@ Matte::~Matte() {}
 Material& 
 Matte::operator=(Matte matte)
 {
+    Material::operator=(matte);
     Swap<Lambertian>(m_ambient, matte.m_ambient);
     Swap<Lambertian>(m_diffuse, matte.m_diffuse);
 
@@ -42,22 +43,19 @@ Matte::Clone() const
 
 /// --------------------------------------------------------------------------- Shade
 
-static float max = 0.f;
-
 Color 
 Matte::Shade(ShadeRecord& record) const
 {
     /// get the normal and incoming ray direction
     Vector N = record.normal;
-    Vector R = -record.ray.direction;
+    Vector E = -record.ray.direction;
 
     /// compute the ambient radiance in the world
-    Color radiance = m_ambient.P(record, R) * record.world->GetAmbientRadiance(record);
+    Color radiance = m_ambient.P(record, E) * record.world->GetAmbientRadiance(record);
 
     /// get all lights in the world
     const Array<Light*>* lights = record.world->GetLights();
     const int lightCount = lights->GetSize();
-    int x = 0;
 
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)
@@ -67,16 +65,14 @@ Matte::Shade(ShadeRecord& record) const
 
         /// compute the
         float NoL = Dot(N, L);
-        float NoR = Dot(N, R);
+        float NoE = Dot(N, E);
 
         /// if the light and ray direction are within 90 deg, the light is visible, accumulate the radiance
-        if (NoL > 0.f && NoR > 0.f)
+        if (NoL > 0.f && NoE > 0.f)
         {
-            radiance += m_diffuse.F(record, L, R) * lights->operator[](i)->Radiance(record)  * NoL;
-            if (radiance.r > max)
-            {
-                max = radiance.r;
-            }
+            radiance += m_diffuse.F(record, L, E) 
+                     *  lights->operator[](i)->Radiance(record) 
+                     *  NoL;
         }
     }
 

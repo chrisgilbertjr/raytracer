@@ -291,4 +291,19 @@ LengthSquared(const Vector& a)
     return a.LengthSquared();
 }
 
+real 
+Clamp(real val, real min, real max)
+{
+    if (val < min)
+    {
+        val = min;
+    }
+    if (val > max)
+    {
+        val = max;
+    }
+
+    return val;
+}
+
 /// ---------------------------------------------------------------------------

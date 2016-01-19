@@ -8,8 +8,8 @@ class GlossySpecular : public BRDF
 {
 private:
     real  m_exp;
-    real  m_ks;
-    Color m_cs;
+    real  m_intensity;
+    Color m_color;
 
     Color Hue() const;
 
@@ -32,15 +32,15 @@ public:
 
     inline void SetExp(const real exp) { m_exp = exp; }
 
-    inline void SetKs(const real kd)   { m_ks = kd; }
+    inline void SetIntensity(const real kd)   { m_intensity = kd; }
 
-    inline void SetCs(const Color& cd) { m_cs = cd; }
+    inline void SetColor(const Color& cd) { m_color = cd; }
 
     inline real GetExp(const real exp) { return m_exp; }
 
-    inline real  GetKs() { return m_ks; }
+    inline real  GetIntensity() { return m_intensity; }
 
-    inline Color GetCs() { return m_cs; }
+    inline Color GetColor() { return m_color; }
 };
 
 #endif
