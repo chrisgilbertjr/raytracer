@@ -177,6 +177,9 @@ real LengthSquared(const Vector& a);
 /// clamp val between min and max
 real Clamp(real val, real min, real max);
 
+/// clamp val between min and max
+real Saturate(real val);
+
 /// @}
 
 

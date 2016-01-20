@@ -74,6 +74,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\BRDFs\BRDF.h" />
+    <ClInclude Include="..\..\..\include\BRDFs\CookTorranceSpecular.h" />
     <ClInclude Include="..\..\..\include\BRDFs\GlossySpecular.h" />
     <ClInclude Include="..\..\..\include\BRDFs\Lambertian.h" />
     <ClInclude Include="..\..\..\include\BRDFs\PerfectSpecular.h" />
@@ -123,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\BRDF.cpp" />
+    <ClCompile Include="..\..\..\source\BRDF\CookTorranceSpecular.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\GlossySpecular.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\Lambertian.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\PerfectSpecular.cpp" />

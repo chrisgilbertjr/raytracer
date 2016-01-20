@@ -306,4 +306,10 @@ Clamp(real val, real min, real max)
     return val;
 }
 
+real 
+Saturate(real val)
+{
+    return Clamp(val, 0.f, 1.f);
+}
+
 /// ---------------------------------------------------------------------------
