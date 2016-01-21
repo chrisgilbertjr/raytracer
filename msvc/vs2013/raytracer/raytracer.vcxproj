@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\..\include\Lights\DirectionalLight.h" />
     <ClInclude Include="..\..\..\include\Lights\PointLight.h" />
     <ClInclude Include="..\..\..\include\Lights\Light.h" />
+    <ClInclude Include="..\..\..\include\Materials\CookTorrance.h" />
     <ClInclude Include="..\..\..\include\Materials\Material.h" />
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="..\..\..\source\Lights\Light.cpp" />
     <ClCompile Include="..\..\..\source\Lights\PointLight.cpp" />
     <ClCompile Include="..\..\..\source\main.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\CookTorrance.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />

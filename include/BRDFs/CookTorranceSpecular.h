@@ -32,6 +32,7 @@ private:
     t_Fresnel m_fresnel;
     float m_roughness;
     float m_incidence;
+    Color m_color;
 
 public:
     CookTorranceSpecular();

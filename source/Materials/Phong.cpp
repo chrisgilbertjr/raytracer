@@ -54,7 +54,7 @@ Phong::Shade(ShadeRecord& record) const
         /// get the light direction
         Vector L = lights->operator[](i)->GetDirection(record);
 
-        /// compute the
+        /// get cos of the light and eye vector
         float NoL = Dot(N, L);
         float NoE = Dot(N, E);
 
