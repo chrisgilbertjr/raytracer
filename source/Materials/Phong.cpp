@@ -63,7 +63,7 @@ Phong::Shade(ShadeRecord& record) const
         {
             radiance += (m_diffuse.F(record, L, E)
                      +   m_specular.F(record, L, E)) 
-                     *   lights->operator[](i)->Radiance(record) 
+                     *   lights->operator[](i)->Radiance(record)
                      *   NoL;
         }
     }

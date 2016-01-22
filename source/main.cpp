@@ -9,6 +9,7 @@
 #include "Objects\Sphere.h"
 #include "Materials\Matte.h"
 #include "Materials\Phong.h"
+#include "Materials\CookTorrance.h"
 #include "Lights\DirectionalLight.h"
 
 int 
@@ -18,8 +19,10 @@ main(void)
     material->SetDiffuse(Color::Red(), 1.0f);
     material->SetSpecular(Color::White(), 6.0f, 0.5f);
 
-    Matte* material1 = new Matte();
-    material1->SetDiffuse(Color::Green());
+    CookTorrance* material1 = new CookTorrance();
+    material1->SetDiffuse(Color::Red());
+    material1->SetRoughness(0.1f);
+    material1->SetIncidence(0.08f);
 
     Matte* material2 = new Matte();
     material2->SetDiffuse(Color::Blue());
@@ -27,10 +30,10 @@ main(void)
     DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, 0.f, 1.f)), Color::White(), 1.0f);
 
     Sphere* sphere =  new Sphere(Vector(  0.0f, 0.0f, 0.f),  50.f);
-    sphere->SetMaterial(material);
+    sphere->SetMaterial(material1);
 
     Sphere* sphere1 = new Sphere(Vector(-200.0f, 0.0f, 0.f),  50.f);
-    sphere1->SetMaterial(material1);
+    sphere1->SetMaterial(material);
 
     Sphere* sphere2 = new Sphere(Vector( 250.0f, 0.0f, 0.f),  50.f);
     sphere2->SetMaterial(material2);

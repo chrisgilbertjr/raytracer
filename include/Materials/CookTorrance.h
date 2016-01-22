@@ -40,8 +40,10 @@ public:
 /// --------------------------------------------------------------------------- SetAmbient
 
 inline void 
-CookTorrance::SetAmbient(const Color& color, const real intensity = 1.0f)
+CookTorrance::SetAmbient(const Color& color, const real intensity)
 {
+    m_ambient.SetIntensity(intensity);
+    m_ambient.SetColor(color);
 }
 
 /// --------------------------------------------------------------------------- SetDiffuse
@@ -49,6 +51,8 @@ CookTorrance::SetAmbient(const Color& color, const real intensity = 1.0f)
 inline void 
 CookTorrance::SetDiffuse(const Color& color)
 {
+    m_diffuse.SetIntensity(1.0f);
+    m_diffuse.SetColor(color);
 }
 
 /// --------------------------------------------------------------------------- SetSpecular
@@ -56,6 +60,7 @@ CookTorrance::SetDiffuse(const Color& color)
 inline void 
 CookTorrance::SetSpecular(const Color& color)
 {
+    m_specular.SetColor(color);
 }
 
 /// --------------------------------------------------------------------------- SetRoughness
@@ -63,6 +68,7 @@ CookTorrance::SetSpecular(const Color& color)
 inline void 
 CookTorrance::SetRoughness(float roughness)
 {
+    m_specular.SetRoughness(roughness);
 }
 
 /// --------------------------------------------------------------------------- SetIncidence
@@ -70,6 +76,7 @@ CookTorrance::SetRoughness(float roughness)
 inline void 
 CookTorrance::SetIncidence(float incidence)
 {
+    m_specular.SetIncidence(incidence);
 }
 
 /// --------------------------------------------------------------------------- EOF

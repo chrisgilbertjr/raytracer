@@ -4,7 +4,7 @@
 
 #include "BRDF.h"
 
-typedef float (*t_Geometric)(const Vector& E, const Vector& N, const Vector& H, float roughness);
+typedef float (*t_Geometric)(const Vector& E, const Vector& L, const Vector& N, const Vector& H, float roughness);
 typedef float (*t_Distribution)(const Vector& N, const Vector& H, float roughness);
 typedef float (*t_Fresnel)(const Vector& H, const Vector& E, float F0);
 /// cosT = HoE
@@ -55,29 +55,59 @@ public:
 
     void SetIncidence(float incidence);
 
+    void SetColor(const Color& color);
+
     float GetRoughness() const;
 
     float GetIncidence() const;
+
+    float GetF0() const;
+
+    t_Fresnel GetFresnal() const;
 };
 
-inline void CookTorranceSpecular::SetRoughness(float roughness)
+inline void 
+CookTorranceSpecular::SetRoughness(float roughness)
 {
     m_roughness = roughness;
 }
 
-inline void CookTorranceSpecular::SetIncidence(float incidence)
+inline void 
+CookTorranceSpecular::SetIncidence(float incidence)
 {
     m_incidence = incidence;
 }
 
-inline float CookTorranceSpecular::GetRoughness() const
+inline void 
+CookTorranceSpecular::SetColor(const Color& color)
+{
+    m_color = color;
+}
+
+inline float 
+CookTorranceSpecular::GetRoughness() const
 {
     return m_roughness;
 }
 
-inline float CookTorranceSpecular::GetIncidence() const
+inline float 
+CookTorranceSpecular::GetIncidence() const
 {
     return m_incidence;
+}
+
+inline float 
+CookTorranceSpecular::GetF0() const
+{
+    float a = m_incidence - 1.f;
+    float b = m_incidence + 1.f;
+    return (a*a) / (b*b);
+}
+
+inline t_Fresnel 
+CookTorranceSpecular::GetFresnal() const
+{
+    return m_fresnel;
 }
 
 #endif
