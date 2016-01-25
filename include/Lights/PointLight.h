@@ -15,6 +15,9 @@ private:
     Vector m_position; /// position of the light
     Color m_color;     /// color of the light
     real m_intensity;  /// intensity of the light
+    real m_radius;     /// radius of the light
+
+    real Attenuation(real distance) const;
 
 public:
     /// constructor
@@ -27,7 +30,7 @@ public:
     PointLight(const Color& color, const real intensity = 1.f);
 
     /// constructor
-    PointLight(const Vector& position, const Color& color, const real intensity = 1.f);
+    PointLight(const Vector& position, const Color& color, real radius, real intensity = 1.f);
 
     /// copy assignment operator
     PointLight(const PointLight& light);

@@ -19,7 +19,7 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
     {
         for (unsigned x = 0; x < width; ++x)
         {
-            Color255 color = MapColor255(buffer.GetColor(x, y));
+            Color255 color = MapColor255(buffer.GetColor(x, (height-y)));
             BMP_SetPixelRGB(bmp, x, y, color.r, color.g, color.b);
         }
     }
@@ -116,7 +116,6 @@ World::QueryObjects(const Ray& ray) const
             result.worldPoint = ray.origin + Mult(tmin, ray.direction);
             result.material = object->GetMaterial();
             result.hit = true;
-            int x = 0;
         }
     }
 

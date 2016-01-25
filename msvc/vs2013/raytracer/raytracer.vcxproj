@@ -97,6 +97,7 @@
     <ClInclude Include="..\..\..\include\Materials\Material.h" />
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
+    <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />

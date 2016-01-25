@@ -5,11 +5,11 @@
 #include "Object.h"
 
 /// a 3D plane 
-class Plane
+class Plane : public Object
 {
 private:
-    /// a plane represented by a point in world space and a normal
-    Vector m_point, m_normal;
+    Vector m_normal;
+    Vector m_point; 
 
 public:
     /// default constructor. point = (0,0,0) and normal (0,1,0)
@@ -21,14 +21,14 @@ public:
     /// constructor given a point and normal
     Plane(const Vector& point, const Vector& normal);
 
-    /// constructor given a normal and offset (d value)
+    /// constructor given a normal and offset 
     Plane(const Vector& normal, real offset);
 
     /// virtual destructor
     virtual ~Plane();
 
     /// assignment operator
-    Plane& operator=(const Plane& plane);
+    Plane& operator=(Plane plane);
 
     /// virtual function for ray plane raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;

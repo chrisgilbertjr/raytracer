@@ -14,7 +14,7 @@ protected:
 public:
     Object();
 
-    ~Object();
+    virtual ~Object();
 
     /// pure virtual function for raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const = 0;

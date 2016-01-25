@@ -65,7 +65,7 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
             if (quadtratic >= EPSILON)
             {
                 Vector mag = ray.direction * quadtratic;
-                record.normal = (tmp + mag) * (1.0f/m_radius);
+                record.normal = Normalize((tmp + mag) * (1.0f/m_radius));
                 record.localPoint = ray.origin + mag;
                 result.t = record.t = quadtratic;
                 result.hit = record.hit = true;
