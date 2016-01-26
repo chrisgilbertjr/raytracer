@@ -18,42 +18,51 @@
 int 
 main(void)
 {
-    Phong* material = new Phong();
-    material->SetDiffuse(Color::Blue(), 1.0f);
-    material->SetSpecular(Color::White(), 6.0f, 0.5f);
-
     CookTorrance* material1 = new CookTorrance();
     material1->SetDiffuse(Color::Red());
-    material1->SetRoughness(0.3f);
-    material1->SetIncidence(0.018f);
+    material1->SetRoughness(0.1f);
+    material1->SetIncidence(0.218f);
 
-    Matte* material2 = new Matte();
-    material2->SetDiffuse(Color::White());
+    CookTorrance* material2 = new CookTorrance();
+    material2->SetDiffuse(Color::Green());
+    material2->SetRoughness(0.2f);
+    material2->SetIncidence(0.118f);
 
-    DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.5f);
-    PointLight* point = new PointLight(Vector(0.0f, 0.f, 200.0f), Color::White(), 5000.f, 1.f);
+    CookTorrance* material3 = new CookTorrance();
+    material3->SetDiffuse(Color::Blue());
+    material3->SetRoughness(0.3f);
+    material3->SetIncidence(0.018f);
 
-    Sphere* sphere =  new Sphere(Vector(  0.0f, 0.0f, 0.f),  50.f);
-    sphere->SetMaterial(material1);
+    CookTorrance* material4 = new CookTorrance();
+    material4->SetDiffuse(Color(1.f, 1.f, 0.0f));
+    material4->SetRoughness(0.4f);
+    material4->SetIncidence(0.018f);
 
-    Sphere* sphere1 = new Sphere(Vector(-200.0f, -50.0f, 0.f),  50.f);
-    sphere1->SetMaterial(material);
+    Matte* material5 = new Matte();
+    material5->SetDiffuse(Color::White());
 
-    Sphere* sphere2 = new Sphere(Vector( 200.0f, 0.0f, 0.f),  50.0f);
-    sphere2->SetMaterial(material);
+    Sphere* sphere1 =  new Sphere(Vector( 150.0f,-50.0f, 125.f),  50.f);
+    Sphere* sphere2 =  new Sphere(Vector(   0.0f,-50.0f,  75.f),  50.f);
+    Sphere* sphere3 =  new Sphere(Vector(-150.0f,-50.0f,  25.f),  50.f);
+    Sphere* sphere4 =  new Sphere(Vector(-300.0f,-50.0f, -25.f),  50.f);
+
+    sphere1->SetMaterial(material1);
+    sphere2->SetMaterial(material2);
+    sphere3->SetMaterial(material3);
+    sphere4->SetMaterial(material4);
 
     Plane* plane = new Plane(Vector(0.f, -100.f, 0.f), Vector(0.f, 1.0f, 0.0f));
-    plane->SetMaterial(material2);
+    plane->SetMaterial(material5);
 
-    Plane* plane2 = new Plane(Vector(-250.f, 0.f, 0.f), Vector(1.f, 0.0f, 0.0f));
-    plane2->SetMaterial(material2);
+    DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.0f);
+    PointLight* point = new PointLight(Vector(-100.0f, 150.f, 250.0f), Color::White(), 2500.f, 1.f);
 
     World world;
-    world.PushObject(sphere);
     world.PushObject(sphere1);
     world.PushObject(sphere2);
+    world.PushObject(sphere3);
+    world.PushObject(sphere4);
     world.PushObject(plane);
-    //world.PushObject(plane2);
     world.PushLight(light);
     world.PushLight(point);
 

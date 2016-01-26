@@ -1,6 +1,7 @@
 
 #include "Lights\PointLight.h"
 #include "BRDFs\ShadeRecord.h"
+#include "World\World.h"
 
 /// --------------------------------------------------------------------------- Attenuation
 
@@ -105,6 +106,37 @@ Color
 PointLight::Radiance(ShadeRecord& record)
 {
     return Attenuation(Length(m_position - record.worldPoint)) * m_color * m_intensity;
+}
+
+/// --------------------------------------------------------------------------- CastsShadow
+
+bool 
+PointLight::CastsShadow() const
+{
+    /// @TODO:
+    return false;
+}
+
+/// --------------------------------------------------------------------------- InShadow
+
+bool 
+PointLight::InShadow(const Ray& ray, ShadeRecord& record) const
+{
+    real t;
+
+    const Array<Object*>* objects = record.world->GetObjects();
+    const int objectCount = objects->GetSize();
+
+    real distance = Length(ray.origin - m_position);
+
+    for (int i = 0; i < objectCount; ++i)
+    {
+        if (objects->operator[](i)->ShadowHit(ray, t) && t < distance)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 /// --------------------------------------------------------------------------- EOF

@@ -55,3 +55,19 @@ Plane::Query(const Ray& ray, ShadeRecord& record) const
 
     return result;
 }
+
+bool 
+Plane::ShadowHit(const Ray& ray, float& tmin) const
+{
+    real quadtratic = Dot((m_point - ray.origin), m_normal) / Dot(ray.direction, m_normal);
+
+    if (quadtratic > EPSILON)
+    {
+        tmin = quadtratic;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

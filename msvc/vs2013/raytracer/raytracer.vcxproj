@@ -167,7 +167,6 @@
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />
     <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp" />
     <ClCompile Include="..\..\..\source\World\World.cpp" />
-    <ClCompile Include="Examples.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

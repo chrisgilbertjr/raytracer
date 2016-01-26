@@ -25,6 +25,8 @@ public:
     virtual Object* Clone() const;
 
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
+
+    virtual bool ShadowHit(const Ray& ray, float& tmin) const;
 };
 
 #endif

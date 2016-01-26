@@ -35,6 +35,8 @@ public:
 
     /// virtual function for raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
+
+    virtual bool ShadowHit(const Ray& ray, float& tmin) const;
 };
 
 #endif

@@ -46,6 +46,12 @@ public:
 
     /// compute the radiance of the light
     virtual Color Radiance(ShadeRecord& record);
+
+    /// check if the light casts a shadow
+    virtual bool CastsShadow() const;
+
+    /// test a ray to see if the hit point is in a shadow
+    virtual bool InShadow(const Ray& ray, ShadeRecord& record) const;
 };
 
 /// @}

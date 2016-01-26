@@ -62,4 +62,20 @@ AmbientLight::Radiance(ShadeRecord& record)
     return m_intensity * m_color;
 }
 
+/// --------------------------------------------------------------------------- CastsShadow
+
+bool 
+AmbientLight::CastsShadow() const
+{
+    return false;
+}
+
+/// --------------------------------------------------------------------------- InShadow
+
+bool 
+AmbientLight::InShadow(const Ray& ray, ShadeRecord& record) const
+{
+    return false;
+}
+
 /// --------------------------------------------------------------------------- EOF

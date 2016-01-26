@@ -100,3 +100,10 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
     /// no hits, return false
     return result;
 }
+
+bool 
+Cylinder::ShadowHit(const Ray& ray, float& tmin) const
+{
+    /// @TODO:
+    return false;
+}

@@ -76,3 +76,10 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
     /// no hits, return false
     return result;
 }
+
+bool 
+Sphere::ShadowHit(const Ray& ray, float& tmin) const
+{
+    /// @TODO:
+    return false;
+}

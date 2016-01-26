@@ -333,9 +333,6 @@
     <ClCompile Include="..\..\..\source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Examples.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp">
       <Filter>Source Files\Raytracers</Filter>
     </ClCompile>

@@ -81,4 +81,22 @@ DirectionalLight::Radiance(ShadeRecord& record)
     return m_intensity * m_color;
 }
 
+/// --------------------------------------------------------------------------- CastsShadow
+
+bool 
+DirectionalLight::CastsShadow() const
+{
+    /// @TODO:
+    return false;
+}
+
+/// --------------------------------------------------------------------------- InShadow
+
+bool 
+DirectionalLight::InShadow(const Ray& ray, ShadeRecord& record) const
+{
+    /// @TODO:
+    return false;
+}
+
 /// --------------------------------------------------------------------------- EOF

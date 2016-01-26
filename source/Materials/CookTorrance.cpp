@@ -52,8 +52,9 @@ Color CookTorrance::Shade(ShadeRecord& record) const
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)
     {
+        Light* light = lights->operator[](i);
         /// get the light direction
-        Vector L = lights->operator[](i)->GetDirection(record);
+        Vector L = light->GetDirection(record);
         Vector H = Normalize(Add(L, E));
 
         /// get cos of the light and eye vector
@@ -63,13 +64,22 @@ Color CookTorrance::Shade(ShadeRecord& record) const
         /// if the light and ray direction are within 90 deg, the light is visible, accumulate the radiance
         if (NoL > 0.f && NoE > 0.f)
         {
-            float F0 = m_specular.GetIncidence();
-            float diffuseIntensity  = 1.f - fresnel(L, N, F0);
+            bool inShadow = false;
 
-            radiance += (m_diffuse.F(record, L, E) * diffuseIntensity
-                     +   m_specular.F(record, L, E)) 
-                     *   lights->operator[](i)->Radiance(record) 
-                     *   NoL;
+            if (light->CastsShadow())
+            {
+                inShadow = light->InShadow(Ray(record.worldPoint, L), record);
+            }
+
+            if (!inShadow)
+            {
+                float diffuseIntensity  = 1.f - fresnel(L, N, m_specular.GetIncidence());
+
+                radiance += (m_diffuse.F(record, L, E) * diffuseIntensity
+                         +   m_specular.F(record, L, E)) 
+                         *   lights->operator[](i)->Radiance(record) 
+                         *   NoL;
+            }
         }
     }
 
