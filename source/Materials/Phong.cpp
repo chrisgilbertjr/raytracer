@@ -51,8 +51,10 @@ Phong::Shade(ShadeRecord& record) const
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)
     {
+        Light* light = lights->operator[](i);
+
         /// get the light direction
-        Vector L = lights->operator[](i)->GetDirection(record);
+        Vector L = light->GetDirection(record);
 
         /// get cos of the light and eye vector
         float NoL = Dot(N, L);
@@ -61,10 +63,20 @@ Phong::Shade(ShadeRecord& record) const
         /// if the light and ray direction are within 90 deg, the light is visible, accumulate the radiance
         if (NoL > 0.f && NoE > 0.f)
         {
-            radiance += (m_diffuse.F(record, L, E)
-                     +   m_specular.F(record, L, E)) 
-                     *   lights->operator[](i)->Radiance(record)
-                     *   NoL;
+            bool inShadow = false;
+
+            if (light->CastsShadow())
+            {
+                inShadow = light->InShadow(Ray(record.worldPoint, L), record);
+            }
+
+            if (!inShadow)
+            {
+                radiance += (m_diffuse.F(record, L, E)
+                         +   m_specular.F(record, L, E)) 
+                         *   light->Radiance(record)
+                         *   NoL;
+            }
         }
     }
 

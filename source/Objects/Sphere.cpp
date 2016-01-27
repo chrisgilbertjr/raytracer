@@ -80,6 +80,27 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
 bool 
 Sphere::ShadowHit(const Ray& ray, float& tmin) const
 {
-    /// @TODO:
+    Vector tmp = ray.origin - m_center;
+    real a = Dot(ray.direction, ray.direction);
+    real b = 2.0f * Dot(tmp, ray.direction);
+    real c = Dot(tmp, tmp) - m_radius * m_radius;
+    real discriminant = b * b - 4.0f * a * c;
+
+    if (discriminant >= 0.0f)
+    {
+        real sDiscriminant = Sqrt(discriminant);
+        real invDenominator = 1.0f / 2.0f * a;
+        for (real i = -1.0f; i < 2.0f; i += 2.0f)
+        {
+            real quadtratic = (-b + sDiscriminant * i) * invDenominator;
+
+            if (quadtratic >= shadowEpsilon)
+            {
+                tmin = quadtratic;
+                return true;
+            }
+        }
+    };
+
     return false;
 }

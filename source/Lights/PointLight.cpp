@@ -114,7 +114,7 @@ bool
 PointLight::CastsShadow() const
 {
     /// @TODO:
-    return false;
+    return true;
 }
 
 /// --------------------------------------------------------------------------- InShadow

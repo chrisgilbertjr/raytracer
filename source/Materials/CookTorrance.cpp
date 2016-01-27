@@ -53,6 +53,7 @@ Color CookTorrance::Shade(ShadeRecord& record) const
     for (int i = 0; i < lightCount; ++i)
     {
         Light* light = lights->operator[](i);
+
         /// get the light direction
         Vector L = light->GetDirection(record);
         Vector H = Normalize(Add(L, E));
@@ -77,7 +78,7 @@ Color CookTorrance::Shade(ShadeRecord& record) const
 
                 radiance += (m_diffuse.F(record, L, E) * diffuseIntensity
                          +   m_specular.F(record, L, E)) 
-                         *   lights->operator[](i)->Radiance(record) 
+                         *   light->Radiance(record) 
                          *   NoL;
             }
         }

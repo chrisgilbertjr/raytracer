@@ -18,10 +18,12 @@
 int 
 main(void)
 {
+    shadowEpsilon = 1e-1f;
+
     CookTorrance* material1 = new CookTorrance();
     material1->SetDiffuse(Color::Red());
     material1->SetRoughness(0.1f);
-    material1->SetIncidence(0.218f);
+    material1->SetIncidence(0.118f);
 
     CookTorrance* material2 = new CookTorrance();
     material2->SetDiffuse(Color::Green());
@@ -55,7 +57,7 @@ main(void)
     plane->SetMaterial(material5);
 
     DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.0f);
-    PointLight* point = new PointLight(Vector(-100.0f, 150.f, 250.0f), Color::White(), 2500.f, 1.f);
+    PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.f);
 
     World world;
     world.PushObject(sphere1);

@@ -1,6 +1,7 @@
 
 #include "Core\MathUtils.h"
 
+real shadowEpsilon = 1e-5f;
 
 /// Vector --------------------------------------------------------------------
 

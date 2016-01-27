@@ -27,6 +27,9 @@
 /// random seed flag
 extern bool g_seeded;
 
+/// shadow epsilon
+extern real shadowEpsilon;
+
 /// init random seed
 void InitializeRandomSeed();
 

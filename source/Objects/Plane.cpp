@@ -61,7 +61,7 @@ Plane::ShadowHit(const Ray& ray, float& tmin) const
 {
     real quadtratic = Dot((m_point - ray.origin), m_normal) / Dot(ray.direction, m_normal);
 
-    if (quadtratic > EPSILON)
+    if (quadtratic > shadowEpsilon)
     {
         tmin = quadtratic;
         return true;
