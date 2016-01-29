@@ -95,6 +95,73 @@ struct Vector
 
 /// @}
 
+/// @defgroup Matrix Matrix
+/// @{
+
+class Matrix
+{
+    real m[16];
+
+    Matrix();
+
+    Matrix(real m00, real m01, real m02, real m03,
+           real m10, real m11, real m12, real m13,
+           real m20, real m21, real m22, real m23,
+           real m30, real m31, real m32, real m33);
+
+    Matrix(const Matrix& matrix);
+
+    ~Matrix();
+
+    Matrix& operator=(Matrix matrix);
+
+    Matrix& operator*=(const Matrix& matrix);
+
+    Matrix& operator+=(const Matrix& matrix);
+
+    Matrix& operator-=(const Matrix& matrix);
+
+    Matrix operator*=(real scalar) const;
+
+    Matrix operator/=(real scalar) const;
+
+    Matrix operator*(const Matrix& matrix) const;
+
+    Matrix operator+(const Matrix& matrix) const;
+
+    Matrix operator-(const Matrix& matrix) const;
+
+    Matrix operator*(real scalar) const;
+
+    Matrix operator/(real scalar) const;
+
+    Vector operator*(const Vector& point) const;
+
+    Matrix operator-() const;
+
+    Vector TransformPoint(const Vector& point) const;
+
+    Vector TransformVector(const Vector& vector) const;
+
+    Vector InverseTransformPoint(const Vector& point) const;
+
+    Vector InverseTransformVector(const Vector& vector) const;
+
+    real Determinant() const;
+
+    Matrix Transpose() const;
+
+    Matrix Inverse() const;
+
+    void Invert();
+
+    static Matrix Zero();
+
+    static Matrix Identity();
+};
+
+/// @}
+
 
 /// @defgroup Ray Ray
 /// @{
