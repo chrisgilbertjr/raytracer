@@ -8,8 +8,10 @@
 class Sphere : public Object
 {
 private:
-    Vector m_center; /// center in world space
     real   m_radius; /// radius of the sphere from the center
+
+    /// compute quadtradic coeff
+    void Quadratic(const Ray& ray, real& a, real& b, real& c, real& d) const;
 
 public:
     /// default constructor. center = (0,0,0) and radius = 0
@@ -32,6 +34,12 @@ public:
 
     /// virtual destructor
     virtual ~Sphere();
+
+    /// copy assignment operator
+    Sphere& operator=(Sphere sphere);
+
+    /// clone this object, deep copy
+    virtual Object* Clone() const;
 
     /// virtual function for raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;

@@ -1,24 +1,46 @@
 
 #include "Objects\Sphere.h"
 
-Sphere::Sphere()
-    : m_center(Vector(0.0f))
-    , m_radius(1.0f)
+void 
+Sphere::Quadratic(const Ray& ray, real& a, real& b, real& c, real& d) const
 {
+    a = Dot(ray.direction, ray.direction);
+    b = 2.0f * Dot(ray.origin, ray.direction);
+    c = Dot(ray.origin, ray.origin) - m_radius * m_radius;
+    d = b * b - 4.0f * a * c;
 }
+
+Sphere::Sphere()
+    : Object()
+    , m_radius(1.0f)
+{}
 
 Sphere::Sphere(const Vector& center, real radius)
-    : m_center(center)
+    : Object(center, Vector(0.f), 0.0f, 1.0f)
     , m_radius(radius)
-{
-}
+{}
 
 Sphere::~Sphere() {}
+
+Sphere& 
+Sphere::operator=(Sphere sphere)
+{
+    Object::operator=(sphere);
+    Swap<real>(m_radius, sphere.m_radius);
+
+    return *this;
+}
+
+Object* 
+Sphere::Clone() const
+{
+    return static_cast<Object*>(new Sphere(*this));
+}
 
 void
 Sphere::SetCenter(const Vector& center)
 {
-    m_center = center;
+    m_transform.SetPosition(center);
 }
 
 void
@@ -30,7 +52,7 @@ Sphere::SetRadius(float radius)
 Vector
 Sphere::GetCenter() const
 {
-    return m_center;
+    return m_transform.GetPosition();
 }
 
 real
@@ -42,37 +64,37 @@ Sphere::GetRadius() const
 Raycast
 Sphere::Query(const Ray& ray, ShadeRecord& record) const
 {
-    Raycast result;
-    result.ray = ray;
-    result.hit = record.hit = false;
-    result.t = record.t = 0.0f;
-    record.normal = record.localPoint = Vector(0.0f);
+    Raycast result = Object::InitRaycastRecord(ray, record);
+    Ray r = m_transform.TransformRaycast(ray);
 
-    Vector tmp = ray.origin - m_center;
-    real a = Dot(ray.direction, ray.direction);
-    real b = 2.0f * Dot(tmp, ray.direction);
-    real c = Dot(tmp, tmp) - m_radius * m_radius;
-    real discriminant = b * b - 4.0f * a * c;
+    real a, b, c, d;
+    Quadratic(r, a, b, c, d);
 
-    if (discriminant >= 0.0f)
+    if (d >= 0.0f)
     {
-        real sDiscriminant = Sqrt(discriminant);
-        real invDenominator = 1.0f / 2.0f * a;
-        for (real i = -1.0f; i < 2.0f; i += 2.0f)
-        {
-            real quadtratic = (-b + sDiscriminant * i) * invDenominator;
+        real sDisc = Sqrt(d);
+        real iDenom = 1.0f / 2.0f * a;
+        real t = (-b - sDisc) * iDenom;
 
-            if (quadtratic >= EPSILON)
-            {
-                Vector mag = ray.direction * quadtratic;
-                record.normal = Normalize((tmp + mag) * (1.0f/m_radius));
-                record.localPoint = ray.origin + mag;
-                result.t = record.t = quadtratic;
-                result.hit = record.hit = true;
-                return result;
-            }
+        if (t >= EPSILON)
+        {
+            Vector p = r.direction * t; /// world hit point
+            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            return result;
+        }
+
+        t = (-b + sDisc) * iDenom;
+
+        if (t >= EPSILON)
+        {
+            Vector p = r.direction * t; /// world hit point
+            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            return result;
         }
     }
+
     /// no hits, return false
     return result;
 }
@@ -80,27 +102,31 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
 bool 
 Sphere::ShadowHit(const Ray& ray, float& tmin) const
 {
-    Vector tmp = ray.origin - m_center;
-    real a = Dot(ray.direction, ray.direction);
-    real b = 2.0f * Dot(tmp, ray.direction);
-    real c = Dot(tmp, tmp) - m_radius * m_radius;
-    real discriminant = b * b - 4.0f * a * c;
+    Ray r = m_transform.TransformRaycast(ray);
 
-    if (discriminant >= 0.0f)
+    real a, b, c, d;
+    Sphere::Quadratic(r, a, b, c, d);
+
+    if (d >= 0.0f)
     {
-        real sDiscriminant = Sqrt(discriminant);
-        real invDenominator = 1.0f / 2.0f * a;
-        for (real i = -1.0f; i < 2.0f; i += 2.0f)
-        {
-            real quadtratic = (-b + sDiscriminant * i) * invDenominator;
+        real sDisc = Sqrt(d);
+        real iDenom = 1.0f / 2.0f * a;
+        real t = (-b - sDisc) * iDenom;
 
-            if (quadtratic >= shadowEpsilon)
-            {
-                tmin = quadtratic;
-                return true;
-            }
+        if (t >= shadowEpsilon)
+        {
+            tmin = t;
+            return true;
         }
-    };
+
+        t = (-b + sDisc) * iDenom;
+
+        if (t >= shadowEpsilon)
+        {
+            tmin = t;
+            return true;
+        }
+    }
 
     return false;
 }

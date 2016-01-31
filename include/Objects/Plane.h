@@ -9,7 +9,8 @@ class Plane : public Object
 {
 private:
     Vector m_normal;
-    Vector m_point; 
+
+    real Quadtratic(const Ray& ray, const Vector& normal) const;
 
 public:
     /// default constructor. point = (0,0,0) and normal (0,1,0)

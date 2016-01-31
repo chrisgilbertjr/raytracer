@@ -91,73 +91,16 @@ struct Vector
 
     /// return the length squared of this vector
     real LengthSquared() const;
-};
 
-/// @}
+    /// x unit vector
+    static Vector X();
 
-/// @defgroup Matrix Matrix
-/// @{
+    /// y unit vector
+    static Vector Y();
 
-class Matrix
-{
-    real m[16];
+    /// z unit vector
+    static Vector Z();
 
-    Matrix();
-
-    Matrix(real m00, real m01, real m02, real m03,
-           real m10, real m11, real m12, real m13,
-           real m20, real m21, real m22, real m23,
-           real m30, real m31, real m32, real m33);
-
-    Matrix(const Matrix& matrix);
-
-    ~Matrix();
-
-    Matrix& operator=(Matrix matrix);
-
-    Matrix& operator*=(const Matrix& matrix);
-
-    Matrix& operator+=(const Matrix& matrix);
-
-    Matrix& operator-=(const Matrix& matrix);
-
-    Matrix operator*=(real scalar) const;
-
-    Matrix operator/=(real scalar) const;
-
-    Matrix operator*(const Matrix& matrix) const;
-
-    Matrix operator+(const Matrix& matrix) const;
-
-    Matrix operator-(const Matrix& matrix) const;
-
-    Matrix operator*(real scalar) const;
-
-    Matrix operator/(real scalar) const;
-
-    Vector operator*(const Vector& point) const;
-
-    Matrix operator-() const;
-
-    Vector TransformPoint(const Vector& point) const;
-
-    Vector TransformVector(const Vector& vector) const;
-
-    Vector InverseTransformPoint(const Vector& point) const;
-
-    Vector InverseTransformVector(const Vector& vector) const;
-
-    real Determinant() const;
-
-    Matrix Transpose() const;
-
-    Matrix Inverse() const;
-
-    void Invert();
-
-    static Matrix Zero();
-
-    static Matrix Identity();
 };
 
 /// @}
@@ -204,9 +147,113 @@ struct Raycast
 
 /// @}
 
+/// @defgroup Matrix Matrix
+/// @{
+
+class Matrix
+{
+public:
+    real m[16];
+
+    Matrix();
+
+    Matrix(real m00, real m01, real m02, real m03,
+           real m10, real m11, real m12, real m13,
+           real m20, real m21, real m22, real m23,
+           real m30, real m31, real m32, real m33);
+
+    Matrix(const Matrix& matrix);
+
+    ~Matrix();
+
+    Matrix& operator=(Matrix matrix);
+
+    Matrix& operator*=(const Matrix& matrix);
+
+    Matrix& operator+=(const Matrix& matrix);
+
+    Matrix& operator-=(const Matrix& matrix);
+
+    Matrix operator*=(real scalar);
+
+    Matrix operator/=(real scalar);
+
+    Matrix operator*(const Matrix& matrix) const;
+
+    Matrix operator+(const Matrix& matrix) const;
+
+    Matrix operator-(const Matrix& matrix) const;
+
+    Matrix operator*(real scalar) const;
+
+    Matrix operator/(real scalar) const;
+
+    Vector operator*(const Vector& point) const;
+
+    Matrix operator-() const;
+
+    Vector TransformPoint(const Vector& point) const;
+
+    Vector TransformVector(const Vector& vector) const;
+
+    Ray TransformRay(const Ray& ray) const;
+
+    Ray TransformRaycast(const Ray& ray) const;
+
+    Vector InverseTransformPoint(const Vector& point) const;
+
+    Vector InverseTransformVector(const Vector& vector) const;
+
+    Ray InverseTransformRay(const Ray& ray) const;
+
+    real Determinant() const;
+
+    Matrix Transpose() const;
+
+    Matrix Inverse() const;
+
+    void Invert();
+
+    void SetPosition(const Vector& position);
+
+    Vector GetPosition() const;
+
+    static Matrix Zero();
+
+    static Matrix Identity();
+
+    static Matrix Diagonal(real val);
+
+    static Matrix Rotation(const Vector& axis, real angle);
+
+    static Matrix Translation(const Vector& translate);
+
+    static Matrix Translation(real x, real y, real z);
+
+    static Matrix Scale(real uniform);
+
+    static Matrix Shear(real x, real y, real z);
+
+    static Matrix Transform(const Vector& translate, const Vector& axis, real angle, real scale = 1.f);
+};
+
+/// @}
+
+
+
+
 
 /// @defgroup MathUtils MathUtils
 /// @{
+
+/// multiply operator
+Matrix operator*(real scalar, const Matrix& matrix);
+
+/// multiply operator
+Vector operator*(const Vector& vector, const Matrix& matrix);
+
+/// multiply operator
+Vector operator*(real scalar, const Vector& vector);
 
 /// check if two float values are equal within epsilon
 bool Equal(real a, real b, real epsilon = EPSILON);

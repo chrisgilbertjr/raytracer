@@ -157,6 +157,25 @@ Vector::LengthSquared() const
     return x*x + y*y + z*z;
 }
 
+
+Vector 
+Vector::X()
+{
+    return Vector(1.f, 0.0f, 0.0f);
+}
+
+Vector 
+Vector::Y()
+{
+    return Vector(0.f, 1.0f, 0.0f);
+}
+
+Vector 
+Vector::Z()
+{
+    return Vector(0.f, 0.0f, 1.0f);
+}
+
 /// ---------------------------------------------------------------------------
 
 /// --------------------------------------------------------------------------- Matrix
@@ -199,89 +218,232 @@ Matrix::operator=(Matrix matrix)
 }
 
 Matrix& 
-Matrix::operator*=(const Matrix& matrix)
+Matrix::operator*=(const Matrix& x)
 {
+    real r[16];
+    r[ 0] = m[ 0] * x.m[0] + m[ 1] * x.m[4] + m[ 2] * x.m[ 8] + m[ 3] * x.m[12];
+    r[ 1] = m[ 0] * x.m[1] + m[ 1] * x.m[5] + m[ 2] * x.m[ 9] + m[ 3] * x.m[13];
+    r[ 2] = m[ 0] * x.m[2] + m[ 1] * x.m[6] + m[ 2] * x.m[10] + m[ 3] * x.m[14];
+    r[ 3] = m[ 0] * x.m[3] + m[ 1] * x.m[7] + m[ 2] * x.m[11] + m[ 3] * x.m[15];
+
+    r[ 4] = m[ 4] * x.m[0] + m[ 5] * x.m[4] + m[ 6] * x.m[ 8] + m[ 7] * x.m[12];
+    r[ 5] = m[ 4] * x.m[1] + m[ 5] * x.m[5] + m[ 6] * x.m[ 9] + m[ 7] * x.m[13];
+    r[ 6] = m[ 4] * x.m[2] + m[ 5] * x.m[6] + m[ 6] * x.m[10] + m[ 7] * x.m[14];
+    r[ 7] = m[ 4] * x.m[3] + m[ 5] * x.m[7] + m[ 6] * x.m[11] + m[ 7] * x.m[15];
+
+    r[ 8] = m[ 8] * x.m[0] + m[ 9] * x.m[4] + m[10] * x.m[ 8] + m[11] * x.m[12];
+    r[ 9] = m[ 8] * x.m[1] + m[ 9] * x.m[5] + m[10] * x.m[ 9] + m[11] * x.m[13];
+    r[10] = m[ 8] * x.m[2] + m[ 9] * x.m[6] + m[10] * x.m[10] + m[11] * x.m[14];
+    r[11] = m[ 8] * x.m[3] + m[ 9] * x.m[7] + m[10] * x.m[11] + m[11] * x.m[15];
+
+    r[12] = m[12] * x.m[0] + m[13] * x.m[4] + m[14] * x.m[ 8] + m[15] * x.m[12];
+    r[13] = m[12] * x.m[1] + m[13] * x.m[5] + m[14] * x.m[ 9] + m[15] * x.m[13];
+    r[14] = m[12] * x.m[2] + m[13] * x.m[6] + m[14] * x.m[10] + m[15] * x.m[14];
+    r[15] = m[12] * x.m[3] + m[13] * x.m[7] + m[14] * x.m[11] + m[15] * x.m[15];
+
+    m[ 0] = r[ 0];
+    m[ 1] = r[ 1];
+    m[ 2] = r[ 2];
+    m[ 3] = r[ 3];
+    m[ 4] = r[ 4];
+    m[ 5] = r[ 5];
+    m[ 6] = r[ 6];
+    m[ 7] = r[ 7];
+    m[ 8] = r[ 8];
+    m[ 9] = r[ 9];
+    m[10] = r[10];
+    m[11] = r[11];
+    m[12] = r[12];
+    m[13] = r[13];
+    m[14] = r[14];
+    m[15] = r[15];
+
     return *this;
 }
 
 Matrix& 
 Matrix::operator+=(const Matrix& matrix)
 {
+    for (int i = 0; i < 16; ++i)
+    {
+        m[i] += matrix.m[i];
+    }
     return *this;
 }
 
 Matrix& 
 Matrix::operator-=(const Matrix& matrix)
 {
+    for (int i = 0; i < 16; ++i)
+    {
+        m[i] -= matrix.m[i];
+    }
     return *this;
 }
 
 Matrix 
-Matrix::operator*=(real scalar) const
+Matrix::operator*=(real scalar)
 {
-    Matrix result;
-    return result;
+    for (int i = 0; i < 16; ++i)
+    {
+        m[i] *= scalar;
+    }
+    return *this;
 }
 
 Matrix 
-Matrix::operator/=(real scalar) const
+Matrix::operator/=(real scalar)
 {
-    Matrix result;
-    return result;
+    for (int i = 0; i < 16; ++i)
+    {
+        m[i] /= scalar;
+    }
+    return *this;
 }
 
 Matrix 
-Matrix::operator*(const Matrix& matrix) const
+Matrix::operator*(const Matrix& x) const
 {
-    Matrix result;
-    return result;
+    return Matrix(m[ 0] * x.m[0] + m[ 1] * x.m[4] + m[ 2] * x.m[ 8] + m[ 3] * x.m[12],
+                  m[ 0] * x.m[1] + m[ 1] * x.m[5] + m[ 2] * x.m[ 9] + m[ 3] * x.m[13],
+                  m[ 0] * x.m[2] + m[ 1] * x.m[6] + m[ 2] * x.m[10] + m[ 3] * x.m[14],
+                  m[ 0] * x.m[3] + m[ 1] * x.m[7] + m[ 2] * x.m[11] + m[ 3] * x.m[15],
+
+                  m[ 4] * x.m[0] + m[ 5] * x.m[4] + m[ 6] * x.m[ 8] + m[ 7] * x.m[12],
+                  m[ 4] * x.m[1] + m[ 5] * x.m[5] + m[ 6] * x.m[ 9] + m[ 7] * x.m[13],
+                  m[ 4] * x.m[2] + m[ 5] * x.m[6] + m[ 6] * x.m[10] + m[ 7] * x.m[14],
+                  m[ 4] * x.m[3] + m[ 5] * x.m[7] + m[ 6] * x.m[11] + m[ 7] * x.m[15],
+
+                  m[ 8] * x.m[0] + m[ 9] * x.m[4] + m[10] * x.m[ 8] + m[11] * x.m[12],
+                  m[ 8] * x.m[1] + m[ 9] * x.m[5] + m[10] * x.m[ 9] + m[11] * x.m[13],
+                  m[ 8] * x.m[2] + m[ 9] * x.m[6] + m[10] * x.m[10] + m[11] * x.m[14],
+                  m[ 8] * x.m[3] + m[ 9] * x.m[7] + m[10] * x.m[11] + m[11] * x.m[15],
+
+                  m[12] * x.m[0] + m[13] * x.m[4] + m[14] * x.m[ 8] + m[15] * x.m[12],
+                  m[12] * x.m[1] + m[13] * x.m[5] + m[14] * x.m[ 9] + m[15] * x.m[13],
+                  m[12] * x.m[2] + m[13] * x.m[6] + m[14] * x.m[10] + m[15] * x.m[14],
+                  m[12] * x.m[3] + m[13] * x.m[7] + m[14] * x.m[11] + m[15] * x.m[15]);
 }
 
 Matrix 
-Matrix::operator+(const Matrix& matrix) const
+Matrix::operator+(const Matrix& x) const
 {
-    Matrix result;
-    return result;
+    return Matrix(m[ 0] + x.m[ 0],
+                  m[ 1] + x.m[ 1],
+                  m[ 2] + x.m[ 2],
+                  m[ 3] + x.m[ 3],
+
+                  m[ 4] + x.m[ 4],
+                  m[ 5] + x.m[ 5],
+                  m[ 6] + x.m[ 6],
+                  m[ 7] + x.m[ 7],
+
+                  m[ 8] + x.m[ 8],
+                  m[ 9] + x.m[ 9],
+                  m[10] + x.m[10],
+                  m[11] + x.m[11],
+
+                  m[12] + x.m[12],
+                  m[13] + x.m[13],
+                  m[14] + x.m[14],
+                  m[15] + x.m[15]);
 }
 
 Matrix 
-Matrix::operator-(const Matrix& matrix) const
+Matrix::operator-(const Matrix& x) const
 {
-    Matrix result;
-    return result;
+    return Matrix(m[ 0] - x.m[ 0],
+                  m[ 1] - x.m[ 1],
+                  m[ 2] - x.m[ 2],
+                  m[ 3] - x.m[ 3],
+
+                  m[ 4] - x.m[ 4],
+                  m[ 5] - x.m[ 5],
+                  m[ 6] - x.m[ 6],
+                  m[ 7] - x.m[ 7],
+
+                  m[ 8] - x.m[ 8],
+                  m[ 9] - x.m[ 9],
+                  m[10] - x.m[10],
+                  m[11] - x.m[11],
+
+                  m[12] - x.m[12],
+                  m[13] - x.m[13],
+                  m[14] - x.m[14],
+                  m[15] - x.m[15]);
 }
 
 Matrix 
 Matrix::operator*(real scalar) const
 {
-    Matrix result;
-    return result;
+    return Matrix(m[ 0] * scalar,
+                  m[ 1] * scalar,
+                  m[ 2] * scalar,
+                  m[ 3] * scalar,
+
+                  m[ 4] * scalar,
+                  m[ 5] * scalar,
+                  m[ 6] * scalar,
+                  m[ 7] * scalar,
+
+                  m[ 8] * scalar,
+                  m[ 9] * scalar,
+                  m[10] * scalar,
+                  m[11] * scalar,
+
+                  m[12] * scalar,
+                  m[13] * scalar,
+                  m[14] * scalar,
+                  m[15] * scalar);
 }
 
 Matrix 
 Matrix::operator/(real scalar) const
 {
-    Matrix result;
-    return result;
+    real invScalar = 0.f;
+    if (!Equal(scalar, 0.0f))
+    {
+        invScalar = 1.f / scalar;
+    }
+    else
+    {
+        Assert(false);
+    }
+
+    return Matrix(m[ 0] * invScalar,
+                  m[ 1] * invScalar,
+                  m[ 2] * invScalar,
+                  m[ 3] * invScalar,
+
+                  m[ 4] * invScalar,
+                  m[ 5] * invScalar,
+                  m[ 6] * invScalar,
+                  m[ 7] * invScalar,
+
+                  m[ 8] * invScalar,
+                  m[ 9] * invScalar,
+                  m[10] * invScalar,
+                  m[11] * invScalar,
+
+                  m[12] * invScalar,
+                  m[13] * invScalar,
+                  m[14] * invScalar,
+                  m[15] * invScalar);
 }
 
 Vector 
 Matrix::operator*(const Vector& point) const
 {
-    Vector result;
-    return result;
+    return this->TransformPoint(point);
 }
 
 Matrix 
 Matrix::operator-() const
 {
-    Matrix result;
-    for (int i = 0; i < 16; ++i)
-    {
-        result.m[i] = -m[i];
-    }
-
-    return result;
+    return Matrix(-m[ 0], -m[ 1], -m[ 2], -m[ 3],
+                  -m[ 4], -m[ 5], -m[ 6], -m[ 7],
+                  -m[ 8], -m[ 9], -m[10], -m[11],
+                  -m[12], -m[13], -m[14], -m[15]);
 }
 
 Vector 
@@ -300,6 +462,21 @@ Matrix::TransformVector(const Vector& vector) const
                    m[8]*vector.x + m[9]*vector.y + m[10]*vector.z);
 }
 
+Ray 
+Matrix::TransformRay(const Ray& ray) const
+{
+    return Ray(TransformPoint(ray.origin), TransformVector(ray.direction));
+}
+
+Ray 
+Matrix::TransformRaycast(const Ray& ray) const
+{
+    Ray r = Ray(Vector(0.0f), ray.direction);
+    r = TransformRay(r);
+    r.origin = ray.origin - r.origin;
+    return r;
+}
+
 Vector 
 Matrix::InverseTransformPoint(const Vector& point) const
 {
@@ -312,6 +489,12 @@ Matrix::InverseTransformVector(const Vector& vector) const
 {
     Matrix inverse = this->Inverse();
     return inverse.TransformVector(vector);
+}
+
+Ray 
+Matrix::InverseTransformRay(const Ray& ray) const
+{
+    return Ray(InverseTransformPoint(ray.origin), InverseTransformVector(ray.direction));
 }
 
 real 
@@ -402,6 +585,20 @@ Matrix::Invert()
     *this = this->Inverse();
 }
 
+void 
+Matrix::SetPosition(const Vector& position) 
+{
+    m[ 3] = position.x;
+    m[ 7] = position.y;
+    m[11] = position.z;
+}
+
+Vector 
+Matrix::GetPosition() const
+{
+    return Vector(m[3], m[7], m[11]);
+}
+
 Matrix 
 Matrix::Zero()
 {
@@ -414,10 +611,80 @@ Matrix::Zero()
 Matrix 
 Matrix::Identity()
 {
-    return Matrix(1.0f, 0.0f, 0.0f, 0.0f,
-                  0.0f, 1.0f, 0.0f, 0.0f,
-                  0.0f, 0.0f, 1.0f, 0.0f,
+    return Diagonal(1.f);
+}
+
+Matrix 
+Matrix::Diagonal(real val)
+{
+    return Matrix(val,  0.0f, 0.0f, 0.0f,
+                  0.0f, val,  0.0f, 0.0f,
+                  0.0f, 0.0f, val,  0.0f,
                   0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+Matrix 
+Matrix::Rotation(const Vector& axis, real angle)
+{
+    /// skew matrix
+    Matrix skew(0.0f,   axis.z,-axis.y, 0.0f,
+               -axis.z, 0.0f,   axis.x, 0.0f,
+                axis.y,-axis.x, 0.0f,   0.0f,
+                0.0f,   0.0f,   0.0f,   0.0f);
+
+    /// degrees to radians
+    float radians = (float)angle * 0.017453f;
+
+    /// compute sin/cos of the given angle
+    real s = (real)sinf(radians);
+    real c = (real)cosf(radians);
+
+    /// Rodrigues rotation formula
+    /// R = I * (sin(0))K + (1-cos(0))K^2
+    /// K = Skew matrix from above
+    return Matrix::Identity() + s * skew + (1.f - c) * (skew * skew);
+}
+
+Matrix 
+Matrix::Translation(const Vector& translate)
+{
+    return Matrix(1.0f, 0.0f, 0.0f, translate.x,
+                  0.0f, 1.0f, 0.0f, translate.y,
+                  0.0f, 0.0f, 1.0f, translate.z,
+                  0.0f, 0.0f, 0.0f, 1.0f); 
+}
+
+Matrix 
+Matrix::Translation(real x, real y, real z)
+{
+    return Matrix(1.0f, 0.0f, 0.0f, x,
+                  0.0f, 1.0f, 0.0f, y,
+                  0.0f, 0.0f, 1.0f, z,
+                  0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+Matrix 
+Matrix::Scale(real uniform)
+{
+    return Matrix(uniform, 0.0f,    0.0f,    0.0f,
+                  0.0f,    uniform, 0.0f,    0.0f,
+                  0.0f,    0.0f,    uniform, 0.0f,
+                  0.0f,    0.0f,    0.0f,    1.0f);
+}
+
+Matrix 
+Matrix::Shear(real x, real y, real z)
+{
+    return Matrix(x,    0.0f, 0.0f, 0.0f,
+                  0.0f, y,    0.0f, 0.0f,
+                  0.0f, 0.0f, z,    0.0f,
+                  0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+Matrix 
+Matrix::Transform(const Vector& translate, const Vector& axis, real angle, real scale)
+{
+    return Scale(scale) * Rotation(axis, angle) * Translation(translate);
 }
 
 /// ---------------------------------------------------------------------------
@@ -472,6 +739,24 @@ Ray::operator!=(const Ray& ray)
 
 
 /// MathUtils -----------------------------------------------------------------
+
+Matrix 
+operator*(real scalar, const Matrix& matrix)
+{
+    return matrix * scalar;
+}
+
+Vector 
+operator*(const Vector& vector, const Matrix& matrix)
+{
+    return matrix * vector;
+}
+
+Vector 
+operator*(real scalar, const Vector& vector)
+{
+    return vector * scalar;
+}
 
 bool 
 Equal(real a, real b, real epsilon)
