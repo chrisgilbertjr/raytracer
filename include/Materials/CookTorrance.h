@@ -28,7 +28,7 @@ public:
 
     void SetAmbient(const Color& color, const real intensity = 1.0f);
 
-    void SetDiffuse(const Color& color);
+    void SetDiffuse(const Color& color, const real intensity = 1.0f);
 
     void SetSpecular(const Color& color);
 
@@ -49,9 +49,9 @@ CookTorrance::SetAmbient(const Color& color, const real intensity)
 /// --------------------------------------------------------------------------- SetDiffuse
 
 inline void 
-CookTorrance::SetDiffuse(const Color& color)
+CookTorrance::SetDiffuse(const Color& color, const real intensity)
 {
-    m_diffuse.SetIntensity(1.0f);
+    m_diffuse.SetIntensity(intensity);
     m_diffuse.SetColor(color);
 }
 

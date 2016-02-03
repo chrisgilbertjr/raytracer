@@ -99,7 +99,7 @@ CookTorranceSpecular::F(const ShadeRecord& record, const Vector& L, const Vector
 }
 
 Color 
-CookTorranceSpecular::SampleF(const ShadeRecord& record, const Vector& L, const Vector& E) const
+CookTorranceSpecular::SampleF(const ShadeRecord& record, Vector& L, const Vector& E) const
 {
     return Color::White();
 }

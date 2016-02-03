@@ -3,14 +3,14 @@
 
 PerfectSpecular::PerfectSpecular()
     : BRDF()
-    , m_kr(0.0f)
-    , m_cr(0.f, 0.f, 0.f)
+    , m_intensity(0.0f)
+    , m_color(0.f, 0.f, 0.f)
 {}
 
 PerfectSpecular::PerfectSpecular(const PerfectSpecular& brdf)
     : BRDF(brdf)
-    , m_kr(brdf.m_kr)
-    , m_cr(brdf.m_cr)
+    , m_intensity(brdf.m_intensity)
+    , m_color(brdf.m_color)
 {}
 
 PerfectSpecular::~PerfectSpecular()
@@ -20,8 +20,8 @@ PerfectSpecular&
 PerfectSpecular::operator=(PerfectSpecular brdf)
 {
     BRDF::operator=(brdf);
-    Swap<real>(m_kr, brdf.m_kr);
-    Swap<Color>(m_cr, brdf.m_cr);
+    Swap<real>(m_intensity, brdf.m_intensity);
+    Swap<Color>(m_color, brdf.m_color);
     return *this;
 }
 
@@ -35,7 +35,7 @@ PerfectSpecular::Clone() const
 Color 
 PerfectSpecular::Hue() const
 {
-    return m_cr * m_kr;
+    return m_color * m_intensity;
 }
 
 Color 
@@ -45,10 +45,12 @@ PerfectSpecular::F(const ShadeRecord& record, const Vector& wi, const Vector& wo
 }
 
 Color 
-PerfectSpecular::SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
+PerfectSpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
 {
-    /// @TODO: 
-    return Color(0.f, 0.f, 0.f);
+    float NoR = Dot(record.normal, wo);
+    //wi = -wo + 2.f * record.normal * NoR;
+    wi = -(wo - 2.f * Dot(wo, record.normal) * record.normal);
+    return ((m_intensity * m_color) / Dot(record.normal, wi));
 }
 
 Color 

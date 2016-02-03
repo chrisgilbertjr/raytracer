@@ -44,7 +44,7 @@ Lambertian::F(const ShadeRecord& record, const Vector& wi, const Vector& wo) con
 }
 
 Color 
-Lambertian::SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
+Lambertian::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
 {
     return Color(0,0,0); /// @TODO!
 }

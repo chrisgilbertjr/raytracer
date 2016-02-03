@@ -4,21 +4,17 @@
 #include "World\World.h"
 
 Shaded::Shaded()
-{
-    /// @TODO:
-}
+{}
 
 Shaded::Shaded(const Shaded& raycaster)
-{
-    /// @TODO:
-}
+{}
 
 Shaded::~Shaded() {}
 
 Shaded& 
 Shaded::operator=(Shaded raycaster)
 {
-    /// @TODO:
+    Raytracer::operator=(raycaster);
     return *this;
 }
 
@@ -29,7 +25,7 @@ Shaded::Clone() const
 }
 
 Color 
-Shaded::TraceRay(const World* world, const Ray& ray, const int depth) const
+Shaded::TraceRay(const World* world, const Ray ray, const int depth) const
 {
     ShadeRecord record = world->QueryObjects(ray);
 

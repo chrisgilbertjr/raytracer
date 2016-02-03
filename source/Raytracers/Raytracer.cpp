@@ -2,30 +2,25 @@
 #include "Raytracers\Raytracer.h"
 
 Raytracer::Raytracer()
-{
-    /// @TODO:
-}
+    : m_world(NULL)
+{}
 
 Raytracer::Raytracer(const Raytracer& raytracer)
-{
-    /// @TODO:
-}
+    : m_world(raytracer.m_world)
+{}
 
-Raytracer::Raytracer(const World* world)
-{
-    /// @TODO:
-}
+Raytracer::Raytracer(World* world)
+    : m_world(world)
+{}
 
-Raytracer::~Raytracer()
-{
-    /// @TODO:
-}
+Raytracer::~Raytracer() {}
 
 
 Raytracer& 
 Raytracer::operator=(Raytracer raytracer)
 {
-    /// @TODO:
+    Swap<World*>(m_world, raytracer.m_world);
+
     return *this;
 }
 
@@ -37,7 +32,7 @@ Raytracer::Clone() const
 }
 
 Color 
-Raytracer::TraceRay(const World* world, const Ray& ray, const int depth) const
+Raytracer::TraceRay(const World* world, const Ray ray, const int depth) const
 {
-    return Color(0.f, 0.f, 0.f);
+    return Color::Green();
 }

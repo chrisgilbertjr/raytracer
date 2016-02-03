@@ -8,8 +8,6 @@
 class Sphere : public Object
 {
 private:
-    real   m_radius; /// radius of the sphere from the center
-
     /// compute quadtradic coeff
     void Quadratic(const Ray& ray, real& a, real& b, real& c, real& d) const;
 

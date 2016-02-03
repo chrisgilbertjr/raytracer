@@ -104,6 +104,7 @@ World::QueryObjects(const Ray& ray) const
 
         /// do the raycast
         Raycast raycast = object->Query(ray, record);
+        Matrix m_transform = object->GetTransform();
 
         /// check if this is the earliest raycast collision
         if (raycast.hit && raycast.t < tmin)
@@ -113,7 +114,7 @@ World::QueryObjects(const Ray& ray) const
 
             /// copy the shade record to the result record
             result = ShadeRecordCopy(record);
-            result.worldPoint = ray.origin + Mult(tmin, ray.direction);
+            result.worldPoint = ray.origin + tmin * ray.direction;
             result.material = object->GetMaterial();
             result.hit = true;
         }

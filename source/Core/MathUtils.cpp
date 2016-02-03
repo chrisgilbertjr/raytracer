@@ -465,7 +465,7 @@ Matrix::TransformVector(const Vector& vector) const
 Ray 
 Matrix::TransformRay(const Ray& ray) const
 {
-    return Ray(TransformPoint(ray.origin), TransformVector(ray.direction));
+    return Ray(TransformPoint(ray.origin), Normalize(TransformVector(ray.direction)));
 }
 
 Ray 
@@ -684,7 +684,7 @@ Matrix::Shear(real x, real y, real z)
 Matrix 
 Matrix::Transform(const Vector& translate, const Vector& axis, real angle, real scale)
 {
-    return Scale(scale) * Rotation(axis, angle) * Translation(translate);
+    return Translation(translate)  * Rotation(axis, angle) * Scale(scale);
 }
 
 /// ---------------------------------------------------------------------------

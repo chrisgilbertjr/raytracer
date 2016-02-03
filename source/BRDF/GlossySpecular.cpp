@@ -61,7 +61,7 @@ GlossySpecular::F(const ShadeRecord& record, const Vector& wi, const Vector& wo)
 }
 
 Color 
-GlossySpecular::SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
+GlossySpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
 {
     /// @TODO:
     return Color(0.f, 0.f, 0.f);

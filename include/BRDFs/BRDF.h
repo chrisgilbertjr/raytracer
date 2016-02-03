@@ -25,7 +25,7 @@ public:
 
     virtual Color F(const ShadeRecord& record, const Vector& wi, const Vector& wo) const;
 
-    virtual Color SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const;
+    virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const;
 
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
 };

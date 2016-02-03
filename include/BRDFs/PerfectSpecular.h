@@ -7,8 +7,8 @@
 class PerfectSpecular : public BRDF
 {
 private:
-    real  m_kr;
-    Color m_cr;
+    real  m_intensity;
+    Color m_color;
 
     Color Hue() const;
 
@@ -25,17 +25,17 @@ public:
 
     virtual Color F(const ShadeRecord& record, const Vector& wi, const Vector& wo) const;
 
-    virtual Color SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const;
+    virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const;
 
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
 
-    inline void SetKr(const real kd)   { m_kr = kd; }
+    inline void SetKr(const real kd)   { m_intensity = kd; }
 
-    inline void SetCr(const Color& cd) { m_cr = cd; }
+    inline void SetCr(const Color& cd) { m_color = cd; }
 
-    inline real  GetKr() { return m_kr; }
+    inline real  GetKr() { return m_intensity; }
 
-    inline Color GetCr() { return m_cr; }
+    inline Color GetCr() { return m_color; }
 };
 
 #endif

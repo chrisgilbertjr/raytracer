@@ -11,6 +11,7 @@ private:
     int m_width;        /// width of the viewing plane
     int m_height;       /// height of the viewing plane
     int m_sampleCount;  /// number of samples per pixel
+    int m_maxDepth;     /// maximum number of recursive rays to trace
     real m_gamma;       /// gamma of the viewing plane
     real m_gammaInv;    /// inverse gamma of the viewing plane
     real m_pixelSize;   /// pixel size of the viewing plane
@@ -52,6 +53,9 @@ public:
     /// set the samples per pixel
     void SetSampleCount(const int samples)  { m_sampleCount = samples; }
 
+    /// set the number of recursive rays to trace
+    void SetMaxDepth(const int depth)       { m_maxDepth = depth; }
+
     /// set the gamma of the viewing plane
     void SetGamma(const real gamma)         { m_gamma = gamma; m_gammaInv = (gamma > 0.f) ? (1.f / gamma) : (0.f); }
 
@@ -69,6 +73,9 @@ public:
 
     /// get the sample count per pixel
     int GetSampleCount() const              { return m_sampleCount; }
+
+    /// get the max depth of recursive rays to trace
+    int GetMaxDepth() const                 { return m_maxDepth; }
 
     /// get a copy of the gamma of the viewing plane
     real GetGamma() const                   { return m_gamma; }

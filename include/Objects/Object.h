@@ -44,6 +44,8 @@ public:
 
     /// set the objects material
     inline void SetMaterial(Material* material) { m_material = material; }
+
+    inline Matrix GetTransform() const { return m_transform; }
 };
 
 #endif

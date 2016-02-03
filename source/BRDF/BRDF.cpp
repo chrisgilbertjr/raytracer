@@ -59,7 +59,7 @@ BRDF::F(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
 }
 
 Color 
-BRDF::SampleF(const ShadeRecord& record, const Vector& wi, const Vector& wo) const
+BRDF::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
 {
     return Color(0,0,0);
 }

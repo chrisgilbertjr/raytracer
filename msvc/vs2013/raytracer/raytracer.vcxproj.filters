@@ -21,9 +21,6 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{edbbf156-5d77-4bc0-b19d-f4f460661f0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core">
-      <UniqueIdentifier>{6826b936-82c6-4be8-b551-1bbd6c760abb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Cameras">
       <UniqueIdentifier>{3bcdbb46-e547-48ad-9230-ce2346976b4c}</UniqueIdentifier>
     </Filter>
@@ -68,6 +65,9 @@
     </Filter>
     <Filter Include="Source Files\Material">
       <UniqueIdentifier>{37a84160-6d6f-4a1c-aee8-7359bde898a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{6826b936-82c6-4be8-b551-1bbd6c760abb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +209,12 @@
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Materials\Reflective.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\Materials\Glossy.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -344,6 +350,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Materials\Reflective.cpp">
+      <Filter>Source Files\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp">
+      <Filter>Source Files\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

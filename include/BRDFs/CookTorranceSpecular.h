@@ -45,9 +45,9 @@ public:
 
     virtual BRDF* Clone() const;
 
-    virtual Color F(const ShadeRecord& record, const Vector& L, const Vector& E) const;
+    virtual Color F(const ShadeRecord& record, const Vector& wi, const Vector& E) const;
 
-    virtual Color SampleF(const ShadeRecord& record, const Vector& L, const Vector& E) const;
+    virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& E) const;
 
     virtual Color P(const ShadeRecord& record, const Vector& E) const;
 

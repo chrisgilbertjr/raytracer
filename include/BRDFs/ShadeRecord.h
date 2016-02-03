@@ -51,8 +51,8 @@ inline ShadeRecord ShadeRecordCopy(const ShadeRecord& shade)
     ShadeRecord record;
     record.material = shade.material;
     record.world = shade.world;
-    record.worldPoint = shade.localPoint;
-    record.localPoint = shade.worldPoint;
+    record.worldPoint = shade.worldPoint;
+    record.localPoint = shade.localPoint;
     record.normal = shade.normal;
     record.u = shade.u;
     record.v = shade.v;

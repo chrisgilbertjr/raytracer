@@ -46,7 +46,7 @@ PureColor::Clone() const
 /// --------------------------------------------------------------------------- TraceRay
 
 Color 
-PureColor::TraceRay(const World* world, const Ray& ray, const int depth) const
+PureColor::TraceRay(const World* world, const Ray ray, const int depth) const
 {
     ShadeRecord record = world->QueryObjects(ray);
 

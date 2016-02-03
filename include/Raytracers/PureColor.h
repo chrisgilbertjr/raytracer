@@ -21,7 +21,7 @@ public:
 
     virtual Raytracer* Clone() const;
 
-    virtual Color TraceRay(const World* world, const Ray& ray, const int depth) const;
+    virtual Color TraceRay(const World* world, const Ray ray, const int depth) const;
 };
 
 #endif

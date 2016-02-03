@@ -6,18 +6,16 @@ Sphere::Quadratic(const Ray& ray, real& a, real& b, real& c, real& d) const
 {
     a = Dot(ray.direction, ray.direction);
     b = 2.0f * Dot(ray.origin, ray.direction);
-    c = Dot(ray.origin, ray.origin) - m_radius * m_radius;
+    c = Dot(ray.origin, ray.origin) - GetRadius() * GetRadius();
     d = b * b - 4.0f * a * c;
 }
 
 Sphere::Sphere()
-    : Object()
-    , m_radius(1.0f)
+    : Object(Vector(0.0f), Vector(0.f), 0.0f, 1.0f)
 {}
 
 Sphere::Sphere(const Vector& center, real radius)
-    : Object(center, Vector(0.f), 0.0f, 1.0f)
-    , m_radius(radius)
+    : Object(center, Vector(0.f), 0.0f, radius) 
 {}
 
 Sphere::~Sphere() {}
@@ -26,7 +24,6 @@ Sphere&
 Sphere::operator=(Sphere sphere)
 {
     Object::operator=(sphere);
-    Swap<real>(m_radius, sphere.m_radius);
 
     return *this;
 }
@@ -46,7 +43,9 @@ Sphere::SetCenter(const Vector& center)
 void
 Sphere::SetRadius(float radius)
 {
-    m_radius = radius;
+    m_transform.m[ 0] = radius;
+    m_transform.m[ 5] = radius;
+    m_transform.m[10] = radius;
 }
 
 Vector
@@ -58,14 +57,14 @@ Sphere::GetCenter() const
 real
 Sphere::GetRadius() const
 {
-    return m_radius;
+    return m_transform.m[0];
 }
 
 Raycast
 Sphere::Query(const Ray& ray, ShadeRecord& record) const
 {
-    Raycast result = Object::InitRaycastRecord(ray, record);
     Ray r = m_transform.TransformRaycast(ray);
+    Raycast result = Object::InitRaycastRecord(ray, record);
 
     real a, b, c, d;
     Quadratic(r, a, b, c, d);
@@ -78,8 +77,8 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
 
         if (t >= EPSILON)
         {
-            Vector p = r.direction * t; /// world hit point
-            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            Vector p = ray.direction * t; /// local hit point
+            Vector n = (r.origin + p) * (1.f / GetRadius()); /// world normal
             AssignRaycastRecord(result, record, n, ray.origin + p, t);
             return result;
         }
@@ -88,8 +87,8 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
 
         if (t >= EPSILON)
         {
-            Vector p = r.direction * t; /// world hit point
-            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            Vector p = ray.direction * t; /// local hit point
+            Vector n = (r.origin + p) * (1.f / GetRadius()); /// world normal
             AssignRaycastRecord(result, record, n, ray.origin + p, t);
             return result;
         }

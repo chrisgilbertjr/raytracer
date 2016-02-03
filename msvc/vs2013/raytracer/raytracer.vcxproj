@@ -97,6 +97,7 @@
     <ClInclude Include="..\..\..\include\Materials\Material.h" />
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
+    <ClInclude Include="..\..\..\include\Materials\Reflective.h" />
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
@@ -119,6 +120,7 @@
     <ClInclude Include="..\..\..\include\World\World.h" />
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />
     <ClInclude Include="..\..\..\source\Examples\Examples.h" />
+    <ClInclude Include="..\..\..\source\Materials\Glossy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl" />
@@ -145,9 +147,11 @@
     <ClCompile Include="..\..\..\source\Lights\PointLight.cpp" />
     <ClCompile Include="..\..\..\source\main.cpp" />
     <ClCompile Include="..\..\..\source\Materials\CookTorrance.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Reflective.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />

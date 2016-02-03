@@ -18,7 +18,7 @@ public:
     Raytracer(const Raytracer& raytracer);
 
     /// constructor given a world pointer
-    Raytracer(const World* world);
+    Raytracer(World* world);
 
     /// destructor
     virtual ~Raytracer();
@@ -30,7 +30,7 @@ public:
     virtual Raytracer* Clone() const;
 
     /// trace a ray and return its color
-    virtual Color TraceRay(const World* world, const Ray& ray, const int depth) const;
+    virtual Color TraceRay(const World* world, const Ray ray, const int depth) const;
 };
 
 #endif
