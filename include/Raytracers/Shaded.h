@@ -1,6 +1,6 @@
 
-#ifndef RAYCAST_H
-#define RAYCAST_H
+#ifndef SHADED_H
+#define SHADED_H
 
 #include "Raytracer.h"
 

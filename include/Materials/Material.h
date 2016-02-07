@@ -24,6 +24,8 @@ public:
 
     virtual Color Shade(ShadeRecord& record) const;
 
+    virtual Color AreaLightShade(ShadeRecord& record) const;
+
     inline Color GetColor() const            { return m_color; }
 
     inline void SetColor(const Color& color) { m_color = color; }

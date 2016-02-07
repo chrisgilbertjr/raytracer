@@ -1,6 +1,6 @@
 
-#ifndef AREA_LIGHTING_H
-#define AREA_LIGHTING_H
+#ifndef AREALIGHTING_H
+#define AREALIGHTING_H
 
 #include "Raytracer.h"
 
@@ -18,6 +18,8 @@ public:
     AreaLighting& operator=(AreaLighting area);
 
     virtual Raytracer* Clone() const;
+
+    virtual Color TraceRay(const World* world, const Ray ray, const int depth) const;
 };
 
 #endif

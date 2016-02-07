@@ -212,8 +212,20 @@
     <ClInclude Include="..\..\..\include\Materials\Reflective.h">
       <Filter>Header Files\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\Materials\Glossy.h">
+    <ClInclude Include="..\..\..\include\Lights\AmbientOccluder.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h">
+      <Filter>Header Files\Raytracers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Materials\Emmisive.h">
       <Filter>Header Files\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Lights\AreaLight.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Objects\LightObject.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -354,8 +366,20 @@
     <ClCompile Include="..\..\..\source\Materials\Reflective.cpp">
       <Filter>Source Files\Material</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp">
+    <ClCompile Include="..\..\..\source\Lights\AmbientOccluder.cpp">
+      <Filter>Source Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp">
+      <Filter>Source Files\Raytracers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Materials\Emmisive.cpp">
       <Filter>Source Files\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Lights\AreaLight.cpp">
+      <Filter>Source Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Objects\LightObject.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

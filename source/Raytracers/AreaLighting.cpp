@@ -1,24 +1,20 @@
 
 #include "Raytracers\AreaLighting.h"
+#include "BRDFs\ShadeRecord.h"
+#include "World\World.h"
 
 AreaLighting::AreaLighting()
-{
-    /// @TODO:
-}
+{}
 
-AreaLighting::AreaLighting(const AreaLighting& area)
-{
-    /// @TODO:
-}
+AreaLighting::AreaLighting(const AreaLighting& raycaster)
+{}
 
-AreaLighting::~AreaLighting()
-{
-}
+AreaLighting::~AreaLighting() {}
 
 AreaLighting& 
-AreaLighting::operator=(AreaLighting area)
+AreaLighting::operator=(AreaLighting raycaster)
 {
-    /// @TODO:
+    Raytracer::operator=(raycaster);
     return *this;
 }
 
@@ -26,4 +22,19 @@ Raytracer*
 AreaLighting::Clone() const
 {
     return static_cast<Raytracer*>(new AreaLighting(*this));
+}
+
+Color 
+AreaLighting::TraceRay(const World* world, const Ray ray, const int depth) const
+{
+    ShadeRecord record = world->QueryObjects(ray);
+
+    if (record.hit)
+    {
+        return record.material->AreaLighTShade(record);
+    }
+    else
+    {
+        return world->GetBackground();
+    }
 }

@@ -90,18 +90,23 @@
     <ClInclude Include="..\..\..\include\Core\Core.h" />
     <ClInclude Include="..\..\..\include\Core\MathUtils.h" />
     <ClInclude Include="..\..\..\include\Lights\AmbientLight.h" />
+    <ClInclude Include="..\..\..\include\Lights\AmbientOccluder.h" />
+    <ClInclude Include="..\..\..\include\Lights\AreaLight.h" />
     <ClInclude Include="..\..\..\include\Lights\DirectionalLight.h" />
     <ClInclude Include="..\..\..\include\Lights\PointLight.h" />
     <ClInclude Include="..\..\..\include\Lights\Light.h" />
     <ClInclude Include="..\..\..\include\Materials\CookTorrance.h" />
+    <ClInclude Include="..\..\..\include\Materials\Emmisive.h" />
     <ClInclude Include="..\..\..\include\Materials\Material.h" />
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
     <ClInclude Include="..\..\..\include\Materials\Reflective.h" />
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
+    <ClInclude Include="..\..\..\include\Objects\LightObject.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Shaded.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h" />
@@ -120,7 +125,6 @@
     <ClInclude Include="..\..\..\include\World\World.h" />
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />
     <ClInclude Include="..\..\..\source\Examples\Examples.h" />
-    <ClInclude Include="..\..\..\source\Materials\Glossy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl" />
@@ -142,20 +146,24 @@
     <ClCompile Include="..\..\..\source\Core\MathUtils.cpp" />
     <ClCompile Include="..\..\..\source\Core\Rand.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientLight.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\AmbientOccluder.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\AreaLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\DirectionalLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\Light.cpp" />
     <ClCompile Include="..\..\..\source\Lights\PointLight.cpp" />
     <ClCompile Include="..\..\..\source\main.cpp" />
     <ClCompile Include="..\..\..\source\Materials\CookTorrance.cpp" />
-    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Emmisive.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Reflective.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\LightObject.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp" />

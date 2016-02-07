@@ -91,4 +91,11 @@ Matte::Shade(ShadeRecord& record) const
     return radiance;
 }
 
+/// --------------------------------------------------------------------------- AreaLightShade
+
+Color 
+Matte::AreaLightShade(ShadeRecord& record) const
+{
+}
+
 /// --------------------------------------------------------------------------- EOF

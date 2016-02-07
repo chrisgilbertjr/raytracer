@@ -24,6 +24,8 @@ public:
 
     virtual Color Shade(ShadeRecord& record) const;
 
+    virtual Color AreaLightShade(ShadeRecord& record) const;
+
     void SetAmbient(const Color& color, const real intensity = 1.0f);
 
     void SetDiffuse(const Color& color, const real intensity = 1.0f);

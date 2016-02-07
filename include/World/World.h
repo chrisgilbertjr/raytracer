@@ -10,6 +10,7 @@
 #include "..\Cameras\Camera.h"
 #include "Output.h"
 #include "..\Lights\Light.h"
+#include "..\Lights\AmbientOccluder.h"
 
 /// @defgroup World World
 /// @{

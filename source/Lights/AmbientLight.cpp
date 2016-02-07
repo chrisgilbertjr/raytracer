@@ -67,7 +67,7 @@ AmbientLight::Radiance(ShadeRecord& record)
 bool 
 AmbientLight::CastsShadow() const
 {
-    return false;
+    return true;
 }
 
 /// --------------------------------------------------------------------------- InShadow

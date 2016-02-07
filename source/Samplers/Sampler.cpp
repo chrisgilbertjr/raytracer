@@ -155,7 +155,22 @@ Sampler::MapSamplesToUnitDisk()
 void 
 Sampler::MapSamplesToHemisphere()
 {
-    /// @TODO!
+    int size = m_samples.GetSize();
+    float EXP = 1.0f;
+
+    for (int i = 0; i < size; ++i)
+    {
+        float cos_phi = cosf(2.f * Pi * m_samples[i].x);
+        float sin_phi = sinf(2.f * Pi * m_samples[i].x);
+        float cos_theta = pow((1.f - m_samples[i].y), 1.f / (EXP + 1.f));
+        float sin_theta = sqrt(1.f - cos_theta * cos_theta);
+
+        float pu = sin_theta * cos_phi;
+        float pv = sin_theta * sin_phi;
+        float pw = cos_theta;
+
+        m_hemiSamples.Push(Vector(pu, pv, pw));
+    }
 }
 
 void 

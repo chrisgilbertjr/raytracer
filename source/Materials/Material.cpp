@@ -43,3 +43,11 @@ Material::Shade(ShadeRecord& record) const
 }
 
 /// --------------------------------------------------------------------------- EOF
+
+Color 
+Material::AreaLightShade(ShadeRecord& record) const
+{
+    return Color::Black();
+}
+
+/// --------------------------------------------------------------------------- EOF
