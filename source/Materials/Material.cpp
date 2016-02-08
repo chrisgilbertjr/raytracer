@@ -42,10 +42,18 @@ Material::Shade(ShadeRecord& record) const
     return Color::Black();
 }
 
-/// --------------------------------------------------------------------------- EOF
+/// --------------------------------------------------------------------------- AreaLightShade
 
 Color 
 Material::AreaLightShade(ShadeRecord& record) const
+{
+    return Color::Black();
+}
+
+/// --------------------------------------------------------------------------- GetEmmisive
+
+Color 
+Material::GetEmmisive() const
 {
     return Color::Black();
 }

@@ -16,6 +16,8 @@ private:
 public:
     AreaLight();
 
+    AreaLight(LightObject* object);
+
     AreaLight(const AreaLight& light);
 
     virtual ~AreaLight();
@@ -42,6 +44,8 @@ public:
     virtual real pdf(const ShadeRecord& record) const;
 
     void SetObject(LightObject* object);
+
+    Object* GetObject() const;
 };
 
 /// --------------------------------------------------------------------------- SetObject
@@ -49,9 +53,26 @@ public:
 inline void 
 AreaLight::SetObject(LightObject* object)
 {
-    /// @TODO:
+    if (!m_object)
+    {
+        Assert(false);
+    }
+
+    m_object = object;
+}
+ 
+/// --------------------------------------------------------------------------- GetObject
+
+inline Object* 
+AreaLight::GetObject() const
+{
+    return m_object->GetObject();
 }
 
 /// --------------------------------------------------------------------------- EOF
+
+#include "..\Objects\SphereLight.h"
+
+#define SphereAreaLight(center, radius, sampler) AreaLight((LightObject*)new SphereLight(new Sphere(center, radius), sampler))
 
 #endif

@@ -51,3 +51,22 @@ Reflective::Shade(ShadeRecord& record) const
 
     return Radiance;
 }
+
+Color
+Reflective::AreaLightShade(ShadeRecord& record) const
+{
+    Color Radiance = CookTorrance::AreaLightShade(record);
+
+    Vector wi;
+    Vector wo = -record.ray.direction;
+    Color fr = m_reflective.SampleF(record, wi, wo);
+    Vector point = Add(record.worldPoint, record.normal * shadowEpsilon);
+    Ray reflected(point, wi);
+    const Raytracer* tracer = record.world->GetRaytracer();
+
+    Color reflection = tracer->TraceRay(record.world, reflected, record.depth + 1);
+
+    Radiance += fr * reflection * Dot(record.normal, wi);
+
+    return Radiance;
+}

@@ -106,6 +106,7 @@
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
+    <ClInclude Include="..\..\..\include\Objects\SphereLight.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Shaded.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp" />

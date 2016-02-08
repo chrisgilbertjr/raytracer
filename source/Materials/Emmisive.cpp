@@ -4,7 +4,7 @@
 
 Emmisive::Emmisive()
     : m_color(Color::White())
-    , m_intensity(1.f)
+    , m_intensity(50.f)
 {}
 
 Emmisive::Emmisive(const Emmisive& emmisive)
@@ -33,7 +33,7 @@ Emmisive::Clone() const
 Color 
 Emmisive::Shade(ShadeRecord& record) const
 {
-    return Color::Black();
+    return this->GetEmmisive();
 }
 
 Color 
@@ -41,10 +41,16 @@ Emmisive::AreaLightShade(ShadeRecord& record) const
 {
     if (Dot(-record.normal, record.ray.direction) > 0.f)
     {
-        return m_color * m_intensity;
+        return this->GetEmmisive();
     }
     else
     {
         return Color::Black();
     }
+}
+
+Color 
+Emmisive::GetEmmisive() const
+{
+    return m_color * m_intensity;
 }

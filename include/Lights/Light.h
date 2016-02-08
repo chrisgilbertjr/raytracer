@@ -33,6 +33,12 @@ public:
 
     /// test a ray to see if the hit point is in a shadow
     virtual bool InShadow(const Ray& ray, ShadeRecord& record) const = 0;
+
+    ///
+    virtual real G(const ShadeRecord& record) const;
+
+    ///
+    virtual real pdf(const ShadeRecord& record) const;
 };
 
 #endif

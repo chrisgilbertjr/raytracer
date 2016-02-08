@@ -25,6 +25,8 @@ public:
     virtual Color Shade(ShadeRecord& record) const;
 
     virtual Color AreaLightShade(ShadeRecord& record) const;
+    
+    virtual Color GetEmmisive() const;
 
     inline Color GetColor() const            { return m_color; }
 

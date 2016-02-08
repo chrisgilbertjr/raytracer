@@ -16,6 +16,9 @@
 #include "Materials\CookTorrance.h"
 #include "Lights\DirectionalLight.h"
 #include "Lights\PointLight.h"
+#include "Objects\SphereLight.h"
+#include "Lights\AreaLight.h"
+#include "Raytracers\AreaLighting.h"
 
 //int 
 //main(void)
@@ -109,7 +112,7 @@ main(void)
     material02->SetDiffuse(Color::Green());
     material02->SetRoughness(0.2f);
     material02->SetIncidence(0.118f);
-    material02->SetReflective(Color::White(), 0.2f);
+    material02->SetReflective(Color::White(), 0.5f);
 
     Reflective* material03 = new Reflective();
     material03->SetAmbient(Color::Blue(), 0.5f);
@@ -145,22 +148,27 @@ main(void)
     DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.0f);
     PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.5f);
 
+    AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 5.f, new PureRandom(256));
+
     World world;
     world.PushObject(sphere1);
     world.PushObject(sphere2);
     world.PushObject(sphere3);
     world.PushObject(sphere4);
     world.PushObject(plane);
-    world.PushLight(light);
-    world.PushLight(point);
+    world.PushObject(area->GetObject());
+    //world.PushLight(light);
+    //world.PushLight(point);
+    world.PushLight(area);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(64));
-    world.SetRaytracer(new Whitted());
+    world.SetSampler(new Hammersley(1));
+    world.SetRaytracer(new AreaLighting());
+    //world.SetRaytracer(new Whitted());
     world.SetBackground(Color::Black());
     world.GetViewingPlane().SetMaxDepth(1);
 
-    world.Render(Options(EXPORT_BMP, "world.bmp"));
+    world.Render(Options(EXPORT_BMP, "world2.bmp"));
 
     fprintf(stdout, "complete!");
 

@@ -31,7 +31,8 @@ AreaLighting::TraceRay(const World* world, const Ray ray, const int depth) const
 
     if (record.hit)
     {
-        return record.material->AreaLighTShade(record);
+        record.ray = ray;
+        return record.material->AreaLightShade(record);
     }
     else
     {

@@ -227,6 +227,9 @@
     <ClInclude Include="..\..\..\include\Objects\LightObject.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Objects\SphereLight.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -379,6 +382,9 @@
       <Filter>Source Files\Lights</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\LightObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>

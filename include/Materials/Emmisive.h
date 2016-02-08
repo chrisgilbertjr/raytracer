@@ -23,7 +23,9 @@ public:
 
     virtual Color Shade(ShadeRecord& record) const;
 
-    virtual Color AreaLightShaDe(ShadeRecord& record) const;
+    virtual Color AreaLightShade(ShadeRecord& record) const;
+
+    virtual Color GetEmmisive() const;
 
     void SetEmmisive(const Color& color, const real intensity = 1.0f);
 };

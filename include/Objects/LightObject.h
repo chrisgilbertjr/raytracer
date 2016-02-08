@@ -7,7 +7,7 @@
 
 class LightObject
 {
-private:
+protected:
     Material* m_material;
     Sampler* m_sampler;
     Object* m_object;
@@ -17,22 +17,31 @@ public:
 
     LightObject(Object* object);
 
+    LightObject(Object* object, Sampler* sampler);
+
     LightObject(const LightObject& light);
 
     virtual ~LightObject();
 
     LightObject& operator=(LightObject light);
 
-    LightObject* Clone() const;
+    virtual LightObject* Clone() const;
 
-    Vector Sample() const;
+    virtual Vector Sample() const;
 
-    Vector GetNormal(const Vector& point) const;
+    virtual Vector GetNormal(const Vector& point) const;
 
-    Color Le(ShadeRecord& record) const;
+    virtual real pdf(const ShadeRecord& record) const;
 
-    real pdf(const ShadeRecord& record) const;
+    Color GetEmmisive(ShadeRecord& record) const;
 
+    Object* GetObject() const;
 };
+
+inline Object* 
+LightObject::GetObject() const
+{
+    return m_object;
+}
 
 #endif

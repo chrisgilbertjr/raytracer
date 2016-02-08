@@ -9,6 +9,15 @@ AreaLight::AreaLight()
     , m_wi()
 {}
 
+AreaLight::AreaLight(LightObject* object)
+    : m_object(object)
+    , m_point()
+    , m_normal()
+    , m_wi()
+{
+    if (!object) Assert(false);
+}
+
 AreaLight::AreaLight(const AreaLight& light)
     : m_object(light.m_object)
     , m_point(light.m_point)
@@ -16,7 +25,7 @@ AreaLight::AreaLight(const AreaLight& light)
     , m_wi(light.m_wi)
 {}
 
-AreaLight::~AreaLight() {}
+AreaLight::~AreaLight() { if (m_object) delete m_object; }
 
 AreaLight& 
 AreaLight::operator=(AreaLight light)
@@ -52,9 +61,9 @@ AreaLight::Radiance(ShadeRecord& record)
 {
     real NoD = Dot(-m_normal, m_wi);
 
-    if (NoD > EPSILON)
+    if (NoD > 0.f)
     {
-        return m_object->Le(record);
+        return m_object->GetEmmisive(record);
     }
     else
     {
@@ -92,7 +101,10 @@ AreaLight::InShadow(const Ray& ray, ShadeRecord& record) const
 real 
 AreaLight::G(const ShadeRecord& record) const
 {
-    return Dot(-m_normal, m_wi) / LengthSquared(record.worldPoint - m_point);
+    float d = Dot(-m_normal, m_wi);
+    float l = LengthSquared(m_point - record.worldPoint);
+    return d / l;
+    //return Dot(-m_normal, m_wi) / LengthSquared(record.worldPoint - m_point);
 }
 
 real 

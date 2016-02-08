@@ -176,7 +176,20 @@ Sampler::MapSamplesToHemisphere()
 void 
 Sampler::MapSamplesToSphere()
 {
-    /// @TODO!
+    float r, r1, r2, x, y, z, phi;
+
+    for (int i = 0; i < m_sampleCount * m_setCount; ++i)
+    {
+        r1 = m_samples[i].x;
+        r2 = m_samples[i].y;
+        z = 1.f - 2.f * r1;
+        r = sqrtf(1.f - z * z);
+        phi = Pi * 2.f * r2;
+        x = r * cosf(phi);
+        y = r * sinf(phi);
+
+        m_sphereSamples.Push(Vector(x, y, z));
+    }
 }
 
 Vector 
