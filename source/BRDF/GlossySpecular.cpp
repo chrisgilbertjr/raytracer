@@ -1,19 +1,26 @@
 
 #include "BRDFs\GlossySpecular.h"
+#include "Samplers\PureRandom.h"
 
 GlossySpecular::GlossySpecular()
     : BRDF()
     , m_exp(1.0f)
     , m_intensity(1.0f)
     , m_color(0.f, 0.f, 0.f)
-{}
+{
+    m_sampler = new PureRandom(8);
+    m_sampler->MapSamplesToHemisphere();
+}
 
 GlossySpecular::GlossySpecular(const GlossySpecular& brdf)
     : BRDF(brdf)
     , m_exp(brdf.m_exp)
     , m_intensity(brdf.m_intensity)
     , m_color(brdf.m_color)
-{}
+{
+    m_sampler = new PureRandom(8);
+    m_sampler->MapSamplesToHemisphere();
+}
 
 GlossySpecular::~GlossySpecular()
 {}
@@ -61,10 +68,27 @@ GlossySpecular::F(const ShadeRecord& record, const Vector& wi, const Vector& wo)
 }
 
 Color 
-GlossySpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
+GlossySpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo, real& pdf) const
 {
-    /// @TODO:
-    return Color(0.f, 0.f, 0.f);
+   real NoR = Dot(record.normal, wo);
+   Vector r = -wo + 2.f * record.normal * NoR;
+
+   Vector w = r;
+   Vector u = Normalize(Cross(Vector(0.00424f, 1.f, 0.00764f), w));
+   Vector v = Cross(u, w);
+
+   Vector point = m_sampler->SampleHemisphere();
+   wi = point.x*u + point.y*v + point.z*w;
+
+   if (Dot(record.normal, wi) < 0.f)
+   {
+       wi = -point.x*u - point.y*v + point.z*w;
+   }
+
+   real lobe = Pow(Dot(r, wi), m_exp);
+   pdf = lobe * Dot(record.normal, wi);
+
+   return Hue() * lobe;
 }
 
 Color 

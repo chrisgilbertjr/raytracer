@@ -230,6 +230,9 @@
     <ClInclude Include="..\..\..\include\Objects\SphereLight.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Materials\Glossy.h">
+      <Filter>Header Files\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -386,6 +389,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\Materials\Glossy.cpp">
+      <Filter>Source Files\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

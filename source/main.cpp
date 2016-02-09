@@ -7,6 +7,8 @@
 #include "Raytracers\Whitted.h"
 #include "Samplers\PureRandom.h"
 #include "Samplers\Hammersley.h"
+#include "Samplers\Jittered.h"
+#include "Samplers\NRooks.h"
 #include "Objects\Sphere.h"
 #include "Objects\Cylinder.h"
 #include "Objects\Plane.h"
@@ -111,15 +113,15 @@ main(void)
     material02->SetAmbient(Color::Green(), 0.5f);
     material02->SetDiffuse(Color::Green());
     material02->SetRoughness(0.2f);
-    material02->SetIncidence(0.118f);
-    material02->SetReflective(Color::White(), 0.5f);
+    material02->SetIncidence(0.218f);
+    material02->SetReflective(Color::White(), 0.9f);
 
     Reflective* material03 = new Reflective();
     material03->SetAmbient(Color::Blue(), 0.5f);
     material03->SetDiffuse(Color::Blue());
     material03->SetRoughness(0.1f);
     material03->SetIncidence(0.018f);
-    material03->SetReflective(Color::White(), 0.2f);
+    material03->SetReflective(Color::White(), 0.5f);
 
     Reflective* material04 = new Reflective();
     material04->SetAmbient(Color(1.f, 1.f, 0.0f), 0.5f);
@@ -148,7 +150,7 @@ main(void)
     DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.0f);
     PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.5f);
 
-    AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 5.f, new PureRandom(256));
+    AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 10.f, new PureRandom(1));
 
     World world;
     world.PushObject(sphere1);
@@ -162,7 +164,7 @@ main(void)
     world.PushLight(area);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(1));
+    world.SetSampler(new Hammersley(256));
     world.SetRaytracer(new AreaLighting());
     //world.SetRaytracer(new Whitted());
     world.SetBackground(Color::Black());

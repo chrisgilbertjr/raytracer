@@ -4,7 +4,7 @@
 
 Emmisive::Emmisive()
     : m_color(Color::White())
-    , m_intensity(50.f)
+    , m_intensity(2000.f)
 {}
 
 Emmisive::Emmisive(const Emmisive& emmisive)

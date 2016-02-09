@@ -97,6 +97,7 @@
     <ClInclude Include="..\..\..\include\Lights\Light.h" />
     <ClInclude Include="..\..\..\include\Materials\CookTorrance.h" />
     <ClInclude Include="..\..\..\include\Materials\Emmisive.h" />
+    <ClInclude Include="..\..\..\include\Materials\Glossy.h" />
     <ClInclude Include="..\..\..\include\Materials\Material.h" />
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
@@ -131,6 +132,7 @@
     <None Include="..\..\..\include\Core\Array.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\Materials\Glossy.cpp" />
     <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\BRDF.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\CookTorranceSpecular.cpp" />
