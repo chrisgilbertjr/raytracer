@@ -80,6 +80,14 @@ Object::ShadowHit(const Ray& ray, float& tmin) const
     return false;
 }
 
+/// --------------------------------------------------------------------------- pdf
+
+float 
+Object::pdf(const ShadeRecord& record) const
+{
+    return 0.f;
+}
+
 /// --------------------------------------------------------------------------- SetTransform
 
 void 

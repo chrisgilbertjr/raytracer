@@ -50,7 +50,8 @@ CookTorranceSpecular::CookTorranceSpecular()
 {}
 
 CookTorranceSpecular::CookTorranceSpecular(const CookTorranceSpecular& specular)
-    : m_distribution(specular.m_distribution)
+    : BRDF(specular)
+    , m_distribution(specular.m_distribution)
     , m_geometric(specular.m_geometric)
     , m_fresnel(specular.m_fresnel)
     , m_roughness(specular.m_roughness)

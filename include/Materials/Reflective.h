@@ -24,6 +24,8 @@ public:
     virtual Color Shade(ShadeRecord& record) const;
 
     virtual Color AreaLightShade(ShadeRecord& record) const;
+    
+    virtual Color PathShade(ShadeRecord& record) const;
 
     void SetReflective(const Color& color, real intensity);
 };

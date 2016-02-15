@@ -48,9 +48,18 @@ Color
 PerfectSpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
 {
     float NoR = Dot(record.normal, wo);
-    //wi = -wo + 2.f * record.normal * NoR;
-    wi = -(wo - 2.f * Dot(wo, record.normal) * record.normal);
+    wi = -(wo - 2.f * NoR * record.normal);
     return ((m_intensity * m_color) / Dot(record.normal, wi));
+}
+
+Color 
+PerfectSpecular::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo, float& pdf) const
+{
+    float NoR = Dot(record.normal, wo);
+    wi = -(wo - 2.f * NoR * record.normal);
+    pdf = Dot(record.normal, wi);
+
+    return (m_intensity * m_color);
 }
 
 Color 

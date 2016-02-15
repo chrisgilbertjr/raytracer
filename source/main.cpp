@@ -1,4 +1,9 @@
 
+/// ***************************************************************************************
+/// @TODO: Make sure all constructors call BASE CLASS constructors when cleaining up code!
+///        A lot of copy constructors missed calling base class constructors!
+/// ***************************************************************************************
+
 #include "World\World.h"
 #include "Cameras\Pinhole.h"
 #include "Samplers\Simple.h"

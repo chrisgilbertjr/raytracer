@@ -10,7 +10,8 @@ CookTorrance::CookTorrance()
 {}
 
 CookTorrance::CookTorrance(const CookTorrance& ct)
-    : m_ambient(ct.m_ambient)
+    : Material(ct)
+    , m_ambient(ct.m_ambient)
     , m_diffuse(ct.m_diffuse)
     , m_specular(ct.m_specular)
 {}

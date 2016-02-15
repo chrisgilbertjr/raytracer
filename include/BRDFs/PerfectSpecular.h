@@ -27,6 +27,8 @@ public:
 
     virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const;
 
+    virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo, float& pdf) const;
+
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
 
     inline void SetKr(const real kd)   { m_intensity = kd; }

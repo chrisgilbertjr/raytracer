@@ -233,6 +233,12 @@
     <ClInclude Include="..\..\..\include\Materials\Glossy.h">
       <Filter>Header Files\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Lights\EnvironmentLight.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h">
+      <Filter>Header Files\Raytracers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -390,8 +396,14 @@
     <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\Materials\Glossy.cpp">
+    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp">
       <Filter>Source Files\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Lights\EnvironmentLight.cpp">
+      <Filter>Source Files\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp">
+      <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -36,7 +36,8 @@ DirectionalLight::DirectionalLight(const Vector& direction, const Color& color, 
 /// --------------------------------------------------------------------------- Copy assignment operator
 
 DirectionalLight::DirectionalLight(const DirectionalLight& light)
-    : m_direction(light.m_direction)
+    : Light(light)
+    , m_direction(light.m_direction)
     , m_color(light.m_color)
     , m_intensity(light.m_intensity)
 {}

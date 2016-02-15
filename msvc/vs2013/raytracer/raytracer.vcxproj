@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\..\include\Lights\AmbientOccluder.h" />
     <ClInclude Include="..\..\..\include\Lights\AreaLight.h" />
     <ClInclude Include="..\..\..\include\Lights\DirectionalLight.h" />
+    <ClInclude Include="..\..\..\include\Lights\EnvironmentLight.h" />
     <ClInclude Include="..\..\..\include\Lights\PointLight.h" />
     <ClInclude Include="..\..\..\include\Lights\Light.h" />
     <ClInclude Include="..\..\..\include\Materials\CookTorrance.h" />
@@ -109,6 +110,7 @@
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
     <ClInclude Include="..\..\..\include\Objects\SphereLight.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
+    <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Shaded.h" />
     <ClInclude Include="..\..\..\include\Raytracers\Raytracer.h" />
@@ -132,7 +134,6 @@
     <None Include="..\..\..\include\Core\Array.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\include\Materials\Glossy.cpp" />
     <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\BRDF.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\CookTorranceSpecular.cpp" />
@@ -152,11 +153,13 @@
     <ClCompile Include="..\..\..\source\Lights\AmbientOccluder.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AreaLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\DirectionalLight.cpp" />
+    <ClCompile Include="..\..\..\source\Lights\EnvironmentLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\Light.cpp" />
     <ClCompile Include="..\..\..\source\Lights\PointLight.cpp" />
     <ClCompile Include="..\..\..\source\main.cpp" />
     <ClCompile Include="..\..\..\source\Materials\CookTorrance.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Emmisive.cpp" />
+    <ClCompile Include="..\..\..\source\Materials\Glossy.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Material.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
@@ -168,6 +171,7 @@
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
     <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
+    <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\PureColor.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Shaded.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\Raytracer.cpp" />

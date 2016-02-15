@@ -18,7 +18,8 @@ AmbientLight::AmbientLight(const Color& color, const real intensity)
 /// --------------------------------------------------------------------------- Copy constructor
 
 AmbientLight::AmbientLight(const AmbientLight& light)
-    : m_color(light.m_color)
+    : Light(light)
+    , m_color(light.m_color)
     , m_intensity(light.m_intensity)
 {}
 

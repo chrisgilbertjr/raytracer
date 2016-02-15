@@ -50,6 +50,14 @@ Material::AreaLightShade(ShadeRecord& record) const
     return Color::Black();
 }
 
+/// --------------------------------------------------------------------------- PathShade
+
+Color 
+Material::PathShade(ShadeRecord& record) const
+{
+    return Color::Black();
+}
+
 /// --------------------------------------------------------------------------- GetEmmisive
 
 Color 

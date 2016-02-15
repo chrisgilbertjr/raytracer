@@ -49,5 +49,20 @@ MultiJittered::Clone() const
 void
 MultiJittered::GenerateSamples()
 {
-    /// @TODO:
+    int s = (int)sqrtf((float)m_sampleCount);
+    float subcellWidth = 1.f / ((float)m_sampleCount);
+
+    Vector point(0.f);
+
+    for (int i = 0; i < m_sampleCount * m_setCount; ++i)
+    {
+        m_samples.Push(point);
+    }
+
+    for (int c = 0; c < m_setCount; ++c)
+    {
+        for (int i = 0; i < s; ++i)
+        {
+        }
+    }
 }

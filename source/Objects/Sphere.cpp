@@ -129,3 +129,9 @@ Sphere::ShadowHit(const Ray& ray, float& tmin) const
 
     return false;
 }
+
+float 
+Sphere::pdf(const ShadeRecord& record) const
+{
+    return 1.f / (Pi * GetRadius() * GetRadius());
+}

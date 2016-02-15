@@ -35,6 +35,8 @@ public:
 
     virtual bool ShadowHit(const Ray& ray, float& tmin) const;
 
+    virtual float pdf(const ShadeRecord& record) const;
+
     void SetTransform(const Vector& position, const Vector& axis, real angle, real scale);
 
     /// ----------------------------------------------------------------------- Inline member functions

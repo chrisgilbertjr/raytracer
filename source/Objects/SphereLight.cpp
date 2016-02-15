@@ -64,6 +64,5 @@ SphereLight::GetNormal(const Vector& point) const
 real 
 SphereLight::pdf(const ShadeRecord& record) const
 {
-    Sphere* sphere = static_cast<Sphere*>(m_object);
-    return 1.0f / (Pi * sphere->GetRadius() * sphere->GetRadius());
+    m_object->pdf(record);
 }

@@ -19,7 +19,8 @@ AreaLight::AreaLight(LightObject* object)
 }
 
 AreaLight::AreaLight(const AreaLight& light)
-    : m_object(light.m_object)
+    : Light(light)
+    , m_object(light.m_object)
     , m_point(light.m_point)
     , m_normal(light.m_normal)
     , m_wi(light.m_wi)

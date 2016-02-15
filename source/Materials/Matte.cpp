@@ -143,4 +143,23 @@ Matte::AreaLightShade(ShadeRecord& record) const
     return radiance;
 }
 
+/// --------------------------------------------------------------------------- PathShade
+
+
+Color 
+Matte::PathShade(ShadeRecord& record) const
+{
+    float pdf;
+    Vector R;
+    Vector E = -record.ray.direction;
+
+    Color f = m_diffuse.SampleF(record, R, E, pdf);
+    float NoR = Dot(record.normal, R);
+
+    Ray reflected = Ray(record.worldPoint, R);
+    const Raytracer* tracer = record.world->GetRaytracer();
+
+    return f * tracer->TraceRay(record.world, reflected, record.depth + 1) * NoR / pdf;
+}
+
 /// --------------------------------------------------------------------------- EOF

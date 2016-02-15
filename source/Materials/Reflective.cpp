@@ -70,3 +70,18 @@ Reflective::AreaLightShade(ShadeRecord& record) const
 
     return Radiance;
 }
+
+Color 
+Reflective::PathShade(ShadeRecord& record) const
+{
+    float pdf;
+    Vector R;
+    Vector E = -record.ray.direction;
+
+    Color f = m_reflective.SampleF(record, R, E, pdf);
+    Ray reflected = Ray(record.worldPoint, R);
+
+    const Raytracer* tracer = record.world->GetRaytracer();
+
+    return f * tracer->TraceRay(record.world, reflected, record.depth + 1) * Dot(record.normal, R) / pdf;
+}

@@ -43,6 +43,8 @@ public:
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 
     virtual bool ShadowHit(const Ray& ray, float& tmin) const;
+
+    virtual float pdf(const ShadeRecord& record) const;
 };
 
 #endif

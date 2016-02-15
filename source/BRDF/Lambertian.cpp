@@ -44,9 +44,17 @@ Lambertian::F(const ShadeRecord& record, const Vector& wi, const Vector& wo) con
 }
 
 Color 
-Lambertian::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const
+Lambertian::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo, float& pdf) const
 {
-    return Color(0,0,0); /// @TODO!
+    Vector w = record.normal;
+    Vector v = Normalize(Cross(Vector(0.0034f, 1.f, 0.0071f), w));
+    Vector u = Cross(v, w);
+
+    Vector point = m_sampler->SampleHemisphere();
+    wi = Normalize(point.x*u + point.y*v + point.z*w);
+    pdf = Dot(record.normal, wi) * InvPi;
+
+    return Hue() * InvPi;
 }
 
 Color 
