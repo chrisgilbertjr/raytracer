@@ -239,6 +239,9 @@
     <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Objects\ConvexSphere.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -404,6 +407,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp">
       <Filter>Source Files\Raytracers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Objects\ConvexSphere.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

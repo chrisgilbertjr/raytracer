@@ -14,6 +14,10 @@ Sphere::Sphere()
     : Object(Vector(0.0f), Vector(0.f), 0.0f, 1.0f)
 {}
 
+Sphere::Sphere(const Sphere& sphere)
+    : Object(sphere.GetCenter(), Vector(0.f), 0.0f, sphere.GetRadius())
+{}
+
 Sphere::Sphere(const Vector& center, real radius)
     : Object(center, Vector(0.f), 0.0f, radius) 
 {}

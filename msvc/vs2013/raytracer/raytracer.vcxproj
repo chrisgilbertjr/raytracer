@@ -103,6 +103,7 @@
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
     <ClInclude Include="..\..\..\include\Materials\Reflective.h" />
+    <ClInclude Include="..\..\..\include\Objects\ConvexSphere.h" />
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
     <ClInclude Include="..\..\..\include\Objects\LightObject.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Reflective.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\ConvexSphere.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
     <ClCompile Include="..\..\..\source\Objects\LightObject.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />

@@ -45,6 +45,9 @@ int RandInt(int start, int end);
 /// random real between [0, RAND_MAX]
 real RandReal();
 
+/// random real between [min, max]
+real RandReal(real min, real max);
+
 /// default swap
 template <typename T>
 inline void

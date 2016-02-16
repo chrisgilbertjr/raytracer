@@ -38,4 +38,13 @@ RandReal()
     return (real)(RandInt() * (1.0f/RAND_MAX));
 }
 
+real 
+RandReal(real min, real max)
+{
+    real r = RandReal();
+    real d = max - min;
+    real num = r * d;
+    return min + num;
+}
+
 #endif

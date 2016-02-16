@@ -15,6 +15,8 @@ public:
     /// default constructor. center = (0,0,0) and radius = 0
     Sphere();
 
+    Sphere(const Sphere& sphere);
+
     /// constructor given a sphere center and a radius
     Sphere(const Vector& center, real radius);
 
