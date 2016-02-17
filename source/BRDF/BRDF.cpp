@@ -1,5 +1,6 @@
 
 #include "BRDFs\BRDF.h"
+#include "Samplers\PureRandom.h"
 
 BRDF::BRDF()
     : m_sampler(NULL)
@@ -50,6 +51,16 @@ BRDF::SetSampler(Sampler* sampler)
         delete m_sampler;
     }
     m_sampler = sampler;
+}
+
+void 
+BRDF::InitSampler()
+{
+    if (!m_sampler)
+    {
+        m_sampler = new PureRandom(64);
+        m_sampler->MapSamplesToHemisphere();
+    }
 }
 
 Color 

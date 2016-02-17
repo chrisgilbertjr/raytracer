@@ -9,6 +9,8 @@ class ConvexSphere : public Sphere
 public:
     ConvexSphere();
 
+    ConvexSphere(const Vector& center, real radius);
+
     ConvexSphere(const ConvexSphere& sphere);
 
     virtual ~ConvexSphere();

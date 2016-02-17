@@ -10,19 +10,24 @@
 #include "Raytracers\PureColor.h"
 #include "Raytracers\Shaded.h"
 #include "Raytracers\Whitted.h"
+#include "Raytracers\PathTracer.h"
 #include "Samplers\PureRandom.h"
 #include "Samplers\Hammersley.h"
 #include "Samplers\Jittered.h"
+#include "Samplers\MultiJittered.h"
 #include "Samplers\NRooks.h"
 #include "Objects\Sphere.h"
+#include "Objects\ConvexSphere.h"
 #include "Objects\Cylinder.h"
 #include "Objects\Plane.h"
 #include "Materials\Matte.h"
 #include "Materials\Phong.h"
 #include "Materials\Reflective.h"
 #include "Materials\CookTorrance.h"
+#include "Materials\Emmisive.h"
 #include "Lights\DirectionalLight.h"
 #include "Lights\PointLight.h"
+#include "Lights\EnvironmentLight.h"
 #include "Objects\SphereLight.h"
 #include "Lights\AreaLight.h"
 #include "Raytracers\AreaLighting.h"
@@ -115,18 +120,18 @@ main(void)
     material01->SetReflective(Color::White(), 1.f);
 
     Reflective* material02 = new Reflective();
-    material02->SetAmbient(Color::Green(), 0.5f);
-    material02->SetDiffuse(Color::Green());
+    material02->SetAmbient(Color::Red(), 0.7f);
+    material02->SetDiffuse(Color::Red());
     material02->SetRoughness(0.2f);
     material02->SetIncidence(0.218f);
-    material02->SetReflective(Color::White(), 0.9f);
+    material02->SetReflective(Color::White(), 1.0f);
 
     Reflective* material03 = new Reflective();
-    material03->SetAmbient(Color::Blue(), 0.5f);
-    material03->SetDiffuse(Color::Blue());
+    material03->SetAmbient(Color::Green(), 0.7f);
+    material03->SetDiffuse(Color::Green());
     material03->SetRoughness(0.1f);
     material03->SetIncidence(0.018f);
-    material03->SetReflective(Color::White(), 0.5f);
+    material03->SetReflective(Color::White(), 1.0f);
 
     Reflective* material04 = new Reflective();
     material04->SetAmbient(Color(1.f, 1.f, 0.0f), 0.5f);
@@ -134,6 +139,9 @@ main(void)
     material04->SetRoughness(0.4f);
     material04->SetIncidence(0.018f);;
     material04->SetReflective(Color::White(), 0.05f);
+
+    Emmisive* emmisive01 = new Emmisive();
+    emmisive01->SetEmmisive(Color::White(), 1.0f);
 
     Matte* material5 = new Matte();
     material5->SetAmbient(Color::White(), 0.5f);
@@ -148,34 +156,39 @@ main(void)
     sphere2->SetMaterial(material02);
     sphere3->SetMaterial(material03);
     sphere4->SetMaterial(material04);
+    //csphere->SetMaterial(emmisive01);
 
     Plane* plane = new Plane(Vector(0.f, -100.f, 0.f), Vector(0.f, 1.0f, 0.0f));
     plane->SetMaterial(material5);
 
-    DirectionalLight* light = new DirectionalLight(Normalize(Vector(0.f, -1.f, 0.f)), Color::White(), 0.0f);
+    DirectionalLight* light = new DirectionalLight(Normalize(Vector(-1.f, -1.f, 0.f)), Color::Blue(), 0.3f);
     PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.5f);
 
-    AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 10.f, new PureRandom(1));
+    AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 10.f, new PureRandom(256));
+    EnvironmentLight* env = new EnvironmentLight();
+    env->SetMaterial(emmisive01);
 
     World world;
-    world.PushObject(sphere1);
+    //world.PushObject(sphere1);
     world.PushObject(sphere2);
     world.PushObject(sphere3);
-    world.PushObject(sphere4);
+    //world.PushObject(sphere4);
     world.PushObject(plane);
-    world.PushObject(area->GetObject());
-    //world.PushLight(light);
+    //world.PushObject(area->GetObject());
+    world.PushLight(light);
     //world.PushLight(point);
-    world.PushLight(area);
+    //world.PushLight(area);
+    world.PushLight(env);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(256));
-    world.SetRaytracer(new AreaLighting());
+    world.SetSampler(new Hammersley(2));
+    world.SetRaytracer(new PathTracer());
+    //world.SetRaytracer(new AreaLighting());
     //world.SetRaytracer(new Whitted());
     world.SetBackground(Color::Black());
     world.GetViewingPlane().SetMaxDepth(1);
 
-    world.Render(Options(EXPORT_BMP, "world2.bmp"));
+    world.Render(Options(EXPORT_BMP, "world.bmp"));
 
     fprintf(stdout, "complete!");
 

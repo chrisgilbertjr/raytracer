@@ -6,13 +6,16 @@ Lambertian::Lambertian()
     , m_color(0.f, 0.f, 0.f)
     , m_intensity(1.0f)
 {
+    InitSampler();
 }
 
 Lambertian::Lambertian(const Lambertian& brdf)
     : BRDF(brdf)
     , m_color(brdf.m_color)
     , m_intensity(brdf.m_intensity)
-{} 
+{
+    InitSampler();
+}
 
 Lambertian::~Lambertian() {}
 

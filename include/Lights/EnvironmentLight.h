@@ -3,10 +3,18 @@
 #define ENVIRONMENT_LIGHT_H
 
 #include "Light.h"
+#include "..\Samplers\Sampler.h"
+#include "..\Materials\Material.h"
 
 class EnvironmentLight : public Light
 {
 private:
+    Material* m_material;
+    Sampler* m_sampler;
+    Vector m_w;
+    Vector m_u;
+    Vector m_v;
+    Vector m_wi;
 
 public:
     EnvironmentLight();
@@ -32,6 +40,14 @@ public:
     virtual bool InShadow(const Ray& ray, ShadeRecord& record) const;
 
     virtual real pdf(const ShadeRecord& record) const;
+
+    void SetMaterial(Material* material);
 };
+
+inline void 
+EnvironmentLight::SetMaterial(Material* material)
+{
+    m_material = material;
+}
 
 #endif

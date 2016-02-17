@@ -64,5 +64,5 @@ SphereLight::GetNormal(const Vector& point) const
 real 
 SphereLight::pdf(const ShadeRecord& record) const
 {
-    m_object->pdf(record);
+    return m_object->pdf(record);
 }

@@ -28,6 +28,8 @@ public:
     virtual Color SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo) const;
 
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
+
+    void InitSampler();
 };
 
 #endif

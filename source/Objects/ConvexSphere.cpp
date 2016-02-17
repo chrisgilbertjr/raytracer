@@ -5,6 +5,11 @@ ConvexSphere::ConvexSphere()
     : Sphere()
 {}
 
+ConvexSphere::ConvexSphere(const Vector& center, real radius)
+    : Sphere(center, radius)
+{
+}
+
 ConvexSphere::ConvexSphere(const ConvexSphere& sphere)
     : Sphere(sphere)
 {}

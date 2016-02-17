@@ -5,13 +5,17 @@ PerfectSpecular::PerfectSpecular()
     : BRDF()
     , m_intensity(0.0f)
     , m_color(0.f, 0.f, 0.f)
-{}
+{
+    InitSampler();
+}
 
 PerfectSpecular::PerfectSpecular(const PerfectSpecular& brdf)
     : BRDF(brdf)
     , m_intensity(brdf.m_intensity)
     , m_color(brdf.m_color)
-{}
+{
+    InitSampler();
+}
 
 PerfectSpecular::~PerfectSpecular()
 {}
