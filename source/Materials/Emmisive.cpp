@@ -50,6 +50,12 @@ Emmisive::AreaLightShade(ShadeRecord& record) const
 }
 
 Color 
+Emmisive::PathShade(ShadeRecord& record) const
+{
+    return this->GetEmmisive();
+}
+
+Color 
 Emmisive::GetEmmisive() const
 {
     return m_color * m_intensity;

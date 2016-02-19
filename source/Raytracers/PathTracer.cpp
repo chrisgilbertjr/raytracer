@@ -30,7 +30,7 @@ PathTracer::Clone() const
 Color 
 PathTracer::TraceRay(const World* world, const Ray ray, const int depth) const
 {
-    if (depth > 3)
+    if (depth > 2)
     {
         return Color::Black();
     }

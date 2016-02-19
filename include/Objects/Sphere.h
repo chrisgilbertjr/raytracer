@@ -7,7 +7,7 @@
 /// a 3D sphere
 class Sphere : public Object
 {
-private:
+protected:
     /// compute quadtradic coeff
     void Quadratic(const Ray& ray, real& a, real& b, real& c, real& d) const;
 
