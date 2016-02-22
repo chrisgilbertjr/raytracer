@@ -2,6 +2,7 @@
 #include "Lights\AmbientOccluder.h"
 #include "Samplers\Hammersley.h"
 #include "Samplers\PureRandom.h"
+#include "Samplers\MultiJittered.h"
 #include "BRDFs\ShadeRecord.h"
 #include "World\World.h"
 

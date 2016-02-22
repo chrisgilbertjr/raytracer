@@ -159,12 +159,14 @@ main(void)
     Sphere* sphere2 =  new Sphere(Vector(   0.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere3 =  new Sphere(Vector(-150.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere4 =  new Sphere(Vector(0.0f,100.0f, 200.f),  50.f);
+    Cylinder* cylinder = new Cylinder(Vector(0.f), 100.f, 50.f);
     ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
 
-    sphere1->SetMaterial(material1);
+    sphere1->SetMaterial(matte03);
     sphere2->SetMaterial(matte01);
     sphere3->SetMaterial(matte03);
-    sphere4->SetMaterial(material04);
+    sphere4->SetMaterial(matte01);
+    cylinder->SetMaterial(matte03);
     csphere->SetMaterial(emmisive01);
 
     Plane* plane = new Plane(Vector(0.f, -100.f, 0.f), Vector(0.f, 1.0f, 0.0f));
@@ -179,27 +181,28 @@ main(void)
 
     World world;
     //world.PushObject(sphere1);
-    world.PushObject(sphere2);
+    //world.PushObject(sphere2);
     world.PushObject(sphere3);
+    world.PushObject(cylinder);
     world.PushObject(csphere);
     //world.PushObject(sphere4);
     world.PushObject(plane);
     //world.PushObject(area->GetObject());
     //world.PushLight(light);
-    //world.PushLight(point);
+    world.PushLight(point);
     //world.PushLight(area);
     //world.PushLight(env);
 
     world.SetCamera(new Pinhole());
     world.SetSampler(new Hammersley(16));
-    //world.SetRaytracer(new Shaded());
-    world.SetRaytracer(new PathTracer());
+    world.SetRaytracer(new Shaded());
+    //world.SetRaytracer(new PathTracer());
     //world.SetRaytracer(new AreaLighting());
     //world.SetRaytracer(new Whitted());
     world.SetBackground(Color::Black());
     world.GetViewingPlane().SetMaxDepth(1);
 
-    world.Render(Options(EXPORT_BMP, "world.bmp"));
+    world.Render(Options(EXPORT_BMP, "world2.bmp"));
 
     fprintf(stdout, "complete!");
 

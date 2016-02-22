@@ -4,8 +4,10 @@
 
 
 ViewingPlane::ViewingPlane()
-    : m_width(800)
-    , m_height(600)
+    : m_width(1200)
+    , m_height(800)
+    //: m_width(800)
+    //, m_height(600)
     , m_sampleCount(1)
     , m_maxDepth(1)
     , m_gamma(1.0f)

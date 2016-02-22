@@ -44,6 +44,43 @@ Cylinder::Clone() const
 Raycast 
 Cylinder::Query(const Ray& ray, ShadeRecord& record) const
 {
+    //Ray r = ray;
+    Ray r = m_transform.TransformRaycast(ray);
+    Raycast result = Object::InitRaycastRecord(ray, record);
+
+    real a, b, c, d;
+    a = r.direction.x * r.direction.x + r.direction.z * r.direction.z;
+    b = 2.f * (r.direction.x * r.origin.x + r.direction.z * r.origin.z);
+    c = r.origin.x * r.origin.x + r.origin.z * r.origin.z - m_radius * m_radius;
+    d = b * b - 4.f * a * c;
+
+    if (d >= 0.0f)
+    {
+        real sDisc = Sqrt(d);
+        real iDenom = 1.0f / 2.0f * a;
+        real t = (-b - sDisc) * iDenom;
+
+        if (t >= EPSILON)
+        {
+            Vector p = ray.direction * t; /// local hit point
+            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            n.y = 0.0f;
+            AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            return result;
+        }
+
+        t = (-b + sDisc) * iDenom;
+
+        if (t >= EPSILON)
+        {
+            Vector p = ray.direction * t; /// local hit point
+            Vector n = (r.origin + p) * (1.f / m_radius); /// world normal
+            n.y = 0.0f;
+            AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            return result;
+        }
+    }
+
     return Raycast();
 }
 

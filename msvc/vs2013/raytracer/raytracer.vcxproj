@@ -106,8 +106,10 @@
     <ClInclude Include="..\..\..\include\Objects\ConvexSphere.h" />
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
     <ClInclude Include="..\..\..\include\Objects\LightObject.h" />
+    <ClInclude Include="..\..\..\include\Objects\Mesh.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
+    <ClInclude Include="..\..\..\include\Objects\Rectangle.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
     <ClInclude Include="..\..\..\include\Objects\SphereLight.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
@@ -168,8 +170,10 @@
     <ClCompile Include="..\..\..\source\Objects\ConvexSphere.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
     <ClCompile Include="..\..\..\source\Objects\LightObject.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Mesh.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\Rectangle.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Sphere.cpp" />
     <ClCompile Include="..\..\..\source\Objects\SphereLight.cpp" />
     <ClCompile Include="..\..\..\source\Raytracers\AreaLighting.cpp" />
