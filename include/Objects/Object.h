@@ -30,6 +30,8 @@ public:
     /// copy assignment operator
     Object& operator=(Object object);
 
+    virtual Object* Clone() const;
+
     /// pure virtual function for raycast queries
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 

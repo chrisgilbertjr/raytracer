@@ -15,12 +15,15 @@ template <typename T>
 inline
 Array<T>::Array(const Array<T>& data)
 {
+    /// shallow array copy
+
     m_size = data.m_size;
     m_max  = data.m_max;
 
     if (data.m_array)
     {
         m_array = static_cast<T*>(calloc(m_max, sizeof(T)));
+        Object* cloned = object.m_objects[i]->Clone();
 
         if (m_size > 0 && m_max > 0 && m_array)
         {

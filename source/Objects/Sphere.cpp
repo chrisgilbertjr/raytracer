@@ -108,7 +108,7 @@ Sphere::ShadowHit(const Ray& ray, float& tmin) const
     Ray r = m_transform.TransformRaycast(ray);
 
     real a, b, c, d;
-    Sphere::Quadratic(r, a, b, c, d);
+    Quadratic(r, a, b, c, d);
 
     if (d >= 0.0f)
     {

@@ -248,6 +248,9 @@
     <ClInclude Include="..\..\..\include\Objects\Rectangle.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Objects\CompoundObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -421,6 +424,9 @@
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\Rectangle.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Objects\CompoundObject.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>

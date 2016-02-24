@@ -19,6 +19,7 @@
 #include "Objects\Sphere.h"
 #include "Objects\ConvexSphere.h"
 #include "Objects\Cylinder.h"
+#include "Objects\Rectangle.h"
 #include "Objects\Plane.h"
 #include "Materials\Matte.h"
 #include "Materials\Phong.h"
@@ -160,6 +161,7 @@ main(void)
     Sphere* sphere3 =  new Sphere(Vector(-150.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere4 =  new Sphere(Vector(0.0f,100.0f, 200.f),  50.f);
     Cylinder* cylinder = new Cylinder(Vector(0.f), 100.f, 50.f);
+    Rectangle* rect = new Rectangle(Vector(0.f), 100.f, 250.f);
     ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
 
     sphere1->SetMaterial(matte03);
@@ -167,6 +169,7 @@ main(void)
     sphere3->SetMaterial(matte03);
     sphere4->SetMaterial(matte01);
     cylinder->SetMaterial(matte03);
+    rect->SetMaterial(matte03);
     csphere->SetMaterial(emmisive01);
 
     Plane* plane = new Plane(Vector(0.f, -100.f, 0.f), Vector(0.f, 1.0f, 0.0f));
@@ -182,8 +185,9 @@ main(void)
     World world;
     //world.PushObject(sphere1);
     //world.PushObject(sphere2);
-    world.PushObject(sphere3);
-    world.PushObject(cylinder);
+    //world.PushObject(sphere3);
+    //world.PushObject(cylinder);
+    world.PushObject(rect);
     world.PushObject(csphere);
     //world.PushObject(sphere4);
     world.PushObject(plane);
@@ -194,7 +198,7 @@ main(void)
     //world.PushLight(env);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(16));
+    world.SetSampler(new Hammersley(2));
     world.SetRaytracer(new Shaded());
     //world.SetRaytracer(new PathTracer());
     //world.SetRaytracer(new AreaLighting());

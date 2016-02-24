@@ -2,20 +2,74 @@
 #include "Objects\Rectangle.h"
 
 Rectangle::Rectangle()
+    : Object()
 {
+    m_vertices[0] = Vector( 0.0f,  0.0f, 0.0f);
+    m_vertices[1] = Vector( 0.0f,-10.0f, 0.0f);
+    m_vertices[2] = Vector(10.0f,  0.0f, 0.0f);
+    m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
+    m_v1Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[1].LengthSquared();
+    m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
+}
+
+Rectangle::Rectangle(const Vector& a, real width, real height, bool reverse)
+    : Object()
+{
+    m_vertices[0] = Vector( 0.0f,  0.0f, 0.0f);
+    m_vertices[1] = Vector( 0.0f,-width, 0.0f);
+    m_vertices[2] = Vector(height,  0.0f, 0.0f);
+    m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
+    m_v1Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[1].LengthSquared();
+    m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
+
+    if (reverse)
+    {
+        m_normal = -m_normal;
+    }
+}
+
+Rectangle::Rectangle(const Vector& a, const Vector& b, const Vector& c)
+    : Object()
+{
+    m_vertices[0] = a;
+    m_vertices[1] = b;
+    m_vertices[2] = c;
+    m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
+    m_v1Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[1].LengthSquared();
+    m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 }
 
 Rectangle::Rectangle(const Rectangle& rect)
+    : Object(rect)
+    , m_normal(rect.m_normal)
+    , m_v1Sq(rect.m_v1Sq)
+    , m_v2Sq(rect.m_v2Sq)
+    , m_area(rect.m_area)
 {
+    m_vertices[0] = rect.m_vertices[0];
+    m_vertices[1] = rect.m_vertices[1];
+    m_vertices[2] = rect.m_vertices[2];
 }
 
-Rectangle::~Rectangle()
-{
-}
+Rectangle::~Rectangle() {}
 
 Rectangle& 
 Rectangle::operator=(Rectangle rect)
 {
+    Object::operator=(rect);
+
+    Swap<Vector>(m_vertices[0], rect.m_vertices[0]);
+    Swap<Vector>(m_vertices[1], rect.m_vertices[1]);
+    Swap<Vector>(m_vertices[2], rect.m_vertices[2]);
+    Swap<Vector>(m_normal, rect.m_normal);
+    Swap<real>(m_v1Sq, rect.m_v1Sq);
+    Swap<real>(m_v2Sq, rect.m_v2Sq);
+    Swap<real>(m_area, rect.m_area);
+
+    return *this;
 }
 
 Object* 
@@ -27,8 +81,33 @@ Rectangle::Clone() const
 Raycast 
 Rectangle::Query(const Ray& ray, ShadeRecord& record) const
 {
-    Ray r = m_transform.TransformRaycast(ray);
     Raycast result = Object::InitRaycastRecord(ray, record);
+
+    real t = Dot((m_vertices[0] - ray.origin), m_normal) / Dot(ray.direction, m_normal);
+
+    if (t <= EPSILON)
+    {
+        return result;
+    }
+
+    Vector p = ray.origin + t * ray.direction;
+    Vector d = p - m_vertices[0];
+
+    real DoV1 = Dot(d, m_vertices[1]);
+
+    if (DoV1 < 0.f || DoV1 > m_v1Sq)
+    {
+        return result;;
+    }
+
+    real DoV2 = Dot(d, m_vertices[2]);
+
+    if (DoV2 < 0.f || DoV2 > m_v2Sq)
+    {
+        return result;;
+    }
+
+    AssignRaycastRecord(result, record, m_normal, p, t);
     
     return result;
 }
@@ -36,5 +115,35 @@ Rectangle::Query(const Ray& ray, ShadeRecord& record) const
 bool 
 Rectangle::ShadowHit(const Ray& ray, float& tmin) const
 {
-    return false;
+    real t = Dot((m_vertices[0] - ray.origin), m_normal) / Dot(ray.direction, m_normal);
+
+    if (t <= shadowEpsilon)
+    {
+        return false;
+    }
+
+    Vector p = ray.origin + t * ray.direction;
+    Vector d = p - m_vertices[0];
+
+    real DoV1 = Dot(d, m_vertices[1]);
+
+    if (DoV1 < 0.f || DoV1 > m_v1Sq)
+    {
+        return false;
+    }
+
+    real DoV2 = Dot(d, m_vertices[2]);
+
+    if (DoV2 < 0.f || DoV2 > m_v2Sq)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+float 
+Rectangle::pdf(const ShadeRecord& record) const
+{
+    return 1.f / m_area;
 }

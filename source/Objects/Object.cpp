@@ -39,6 +39,15 @@ Object::operator=(Object object)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
+Object* 
+Object::Clone() const
+{
+    Assert(false);
+    return NULL;
+}
+
 /// --------------------------------------------------------------------------- InitRaycastResult
 
 Raycast 
