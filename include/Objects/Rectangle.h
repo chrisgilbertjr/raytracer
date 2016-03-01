@@ -34,6 +34,8 @@ public:
     virtual bool ShadowHit(const Ray& ray, float& tmin) const;
 
     virtual float pdf(const ShadeRecord& record) const;
+
+    virtual void ComputeUV(ShadeRecord& record) const;
 };
 
 #endif

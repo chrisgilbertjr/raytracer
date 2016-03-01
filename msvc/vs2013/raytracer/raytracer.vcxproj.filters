@@ -69,6 +69,12 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{6826b936-82c6-4be8-b551-1bbd6c760abb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Textures">
+      <UniqueIdentifier>{e37ef23e-9aa5-4d5e-a7f7-e385acd045fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Textures">
+      <UniqueIdentifier>{05760a2c-51b6-4728-a5cb-372636258fe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\Cameras\Camera.h">
@@ -251,6 +257,12 @@
     <ClInclude Include="..\..\..\include\Objects\CompoundObject.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Textures\Texture.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Textures\Checker2D.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -428,6 +440,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\CompoundObject.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Textures\Texture.cpp">
+      <Filter>Source Files\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp">
+      <Filter>Source Files\Textures</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

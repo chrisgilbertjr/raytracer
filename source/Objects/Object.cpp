@@ -97,6 +97,13 @@ Object::pdf(const ShadeRecord& record) const
     return 0.f;
 }
 
+/// --------------------------------------------------------------------------- ComputeUV
+
+void 
+Object::ComputeUV(ShadeRecord& record) const
+{
+}
+
 /// --------------------------------------------------------------------------- SetTransform
 
 void 

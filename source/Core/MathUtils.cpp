@@ -3,6 +3,22 @@
 
 real shadowEpsilon = 1e-5f;
 
+real 
+Acos(real val)
+{
+    if (val < -1.f)
+    {
+        val = -1.f;
+    }
+
+    if (val > 1.f)
+    {
+        val = 1.f;
+    }
+
+    return acos(val);
+}
+
 /// Vector --------------------------------------------------------------------
 
 Vector::Vector()

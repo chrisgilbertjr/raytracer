@@ -1,4 +1,5 @@
 
+#include "..\Objects\Object.h"
 
 template <typename T>
 inline 
@@ -17,31 +18,31 @@ Array<T>::Array(const Array<T>& data)
 {
     /// shallow array copy
 
-    m_size = data.m_size;
-    m_max  = data.m_max;
+    //m_size = data.m_size;
+    //m_max  = data.m_max;
 
-    if (data.m_array)
-    {
-        m_array = static_cast<T*>(calloc(m_max, sizeof(T)));
-        Object* cloned = object.m_objects[i]->Clone();
+    //if (data.m_array)
+    //{
+    //    m_array = static_cast<T*>(calloc(m_max, sizeof(T)));
+    //    Object* cloned = data.m_objects[i]->Clone();
 
-        if (m_size > 0 && m_max > 0 && m_array)
-        {
-            memcpy(m_array, data.m_array, sizeof(T)*m_max);
-        }
-        else if (m_max > 0)
-        {
-            memcpy(m_array, 0, sizeof(T)*m_max);
-        }
-        else
-        {
-            Error("Array max is 0.\n");
-        }
-    }
-    else
-    {
-        m_array = NULL;
-    }
+    //    if (m_size > 0 && m_max > 0 && m_array)
+    //    {
+    //        memcpy(m_array, data.m_array, sizeof(T)*m_max);
+    //    }
+    //    else if (m_max > 0)
+    //    {
+    //        memcpy(m_array, 0, sizeof(T)*m_max);
+    //    }
+    //    else
+    //    {
+    //        Error("Array max is 0.\n");
+    //    }
+    //}
+    //else
+    //{
+    //    m_array = NULL;
+    //}
 }
 
 

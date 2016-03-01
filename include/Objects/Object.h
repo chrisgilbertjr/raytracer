@@ -39,6 +39,8 @@ public:
 
     virtual float pdf(const ShadeRecord& record) const;
 
+    virtual void ComputeUV(ShadeRecord& record) const;
+
     void SetTransform(const Vector& position, const Vector& axis, real angle, real scale);
 
     /// ----------------------------------------------------------------------- Inline member functions

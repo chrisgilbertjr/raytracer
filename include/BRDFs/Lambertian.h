@@ -3,18 +3,23 @@
 #define LAMBERTIAN_H
 
 #include "BRDF.h"
+#include "..\Textures\Texture.h"
+
+class Texture;
 
 class Lambertian : public BRDF
 {
 private:
-    Color m_color;
+    Texture* m_texture;
     real  m_intensity;
 
     /// compute Rho without extram params
-    Color Hue() const;
+    Color Hue(const ShadeRecord& record) const;
 
 public:
     Lambertian();
+
+    Lambertian(Texture* texture);
 
     Lambertian(const Lambertian& brdf);
 
@@ -30,13 +35,15 @@ public:
 
     virtual Color P(const ShadeRecord& record, const Vector& wo) const;
 
-    inline void SetIntensity(const real intensity)   { m_intensity = intensity; }
+    void SetIntensity(const real intensity);
 
-    inline void SetColor(const Color& color) { m_color = color; }
+    void SetColor(const Color& color);
 
-    inline real  GetIntensity() { return m_intensity; }
+    void SetTexture(Texture* texture);
 
-    inline Color GetColor() { return m_color; }
+    real  GetIntensity();
+
+    Color GetColor();
 };
 
 #endif

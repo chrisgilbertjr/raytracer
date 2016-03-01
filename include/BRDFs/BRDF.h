@@ -3,7 +3,8 @@
 #define BRDF_H
 
 #include "ShadeRecord.h"
-#include "..\Samplers\Sampler.h"
+
+class Sampler;
 
 class BRDF
 {

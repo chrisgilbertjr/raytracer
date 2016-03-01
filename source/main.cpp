@@ -26,6 +26,7 @@
 #include "Materials\Reflective.h"
 #include "Materials\CookTorrance.h"
 #include "Materials\Emmisive.h"
+#include "Textures\Checker2D.h"
 #include "Lights\DirectionalLight.h"
 #include "Lights\PointLight.h"
 #include "Lights\EnvironmentLight.h"
@@ -141,11 +142,15 @@ main(void)
     material04->SetIncidence(0.018f);;
     material04->SetReflective(Color::White(), 0.05f);
 
+    Checker2D* checker = new Checker2D();
+    checker->SetColors(Color::Red(), Color::Green());
+    checker->SetScale(2.f, 2.f);
+
     Matte* matte01 = new Matte();
     matte01->SetAmbient(Color::Red(), 0.5f);
     matte01->SetDiffuse(Color::Red());
 
-    Matte* matte03 = new Matte();
+    Matte* matte03 = new Matte(checker);
     matte03->SetAmbient(Color::Green(), 0.7f);
     matte03->SetDiffuse(Color::Green());
 
@@ -157,11 +162,12 @@ main(void)
     material5->SetDiffuse(Color::White());
 
     Sphere* sphere1 =  new Sphere(Vector( 150.0f,-50.0f, 125.f),  50.f);
+    //Sphere* sphere1 =  new Sphere(Vector(0.f),  100.f);
     Sphere* sphere2 =  new Sphere(Vector(   0.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere3 =  new Sphere(Vector(-150.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere4 =  new Sphere(Vector(0.0f,100.0f, 200.f),  50.f);
     Cylinder* cylinder = new Cylinder(Vector(0.f), 100.f, 50.f);
-    Rectangle* rect = new Rectangle(Vector(0.f), 100.f, 250.f);
+    Rectangle* rect = new Rectangle(Vector(0.f), 100.f, 100.f);
     ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
 
     sphere1->SetMaterial(matte03);
@@ -198,7 +204,7 @@ main(void)
     //world.PushLight(env);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(2));
+    world.SetSampler(new Hammersley(16));
     world.SetRaytracer(new Shaded());
     //world.SetRaytracer(new PathTracer());
     //world.SetRaytracer(new AreaLighting());

@@ -126,6 +126,8 @@
     <ClInclude Include="..\..\..\include\Samplers\PureRandom.h" />
     <ClInclude Include="..\..\..\include\Samplers\Sampler.h" />
     <ClInclude Include="..\..\..\include\Samplers\Simple.h" />
+    <ClInclude Include="..\..\..\include\Textures\Checker2D.h" />
+    <ClInclude Include="..\..\..\include\Textures\Texture.h" />
     <ClInclude Include="..\..\..\include\World\Bitmap.h" />
     <ClInclude Include="..\..\..\include\World\ColorBuffer.h" />
     <ClInclude Include="..\..\..\include\World\Output.h" />
@@ -191,6 +193,8 @@
     <ClCompile Include="..\..\..\source\Samplers\PureRandom.cpp" />
     <ClCompile Include="..\..\..\source\Samplers\Sampler.cpp" />
     <ClCompile Include="..\..\..\source\Samplers\Simple.cpp" />
+    <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp" />
+    <ClCompile Include="..\..\..\source\Textures\Texture.cpp" />
     <ClCompile Include="..\..\..\source\World\Bitmap.cpp" />
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />
     <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp" />

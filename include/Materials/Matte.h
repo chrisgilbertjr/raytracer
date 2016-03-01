@@ -4,6 +4,7 @@
 
 #include "Material.h"
 #include "..\BRDFs\Lambertian.h"
+#include "..\Textures\Texture.h"
 
 class Matte : public Material
 {
@@ -13,6 +14,8 @@ private:
 
 public:
     Matte();
+
+    Matte(Texture* texture);
 
     Matte(const Matte& matte);
 

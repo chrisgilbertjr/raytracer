@@ -10,6 +10,15 @@ Matte::Matte()
     , m_diffuse()
 {}
 
+/// --------------------------------------------------------------------------- Constructor
+
+Matte::Matte(Texture* texture)
+    : Material()
+    , m_ambient()
+    , m_diffuse(texture)
+{
+}
+
 /// --------------------------------------------------------------------------- Copy constructor
 
 Matte::Matte(const Matte& matte)

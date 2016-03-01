@@ -23,6 +23,8 @@
     #define InvPi 1.0/3.141592653589793
 #endif
 
+real Acos(real val);
+
 /// @}
 
 

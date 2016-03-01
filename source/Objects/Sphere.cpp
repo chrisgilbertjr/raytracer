@@ -84,6 +84,7 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
             Vector p = ray.direction * t; /// local hit point
             Vector n = (r.origin + p) * (1.f / GetRadius()); /// world normal
             AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            ComputeUV(record);
             return result;
         }
 
@@ -94,6 +95,7 @@ Sphere::Query(const Ray& ray, ShadeRecord& record) const
             Vector p = ray.direction * t; /// local hit point
             Vector n = (r.origin + p) * (1.f / GetRadius()); /// world normal
             AssignRaycastRecord(result, record, n, ray.origin + p, t);
+            ComputeUV(record);
             return result;
         }
     }
@@ -138,4 +140,21 @@ float
 Sphere::pdf(const ShadeRecord& record) const
 {
     return 1.f / (Pi * GetRadius() * GetRadius());
+}
+
+void 
+Sphere::ComputeUV(ShadeRecord& record) const
+{
+    Vector p = Normalize(record.localPoint - GetCenter());
+
+    real theta = Acos(p.y);
+    real phi = atan2(p.x, p.z);
+
+    if (phi <= 0.f)
+    {
+        phi += 2.f * Pi;
+    }
+
+    record.u = phi / (2.f * Pi);
+    record.v = 1.f - theta * InvPi;
 }

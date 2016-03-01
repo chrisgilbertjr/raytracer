@@ -68,3 +68,8 @@ Plane::ShadowHit(const Ray& ray, float& tmin) const
 
     return false;
 }
+
+void 
+Plane::ComputeUV(ShadeRecord& record) const
+{
+}
