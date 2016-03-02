@@ -105,35 +105,35 @@ main(void)
     CookTorrance* material3 = new CookTorrance();
     material3->SetAmbient(Color::Blue(), 0.5f);
     material3->SetDiffuse(Color::Blue());
-    material3->SetRoughness(0.3f);
+    material3->SetRoughness(0.1f);
     material3->SetIncidence(0.018f);
 
     CookTorrance* material4 = new CookTorrance();
-    material4->SetAmbient(Color(1.f, 1.f, 0.0f), 0.5f);
+    material4->SetAmbient(Color(1.f, 1.f, 0.0f), 0.1f);
     material4->SetDiffuse(Color(1.f, 1.f, 0.0f));
     material4->SetRoughness(0.4f);
     material4->SetIncidence(0.018f);
 
     Reflective* material01 = new Reflective();
-    material01->SetAmbient(Color::Red(), 0.5f);
-    material01->SetDiffuse(Color::Red());
-    material01->SetRoughness(0.5f);
+    material01->SetAmbient(Color::White(), 0.3f);
+    material01->SetDiffuse(Color::White(), 0.3f);
+    material01->SetRoughness(0.2f);
     material01->SetIncidence(0.118f);
-    material01->SetReflective(Color::White(), 0.3f);
+    material01->SetReflective(Color::White(), 0.7f);
 
     Reflective* material02 = new Reflective();
-    material02->SetAmbient(Color::Red(), 0.7f);
-    material02->SetDiffuse(Color::Red());
+    material02->SetAmbient(Color::White(), 0.5f);
+    material02->SetDiffuse(Color::White());
     material02->SetRoughness(0.2f);
     material02->SetIncidence(0.218f);
-    material02->SetReflective(Color::White(), 1.0f);
+    material02->SetReflective(Color::White(), 0.5f);
 
     Reflective* material03 = new Reflective();
-    material03->SetAmbient(Color::Green(), 0.7f);
-    material03->SetDiffuse(Color::Green());
+    material03->SetAmbient(Color::White(), 0.7f);
+    material03->SetDiffuse(Color::White());
     material03->SetRoughness(0.1f);
     material03->SetIncidence(0.018f);
-    material03->SetReflective(Color::White(), 1.0f);
+    material03->SetReflective(Color::White(), 0.3f);
 
     Reflective* material04 = new Reflective();
     material04->SetAmbient(Color(1.f, 1.f, 0.0f), 0.5f);
@@ -143,7 +143,7 @@ main(void)
     material04->SetReflective(Color::White(), 0.05f);
 
     Checker2D* checker = new Checker2D();
-    checker->SetColors(Color::Red(), Color::Green());
+    checker->SetColors(Color::Red(), Color::White());
     checker->SetScale(2.f, 2.f);
 
     Matte* matte01 = new Matte();
@@ -151,8 +151,8 @@ main(void)
     matte01->SetDiffuse(Color::Red());
 
     Matte* matte03 = new Matte(checker);
-    matte03->SetAmbient(Color::Green(), 0.7f);
-    matte03->SetDiffuse(Color::Green());
+    matte03->SetAmbient(Color::White(), 0.5f);
+    matte03->SetDiffuse(Color::White());
 
     Emmisive* emmisive01 = new Emmisive();
     emmisive01->SetEmmisive(Color::White(), 1.0f);
@@ -162,7 +162,6 @@ main(void)
     material5->SetDiffuse(Color::White());
 
     Sphere* sphere1 =  new Sphere(Vector( 150.0f,-50.0f, 125.f),  50.f);
-    //Sphere* sphere1 =  new Sphere(Vector(0.f),  100.f);
     Sphere* sphere2 =  new Sphere(Vector(   0.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere3 =  new Sphere(Vector(-150.0f,-50.0f,  50.f),  50.f);
     Sphere* sphere4 =  new Sphere(Vector(0.0f,100.0f, 200.f),  50.f);
@@ -171,30 +170,30 @@ main(void)
     ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
 
     sphere1->SetMaterial(matte03);
-    sphere2->SetMaterial(matte01);
+    sphere2->SetMaterial(matte03);
     sphere3->SetMaterial(matte03);
-    sphere4->SetMaterial(matte01);
+    sphere4->SetMaterial(matte03);
     cylinder->SetMaterial(matte03);
     rect->SetMaterial(matte03);
     csphere->SetMaterial(emmisive01);
 
     Plane* plane = new Plane(Vector(0.f, -100.f, 0.f), Vector(0.f, 1.0f, 0.0f));
-    plane->SetMaterial(material5);
+    plane->SetMaterial(material01);
 
     DirectionalLight* light = new DirectionalLight(Normalize(Vector(-1.f, -1.f, 0.f)), Color::Blue(), 0.3f);
-    PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.5f);
+    PointLight* point = new PointLight(Vector(-100.0f, 100.f, 400.0f), Color::White(), 2500.f, 1.0f);
 
     AreaLight* area = new SphereAreaLight(Vector(0.f, 0.0f, 300.f), 10.f, new PureRandom(256));
     EnvironmentLight* env = new EnvironmentLight();
     env->SetMaterial(emmisive01);
 
     World world;
-    //world.PushObject(sphere1);
-    //world.PushObject(sphere2);
-    //world.PushObject(sphere3);
+    world.PushObject(sphere1);
+    world.PushObject(sphere2);
+    world.PushObject(sphere3);
     //world.PushObject(cylinder);
-    world.PushObject(rect);
-    world.PushObject(csphere);
+    //world.PushObject(rect);
+    //world.PushObject(csphere);
     //world.PushObject(sphere4);
     world.PushObject(plane);
     //world.PushObject(area->GetObject());
@@ -204,11 +203,11 @@ main(void)
     //world.PushLight(env);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(16));
-    world.SetRaytracer(new Shaded());
-    //world.SetRaytracer(new PathTracer());
+    world.SetSampler(new Hammersley(32));
+    //world.SetRaytracer(new Shaded());
+    world.SetRaytracer(new Whitted());
     //world.SetRaytracer(new AreaLighting());
-    //world.SetRaytracer(new Whitted());
+    //world.SetRaytracer(new PathTracer());
     world.SetBackground(Color::Black());
     world.GetViewingPlane().SetMaxDepth(1);
 

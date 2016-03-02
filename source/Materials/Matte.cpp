@@ -14,7 +14,7 @@ Matte::Matte()
 
 Matte::Matte(Texture* texture)
     : Material()
-    , m_ambient()
+    , m_ambient(texture)
     , m_diffuse(texture)
 {
 }

@@ -15,7 +15,7 @@ AmbientOccluder::AmbientOccluder()
     , m_u(Vector::Y())
     , m_v(Vector::X())
     , m_w(Vector::Z())
-    , m_intensity(0.3f)
+    , m_intensity(1.0f)
 {
     m_sampler->MapSamplesToHemisphere();
 }

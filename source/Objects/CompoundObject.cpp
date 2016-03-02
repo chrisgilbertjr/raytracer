@@ -35,6 +35,7 @@ CompoundObject::operator=(CompoundObject object)
     {
         Swap<Object*>(m_objects[i], object.m_objects[i]);
     }
+    return *this;
 }
 
 Object* 

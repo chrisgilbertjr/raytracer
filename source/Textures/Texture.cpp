@@ -89,6 +89,16 @@ Texture::TransformUV(real xScale, real yScale, real xOffset, real yOffset, real&
 void 
 Texture::WrapUV(real& u,  real& v) const
 {
+    while(u < 0.f)
+    {
+        u += 1.f;
+    }
+
+    while (v < 0.f)
+    {
+        v += 1.f;
+    }
+
     while(u > 1.f)
     {
         u -= 1.f;

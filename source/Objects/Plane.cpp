@@ -1,6 +1,8 @@
 
 #include "Objects\Plane.h"
 
+static float s_planeTextureScale =  1.f / 500.f;
+
 real
 Plane::Quadtratic(const Ray& ray, const Vector& normal) const
 {
@@ -50,6 +52,7 @@ Plane::Query(const Ray& ray, ShadeRecord& record) const
     if (t >= EPSILON)
     {
         AssignRaycastRecord(result, record, m_normal, ray.origin + ray.direction * t, t);
+        ComputeUV(record);
     }
 
     return result;
@@ -72,4 +75,9 @@ Plane::ShadowHit(const Ray& ray, float& tmin) const
 void 
 Plane::ComputeUV(ShadeRecord& record) const
 {
+    Vector nu = Normalize(Vector( m_normal.x, -m_normal.z, m_normal.y));
+    Vector nv = Normalize(Vector( m_normal.y, -m_normal.x, m_normal.z));
+
+    record.u = Dot(nu, record.localPoint) * s_planeTextureScale;
+    record.v = Dot(nv, record.localPoint) * s_planeTextureScale;
 }
