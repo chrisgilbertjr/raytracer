@@ -113,6 +113,7 @@
     <ClInclude Include="..\..\..\include\Objects\Rectangle.h" />
     <ClInclude Include="..\..\..\include\Objects\Sphere.h" />
     <ClInclude Include="..\..\..\include\Objects\SphereLight.h" />
+    <ClInclude Include="..\..\..\include\RaytracerAPI.h" />
     <ClInclude Include="..\..\..\include\Raytracers\AreaLighting.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h" />
     <ClInclude Include="..\..\..\include\Raytracers\PureColor.h" />
@@ -134,7 +135,6 @@
     <ClInclude Include="..\..\..\include\World\ViewingPlane.h" />
     <ClInclude Include="..\..\..\include\World\World.h" />
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h" />
-    <ClInclude Include="..\..\..\source\Examples\Examples.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl" />
@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\..\source\Core\Color.cpp" />
     <ClCompile Include="..\..\..\source\Core\MathUtils.cpp" />
     <ClCompile Include="..\..\..\source\Core\Rand.cpp" />
+    <ClCompile Include="..\..\..\source\Examples.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientOccluder.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AreaLight.cpp" />

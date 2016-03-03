@@ -200,9 +200,6 @@
     <ClInclude Include="..\..\..\include\World\Output.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\Examples\Examples.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\Raytracers\Shaded.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
@@ -262,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\Textures\Checker2D.h">
       <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\RaytracerAPI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +446,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp">
       <Filter>Source Files\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Examples.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -203,7 +203,7 @@ main(void)
     //world.PushLight(env);
 
     world.SetCamera(new Pinhole());
-    world.SetSampler(new Hammersley(32));
+    world.SetSampler(new Hammersley(2));
     //world.SetRaytracer(new Shaded());
     world.SetRaytracer(new Whitted());
     //world.SetRaytracer(new AreaLighting());

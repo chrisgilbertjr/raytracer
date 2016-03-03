@@ -43,6 +43,9 @@ Array<T>::Array(const Array<T>& data)
     //{
     //    m_array = NULL;
     //}
+
+    /// copying arrays should be done manually for now
+    Assert(false);
 }
 
 
