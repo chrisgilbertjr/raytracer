@@ -23,7 +23,8 @@ Cylinder::Cylinder(const Cylinder& cylinder)
     , m_radius(cylinder.m_radius)
     , m_min(cylinder.m_min)
     , m_max(cylinder.m_max)
-{}
+{
+}
 
 Cylinder::Cylinder(const Vector& center, real height, real radius)
     : Object()
@@ -31,15 +32,18 @@ Cylinder::Cylinder(const Vector& center, real height, real radius)
     , m_radius(radius)
     , m_min(0.0f)
     , m_max(height)
-{}
+{
+}
 
 Cylinder::Cylinder(const Vector& center, real min, real max, real radius)
     : Object()
     , m_center(center)
     , m_radius(radius)
-    , m_min(0.f)
-    , m_max(25.f)
-{}
+    , m_min(min)
+    , m_max(max)
+{
+    m_transform.SetPosition(center);
+}
 
 Cylinder::~Cylinder()
 {}
@@ -92,6 +96,7 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
                 }
 
                 AssignRaycastRecord(result, record, n, ray.origin + p, t);
+                ComputeUV(record);
                 return result;
             }
         }
@@ -113,6 +118,7 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
                 }
 
                 AssignRaycastRecord(result, record, n, ray.origin + p, t);
+                ComputeUV(record);
                 return result;
             };
         }
@@ -161,4 +167,20 @@ Cylinder::ShadowHit(const Ray& ray, float& tmin) const
     }
 
     return false;
+}
+
+void 
+Cylinder::ComputeUV(ShadeRecord& record) const
+{
+    Vector p = record.localPoint - m_center;
+
+    real phi = atan2(p.x, p.z);
+
+    if (phi <= 0.f)
+    {
+        phi += 2.f * Pi;
+    }
+
+    record.u = phi / (2.f * Pi);
+    record.v = ((p.y + 1.f) / 2.f) / (m_max - m_min);
 }

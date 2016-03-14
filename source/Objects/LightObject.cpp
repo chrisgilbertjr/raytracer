@@ -40,9 +40,7 @@ LightObject::LightObject(const LightObject& light)
 
 LightObject::~LightObject()
 {
-    if (m_material) delete m_material;
     if (m_sampler) delete m_sampler;
-    if (m_object) delete m_object;
 }
 
 LightObject& 

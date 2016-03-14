@@ -75,6 +75,12 @@
     <Filter Include="Source Files\Textures">
       <UniqueIdentifier>{05760a2c-51b6-4728-a5cb-372636258fe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Demos">
+      <UniqueIdentifier>{c844d80a-fc8f-48b4-8839-f500af4cf60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Demos">
+      <UniqueIdentifier>{83861f80-29a7-4330-bb4f-2e50ef87fd5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\Cameras\Camera.h">
@@ -263,6 +269,15 @@
     <ClInclude Include="..\..\..\include\RaytracerAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Textures\Grid.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\demos\Demos.h">
+      <Filter>Header Files\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\demos\Scenes.h">
+      <Filter>Header Files\Demos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\Core\Array.inl">
@@ -447,8 +462,14 @@
     <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp">
       <Filter>Source Files\Textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\Examples.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\..\source\Textures\Grid.cpp">
+      <Filter>Source Files\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\demos\Scenes.cpp">
+      <Filter>Source Files\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\demos\Demos.cpp">
+      <Filter>Source Files\Demos</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

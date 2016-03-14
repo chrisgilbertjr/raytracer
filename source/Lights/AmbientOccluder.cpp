@@ -9,7 +9,7 @@
 // ---------------------------------------------------------------------------- Constructor
 
 AmbientOccluder::AmbientOccluder()
-    : m_sampler(new PureRandom(256))
+    : m_sampler(new PureRandom(128))
     , m_minAmount(Color::Black())
     , m_color(Color::White())
     , m_u(Vector::Y())
@@ -117,7 +117,7 @@ AmbientOccluder::Radiance(ShadeRecord& record)
 bool 
 AmbientOccluder::CastsShadow() const
 {
-    return true;
+    return m_shadows;
 }
 
 // ---------------------------------------------------------------------------- InShadow

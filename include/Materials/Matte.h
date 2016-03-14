@@ -11,6 +11,7 @@ class Matte : public Material
 private:
     Lambertian m_ambient;
     Lambertian m_diffuse;
+    bool m_customTexture;
 
 public:
     Matte();

@@ -113,8 +113,7 @@ PointLight::Radiance(ShadeRecord& record)
 bool 
 PointLight::CastsShadow() const
 {
-    /// @TODO:
-    return true;
+    return m_shadows;
 }
 
 /// --------------------------------------------------------------------------- InShadow

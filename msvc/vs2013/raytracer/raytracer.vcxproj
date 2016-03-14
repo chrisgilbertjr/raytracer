@@ -73,6 +73,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\demos\Demos.h" />
+    <ClInclude Include="..\..\..\demos\Scenes.h" />
     <ClInclude Include="..\..\..\include\BRDFs\BRDF.h" />
     <ClInclude Include="..\..\..\include\BRDFs\CookTorranceSpecular.h" />
     <ClInclude Include="..\..\..\include\BRDFs\GlossySpecular.h" />
@@ -128,6 +130,7 @@
     <ClInclude Include="..\..\..\include\Samplers\Sampler.h" />
     <ClInclude Include="..\..\..\include\Samplers\Simple.h" />
     <ClInclude Include="..\..\..\include\Textures\Checker2D.h" />
+    <ClInclude Include="..\..\..\include\Textures\Grid.h" />
     <ClInclude Include="..\..\..\include\Textures\Texture.h" />
     <ClInclude Include="..\..\..\include\World\Bitmap.h" />
     <ClInclude Include="..\..\..\include\World\ColorBuffer.h" />
@@ -140,6 +143,8 @@
     <None Include="..\..\..\include\Core\Array.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\demos\Demos.cpp" />
+    <ClCompile Include="..\..\..\demos\Scenes.cpp" />
     <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\BRDF.cpp" />
     <ClCompile Include="..\..\..\source\BRDF\CookTorranceSpecular.cpp" />
@@ -155,7 +160,6 @@
     <ClCompile Include="..\..\..\source\Core\Color.cpp" />
     <ClCompile Include="..\..\..\source\Core\MathUtils.cpp" />
     <ClCompile Include="..\..\..\source\Core\Rand.cpp" />
-    <ClCompile Include="..\..\..\source\Examples.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientLight.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AmbientOccluder.cpp" />
     <ClCompile Include="..\..\..\source\Lights\AreaLight.cpp" />
@@ -195,6 +199,7 @@
     <ClCompile Include="..\..\..\source\Samplers\Sampler.cpp" />
     <ClCompile Include="..\..\..\source\Samplers\Simple.cpp" />
     <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp" />
+    <ClCompile Include="..\..\..\source\Textures\Grid.cpp" />
     <ClCompile Include="..\..\..\source\Textures\Texture.cpp" />
     <ClCompile Include="..\..\..\source\World\Bitmap.cpp" />
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />

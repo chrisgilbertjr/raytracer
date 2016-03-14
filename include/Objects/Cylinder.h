@@ -32,6 +32,8 @@ public:
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 
     virtual bool ShadowHit(const Ray& ray, float& tmin) const;
+
+    virtual void ComputeUV(ShadeRecord& record) const;
 };
 
 #endif

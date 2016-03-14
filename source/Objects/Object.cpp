@@ -26,7 +26,13 @@ Object::Object(const Object& object)
 
 /// --------------------------------------------------------------------------- Destructor
 
-Object::~Object() {}
+Object::~Object() 
+{
+    if (m_material)
+    {
+        delete m_material;
+    }
+}
 
 /// --------------------------------------------------------------------------- Copy assignment operator
 

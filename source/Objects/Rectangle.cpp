@@ -17,8 +17,8 @@ Rectangle::Rectangle(const Vector& a, real width, real height, bool reverse)
     : Object()
 {
     m_vertices[0] = a;
-    m_vertices[1] = a + Vector( 0.0f,-width, 0.0f);
-    m_vertices[2] = a + Vector(height,  0.0f, 0.0f);
+    m_vertices[1] = Vector( 0.0f,-width, 0.0f);
+    m_vertices[2] = Vector(height,  0.0f, 0.0f);
     m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
     m_v1Sq = m_vertices[1].LengthSquared();
     m_v2Sq = m_vertices[1].LengthSquared();
@@ -152,10 +152,10 @@ Rectangle::pdf(const ShadeRecord& record) const
 void 
 Rectangle::ComputeUV(ShadeRecord& record) const
 {
-    Vector nu = Normalize(m_vertices[0] - m_vertices[2]);
-    Vector nv = Normalize(m_vertices[0] - m_vertices[1]);
+    Vector nu = Normalize(m_vertices[2]);
+    Vector nv = Normalize(m_vertices[1]);
 
-    record.u = Dot(nu, record.localPoint) / Dot(nu, m_vertices[2]);
-    record.v = Dot(nv, record.localPoint) / Dot(nv, m_vertices[1]);
+    record.u = Dot(nv, record.localPoint) / Dot(nu, m_vertices[2]);
+    record.v = Dot(nu, record.localPoint) / Dot(nv, m_vertices[1]);
 }
 

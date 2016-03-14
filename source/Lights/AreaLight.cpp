@@ -75,7 +75,7 @@ AreaLight::Radiance(ShadeRecord& record)
 bool 
 AreaLight::CastsShadow() const
 {
-    return true;
+    return m_shadows;
 }
 
 bool 

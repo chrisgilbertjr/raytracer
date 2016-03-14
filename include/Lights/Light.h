@@ -15,6 +15,8 @@ protected:
     /// default constructor
     Light();
 
+    bool m_shadows;
+
 public:
     /// destructor
     virtual ~Light();
@@ -39,6 +41,14 @@ public:
 
     ///
     virtual real pdf(const ShadeRecord& record) const;
+
+    void CastShadows(bool shadows);
 };
+
+inline void 
+Light::CastShadows(bool shadows)
+{
+    m_shadows = shadows;
+}
 
 #endif

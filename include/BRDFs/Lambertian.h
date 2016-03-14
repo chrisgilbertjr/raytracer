@@ -41,6 +41,8 @@ public:
 
     void SetTexture(Texture* texture);
 
+    void Ignore();
+
     real  GetIntensity();
 
     Color GetColor();

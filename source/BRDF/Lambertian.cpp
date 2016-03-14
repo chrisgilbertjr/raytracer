@@ -106,6 +106,12 @@ Lambertian::SetTexture(Texture* texture)
     m_texture = texture;
 }
 
+void 
+Lambertian::Ignore()
+{
+    m_texture = NULL;
+}
+
 real  
 Lambertian::GetIntensity() 
 { 

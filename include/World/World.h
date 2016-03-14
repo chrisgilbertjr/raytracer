@@ -31,6 +31,8 @@ public:
     /// default constructor
     World();
 
+    World(Light* ambient);
+
     /// copy constructor
     World(const World& world);
 
@@ -93,7 +95,10 @@ public:
     /// get the ambient lighting of the world
     inline Color GetAmbientRadiance(ShadeRecord& record) const { return m_ambient->Radiance(record); } 
     /// get the background color of the world
+
     inline Color GetBackground() const                         { return m_background; }
+
+    inline void SetResolution(const int width, const int height) { m_viewingPlane.SetHeight(height); m_viewingPlane.SetWidth(width); }
 };
 
 /// @}

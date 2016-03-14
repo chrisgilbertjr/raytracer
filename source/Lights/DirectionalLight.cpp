@@ -88,7 +88,7 @@ bool
 DirectionalLight::CastsShadow() const
 {
     /// @TODO:
-    return false;
+    return m_shadows;
 }
 
 /// --------------------------------------------------------------------------- InShadow

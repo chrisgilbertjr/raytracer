@@ -37,12 +37,24 @@ World::World()
     : m_viewingPlane()
     , m_objects(8)
     , m_lights(8)
-    //, m_ambient(new AmbientLight(Color::White(), 0.0f))
     , m_ambient(new AmbientOccluder())
     , m_tracer(NULL)
     , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
 {}
+
+/// --------------------------------------------------------------------------- Constructor
+
+World::World(Light* ambient)
+    : m_viewingPlane()
+    , m_objects(8)
+    , m_lights(8)
+    , m_ambient(ambient)
+    , m_tracer(NULL)
+    , m_camera(NULL)
+    , m_background(0.f, 0.f, 0.f)
+{
+}
 
 /// --------------------------------------------------------------------------- Copy Constructor
 
@@ -148,6 +160,11 @@ World::Free()
     for (int i = 0; i < (int)m_objects.GetSize(); ++i)
     {
         delete m_objects[i];
+    }
+
+    for (int i = 0; i < (int)m_lights.GetSize(); ++i)
+    {
+        delete m_lights[i];
     }
 }
 

@@ -8,6 +8,7 @@
 Matte::Matte()
     : m_ambient()
     , m_diffuse()
+    , m_customTexture(false)
 {}
 
 /// --------------------------------------------------------------------------- Constructor
@@ -16,6 +17,7 @@ Matte::Matte(Texture* texture)
     : Material()
     , m_ambient(texture)
     , m_diffuse(texture)
+    , m_customTexture(true)
 {
 }
 
@@ -24,11 +26,18 @@ Matte::Matte(Texture* texture)
 Matte::Matte(const Matte& matte)
     : m_ambient(matte.m_ambient)
     , m_diffuse(matte.m_diffuse)
+    , m_customTexture(matte.m_customTexture)
 {}
 
 /// --------------------------------------------------------------------------- Destructor
 
-Matte::~Matte() {}
+Matte::~Matte()
+{
+    if (m_customTexture)
+    {
+        m_ambient.Ignore();
+    }
+}
 
 /// --------------------------------------------------------------------------- Copy assignment operator
 
@@ -38,6 +47,7 @@ Matte::operator=(Matte matte)
     Material::operator=(matte);
     Swap<Lambertian>(m_ambient, matte.m_ambient);
     Swap<Lambertian>(m_diffuse, matte.m_diffuse);
+    Swap<bool>(m_customTexture, matte.m_customTexture);
 
     return *this;
 }
