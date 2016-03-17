@@ -254,7 +254,7 @@ Scene_AreaLightShapes(World* world)
     material = new Matte(grid);
     material->SetDiffuse(Color::White(), 0.8f);
     material->SetAmbient(Color::White(), 0.0f);
-    shape = new Plane(Vector(0.0f, -25.0f, 0.0f), Vector(0.0f, 1.0f, 0.f));
+    shape = new Plane(Vector(0.0f, -125.0f, 0.0f), Vector(0.0f, 1.0f, 0.f));
     shape->SetMaterial(material);
     world->PushObject(shape);
 
@@ -292,7 +292,7 @@ Scene_AreaLightShapes(World* world)
     shape->SetMaterial(material);
     world->PushObject(shape);
 
-    AreaLight* area = new SphereAreaLight(Vector(0.f, 150.0f, 125.f), 25.f, new PureRandom(256));
+    AreaLight* area = new SphereAreaLight(Vector(0.f, 150.0f, 200.f), 25.f, new PureRandom(256));
     world->PushLight(area);
     world->PushObject(area->GetObject());
     //Light* light = new PointLight(Vector(0.0f, 75.0f, 200.0f), Color::White(), 1000.f, 2.0f);

@@ -19,7 +19,7 @@ main()
     //Demo_ShadowSpheres("06_ShadowSpheres.bmp", 4); /// Demo #5
     //Demo_TexturedShapes("07_TexturedSphere.bmp", 64);
     //Demo_OccluderShapes("08_OccluderShapes.bmp", 64);
-    Demo_AreaLightShapes("09_AreaLightShapes.bmp", 128);
+    Demo_AreaLightShapes("09_AreaLightShapes2.bmp", 512);
 }
 
 //int 
