@@ -9,7 +9,7 @@ Rectangle::Rectangle()
     m_vertices[2] = Vector(10.0f,  0.0f, 0.0f);
     m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
     m_v1Sq = m_vertices[1].LengthSquared();
-    m_v2Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[2].LengthSquared();
     m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 }
 
@@ -17,11 +17,11 @@ Rectangle::Rectangle(const Vector& a, real width, real height, bool reverse)
     : Object()
 {
     m_vertices[0] = a;
-    m_vertices[1] = Vector( 0.0f,-width, 0.0f);
-    m_vertices[2] = Vector(height,  0.0f, 0.0f);
+    m_vertices[1] = Vector( 0.0f,-height, 0.0f);
+    m_vertices[2] = Vector(width,  0.0f, 0.0f);
     m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
     m_v1Sq = m_vertices[1].LengthSquared();
-    m_v2Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[2].LengthSquared();
     m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 
     if (reverse)
@@ -38,7 +38,7 @@ Rectangle::Rectangle(const Vector& a, const Vector& b, const Vector& c)
     m_vertices[2] = c;
     m_normal = Normalize(Cross(m_vertices[1], m_vertices[2]));
     m_v1Sq = m_vertices[1].LengthSquared();
-    m_v2Sq = m_vertices[1].LengthSquared();
+    m_v2Sq = m_vertices[2].LengthSquared();
     m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 }
 

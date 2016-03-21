@@ -21,4 +21,14 @@ void Demo_OccluderShapes(const char* output, int samples);
 
 void Demo_AreaLightShapes(const char* output, int samples);
 
+void Demo_AreaLightShapes2(const char* output, int samples);
+
+void Demo_EnvironmentLight(const char* output, int samples);
+
+void Demo_Reflections(const char* output, int samples);
+
+void Demo_Glossy(const char* output, int samples);
+
+void Demo_PathShader(const char* output, int samples);
+
 #endif

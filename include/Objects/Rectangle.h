@@ -36,6 +36,8 @@ public:
     virtual float pdf(const ShadeRecord& record) const;
 
     virtual void ComputeUV(ShadeRecord& record) const;
+
+    inline void FlipNormal() { m_normal = -m_normal; }
 };
 
 #endif

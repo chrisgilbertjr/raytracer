@@ -43,6 +43,7 @@ Reflective::Shade(ShadeRecord& record) const
     Color fr = m_reflective.SampleF(record, wi, wo);
     Vector point = Add(record.worldPoint, record.normal * shadowEpsilon);
     Ray reflected(point, wi);
+
     const Raytracer* tracer = record.world->GetRaytracer();
 
     Color reflection = tracer->TraceRay(record.world, reflected, record.depth + 1);

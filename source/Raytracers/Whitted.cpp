@@ -24,7 +24,7 @@ Whitted::Clone() const
 Color 
 Whitted::TraceRay(const World* world, const Ray ray, const int depth) const
 {
-    if (depth > 1)
+    if (depth > world->GetViewingPlane().GetMaxDepth())
     {
         return Color::Black();
     }

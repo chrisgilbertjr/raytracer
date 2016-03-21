@@ -19,7 +19,11 @@ main()
     //Demo_ShadowSpheres("06_ShadowSpheres.bmp", 4); /// Demo #5
     //Demo_TexturedShapes("07_TexturedSphere.bmp", 64);
     //Demo_OccluderShapes("08_OccluderShapes.bmp", 64);
-    Demo_AreaLightShapes("09_AreaLightShapes2.bmp", 512);
+    //Demo_AreaLightShapes2("09_AreaLightShapes2.bmp", 128);
+    //Demo_EnvironmentLight("10_EnvironmentLightShapes.bmp", 512);
+    //Demo_Reflections("11_ReflectionShapes.bmp", 256);
+    //Demo_Glossy("12_GlossyShapes.bmp", 32);
+    Demo_PathShader("13_PathTracer2.bmp", 128);
 }
 
 //int 

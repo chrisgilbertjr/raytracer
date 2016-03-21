@@ -99,6 +99,8 @@ public:
     inline Color GetBackground() const                         { return m_background; }
 
     inline void SetResolution(const int width, const int height) { m_viewingPlane.SetHeight(height); m_viewingPlane.SetWidth(width); }
+
+    inline void SetDepth(const int depth) { m_viewingPlane.SetMaxDepth(depth); }
 };
 
 /// @}

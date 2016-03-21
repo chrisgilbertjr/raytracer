@@ -40,13 +40,16 @@ Glossy::Shade(ShadeRecord& record) const
 Color 
 Glossy::AreaLightShade(ShadeRecord& record) const
 {
+    Color Radiance = CookTorrance::AreaLightShade(record);
+
     Vector E;
     Vector R = -record.ray.direction;
     real pdf = 0.f;
-    Ray ray(record.worldPoint, E);
 
-    Color Radiance = CookTorrance::AreaLightShade(record);
     Color f = m_glossy.SampleF(record, E, R, pdf);
+    Vector point = Add(record.worldPoint, record.normal * shadowEpsilon);
+    //Ray ray(record.worldPoint, E);
+    Ray ray(point, E);
 
     const Raytracer* tracer = record.world->GetRaytracer();
 

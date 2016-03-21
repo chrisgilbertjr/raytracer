@@ -155,3 +155,81 @@ Demo_AreaLightShapes(const char* output, int samples)
 
     world.Render(Options(EXPORT_BMP, output));
 }
+
+void 
+Demo_AreaLightShapes2(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(800, 400);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new AreaLighting());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+
+    Scene_AreaLightShapes2(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
+Demo_EnvironmentLight(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(800, 400);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new AreaLighting());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+
+    Scene_EnvironmentShapes(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
+Demo_Reflections(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(800, 400);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new Whitted());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+    world.SetDepth(2);
+
+    Scene_Reflections(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
+Demo_Glossy(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(800, 400);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new Whitted());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+    world.SetDepth(2);
+
+    Scene_Glossy(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
+Demo_PathShader(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(800, 400);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new PathTracer());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+    world.SetDepth(3);
+
+    Scene_PathShader(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}

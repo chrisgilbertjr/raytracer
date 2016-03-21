@@ -30,7 +30,7 @@ PathTracer::Clone() const
 Color 
 PathTracer::TraceRay(const World* world, const Ray ray, const int depth) const
 {
-    if (depth > 2)
+    if (depth > world->GetViewingPlane().GetMaxDepth())
     {
         return Color::Black();
     }
