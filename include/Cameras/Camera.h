@@ -5,6 +5,10 @@
 #include "..\Core\MathUtils.h"
 #include "..\World\Output.h"
 
+/// @defgroup Camera Camera
+/// @{
+
+/// forward declaration
 class World;
 
 /// base camera class
@@ -42,31 +46,97 @@ public:
     /// compute the cameras orthonormal basis
     void ComputeBasis();
 
-    /// inline member functions -----------------------------------------------
+    /// set the camera view point
+    void SetView(const Vector& point);
 
     /// set the camera view point
-    inline void SetView(const Vector& point)                       { m_view = point; }
-
-    /// set the camera view point
-    inline void SetView(const real x, const real y, const real z)  { m_view = Vector(x, y, z); }
+    void SetView(const real x, const real y, const real z);
 
     /// set the camera eye point
-    inline void SetEye(const Vector& point)                        { m_eye = point; }
+    void SetEye(const Vector& point);
 
     /// set the camera eye point
-    inline void SetEye(const real x, const real y, const real z)   { m_eye = Vector(x, y, z); }
+    void SetEye(const real x, const real y, const real z);
 
     /// set the camera up vector
-    inline void SetUp(const Vector& point)                         { m_up = point; }
+    void SetUp(const Vector& point);
 
     /// set the camera up vector
-    inline void SetUp(const real x, const real y, const real z)    { m_up = Vector(x, y, z); }
+    void SetUp(const real x, const real y, const real z);
 
     /// set the cameras roll angle
-    inline void SetRoll(const float angle)                         { m_roll = angle; }
+    void SetRoll(const float angle);
     
     /// set the cameras exposure time
-    inline void SetExposure(const float time)                      { m_exposure = time; }
+    void SetExposure(const float time);
 };
+
+/// --------------------------------------------------------------------------- SetView
+
+inline void
+Camera::SetView(const Vector& point)
+{
+    m_view = point;
+}
+
+/// --------------------------------------------------------------------------- SetView
+
+inline void 
+Camera::SetView(const real x, const real y, const real z)  
+{ 
+    m_view = Vector(x, y, z); 
+}
+
+/// --------------------------------------------------------------------------- SetEye
+
+inline void 
+Camera::SetEye(const Vector& point)                        
+{ 
+    m_eye = point; 
+}
+
+/// --------------------------------------------------------------------------- SetEye
+
+inline void 
+Camera::SetEye(const real x, const real y, const real z)   
+{ 
+    m_eye = Vector(x, y, z); 
+}
+
+/// --------------------------------------------------------------------------- SetUp
+
+inline void 
+Camera::SetUp(const Vector& point)                         
+{ 
+    m_up = point; 
+}
+
+/// --------------------------------------------------------------------------- SetUp
+
+inline void 
+Camera::SetUp(const real x, const real y, const real z)    
+{ 
+    m_up = Vector(x, y, z); 
+}
+
+/// --------------------------------------------------------------------------- SetRoll
+
+inline void 
+Camera::SetRoll(const float angle)                         
+{ 
+    m_roll = angle; 
+}
+
+/// --------------------------------------------------------------------------- SetExposure
+
+inline void 
+Camera::SetExposure(const float time)                      
+{ 
+    m_exposure = time; 
+}
+
+/// --------------------------------------------------------------------------- EOF
+
+/// @}
 
 #endif

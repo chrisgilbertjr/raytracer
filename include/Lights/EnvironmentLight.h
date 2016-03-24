@@ -6,25 +6,33 @@
 #include "..\Samplers\Sampler.h"
 #include "..\Materials\Material.h"
 
+/// @defgroup EnvironmentLight EnvironmentLight
+/// @{
+
 class EnvironmentLight : public Light
 {
 private:
-    Material* m_material;
-    Sampler* m_sampler;
-    Vector m_w;
-    Vector m_u;
-    Vector m_v;
-    Vector m_wi;
+    Material* m_material; /// emmisive material
+    Sampler* m_sampler;   /// the lights sampler
+    Vector m_w;           /// w basis vector
+    Vector m_u;           /// u basis vector
+    Vector m_v;           /// v basis vector
+    Vector m_wi;          /// sampler incoming vector
 
 public:
+    /// constructor
     EnvironmentLight();
 
+    /// copy constructor
     EnvironmentLight(const EnvironmentLight& light);
 
+    /// destructor
     virtual ~EnvironmentLight();
 
+    /// copy assignment operator
     EnvironmentLight& operator=(EnvironmentLight light);
 
+    /// deep copy this object
     virtual Light* Clone() const;
 
     /// get the direction of the light source
@@ -41,13 +49,20 @@ public:
 
     virtual real pdf(const ShadeRecord& record) const;
 
+    /// sets the lights material
     void SetMaterial(Material* material);
 };
+
+/// --------------------------------------------------------------------------- SetMaterial
 
 inline void 
 EnvironmentLight::SetMaterial(Material* material)
 {
     m_material = material;
 }
+
+/// --------------------------------------------------------------------------- EOF
+
+/// @}
 
 #endif

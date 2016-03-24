@@ -6,36 +6,52 @@
 #include "..\BRDFs\Lambertian.h"
 #include "..\BRDFs\CookTorranceSpecular.h"
 
+/// @defgroup CookTorrance CookTorrance
+/// @{
+
+/// Cook-Torrance microfacted lighting model
 class CookTorrance : public Material
 {
 private:
-    Lambertian m_ambient;
-    Lambertian m_diffuse;
-    CookTorranceSpecular m_specular;
+    Lambertian m_ambient;            /// lambertian ambient component
+    Lambertian m_diffuse;            /// lambertian diffuse component
+    CookTorranceSpecular m_specular; /// Cook-Torrance specular component
 
 public:
+    /// constructor
     CookTorrance();
 
+    /// copy constructor
     CookTorrance(const CookTorrance& ct);
 
+    /// destructor
     virtual ~CookTorrance();
 
+    /// copy assignment operator
     CookTorrance& operator=(CookTorrance ct);
 
+    /// deep copy an object
     virtual Material* Clone() const;
 
+    /// compute the color given a shade record
     virtual Color Shade(ShadeRecord& record) const;
 
+    /// compute the color given a shade record for area lights
     virtual Color AreaLightShade(ShadeRecord& record) const;
 
+    /// set the ambient properties of the material
     void SetAmbient(const Color& color, const real intensity = 1.0f);
 
+    /// set the diffuse properties of the material
     void SetDiffuse(const Color& color, const real intensity = 1.0f);
 
+    /// set the specular properties of the material
     void SetSpecular(const Color& color);
 
+    /// set the roughness of the material
     void SetRoughness(float roughness);
 
+    /// set the IOR of the material (not recommended)
     void SetIncidence(float incidence);
 };
 
@@ -82,5 +98,7 @@ CookTorrance::SetIncidence(float incidence)
 }
 
 /// --------------------------------------------------------------------------- EOF
+
+/// @}
 
 #endif

@@ -5,16 +5,19 @@
 #include "..\Samplers\Sampler.h"
 #include "Light.h"
 
+/// @defgroup AmbientOccluder AmbientOccluder
+/// @{
+
 class AmbientOccluder : public Light
 {
 private:
-    Sampler* m_sampler;
-    Color m_minAmount;
-    Color m_color;
-    Vector m_u;
-    Vector m_v;
-    Vector m_w;
-    real m_intensity;
+    Sampler* m_sampler; /// hemisphere sampler
+    Color m_minAmount;  /// min color of the ambient light
+    Color m_color;      /// color of the ambient light
+    Vector m_u;         /// u basis vector (up)
+    Vector m_v;         /// v basis vector (view)
+    Vector m_w;         /// w basis vector (right)
+    real m_intensity;   /// intensity of the light
 
 public:
     /// constructor
@@ -47,5 +50,7 @@ public:
     /// test a ray to see if the hit point is in a shadow
     virtual bool InShadow(const Ray& ray, ShadeRecord& record) const;
 };
+
+/// @}
 
 #endif

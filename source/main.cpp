@@ -23,7 +23,8 @@ main()
     //Demo_EnvironmentLight("10_EnvironmentLightShapes.bmp", 512);
     //Demo_Reflections("11_ReflectionShapes.bmp", 256);
     //Demo_Glossy("12_GlossyShapes.bmp", 32);
-    Demo_PathShader("13_PathTracer2.bmp", 128);
+    //Demo_PathShader("13_PathTracer10.bmp", 32);
+    Demo_CornellBox("14_CornellBox2.bmp", 20000);
 }
 
 //int 

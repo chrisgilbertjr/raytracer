@@ -227,9 +227,25 @@ Demo_PathShader(const char* output, int samples)
     world.SetRaytracer(new PathTracer());
     world.SetSampler(new Hammersley(samples));
     world.SetCamera(new Pinhole());
-    world.SetDepth(3);
+    world.SetDepth(6);
 
     Scene_PathShader(&world);
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
+Demo_CornellBox(const char* output, int samples)
+{
+    World world(new AmbientOccluder());
+    world.SetResolution(512, 512);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new PathTracer());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+    world.SetDepth(10);
+
+    Scene_CornellBox(&world);
 
     world.Render(Options(EXPORT_BMP, output));
 }

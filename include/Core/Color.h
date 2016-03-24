@@ -4,6 +4,9 @@
 
 #include "Core.h"
 
+/// @defgroup Color Color
+/// @{
+
 /// mapped color to unsigned bytes [0, 255] for BMP images
 struct Color255
 {
@@ -13,7 +16,7 @@ struct Color255
 /// an RGBA color scheme
 struct Color
 {
-    real r, g, b, a;
+    real r, g, b, a; /// red, green, blue, alpha - [0.0, 1.0] color values
 
     /// constructor. r, g, b = 0,  a = 1
     Color();
@@ -69,8 +72,10 @@ struct Color
     /// exp each RGB component, return a copy
     Color pow(real pow) const;
 
+    /// clamp a color between [min, max]
     void clamp(real min, real max);
 
+    /// clamp a color between [0, 1]
     void clamp01();
 
     /// black (1,1,1,1)
@@ -94,5 +99,7 @@ Color operator*(real scalar, const Color& color);
 
 /// map a Color to a Color255 for image formats
 Color255 MapColor255(const Color& color);
+
+/// @}
 
 #endif

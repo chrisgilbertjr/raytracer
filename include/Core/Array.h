@@ -2,6 +2,9 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+/// @defgroup Array Array
+/// @{
+
 /// templated dynamic array
 template <typename T>
 class Array
@@ -67,5 +70,7 @@ void ShuffleArray(Array<T>& array, const unsigned start, const unsigned end);
 
 /// inline implementation
 #include "Array.inl"
+
+/// @}
 
 #endif

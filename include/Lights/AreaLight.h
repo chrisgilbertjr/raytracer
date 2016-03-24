@@ -5,6 +5,9 @@
 #include "..\Objects\LightObject.h"
 #include "Light.h"
 
+/// @defgroup AreaLight AreaLight
+/// @{
+
 class AreaLight : public Light
 {
 private:
@@ -14,16 +17,22 @@ private:
     Vector m_wi;           /// incomind ray direction
 
 public:
+    /// constructor
     AreaLight();
 
+    /// constructor
     AreaLight(LightObject* object);
 
+    /// copy constructor
     AreaLight(const AreaLight& light);
 
+    /// destructor
     virtual ~AreaLight();
 
+    /// copy assignment operator
     AreaLight& operator=(AreaLight light);
 
+    /// deep copy of the object
     virtual Light* Clone() const;
 
     /// get the direction of the light source
@@ -43,8 +52,10 @@ public:
 
     virtual real pdf(const ShadeRecord& record) const;
 
+    /// set the lights object
     void SetObject(LightObject* object);
 
+    /// get the lights object
     Object* GetObject() const;
 };
 
@@ -73,6 +84,9 @@ AreaLight::GetObject() const
 
 #include "..\Objects\SphereLight.h"
 
+/// sphere light macro for easy creation
 #define SphereAreaLight(center, radius, sampler) AreaLight((LightObject*)new SphereLight(new Sphere(center, radius), sampler))
+
+/// @}
 
 #endif

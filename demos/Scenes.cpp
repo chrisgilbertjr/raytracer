@@ -614,12 +614,12 @@ Scene_PathShader(World* world)
     Emmisive* emmisive04 = new Emmisive();
     Emmisive* emmisive05 = new Emmisive();
     Emmisive* emmisive06 = new Emmisive();
-    emmisive01->SetEmmisive(Color::White(), 1.0f);
-    emmisive02->SetEmmisive(Color::White(), 1.0f);
-    emmisive03->SetEmmisive(Color::White(), 1.0f);
-    emmisive04->SetEmmisive(Color::White(), 1.0f);
-    emmisive05->SetEmmisive(Color::White(), 1.0f);
-    emmisive06->SetEmmisive(Color::White(), 1.0f);
+    emmisive01->SetEmmisive(Color::White(), 2.75f);
+    emmisive02->SetEmmisive(Color::White(), 2.75f);
+    emmisive03->SetEmmisive(Color::White(), 2.75f);
+    emmisive04->SetEmmisive(Color::White(), 2.75f);
+    emmisive05->SetEmmisive(Color::White(), 30.f);
+    emmisive06->SetEmmisive(Color::White(), 0.75f);
 
     Grid* grid = new Grid();
     grid->SetColors(Color::White(), Color(0.0f, 1.0f, 1.0f), Color::Black());
@@ -630,22 +630,14 @@ Scene_PathShader(World* world)
     checker->SetColors(Color::White(), Color::Red());
     checker->SetScale(2.f, 2.f);
 
-    material = new Matte(grid);
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
-    Material* gmat = material->Clone();
-    shape = new Plane(Vector(0.0f, -125.0f, 0.0f), Vector(0.0f, 1.0f, 0.f));
-    shape->SetMaterial(material);
-    //world->PushObject(shape);
-
     checker = new Checker2D();
     checker->SetColors(Color::White(), Color::Red());
     checker->SetScale(7.f, 7.f);
 
     material = new Matte(checker);
     shape = new Sphere(Vector(-250.0f, -50.0f, -100.0f), 75.f);
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
+    material->SetDiffuse(Color::White(), 0.9f);
+    material->SetAmbient(Color::White(), 0.1f);
     shape->SetMaterial(material);
     world->PushObject(shape);
 
@@ -656,8 +648,8 @@ Scene_PathShader(World* world)
 
     material = new Matte(checker);
     shape = new Cylinder(Vector(0.0f, -50.0f, -100.0f), -75.0f, 125.f, 75.f);
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
+    material->SetDiffuse(Color::White(), 0.9f);
+    material->SetAmbient(Color::White(), 0.1f);
     shape->SetMaterial(material);
     world->PushObject(shape);
 
@@ -667,33 +659,29 @@ Scene_PathShader(World* world)
 
     material = new Matte(checker);
     shape = new Rectangle(Vector(175.0f, 25.0f, -100.0f), 150.f, 150.f);
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
+    material->SetDiffuse(Color::White(), 0.9f);
+    material->SetAmbient(Color::White(), 0.1f);
     shape->SetMaterial(material);
     world->PushObject(shape);
 
     Rectangle* rect;
 
-    material = new Matte();
-    rect = new Rectangle(Vector( 200.f, 199.f, 0.0f), Vector(0.0f, 0.f, -200.0f), Vector(200.f, 0.0f, 0.0f));
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
-    rect->SetMaterial(emmisive01);
-    world->PushObject(rect);
+    //material = new Matte();
+    //rect = new Rectangle(Vector(-300.f, 0.f, 550.0f), Vector(0.0f, -200.f, 0.0f), Vector(200.f, 0.0f, 0.0f));
+    //rect->SetMaterial(emmisive03);
+    //world->PushObject(rect);
 
-    material = new Matte();
-    rect = new Rectangle(Vector(-200.f, 199.f, 0.0f), Vector(0.0f, 0.f, -200.0f), Vector(200.f, 0.0f, 0.0f));
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
-    rect->SetMaterial(emmisive02);
-    world->PushObject(rect);
+    //material = new Matte();
+    //rect = new Rectangle(Vector( 100.f, 0.f, 550.0f), Vector(0.0f, -200.f, 0.0f), Vector(200.f, 0.0f, 0.0f));
+    //rect->SetMaterial(emmisive04);
+    //world->PushObject(rect);
 
-    material = new Matte(checker);
-    shape = new Sphere(Vector(0.0f, 100.0f, 300.0f), 75.f);
-    material->SetDiffuse(Color::White(), 1.0f);
-    material->SetAmbient(Color::White(), 0.0f);
-    shape->SetMaterial(emmisive04);
-    world->PushObject(shape);
+    //material = new Matte(checker);
+    //shape = new Sphere(Vector(0.0f, -100.0f, 200.0f), 25.f);
+    //material->SetDiffuse(Color::White(), 1.0f);
+    //material->SetAmbient(Color::White(), 0.0f);
+    //shape->SetMaterial(emmisive05);
+    //world->PushObject(shape);
 
     /// top
     material = new Matte();
@@ -739,26 +727,74 @@ Scene_PathShader(World* world)
 
     /// front
     material = new Matte();
-    rect = new Rectangle(Vector(-400.f, 200.f, 600.0f), Vector(0.0f, -1200.0f, 0.f), Vector(1200.f, 0.0f, 0.0f));
+    rect = new Rectangle(Vector(-400.f, 200.f, 501.0f), Vector(0.0f, -1200.0f, 0.f), Vector(1200.f, 0.0f, 0.0f));
     material->SetDiffuse(Color::White(), 1.0f);
     material->SetAmbient(Color::White(), 0.0f);
+    rect->SetMaterial(emmisive06);
+    world->PushObject(rect);
+}
+
+void 
+Scene_CornellBox(World* world)
+{
+    Matte* material;
+    Object* shape;
+
+
+    real width = 50.f;
+    real height = 50.f;
+    real width2 = width*2.f;
+    real height2 = height*2.f;
+
+    Rectangle* rect;
+    Emmisive* emmisive = new Emmisive();
+    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 50.f);
+    rect = new Rectangle(Vector(-12.5f, 49.9f, 386.0f), Vector(0.0f, 0.f, -15.f), Vector(25.f, 0.0f, 0.0f));
+    rect->SetMaterial(emmisive);
+    world->PushObject(rect);
+
+    /// top
+    material = new Matte();
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(width2, 0.0f, 0.0f));
     rect->SetMaterial(material);
     world->PushObject(rect);
 
-    ////// right
-    ///material = new Matte();
-    ///shape = new Rectangle(Vector(-100.f, 100.f, 0.0f), Vector(0.0f, 0.f, -100.0f), Vector(100.f, 0.0f, 0.0f));
-    ///material->SetDiffuse(Color::White(), 1.0f);
-    ///material->SetAmbient(Color::White(), 0.0f);
-    ///shape->SetMaterial(emmisive03);
-    ///world->PushObject(shape);
+    /// bot
+    material = new Matte();
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect = new Rectangle(Vector(-width, -50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(width2, 0.0f, 0.0f));
+    rect->SetMaterial(material);
+    rect->FlipNormal();
+    world->PushObject(rect);
 
-    ///material = new Matte();
-    ///shape = new Rectangle(Vector(-100.f, 100.f, 0.0f), Vector(0.0f, 0.f, -100.0f), Vector(100.f, 0.0f, 0.0f));
-    ///material->SetDiffuse(Color::White(), 1.0f);
-    ///material->SetAmbient(Color::White(), 0.0f);
-    ///shape->SetMaterial(emmisive04);
-    ///world->PushObject(shape);
+    /// left
+    material = new Matte();
+    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(0.0f, -width2, 0.0f));
+    material->SetDiffuse(Color(0.5f, 0.0f, 0.0f), 1.0f);
+    rect->SetMaterial(material);
+    rect->FlipNormal();
+    world->PushObject(rect);
 
+    /// right
+    material = new Matte();
+    rect = new Rectangle(Vector( width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(0.0f, -width2, 0.0f));
+    material->SetDiffuse(Color(0.0f, 0.5f, 0.0f), 1.0f);
+    rect->SetMaterial(material);
+    //rect->FlipNormal();
+    world->PushObject(rect);;
 
+    /// back
+    material = new Matte();
+    rect = new Rectangle(Vector(-width, 50.f, 351.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    ///// front
+    material = new Matte();
+    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
 }

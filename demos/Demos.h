@@ -31,4 +31,6 @@ void Demo_Glossy(const char* output, int samples);
 
 void Demo_PathShader(const char* output, int samples);
 
+void Demo_CornellBox(const char* output, int samples);
+
 #endif

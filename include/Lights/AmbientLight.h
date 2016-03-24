@@ -4,7 +4,6 @@
 
 #include "Light.h"
 
-
 /// @defgroup AmbientLight AmbientLight
 /// @{
 

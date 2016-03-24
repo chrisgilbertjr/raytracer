@@ -26,40 +26,42 @@ struct ShadeRecord
 
 /// --------------------------------------------------------------------------- ShadeRecordConstruct
 
-inline ShadeRecord ShadeRecordConstruct(const class World* world, const Ray& ray)
+inline ShadeRecord 
+ShadeRecordConstruct(const class World* world, const Ray& ray)
 {
     ShadeRecord record;
-    record.material = NULL;
-    record.world = world;
+    record.material   = NULL;
+    record.world      = world;
     record.worldPoint = Vector(0.f);
     record.localPoint = Vector(0.f);
-    record.normal = Vector(0.f);
-    record.u = 0.f;
-    record.v = 0.f;
-    record.t = 0.f;
-    record.hit = false;
-    record.depth = 0;
-    record.ray = Ray(ray);
+    record.normal     = Vector(0.f);
+    record.u          = 0.f;
+    record.v          = 0.f;
+    record.t          = 0.f;
+    record.hit        = false;
+    record.depth      = 0;
+    record.ray        = Ray(ray);
 
     return record;
 }
 
 /// --------------------------------------------------------------------------- ShadeRecordCopy
 
-inline ShadeRecord ShadeRecordCopy(const ShadeRecord& shade)
+inline ShadeRecord 
+ShadeRecordCopy(const ShadeRecord& shade)
 {
     ShadeRecord record;
-    record.material = shade.material;
-    record.world = shade.world;
+    record.material   = shade.material;
+    record.world      = shade.world;
     record.worldPoint = shade.worldPoint;
     record.localPoint = shade.localPoint;
-    record.normal = shade.normal;
-    record.u = shade.u;
-    record.v = shade.v;
-    record.t = shade.t;
-    record.hit = shade.hit;
-    record.depth = shade.depth;
-    record.ray = shade.ray;
+    record.normal     = shade.normal;
+    record.u          = shade.u;
+    record.v          = shade.v;
+    record.t          = shade.t;
+    record.hit        = shade.hit;
+    record.depth      = shade.depth;
+    record.ray        = shade.ray;
 
     return record;
 }

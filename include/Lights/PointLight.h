@@ -4,7 +4,6 @@
 
 #include "Light.h"
 
-
 /// @defgroup PointLight PointLight
 /// @{
 
@@ -17,6 +16,7 @@ private:
     real m_intensity;  /// intensity of the light
     real m_radius;     /// radius of the light
 
+    /// compute distance attenuation
     real Attenuation(real distance) const;
 
 public:

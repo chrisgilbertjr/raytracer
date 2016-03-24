@@ -48,7 +48,7 @@ Color CookTorrance::Shade(ShadeRecord& record) const
     const Array<Light*>* lights = record.world->GetLights();
     const int lightCount = lights->GetSize();
 
-    t_Fresnel fresnel = m_specular.GetFresnal();
+    t_Fresnel fresnel = m_specular.GetFresnel();
 
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)
@@ -102,7 +102,7 @@ CookTorrance::AreaLightShade(ShadeRecord& record) const
     const Array<Light*>* lights = record.world->GetLights();
     const int lightCount = lights->GetSize();
 
-    t_Fresnel fresnel = m_specular.GetFresnal();
+    t_Fresnel fresnel = m_specular.GetFresnel();
 
     /// loop through each light and accumulate the radiance
     for (int i = 0; i < lightCount; ++i)

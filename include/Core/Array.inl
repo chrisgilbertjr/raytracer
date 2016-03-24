@@ -1,6 +1,8 @@
 
 #include "..\Objects\Object.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 template <typename T>
 inline 
 Array<T>::Array()
@@ -11,11 +13,15 @@ Array<T>::Array()
     memcpy(m_array, 0, sizeof(T)*m_max);
 }
 
+/// --------------------------------------------------------------------------- copy constructor
 
 template <typename T>
 inline
 Array<T>::Array(const Array<T>& data)
 {
+    /// dont allow deep copy of arrays
+    Assert(false);
+
     /// shallow array copy
 
     //m_size = data.m_size;
@@ -48,6 +54,7 @@ Array<T>::Array(const Array<T>& data)
     Assert(false);
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 template <typename T>
 inline
@@ -57,6 +64,7 @@ Array<T>::Array(const unsigned max)
     , m_max(max > 0 ? max : 8)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 template <typename T>
 inline
@@ -72,17 +80,20 @@ Array<T>::~Array()
     m_max = 0;
 }
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 template <typename T> 
 inline Array<T>& 
 Array<T>::operator=(Array<T> data)
 {
+    /// shallow copy!
     Swap<unsigned>(m_size, data.m_size);
     Swap<unsigned>(m_max,  data.m_max);
     Swap<T*>(m_array, data.m_array);
     return *this;
 }
 
+/// --------------------------------------------------------------------------- index operator
 
 template <typename T> 
 inline T& 
@@ -98,6 +109,7 @@ Array<T>::operator[](unsigned index) const
     return m_array[index];
 }
 
+/// --------------------------------------------------------------------------- Resize
 
 template <typename T>
 inline void 
@@ -116,6 +128,7 @@ Array<T>::Resize(const unsigned size)
     resized = 0;
 }
 
+/// --------------------------------------------------------------------------- Push
 
 template <typename T>
 inline void 
@@ -134,6 +147,7 @@ Array<T>::Push(const T& object)
     m_array[m_size++] = object;
 }
 
+/// --------------------------------------------------------------------------- Pop
 
 template <typename T>
 inline T 
@@ -155,6 +169,7 @@ Array<T>::Pop()
     return obj;
 }
 
+/// --------------------------------------------------------------------------- Remove
 
 template <typename T>
 inline void 
@@ -179,6 +194,7 @@ Array<T>::Remove(const T& object)
     Error("The object is not in the array...\n");
 }
 
+/// --------------------------------------------------------------------------- Remove
 
 template <typename T>
 inline T 
@@ -211,6 +227,7 @@ Array<T>::Remove(const unsigned index)
     return ptr;
 }
 
+/// --------------------------------------------------------------------------- Contains
 
 template <typename T>
 inline bool 
@@ -233,6 +250,7 @@ Array<T>::Contains(const T& object)
     return false;
 }
 
+/// --------------------------------------------------------------------------- ShuffleArray
 
 template <typename T>
 inline void 
@@ -241,6 +259,7 @@ ShuffleArray(Array<T>& data)
     ShuffleArray<T>(data, 0, array.GetSize());
 }
 
+/// --------------------------------------------------------------------------- ShuffleArray
 
 template <typename T>
 inline void 
@@ -256,3 +275,5 @@ ShuffleArray(Array<T>& data, const unsigned start, const unsigned end)
         data[i] = tmp;
     }
 }
+
+/// --------------------------------------------------------------------------- EOF

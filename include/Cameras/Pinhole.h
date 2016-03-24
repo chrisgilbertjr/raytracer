@@ -4,7 +4,7 @@
 
 #include "Cameras\Camera.h"
 
-/// simple pinhole camera
+/// simple pinhole camera (perspective projection)
 class Pinhole : public Camera
 {
 private:
@@ -30,14 +30,32 @@ public:
     /// get the direction of the camera
     Vector ComputeRayDirection(const Vector& point) const;
 
-    /// render the world through the pinhole camera
+    /// render the world 
     virtual void Render(const World* world, const OutputOptions& output);
 
-    /// inline member functions -----------------------------------------------
+    /// set the camera zoom
+    void SetZoom(const real zoom);
 
-    inline void SetZoom(const real zoom)             { m_zoom = zoom; }
-
-    inline void SetViewDistance(const real distance) { m_distance = distance; }
+    /// set the cameras view distance from thje pinhole
+    void SetViewDistance(const real distance);
 };
+
+/// --------------------------------------------------------------------------- SetZoom
+
+inline void 
+Pinhole::SetZoom(const real zoom)
+{
+    m_zoom = zoom;
+}
+
+/// --------------------------------------------------------------------------- SetViewDistance
+
+inline void 
+Pinhole::SetViewDistance(const real distance) 
+{ 
+    m_distance = distance; 
+}
+
+/// --------------------------------------------------------------------------- EOF
 
 #endif

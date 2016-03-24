@@ -14,5 +14,6 @@ void Scene_EnvironmentShapes(World* world);
 void Scene_Reflections(World* world);
 void Scene_Glossy(World* world);
 void Scene_PathShader(World* world);
+void Scene_CornellBox(World* world);
 
 #endif

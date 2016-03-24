@@ -5,6 +5,9 @@
 #include "..\Core\MathUtils.h"
 #include "..\Core\Color.h"
 
+/// @defgroup Light Light
+/// @{
+
 /// forward declaration
 struct ShadeRecord;
 
@@ -15,7 +18,7 @@ protected:
     /// default constructor
     Light();
 
-    bool m_shadows;
+    bool m_shadows; /// can this light cast shadows
 
 public:
     /// destructor
@@ -42,13 +45,20 @@ public:
     ///
     virtual real pdf(const ShadeRecord& record) const;
 
+    /// set if the light can cast shadows
     void CastShadows(bool shadows);
 };
+
+/// --------------------------------------------------------------------------- CastShadows
 
 inline void 
 Light::CastShadows(bool shadows)
 {
     m_shadows = shadows;
 }
+
+/// --------------------------------------------------------------------------- EOF
+
+/// @}
 
 #endif

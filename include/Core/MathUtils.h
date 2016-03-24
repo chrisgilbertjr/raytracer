@@ -5,7 +5,6 @@
 #include <cmath>
 #include "Core.h"
 
-
 /// @ingroup Core
 /// @{
 
@@ -23,6 +22,7 @@
     #define InvPi 1.0/3.141592653589793
 #endif
 
+/// safe acos
 real Acos(real val);
 
 /// @}
@@ -152,97 +152,135 @@ struct Raycast
 /// @defgroup Matrix Matrix
 /// @{
 
+/// 4D matrix
 class Matrix
 {
 public:
+    /// 16 floats in row major order
     real m[16];
 
+    /// constructor
     Matrix();
 
+    /// constructor
     Matrix(real m00, real m01, real m02, real m03,
            real m10, real m11, real m12, real m13,
            real m20, real m21, real m22, real m23,
            real m30, real m31, real m32, real m33);
 
+    /// copy constructor
     Matrix(const Matrix& matrix);
 
+    /// destructor
     ~Matrix();
 
+    /// copy assignment operator
     Matrix& operator=(Matrix matrix);
 
+    /// multiply equal operator
     Matrix& operator*=(const Matrix& matrix);
 
+    /// add equal operator
     Matrix& operator+=(const Matrix& matrix);
 
+    /// subtract equal operator
     Matrix& operator-=(const Matrix& matrix);
 
+    /// multiply equal operator
     Matrix operator*=(real scalar);
 
+    /// division equal operator
     Matrix operator/=(real scalar);
 
+    /// multiplication operator
     Matrix operator*(const Matrix& matrix) const;
 
+    /// addition operator
     Matrix operator+(const Matrix& matrix) const;
 
+    /// subtraction operator
     Matrix operator-(const Matrix& matrix) const;
 
+    /// multiplication operator
     Matrix operator*(real scalar) const;
 
+    /// division operator
     Matrix operator/(real scalar) const;
 
+    /// transform point
     Vector operator*(const Vector& point) const;
 
+    /// negatation operator
     Matrix operator-() const;
 
+    /// transforms a point in 3d space
     Vector TransformPoint(const Vector& point) const;
 
+    /// rotates a vector in 3d space
     Vector TransformVector(const Vector& vector) const;
 
+    /// transforms a ray in 3d space
     Ray TransformRay(const Ray& ray) const;
 
+    /// transforms a raycast in 3d space
     Ray TransformRaycast(const Ray& ray) const;
 
+    /// inverse transform a point in 3d space
     Vector InverseTransformPoint(const Vector& point) const;
 
+    /// inverse rotate a point in 3d space
     Vector InverseTransformVector(const Vector& vector) const;
 
+    /// inverse transform a ray
     Ray InverseTransformRay(const Ray& ray) const;
 
+    /// determinant of a matrix
     real Determinant() const;
 
+    /// transpose this matrix and returns a copy
     Matrix Transpose() const;
 
+    /// inverts the matrix and returns a copy
     Matrix Inverse() const;
 
+    // invert this matrix
     void Invert();
 
+    // sets the matrix position as a 3d coord system
     void SetPosition(const Vector& position);
 
+    /// gets the position as a 3d coord system
     Vector GetPosition() const;
 
+    /// the zero matrix
     static Matrix Zero();
 
+    /// the identity matrix
     static Matrix Identity();
 
+    /// a diagonal matrix
     static Matrix Diagonal(real val);
 
+    /// axis-angle rotation matrix
     static Matrix Rotation(const Vector& axis, real angle);
 
+    /// translation matrix
     static Matrix Translation(const Vector& translate);
 
+    /// translation matrix
     static Matrix Translation(real x, real y, real z);
 
+    /// scale matrix
     static Matrix Scale(real uniform);
 
+    /// shear matrix
     static Matrix Shear(real x, real y, real z);
 
+    /// transform matrix given a position, axis-angle, and scale
     static Matrix Transform(const Vector& translate, const Vector& axis, real angle, real scale = 1.f);
 };
 
 /// @}
-
-
-
 
 
 /// @defgroup MathUtils MathUtils
@@ -293,7 +331,7 @@ real LengthSquared(const Vector& a);
 /// clamp val between min and max
 real Clamp(real val, real min, real max);
 
-/// clamp val between min and max
+/// clamp val between [0, 1]
 real Saturate(real val);
 
 /// @}

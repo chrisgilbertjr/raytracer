@@ -70,6 +70,10 @@ Pinhole::Render(const World* world, const OutputOptions& options)
     /// create the color buffer used for the output image
     ColorBuffer buffer(width, height, background);
 
+    real pixels = (real)(height * width);
+    real count = 0.f;
+    real display = 0.01f;
+
     /// loop over each pixel
     for (int y = 0; y < height; ++y)
     {
@@ -99,9 +103,18 @@ Pinhole::Render(const World* world, const OutputOptions& options)
 
             /// set the color of the color buffer
             buffer.SetColor(x, y, plane.RemapColor(pixel));
+            count += 1.f;
+
+            if (((real)count / (real)pixels) > display)
+            {
+                printf("%.1f\n", display * 100.f);
+                display += 0.01f;
+            }
+
         }
     }
 
     /// export the color buffer according to the output options
     world->Export(buffer, options);
+    printf("Export successful!\n\n\n");
 }
