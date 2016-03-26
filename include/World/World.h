@@ -54,54 +54,184 @@ public:
     /// free all objects in the world
     void Free();
 
-    /// inline member functions -----------------------------------------------
-
     /// set the viewing planes sampler
-    inline void SetSampler(Sampler* sampler)                   { Assert(sampler); m_viewingPlane.SetSampler(sampler); }
+    void SetSampler(Sampler* sampler);
 
     /// set the worlds camera
-    inline void SetCamera(Camera* camera)                      { Assert(camera); m_camera = camera; }
+    void SetCamera(Camera* camera);
 
     /// set the worlds ratracer
-    inline void SetRaytracer(Raytracer* raytracer)             { Assert(raytracer); m_tracer = raytracer; }
+    void SetRaytracer(Raytracer* raytracer);
 
     /// set the background of the world
-    inline void SetBackground(const Color& color)              { m_background = color; }
+    void SetBackground(const Color& color);
 
     /// push an object into the list
-    inline void PushObject(Object* object)                     { Assert(object); m_objects.Push(object); }
+    void PushObject(Object* object);
 
     /// remove and object from the list
-    inline void RemoveObject(Object* object)                   { Assert(object); m_objects.Remove(object); }
+    void RemoveObject(Object* object);
 
     /// push an object into the list
-    inline void PushLight(Light* light)                        { Assert(light); m_lights.Push(light); }
+    void PushLight(Light* light);
 
     /// remove and object from the list
-    inline void RemoveLight(Light* light)                      { Assert(light); m_lights.Remove(light); }
+    void RemoveLight(Light* light);
 
     /// get the viewing plane
-    inline ViewingPlane GetViewingPlane() const                { return m_viewingPlane; }
+    ViewingPlane GetViewingPlane() const;
 
     /// get a pointer to the list of objects in the world
-    inline const Array<Object*>* GetObjects() const            { return &m_objects; }
+    const Array<Object*>* GetObjects() const;
 
     /// get a pointer to the list of objects in the world
-    inline const Array<Light*>* GetLights() const              { return &m_lights; }
+    const Array<Light*>* GetLights() const;
 
     /// get a pointer to the raytracer being used
-    inline const Raytracer* GetRaytracer() const               { return m_tracer; }
+    const Raytracer* GetRaytracer() const;
 
     /// get the ambient lighting of the world
-    inline Color GetAmbientRadiance(ShadeRecord& record) const { return m_ambient->Radiance(record); } 
+    Color GetAmbientRadiance(ShadeRecord& record) const;
+
     /// get the background color of the world
+    Color GetBackground() const;
 
-    inline Color GetBackground() const                         { return m_background; }
+    /// set the output image resolution
+    void SetResolution(const int width, const int height);
 
-    inline void SetResolution(const int width, const int height) { m_viewingPlane.SetHeight(height); m_viewingPlane.SetWidth(width); }
-
-    inline void SetDepth(const int depth) { m_viewingPlane.SetMaxDepth(depth); }
+    /// set the ray tracing recursion depth
+    void SetDepth(const int depth);
 };
+
+/// --------------------------------------------------------------------------- SetSampler
+
+inline void 
+World::SetSampler(Sampler* sampler)                   
+{ 
+    Assert(sampler); m_viewingPlane.SetSampler(sampler); 
+}
+
+/// --------------------------------------------------------------------------- SetCamera
+
+inline void 
+World::SetCamera(Camera* camera)                      
+{ 
+    Assert(camera); m_camera = camera; 
+}
+
+/// --------------------------------------------------------------------------- SetRaytracer
+
+inline void 
+World::SetRaytracer(Raytracer* raytracer)             
+{ 
+    Assert(raytracer); m_tracer = raytracer; 
+}
+
+/// --------------------------------------------------------------------------- SetBackground
+
+inline void 
+World::SetBackground(const Color& color)              
+{ 
+    m_background = color; 
+}
+
+/// --------------------------------------------------------------------------- PushObject
+
+inline void 
+World::PushObject(Object* object)                     
+{ 
+    Assert(object); m_objects.Push(object); 
+}
+
+/// --------------------------------------------------------------------------- RemoveObject
+
+inline void 
+World::RemoveObject(Object* object)                   
+{ 
+    Assert(object); m_objects.Remove(object); 
+}
+
+/// --------------------------------------------------------------------------- PushLight
+
+inline void 
+World::PushLight(Light* light)                        
+{ 
+    Assert(light); m_lights.Push(light); 
+}
+
+/// --------------------------------------------------------------------------- RemoveLight
+
+inline void 
+World::RemoveLight(Light* light)                      
+{ 
+    Assert(light); m_lights.Remove(light); 
+}
+
+/// --------------------------------------------------------------------------- GetViewingPlane
+
+inline ViewingPlane 
+World::GetViewingPlane() const                
+{ 
+    return m_viewingPlane; 
+}
+
+/// --------------------------------------------------------------------------- GetObjects
+
+inline const Array<Object*>* 
+World::GetObjects() const            
+{ 
+    return &m_objects; 
+}
+
+/// --------------------------------------------------------------------------- GetLights
+
+inline const Array<Light*>* 
+World::GetLights() const              
+{ 
+    return &m_lights; 
+}
+
+/// --------------------------------------------------------------------------- GetRaytracer
+
+inline const Raytracer* 
+World::GetRaytracer() const               
+{ 
+    return m_tracer; 
+}
+
+/// --------------------------------------------------------------------------- GetAmbientRadiance
+
+inline Color 
+World::GetAmbientRadiance(ShadeRecord& record) const 
+{ 
+    return m_ambient->Radiance(record); 
+} 
+
+/// --------------------------------------------------------------------------- GetBackground
+
+inline Color
+World::GetBackground() const                         
+{ 
+    return m_background; 
+}
+
+/// --------------------------------------------------------------------------- SetResolution
+
+inline void 
+World::SetResolution(const int width, const int height) 
+{ 
+    m_viewingPlane.SetHeight(height); m_viewingPlane.SetWidth(width); 
+}
+
+/// --------------------------------------------------------------------------- SetDepth
+
+inline void 
+World::SetDepth(const int depth) 
+{
+    m_viewingPlane.SetMaxDepth(depth); 
+}
+
+/// --------------------------------------------------------------------------- EOF
 
 /// @}
 

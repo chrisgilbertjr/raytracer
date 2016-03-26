@@ -4,6 +4,8 @@
 
 #include "Cameras\Camera.h"
 
+class ColorBuffer;
+
 /// simple pinhole camera (perspective projection)
 class Pinhole : public Camera
 {
@@ -32,6 +34,11 @@ public:
 
     /// render the world 
     virtual void Render(const World* world, const OutputOptions& output);
+
+    /// render the world 
+    virtual void RenderThreads(const World* world, const OutputOptions& output);
+
+    void ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptions& options, int x, int y);
 
     /// set the camera zoom
     void SetZoom(const real zoom);

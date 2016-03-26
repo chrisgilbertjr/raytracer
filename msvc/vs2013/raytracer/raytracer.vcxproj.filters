@@ -134,9 +134,6 @@
     <ClInclude Include="..\..\..\qdbmp\qdbmp.h">
       <Filter>Header Files\qndbmp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\World\Bitmap.h">
-      <Filter>Header Files\World</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\Materials\Material.h">
       <Filter>Header Files\Materials</Filter>
     </ClInclude>
@@ -248,16 +245,7 @@
     <ClInclude Include="..\..\..\include\Raytracers\PathTracer.h">
       <Filter>Header Files\Raytracers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\Objects\ConvexSphere.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\Objects\Mesh.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\Objects\Rectangle.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\Objects\CompoundObject.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\Textures\Texture.h">
@@ -277,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\demos\Scenes.h">
       <Filter>Header Files\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Objects\ConcaveSphere.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +311,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\qdbmp\qdbmp.cpp">
       <Filter>Source Files\qndbmp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\World\Bitmap.cpp">
-      <Filter>Source Files\World</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp">
       <Filter>Source Files\World</Filter>

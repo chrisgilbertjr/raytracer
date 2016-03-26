@@ -5,6 +5,10 @@
 #include "Core\MathUtils.h"
 #include "Core\Color.h"
 
+/// @defgroup Raytracer Raytracer
+/// @{
+
+/// base class for all ray tracers
 class Raytracer
 {
 protected:
@@ -26,11 +30,13 @@ public:
     /// copy assignment operator
     Raytracer& operator=(Raytracer raytracer);
 
-    /// clone a raytracer object
+    /// deep copy this object
     virtual Raytracer* Clone() const;
 
-    /// trace a ray and return its color
+    /// trace a ray
     virtual Color TraceRay(const World* world, const Ray ray, const int depth) const;
 };
+
+/// @}
 
 #endif

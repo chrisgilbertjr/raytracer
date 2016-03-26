@@ -105,11 +105,9 @@
     <ClInclude Include="..\..\..\include\Materials\Matte.h" />
     <ClInclude Include="..\..\..\include\Materials\Phong.h" />
     <ClInclude Include="..\..\..\include\Materials\Reflective.h" />
-    <ClInclude Include="..\..\..\include\Objects\CompoundObject.h" />
-    <ClInclude Include="..\..\..\include\Objects\ConvexSphere.h" />
+    <ClInclude Include="..\..\..\include\Objects\ConcaveSphere.h" />
     <ClInclude Include="..\..\..\include\Objects\Cylinder.h" />
     <ClInclude Include="..\..\..\include\Objects\LightObject.h" />
-    <ClInclude Include="..\..\..\include\Objects\Mesh.h" />
     <ClInclude Include="..\..\..\include\Objects\Object.h" />
     <ClInclude Include="..\..\..\include\Objects\Plane.h" />
     <ClInclude Include="..\..\..\include\Objects\Rectangle.h" />
@@ -132,7 +130,6 @@
     <ClInclude Include="..\..\..\include\Textures\Checker2D.h" />
     <ClInclude Include="..\..\..\include\Textures\Grid.h" />
     <ClInclude Include="..\..\..\include\Textures\Texture.h" />
-    <ClInclude Include="..\..\..\include\World\Bitmap.h" />
     <ClInclude Include="..\..\..\include\World\ColorBuffer.h" />
     <ClInclude Include="..\..\..\include\World\Output.h" />
     <ClInclude Include="..\..\..\include\World\ViewingPlane.h" />
@@ -201,7 +198,6 @@
     <ClCompile Include="..\..\..\source\Textures\Checker2D.cpp" />
     <ClCompile Include="..\..\..\source\Textures\Grid.cpp" />
     <ClCompile Include="..\..\..\source\Textures\Texture.cpp" />
-    <ClCompile Include="..\..\..\source\World\Bitmap.cpp" />
     <ClCompile Include="..\..\..\source\World\ColorBuffer.cpp" />
     <ClCompile Include="..\..\..\source\World\ViewingPlane.cpp" />
     <ClCompile Include="..\..\..\source\World\World.cpp" />

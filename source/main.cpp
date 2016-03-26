@@ -23,8 +23,8 @@ main()
     //Demo_EnvironmentLight("10_EnvironmentLightShapes.bmp", 512);
     //Demo_Reflections("11_ReflectionShapes.bmp", 256);
     //Demo_Glossy("12_GlossyShapes.bmp", 32);
-    //Demo_PathShader("13_PathTracer10.bmp", 32);
-    Demo_CornellBox("14_CornellBox2.bmp", 20000);
+    //Demo_PathShader("13_PathTracer14.bmp", 5000);
+    Demo_CornellBox("14_CornellBox9.bmp", 10000);
 }
 
 //int 
@@ -165,7 +165,7 @@ main()
 //    Sphere* sphere4 =  new Sphere(Vector(0.0f,100.0f, 200.f),  50.f);
 //    Cylinder* cylinder = new Cylinder(Vector(0.f), 100.f, 50.f);
 //    Rectangle* rect = new Rectangle(Vector(0.f), 100.f, 100.f);
-//    ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
+//    ConcaveSphere* csphere = new ConcaveSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
 
 //    sphere1->SetMaterial(matte03);
 //    sphere2->SetMaterial(matte03);

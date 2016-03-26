@@ -4,6 +4,9 @@
 
 #include "Object.h"
 
+/// @defgroup Sphere Sphere
+/// @{
+
 /// a 3D sphere
 class Sphere : public Object
 {
@@ -15,6 +18,7 @@ public:
     /// default constructor. center = (0,0,0) and radius = 0
     Sphere();
 
+    /// copy constructor
     Sphere(const Sphere& sphere);
 
     /// constructor given a sphere center and a radius
@@ -41,14 +45,19 @@ public:
     /// clone this object, deep copy
     virtual Object* Clone() const;
 
-    /// virtual function for raycast queries
+    /// query this object for ray-intersections
     virtual Raycast Query(const Ray& ray, ShadeRecord& record) const;
 
+    /// query this object with shadow rays
     virtual bool ShadowHit(const Ray& ray, float& tmin) const;
 
+    /// inverse area of the object
     virtual float pdf(const ShadeRecord& record) const;
 
+    /// compute the UV's of an object
     virtual void ComputeUV(ShadeRecord& record) const;
 };
+
+/// @}
 
 #endif

@@ -5,6 +5,10 @@
 #include "..\Samplers\Sampler.h"
 #include "Core\Color.h"
 
+/// @defgroup ViewingPlane ViewingPlane
+/// @{
+
+/// viewing plane used for rendering
 class ViewingPlane
 {
 private:
@@ -42,52 +46,174 @@ public:
     /// remap a color by handling out of gamut colors and gamma correction
     Color RemapColor(const Color& color) const;
 
-    //// inline member functions ----------------------------------------------
-
     /// set the width of the viewing plane
-    void SetWidth(const int width)          { m_width = width; }
+    void SetWidth(const int width);
 
     /// set the height of the viewing plane
-    void SetHeight(const int height)        { m_height = height; }
+    void SetHeight(const int height);
 
     /// set the samples per pixel
-    void SetSampleCount(const int samples)  { m_sampleCount = samples; }
+    void SetSampleCount(const int samples);
 
     /// set the number of recursive rays to trace
-    void SetMaxDepth(const int depth)       { m_maxDepth = depth; }
+    void SetMaxDepth(const int depth);
 
     /// set the gamma of the viewing plane
-    void SetGamma(const real gamma)         { m_gamma = gamma; m_gammaInv = (gamma > 0.f) ? (1.f / gamma) : (0.f); }
+    void SetGamma(const real gamma);
 
     /// set the pizel size of the viewing plane
-    void SetPizelSize(const real pixelSize) { m_pixelSize = pixelSize; }
+    void SetPixelSize(const real pixelSize);
 
     /// set the sampler of the viewing plane
-    inline void SetSampler(Sampler* sampler){ Assert(sampler); m_sampler = sampler; m_sampleCount = sampler->GetSampleCount(); }
+    inline void SetSampler(Sampler* sampler);
 
     /// get a copy of the width of the viewing plane
-    int GetWidth() const                    { return m_width; }
+    int GetWidth() const;
 
     /// get a copy of the height of the viewing plane
-    int GetHeight() const                   { return m_height; }
+    int GetHeight() const;
 
     /// get the sample count per pixel
-    int GetSampleCount() const              { return m_sampleCount; }
+    int GetSampleCount() const;
 
     /// get the max depth of recursive rays to trace
-    int GetMaxDepth() const                 { return m_maxDepth; }
+    int GetMaxDepth() const;
 
     /// get a copy of the gamma of the viewing plane
-    real GetGamma() const                   { return m_gamma; }
+    real GetGamma() const;
 
     /// get a copy of the inverse gamma of the viewing plane
-    real GetGammaInv() const                { return m_gammaInv; }
+    real GetGammaInv() const;
 
     /// get a copy of the pizel size of the viewing plane
-    real GetPizelSize() const               { return m_pixelSize; }
+    real GetPizelSize() const;
 
     /// get the sampler of the viewing plane
-    Sampler* GetSampler() const             { return m_sampler; }
+    Sampler* GetSampler() const;
 };
+
+/// --------------------------------------------------------------------------- SetWidth
+
+inline void 
+ViewingPlane::SetWidth(const int width)          
+{ 
+    m_width = width; 
+}
+
+/// --------------------------------------------------------------------------- SetHeight
+
+inline void 
+ViewingPlane::SetHeight(const int height)        
+{ 
+    m_height = height; 
+}
+
+/// --------------------------------------------------------------------------- SetSampleCount
+
+inline void 
+ViewingPlane::SetSampleCount(const int samples)  
+{
+    m_sampleCount = samples; 
+}
+
+/// --------------------------------------------------------------------------- SetMaxDepth
+
+inline void 
+ViewingPlane::SetMaxDepth(const int depth)       
+{ 
+    m_maxDepth = depth; 
+}
+
+/// --------------------------------------------------------------------------- SetGamma
+
+inline void 
+ViewingPlane::SetGamma(const real gamma)         
+{ 
+    m_gamma = gamma; m_gammaInv = (gamma > 0.f) ? (1.f / gamma) : (0.f); 
+}
+
+/// --------------------------------------------------------------------------- SetPixelSize
+
+inline void
+ViewingPlane::SetPixelSize(const real pixelSize) 
+{ 
+    m_pixelSize = pixelSize; 
+}
+
+/// --------------------------------------------------------------------------- SetSampler
+
+inline void 
+ViewingPlane::SetSampler(Sampler* sampler)
+{ 
+    Assert(sampler); m_sampler = sampler; m_sampleCount = sampler->GetSampleCount(); 
+}
+
+/// --------------------------------------------------------------------------- GetWidth
+
+inline int 
+ViewingPlane::GetWidth() const                    
+{ 
+    return m_width; 
+}
+
+/// --------------------------------------------------------------------------- GetHeight
+
+inline int 
+ViewingPlane::GetHeight() const                   
+{ 
+    return m_height; 
+}
+
+/// --------------------------------------------------------------------------- GetSampleCount
+
+inline int 
+ViewingPlane::GetSampleCount() const              
+{ 
+    return m_sampleCount; 
+}
+
+/// --------------------------------------------------------------------------- GetMaxDepth
+
+inline int 
+ViewingPlane::GetMaxDepth() const                 
+{ 
+    return m_maxDepth; 
+}
+
+/// --------------------------------------------------------------------------- GetGamma
+
+inline real 
+ViewingPlane::GetGamma() const                   
+{ 
+    return m_gamma; 
+}
+
+/// --------------------------------------------------------------------------- GetGammaInv
+
+inline real 
+ViewingPlane::GetGammaInv() const                
+{ 
+    return m_gammaInv; 
+}
+
+/// --------------------------------------------------------------------------- GetPixelSize
+
+inline real 
+ViewingPlane::GetPizelSize() const               
+{ 
+    return m_pixelSize; 
+}
+
+/// --------------------------------------------------------------------------- GetSampler
+
+inline Sampler* 
+ViewingPlane::GetSampler() const             
+{ 
+    return m_sampler; 
+}
+
+/// --------------------------------------------------------------------------- EOF
+
+/// @{
 
 #endif

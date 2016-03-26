@@ -2,7 +2,12 @@
 #include "Cameras\Pinhole.h"
 #include "Samplers\sampler.h"
 #include "World\World.h"
+#include <thread>
+#include <vector>
 
+static real g_display = 0.01f;
+static real g_pixels = 0;
+static real g_count = 0;
 
 Pinhole::Pinhole()
     : Camera()
@@ -117,4 +122,108 @@ Pinhole::Render(const World* world, const OutputOptions& options)
     /// export the color buffer according to the output options
     world->Export(buffer, options);
     printf("Export successful!\n\n\n");
+}
+
+void 
+Pinhole::RenderThreads(const World* world, const OutputOptions& options)
+{
+    /// get the needed vars
+    const Raytracer* tracer = world->GetRaytracer();
+    Color background = world->GetBackground();
+    ViewingPlane plane = world->GetViewingPlane();
+    Sampler* sampler = plane.GetSampler();
+    real size = plane.GetPizelSize() / m_zoom;
+    int samples = plane.GetSampleCount();
+    int height = plane.GetHeight();
+    int width = plane.GetWidth();
+
+    Vector sample; /// the initialize sample point from the sampler
+    Vector point;  /// the sampled point on the pixel
+    Color pixel;   /// the color of the pixel
+    Ray ray;       /// the ray being traced
+    ray.origin = m_eye;
+
+    /// create the color buffer used for the output image
+    ColorBuffer buffer(width, height, background);
+
+    g_pixels = (real)(height * width);
+    g_count = 0.f;
+
+    std::vector<std::thread> threads;
+
+    /// loop over each pixel
+    for (int y = 0; y < height; y+=(height/5))
+    {
+        for (int x = 0; x < width; x+=(width/1))
+        {
+            threads.push_back(std::thread(&Pinhole::ComputePixel, this, world, &buffer, options, x, y));
+        }
+    }
+
+    for (int i = 0; i < 2*2; ++i)
+    {
+        threads[i].join();
+    }
+
+    /// export the color buffer according to the output options
+    world->Export(buffer, options);
+    printf("Export successful!\n\n\n");
+}
+
+void 
+Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptions& options, int xstart, int ystart)
+{
+    Vector sample; /// the initialize sample point from the sampler
+    Vector point;  /// the sampled point on the pixel
+    Color pixel;   /// the color of the pixel
+    Ray ray;       /// the ray being traced
+    ray.origin = m_eye;
+
+    const Raytracer* tracer = world->GetRaytracer();
+    Color background = world->GetBackground();
+    ViewingPlane plane = world->GetViewingPlane();
+    Sampler* sampler = plane.GetSampler();
+    real size = plane.GetPizelSize() / m_zoom;
+    int samples = plane.GetSampleCount();
+    int height = plane.GetHeight();
+    int width = plane.GetWidth();
+
+    for (int y = ystart; y < ystart+(height/5); y++)
+    {
+        for (int x = xstart; x < xstart+(width/1); x++)
+        {
+            /// set the pixel as the background color
+            pixel = background;
+            for (int s = 0; s < samples; ++s)
+            {
+                /// sample point
+                sample = sampler->SampleUnitSquare();
+
+                /// get the pixel point to shoot the ray
+                point.x = size * (x - 0.5f * width + sample.x);
+                point.y = size * (y - 0.5f * height + sample.y);
+
+                /// get the ray direction
+                ray.direction = this->ComputeRayDirection(point);
+
+                /// trace the ray and accumulate the pixel color
+                pixel += tracer->TraceRay(world, ray, 0);
+            }
+
+            /// average the pixel over the number of samples and the cameras exposure time
+            pixel /= (real)samples;
+            pixel *= m_exposure;
+
+            /// set the color of the color buffer
+            buffer->SetColor(x, y, plane.RemapColor(pixel));
+
+            g_count += 1.0f;
+
+            if ((g_count / g_pixels) > g_display)
+            {
+                printf("%.1f\n", g_display * 100.f);
+                g_display += 0.01f;
+            }
+        }
+    }
 }

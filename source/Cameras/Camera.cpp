@@ -60,6 +60,11 @@ Camera::Render(const World* world, const OutputOptions& options)
     Assert(false);
 }
 
+void
+Camera::RenderThreads(const World* world, const OutputOptions& options)
+{
+    Assert(false);
+}
 
 void 
 Camera::ComputeBasis()

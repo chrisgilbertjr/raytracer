@@ -50,7 +50,7 @@
 #include "Objects\Cylinder.h"
 #include "Objects\CompoundObject.h"
 #include "Objects\LightObject.h"
-#include "Objects\ConvexSphere.h"
+#include "Objects\ConcaveSphere.h"
 #include "Objects\SphereLight.h"
 
 /// tracers

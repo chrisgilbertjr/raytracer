@@ -227,7 +227,7 @@ Demo_PathShader(const char* output, int samples)
     world.SetRaytracer(new PathTracer());
     world.SetSampler(new Hammersley(samples));
     world.SetCamera(new Pinhole());
-    world.SetDepth(6);
+    world.SetDepth(3);
 
     Scene_PathShader(&world);
 

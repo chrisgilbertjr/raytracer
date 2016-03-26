@@ -40,8 +40,11 @@ public:
     /// deep copy, clones a camera object
     virtual Camera* Clone() const;
 
-    /// render  the world from this cameras POV
+    /// render the world from this cameras POV
     virtual void Render(const World* world, const OutputOptions& output);
+
+    /// render the world using multiple threads
+    virtual void RenderThreads(const World* world, const OutputOptions& output);
 
     /// compute the cameras orthonormal basis
     void ComputeBasis();

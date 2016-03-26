@@ -432,7 +432,7 @@ Scene_EnvironmentShapes(World* world)
     Emmisive* emmisive01 = new Emmisive();
     emmisive01->SetEmmisive(Color::White(), 0.5f);
 
-    ConvexSphere* csphere = new ConvexSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
+    ConcaveSphere* csphere = new ConcaveSphere(Vector(0.0f, 0.0f, 0.0f), 10000.f);
     csphere->SetMaterial(emmisive01);
 
     EnvironmentLight* env = new EnvironmentLight();
@@ -614,12 +614,12 @@ Scene_PathShader(World* world)
     Emmisive* emmisive04 = new Emmisive();
     Emmisive* emmisive05 = new Emmisive();
     Emmisive* emmisive06 = new Emmisive();
-    emmisive01->SetEmmisive(Color::White(), 2.75f);
-    emmisive02->SetEmmisive(Color::White(), 2.75f);
-    emmisive03->SetEmmisive(Color::White(), 2.75f);
-    emmisive04->SetEmmisive(Color::White(), 2.75f);
+    emmisive01->SetEmmisive(Color::White(), 5.75f);
+    emmisive02->SetEmmisive(Color::White(), 5.75f);
+    emmisive03->SetEmmisive(Color::White(), 5.75f);
+    emmisive04->SetEmmisive(Color::White(), 5.75f);
     emmisive05->SetEmmisive(Color::White(), 30.f);
-    emmisive06->SetEmmisive(Color::White(), 0.75f);
+    emmisive06->SetEmmisive(Color::White(), 1.50f);
 
     Grid* grid = new Grid();
     grid->SetColors(Color::White(), Color(0.0f, 1.0f, 1.0f), Color::Black());
@@ -666,15 +666,15 @@ Scene_PathShader(World* world)
 
     Rectangle* rect;
 
-    //material = new Matte();
-    //rect = new Rectangle(Vector(-300.f, 0.f, 550.0f), Vector(0.0f, -200.f, 0.0f), Vector(200.f, 0.0f, 0.0f));
-    //rect->SetMaterial(emmisive03);
-    //world->PushObject(rect);
+    material = new Matte();
+    rect = new Rectangle(Vector(-300.f, 199.f, 200.0f), Vector(0.0f, 0.f, -200.0f), Vector(200.f, 0.0f, 0.0f));
+    rect->SetMaterial(emmisive03);
+    world->PushObject(rect);
 
-    //material = new Matte();
-    //rect = new Rectangle(Vector( 100.f, 0.f, 550.0f), Vector(0.0f, -200.f, 0.0f), Vector(200.f, 0.0f, 0.0f));
-    //rect->SetMaterial(emmisive04);
-    //world->PushObject(rect);
+    material = new Matte();
+    rect = new Rectangle(Vector( 100.f, 199.f, 200.0f), Vector(0.0f, 0.f, -200.0f), Vector(200.f, 0.0f, 0.0f));
+    rect->SetMaterial(emmisive04);
+    world->PushObject(rect);
 
     //material = new Matte(checker);
     //shape = new Sphere(Vector(0.0f, -100.0f, 200.0f), 25.f);
@@ -703,7 +703,7 @@ Scene_PathShader(World* world)
     /// left
     material = new Matte();
     rect = new Rectangle(Vector(-400.f, -125.f, -300.0f), Vector(0.0f, 0.f, 1200.0f), Vector(0.f, 1200.0f, 0.0f));
-    material->SetDiffuse(Color::White(), 1.0f);
+    material->SetDiffuse(Color(0.0f, 0.0f, 0.75f), 1.0f);
     material->SetAmbient(Color::White(), 0.0f);
     rect->SetMaterial(material);
     rect->FlipNormal();
@@ -712,7 +712,7 @@ Scene_PathShader(World* world)
     /// right
     material = new Matte();
     rect = new Rectangle(Vector(400.f, 200.f, 600.0f), Vector(0.0f, 0.f, -1200.0f), Vector(0.f, -1200.0f, 0.0f));
-    material->SetDiffuse(Color::White(), 1.0f);
+    material->SetDiffuse(Color(0.0f, 0.75f, 0.0f), 1.0f);
     material->SetAmbient(Color::White(), 0.0f);
     rect->SetMaterial(material);
     world->PushObject(rect);
@@ -748,8 +748,8 @@ Scene_CornellBox(World* world)
 
     Rectangle* rect;
     Emmisive* emmisive = new Emmisive();
-    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 50.f);
-    rect = new Rectangle(Vector(-12.5f, 49.9f, 386.0f), Vector(0.0f, 0.f, -15.f), Vector(25.f, 0.0f, 0.0f));
+    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 30.f);
+    rect = new Rectangle(Vector(-15.0f, 49.99f, 386.0f), Vector(0.0f, 0.f, -20.f), Vector(30.f, 0.0f, 0.0f));
     rect->SetMaterial(emmisive);
     world->PushObject(rect);
 
@@ -781,7 +781,6 @@ Scene_CornellBox(World* world)
     rect = new Rectangle(Vector( width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(0.0f, -width2, 0.0f));
     material->SetDiffuse(Color(0.0f, 0.5f, 0.0f), 1.0f);
     rect->SetMaterial(material);
-    //rect->FlipNormal();
     world->PushObject(rect);;
 
     /// back

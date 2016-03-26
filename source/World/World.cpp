@@ -2,6 +2,7 @@
 #include "Lights\AmbientLight.h"
 #include "World\World.h"
 #include "qdbmp.h"
+#include <chrono>
 
 /// --------------------------------------------------------------------------- ExportBMP
 
@@ -85,8 +86,30 @@ World::Render(const OutputOptions& options) const
 {
     if (m_camera)
     {
-        m_camera->Render(this, options);
+        {
+            std::chrono::time_point<std::chrono::system_clock> start, end;
+            start = std::chrono::system_clock::now();
+            m_camera->RenderThreads(this, options);
+            end = std::chrono::system_clock::now();
+
+            std::chrono::duration<double> seconds = end - start;
+            printf("threads %7f seconds\n", seconds.count());
+        }
+
+        {
+            //std::chrono::time_point<std::chrono::system_clock> start, end;
+            //start = std::chrono::system_clock::now();
+            //m_camera->Render(this, options);
+            //end = std::chrono::system_clock::now();
+
+            //std::chrono::duration<double> seconds = end-start;
+            //printf("normal %7f seconds\n", seconds.count());
+        }
+
+        while (1) {}
     }
+
+
 }
 
 /// --------------------------------------------------------------------------- Export

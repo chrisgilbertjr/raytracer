@@ -4,6 +4,9 @@
 
 #include <string>
 
+/// @defgroup Output Output
+/// @{
+
 /// output of the raytraced image
 enum Output
 {
@@ -31,5 +34,7 @@ Options(Output output, const char* filename)
 {
     return { output, std::string(filename) };
 }
+
+/// @}
 
 #endif

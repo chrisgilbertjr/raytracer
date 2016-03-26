@@ -1,36 +1,36 @@
 
-#include "Objects\ConvexSphere.h"
+#include "Objects\ConcaveSphere.h"
 
-ConvexSphere::ConvexSphere()
+ConcaveSphere::ConcaveSphere()
     : Sphere()
 {}
 
-ConvexSphere::ConvexSphere(const Vector& center, real radius)
+ConcaveSphere::ConcaveSphere(const Vector& center, real radius)
     : Sphere(center, radius)
 {
 }
 
-ConvexSphere::ConvexSphere(const ConvexSphere& sphere)
+ConcaveSphere::ConcaveSphere(const ConcaveSphere& sphere)
     : Sphere(sphere)
 {}
 
-ConvexSphere::~ConvexSphere() {}
+ConcaveSphere::~ConcaveSphere() {}
 
-ConvexSphere& 
-ConvexSphere::operator=(ConvexSphere sphere)
+ConcaveSphere& 
+ConcaveSphere::operator=(ConcaveSphere sphere)
 {
     Sphere::operator=(sphere);
     return *this;
 }
 
 Object* 
-ConvexSphere::Clone() const
+ConcaveSphere::Clone() const
 {
-    return static_cast<Object*>(new ConvexSphere(*this));
+    return static_cast<Object*>(new ConcaveSphere(*this));
 }
 
 Raycast 
-ConvexSphere::Query(const Ray& ray, ShadeRecord& record) const
+ConcaveSphere::Query(const Ray& ray, ShadeRecord& record) const
 {
     Ray r = m_transform.TransformRaycast(ray);
     Raycast result = Object::InitRaycastRecord(ray, record);
@@ -72,13 +72,13 @@ ConvexSphere::Query(const Ray& ray, ShadeRecord& record) const
 }
 
 bool 
-ConvexSphere::ShadowHit(const Ray& ray, float& tmin) const
+ConcaveSphere::ShadowHit(const Ray& ray, float& tmin) const
 {
     return false;
 }
 
 float 
-ConvexSphere::pdf(const ShadeRecord& record) const
+ConcaveSphere::pdf(const ShadeRecord& record) const
 {
     return Sphere::pdf(record);
 }
