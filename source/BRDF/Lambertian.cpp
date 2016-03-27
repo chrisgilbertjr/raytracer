@@ -1,6 +1,6 @@
 
 #include "BRDFs\Lambertian.h"
-#include "Samplers\Sampler.h"
+#include "Samplers\PureRandom.h"
 #include "Textures\Texture.h"
 
 Lambertian::Lambertian()
@@ -8,7 +8,7 @@ Lambertian::Lambertian()
     , m_texture(new Texture(0.f, 0.f, 0.f))
     , m_intensity(1.0f)
 {
-    InitSampler();
+    m_sampler = new PureRandom(1);
 }
 
 Lambertian::Lambertian(Texture* texture)

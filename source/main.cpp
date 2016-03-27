@@ -24,7 +24,9 @@ main()
     //Demo_Reflections("11_ReflectionShapes.bmp", 256);
     //Demo_Glossy("12_GlossyShapes.bmp", 32);
     //Demo_PathShader("13_PathTracer14.bmp", 5000);
-    Demo_CornellBox("14_CornellBox9.bmp", 10000);
+    //Demo_CornellBox("14_CornellBox100.bmp",  100);
+    //Demo_CornellBox("14_CornellBox200.bmp",  200);
+    Demo_CornellBox("14_CornellBoxTEST2.bmp", 50000);
 }
 
 //int 

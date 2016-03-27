@@ -23,7 +23,7 @@ private:
 
 public:
     /// default constructor
-    ViewingPlane();
+    ViewingPlane(int samples = 1);
 
     /// copy constructor
     ViewingPlane(const ViewingPlane& plane);

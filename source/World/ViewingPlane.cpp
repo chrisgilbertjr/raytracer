@@ -3,12 +3,10 @@
 #include "Core\MathUtils.h"
 
 
-ViewingPlane::ViewingPlane()
-    : m_width(1200)
-    , m_height(800)
-    //: m_width(800)
-    //, m_height(600)
-    , m_sampleCount(1)
+ViewingPlane::ViewingPlane(int samples)
+    : m_width(800)
+    , m_height(600)
+    , m_sampleCount(samples)
     , m_maxDepth(1)
     , m_gamma(1.0f)
     , m_gammaInv(0.0f)

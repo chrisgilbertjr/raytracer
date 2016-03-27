@@ -29,9 +29,10 @@ private:
 
 public:
     /// default constructor
-    World();
+    World(int samples = 1);
 
-    World(Light* ambient);
+    /// constructor
+    World(Light* ambient, int samples = 1);
 
     /// copy constructor
     World(const World& world);

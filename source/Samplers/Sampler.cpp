@@ -1,6 +1,8 @@
 
 #include "Samplers\Sampler.h"
 
+int g_samples = 1;
+
 Sampler::Sampler()
     : m_samples(83)
     , m_diskSamples(0)

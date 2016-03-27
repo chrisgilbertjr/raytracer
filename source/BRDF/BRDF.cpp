@@ -58,7 +58,7 @@ BRDF::InitSampler()
 {
     if (!m_sampler)
     {
-        m_sampler = new PureRandom(5000);
+        m_sampler = new PureRandom(g_samples);
         m_sampler->MapSamplesToHemisphere();
     }
 }

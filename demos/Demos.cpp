@@ -4,7 +4,7 @@
 void 
 Demo_BareBones(const char* output, int samples)
 {
-    World world;
+    World world(samples);
     world.SetResolution(800, 800);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new PureColor());
@@ -26,7 +26,7 @@ Demo_BareBones(const char* output, int samples)
 void 
 Demo_Shapes(const char* output, int samples)
 {
-    World world;
+    World world(samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new PureColor());
@@ -48,7 +48,7 @@ Demo_Shapes(const char* output, int samples)
 void 
 Demo_ShapesMatte(const char* output, int samples)
 {
-    World world;
+    World world(samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Shaded());
@@ -70,7 +70,7 @@ Demo_ShapesMatte(const char* output, int samples)
 void 
 Demo_SpecularSpheres(const char* output, int samples)
 {
-    World world(new AmbientLight(Color::White(), 1.0f));
+    World world(new AmbientLight(Color::White(), 1.0f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Shaded());
@@ -92,7 +92,7 @@ Demo_SpecularSpheres(const char* output, int samples)
 void 
 Demo_ShadowSpheres(const char* output, int samples)
 {
-    World world(new AmbientLight(Color::White(), 1.0f));
+    World world(new AmbientLight(Color::White(), 1.0f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Shaded());
@@ -114,7 +114,7 @@ Demo_ShadowSpheres(const char* output, int samples)
 void 
 Demo_TexturedShapes(const char* output, int samples)
 {
-    World world(new AmbientLight(Color::White(), 1.f));
+    World world(new AmbientLight(Color::White(), 1.f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Shaded());
@@ -129,7 +129,7 @@ Demo_TexturedShapes(const char* output, int samples)
 void 
 Demo_OccluderShapes(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Shaded());
@@ -144,7 +144,7 @@ Demo_OccluderShapes(const char* output, int samples)
 void 
 Demo_AreaLightShapes(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new AreaLighting());
@@ -174,7 +174,7 @@ Demo_AreaLightShapes2(const char* output, int samples)
 void 
 Demo_EnvironmentLight(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new AreaLighting());
@@ -189,7 +189,7 @@ Demo_EnvironmentLight(const char* output, int samples)
 void 
 Demo_Reflections(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Whitted());
@@ -205,7 +205,7 @@ Demo_Reflections(const char* output, int samples)
 void 
 Demo_Glossy(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new Whitted());
@@ -221,7 +221,7 @@ Demo_Glossy(const char* output, int samples)
 void 
 Demo_PathShader(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new PathTracer());
@@ -237,7 +237,7 @@ Demo_PathShader(const char* output, int samples)
 void 
 Demo_CornellBox(const char* output, int samples)
 {
-    World world(new AmbientOccluder());
+    World world(new AmbientOccluder(), samples);
     world.SetResolution(512, 512);
     world.SetBackground(Color::Black());
     world.SetRaytracer(new PathTracer());

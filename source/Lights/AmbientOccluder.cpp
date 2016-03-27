@@ -9,7 +9,7 @@
 // ---------------------------------------------------------------------------- Constructor
 
 AmbientOccluder::AmbientOccluder()
-    : m_sampler(new PureRandom(128))
+    : m_sampler(new PureRandom(g_samples))
     , m_minAmount(Color::Black())
     , m_color(Color::White())
     , m_u(Vector::Y())

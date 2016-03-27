@@ -51,34 +51,6 @@ Texture::SetColor(const Color& color)
 }
 
 void 
-Texture::SphereMap(const Vector& localPoint, real& u, real& v) const
-{
-    Vector p = Normalize(localPoint);
-    real theta = Acos(p.y);
-    real phi = atan2(p.x, p.z);
-
-    if (phi <= 0.f)
-    {
-        phi += 2.f * Pi;
-    }
-
-    u = phi / (2.f * Pi);
-    v = 1.f - theta * InvPi;
-}
-
-void 
-Texture::RectMap(const Vector& localPoint, real& u, real& v) const
-{
-    u = (localPoint.y + 1.f) / 2.f;
-    v = (localPoint.x + 1.f) / 2.f;
-}
-
-void 
-Texture::CylinderMap(const Vector& localPoint, real& u, real& v) const
-{
-}
-
-void 
 Texture::TransformUV(real xScale, real yScale, real xOffset, real yOffset, real& u, real &v) const
 {
     OffsetUV(xOffset, yOffset, u, v);

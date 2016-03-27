@@ -34,20 +34,22 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
 
 /// --------------------------------------------------------------------------- Constructor
 
-World::World()
-    : m_viewingPlane()
+World::World(int samples)
+    : m_viewingPlane(samples)
     , m_objects(8)
     , m_lights(8)
     , m_ambient(new AmbientOccluder())
     , m_tracer(NULL)
     , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
-{}
+{
+    g_samples = samples;
+}
 
 /// --------------------------------------------------------------------------- Constructor
 
-World::World(Light* ambient)
-    : m_viewingPlane()
+World::World(Light* ambient, int samples)
+    : m_viewingPlane(samples)
     , m_objects(8)
     , m_lights(8)
     , m_ambient(ambient)
@@ -55,6 +57,7 @@ World::World(Light* ambient)
     , m_camera(NULL)
     , m_background(0.f, 0.f, 0.f)
 {
+    g_samples = samples;
 }
 
 /// --------------------------------------------------------------------------- Copy Constructor
@@ -95,21 +98,7 @@ World::Render(const OutputOptions& options) const
             std::chrono::duration<double> seconds = end - start;
             printf("threads %7f seconds\n", seconds.count());
         }
-
-        {
-            //std::chrono::time_point<std::chrono::system_clock> start, end;
-            //start = std::chrono::system_clock::now();
-            //m_camera->Render(this, options);
-            //end = std::chrono::system_clock::now();
-
-            //std::chrono::duration<double> seconds = end-start;
-            //printf("normal %7f seconds\n", seconds.count());
-        }
-
-        while (1) {}
     }
-
-
 }
 
 /// --------------------------------------------------------------------------- Export

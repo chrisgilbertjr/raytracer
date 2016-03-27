@@ -9,7 +9,7 @@
 EnvironmentLight::EnvironmentLight()
     : Light()
     , m_material(NULL)
-    , m_sampler(new PureRandom(128))
+    , m_sampler(new PureRandom(g_samples))
     , m_w(0.f)
     , m_u(0.f)
     , m_v(0.f)

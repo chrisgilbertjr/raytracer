@@ -19,7 +19,6 @@ SphereLight::SphereLight(Object* object, Sampler* sampler)
     : LightObject(object, sampler)
 {
     m_sampler->MapSamplesToSphere();
-    int x = 0;
 }
 
 SphereLight::SphereLight(const SphereLight& light)

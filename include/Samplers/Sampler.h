@@ -8,6 +8,8 @@
 /// @defgroup Sampler Sample
 /// @{
 
+extern int g_samples;
+
 /// base class for all samplers
 class Sampler
 {

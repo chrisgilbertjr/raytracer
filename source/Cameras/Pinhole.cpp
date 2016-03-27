@@ -8,6 +8,7 @@
 static real g_display = 0.01f;
 static real g_pixels = 0;
 static real g_count = 0;
+static int g_threads = 4;
 
 Pinhole::Pinhole()
     : Camera()
@@ -152,15 +153,15 @@ Pinhole::RenderThreads(const World* world, const OutputOptions& options)
     std::vector<std::thread> threads;
 
     /// loop over each pixel
-    for (int y = 0; y < height; y+=(height/5))
+    for (int y = 0; y < height; y+=(height/g_threads))
     {
-        for (int x = 0; x < width; x+=(width/1))
+        for (int x = 0; x < width; x+=width)
         {
             threads.push_back(std::thread(&Pinhole::ComputePixel, this, world, &buffer, options, x, y));
         }
     }
 
-    for (int i = 0; i < 2*2; ++i)
+    for (int i = 0; i < g_threads; ++i)
     {
         threads[i].join();
     }
@@ -188,9 +189,9 @@ Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptio
     int height = plane.GetHeight();
     int width = plane.GetWidth();
 
-    for (int y = ystart; y < ystart+(height/5); y++)
+    for (int y = ystart; y < ystart+(height/g_threads); y++)
     {
-        for (int x = xstart; x < xstart+(width/1); x++)
+        for (int x = xstart; x < xstart+width; x++)
         {
             /// set the pixel as the background color
             pixel = background;

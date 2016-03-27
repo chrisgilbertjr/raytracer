@@ -740,52 +740,52 @@ Scene_CornellBox(World* world)
     Matte* material;
     Object* shape;
 
-
     real width = 50.f;
     real height = 50.f;
     real width2 = width*2.f;
     real height2 = height*2.f;
 
+    /// light
     Rectangle* rect;
     Emmisive* emmisive = new Emmisive();
-    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 30.f);
-    rect = new Rectangle(Vector(-15.0f, 49.99f, 386.0f), Vector(0.0f, 0.f, -20.f), Vector(30.f, 0.0f, 0.0f));
+    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 35.f);
+    rect = new Rectangle(Vector(-12.5f, 49.99f, 370.0f), Vector(0.0f, 0.f, -15.f), Vector(25.0f, 0.0f, 0.0f));
     rect->SetMaterial(emmisive);
     world->PushObject(rect);
 
     /// top
     material = new Matte();
     material->SetDiffuse(Color::White(), 1.0f);
-    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(width2, 0.0f, 0.0f));
+    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -175.f), Vector(width2, 0.0f, 0.0f));
     rect->SetMaterial(material);
     world->PushObject(rect);
 
     /// bot
     material = new Matte();
     material->SetDiffuse(Color::White(), 1.0f);
-    rect = new Rectangle(Vector(-width, -50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(width2, 0.0f, 0.0f));
+    rect = new Rectangle(Vector(-width, -50.f, 501.0f), Vector(0.0f, 0.f, -175.f), Vector(width2, 0.0f, 0.0f));
     rect->SetMaterial(material);
     rect->FlipNormal();
     world->PushObject(rect);
 
     /// left
     material = new Matte();
-    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(0.0f, -width2, 0.0f));
-    material->SetDiffuse(Color(0.5f, 0.0f, 0.0f), 1.0f);
+    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, 0.f, -175.f), Vector(0.0f, -width2, 0.0f));
+    material->SetDiffuse(Color(0.75f, 0.0f, 0.0f), 1.0f);
     rect->SetMaterial(material);
     rect->FlipNormal();
     world->PushObject(rect);
 
     /// right
     material = new Matte();
-    rect = new Rectangle(Vector( width, 50.f, 501.0f), Vector(0.0f, 0.f, -150.f), Vector(0.0f, -width2, 0.0f));
-    material->SetDiffuse(Color(0.0f, 0.5f, 0.0f), 1.0f);
+    rect = new Rectangle(Vector( width, 50.f, 501.0f), Vector(0.0f, 0.f, -175.f), Vector(0.0f, -width2, 0.0f));
+    material->SetDiffuse(Color(0.0f, 0.75f, 0.0f), 1.0f);
     rect->SetMaterial(material);
     world->PushObject(rect);;
 
     /// back
     material = new Matte();
-    rect = new Rectangle(Vector(-width, 50.f, 351.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
+    rect = new Rectangle(Vector(-width, 50.f, 326.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
     world->PushObject(rect);
@@ -793,6 +793,81 @@ Scene_CornellBox(World* world)
     ///// front
     material = new Matte();
     rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    //world->PushObject(rect);
+
+
+    /// ** BOXES **
+
+
+    /// back - front
+    material = new Matte();
+    rect = new Rectangle(Vector(-28.0f, -50.f, 365.0f), Vector(0.0f, 62.f, 0.f), Vector(29.5f, 0.0f, -8.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// back - back
+    material = new Matte();
+    rect = new Rectangle(Vector(-34.5f, -50.f, 352.5f), Vector(0.0f, 62.f, 0.f), Vector(29.5f, 0.0f, -8.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// back - left
+    material = new Matte();
+    rect = new Rectangle(Vector(-28.0f, -50.f, 365.0f), Vector(0.0f, 62.f, 0.f), Vector(-6.5f, 0.0f, -12.5f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// back - right
+    material = new Matte();
+    rect = new Rectangle(Vector(1.5f, -50.f, 357.0f), Vector(0.0f, 62.f, 0.f), Vector(-6.5f, 0.0f, -12.5f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    material = new Matte();
+    rect = new Rectangle(Vector(-28.0f, 12.f, 365.0f), Vector(26.f, 0.0f, -13.0f), Vector(-3.5f, 0.f, -12.75f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+
+
+    /// front - front
+    material = new Matte();
+    rect = new Rectangle(Vector(-2.5f, -50.f, 380.0f), Vector(0.0f, 30.f, 0.f), Vector(29.5f, 0.0f, 6.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// front - back
+    material = new Matte();
+    rect = new Rectangle(Vector(6.5f, -50.f, 362.5f), Vector(0.0f, 30.f, 0.f), Vector(29.5f, 0.0f, 6.0f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// front - left
+    material = new Matte();
+    rect = new Rectangle(Vector(-2.5f, -50.f, 380.0f), Vector(0.0f, 30.f, 0.f), Vector(9.0f, 0.0f, -17.5f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// front - right
+    material = new Matte();
+    rect = new Rectangle(Vector(27.0f, -50.f, 386.0f), Vector(0.0f, 30.f, 0.f), Vector(9.0f, 0.0f, -17.5f));
+    material->SetDiffuse(Color::White(), 1.0f);
+    rect->SetMaterial(material);
+    world->PushObject(rect);
+
+    /// front - top
+    material = new Matte();
+    rect = new Rectangle(Vector(-2.5f, -20.f, 380.0f), Vector(26.f, 0.0f, 13.0f), Vector(3.5f, 0.f, -17.75f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
     world->PushObject(rect);
