@@ -256,7 +256,7 @@ template <typename T>
 inline void 
 ShuffleArray(Array<T>& data)
 {
-    ShuffleArray<T>(data, 0, array.GetSize());
+    ShuffleArray<T>(data, 0, data.GetSize());
 }
 
 /// --------------------------------------------------------------------------- ShuffleArray
@@ -270,7 +270,7 @@ ShuffleArray(Array<T>& data, const unsigned start, const unsigned end)
     for (int i = start; i < (int)end-1; ++i)
     {
         int j = i + rand() / (RAND_MAX / (end-i)+1);
-        int tmp = data[i];
+        T tmp = data[i];
         data[j] = data[i];
         data[i] = tmp;
     }

@@ -53,6 +53,7 @@ Pinhole::ComputeRayDirection(const Vector& point) const
     return Normalize(m_u*point.x + m_v*point.y - m_w*m_distance);
 }
 
+#define PRINT_COLOR(c) fprintf(stdout, "%.7f, %.7f, %.7f\n", c.r, c.g, c.b);
 
 void
 Pinhole::Render(const World* world, const OutputOptions& options)
@@ -103,6 +104,7 @@ Pinhole::Render(const World* world, const OutputOptions& options)
                     pixel += tracer->TraceRay(world, ray, 0);
             }
 
+
             /// average the pixel over the number of samples and the cameras exposure time
             pixel /= (real)samples;
             pixel *= m_exposure;
@@ -123,6 +125,10 @@ Pinhole::Render(const World* world, const OutputOptions& options)
     /// export the color buffer according to the output options
     world->Export(buffer, options);
     printf("Export successful!\n\n\n");
+
+    g_display = 0.01f;
+    g_pixels = 0;
+    g_count = 0;
 }
 
 void 
@@ -169,6 +175,10 @@ Pinhole::RenderThreads(const World* world, const OutputOptions& options)
     /// export the color buffer according to the output options
     world->Export(buffer, options);
     printf("Export successful!\n\n\n");
+
+    g_display = 0.01f;
+    g_pixels = 0;
+    g_count = 0;
 }
 
 void 
@@ -210,6 +220,7 @@ Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptio
                 /// trace the ray and accumulate the pixel color
                 pixel += tracer->TraceRay(world, ray, 0);
             }
+
 
             /// average the pixel over the number of samples and the cameras exposure time
             pixel /= (real)samples;

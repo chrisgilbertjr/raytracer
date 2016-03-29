@@ -9,6 +9,7 @@
 int 
 main()
 {
+    InitializeRandomSeed();
     shadowEpsilon = 1e-1f;
 
     //Demo_BareBones("01_Barebones.bmp", 1); /// Demo #1
@@ -26,7 +27,9 @@ main()
     //Demo_PathShader("13_PathTracer14.bmp", 5000);
     //Demo_CornellBox("14_CornellBox100.bmp",  100);
     //Demo_CornellBox("14_CornellBox200.bmp",  200);
-    Demo_CornellBox("14_CornellBoxTEST2.bmp", 50000);
+
+    Demo_CornellBox("14_CornellBox3.bmp", 100);
+    //Demo_CornellBox("14_CornellBox.bmp", 10000);
 }
 
 //int 

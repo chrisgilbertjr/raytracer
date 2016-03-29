@@ -69,7 +69,7 @@ Lambertian::SampleF(const ShadeRecord& record, Vector& wi, const Vector& wo, flo
     Vector v = Normalize(Cross(Vector(0.0034f, 1.f, 0.0071f), w));
     Vector u = Cross(v, w);
 
-    Vector point = m_sampler->SampleHemisphere();
+    Vector point = g_pathSampler->SampleHemisphere();
     wi = Normalize(point.x*u + point.y*v + point.z*w);
     pdf = Dot(record.normal, wi) * InvPi;
 

@@ -2,6 +2,8 @@
 #include "BRDFs\BRDF.h"
 #include "Samplers\PureRandom.h"
 
+Sampler* g_pathSampler = NULL;
+
 BRDF::BRDF()
     : m_sampler(NULL)
 {
@@ -58,7 +60,7 @@ BRDF::InitSampler()
 {
     if (!m_sampler)
     {
-        m_sampler = new PureRandom(g_samples);
+        m_sampler = new PureRandom(1);
         m_sampler->MapSamplesToHemisphere();
     }
 }

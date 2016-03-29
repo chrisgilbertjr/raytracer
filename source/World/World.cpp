@@ -1,6 +1,13 @@
 
+#include "Samplers\MultiJittered.h"
+#include "Samplers\Simple.h"
+#include "Samplers\NRooks.h"
+#include "Samplers\Hammersley.h"
+#include "Samplers\Jittered.h"
+#include "Samplers\PureRandom.h"
 #include "Lights\AmbientLight.h"
 #include "World\World.h"
+#include "BRDFs\BRDF.h"
 #include "qdbmp.h"
 #include <chrono>
 
@@ -20,7 +27,7 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
     {
         for (unsigned x = 0; x < width; ++x)
         {
-            Color255 color = MapColor255(buffer.GetColor(x, (height-y)));
+            Color255 color = MapColor255(buffer.GetColor(x, (height-y-1)));
             BMP_SetPixelRGB(bmp, x, y, color.r, color.g, color.b);
         }
     }
@@ -44,6 +51,8 @@ World::World(int samples)
     , m_background(0.f, 0.f, 0.f)
 {
     g_samples = samples;
+    g_pathSampler = new PureRandom(1);
+    g_pathSampler->MapSamplesToHemisphere();
 }
 
 /// --------------------------------------------------------------------------- Constructor
@@ -58,6 +67,8 @@ World::World(Light* ambient, int samples)
     , m_background(0.f, 0.f, 0.f)
 {
     g_samples = samples;
+    g_pathSampler = new PureRandom(samples);
+    g_pathSampler->MapSamplesToHemisphere();
 }
 
 /// --------------------------------------------------------------------------- Copy Constructor
@@ -90,13 +101,13 @@ World::Render(const OutputOptions& options) const
     if (m_camera)
     {
         {
-            std::chrono::time_point<std::chrono::system_clock> start, end;
-            start = std::chrono::system_clock::now();
+            //std::chrono::time_point<std::chrono::system_clock> start, end;
+            //start = std::chrono::system_clock::now();
             m_camera->RenderThreads(this, options);
-            end = std::chrono::system_clock::now();
+            //end = std::chrono::system_clock::now();
 
-            std::chrono::duration<double> seconds = end - start;
-            printf("threads %7f seconds\n", seconds.count());
+            //std::chrono::duration<double> seconds = end - start;
+            //printf("threads %7f seconds\n", seconds.count());
         }
     }
 }

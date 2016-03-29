@@ -5,6 +5,8 @@
 #include "..\include\RaytracerAPI.h"
 #include "Scenes.h"
 
+void Demo_Sampler(const char* output, Array<Vector>& positions, Sampler* sampler, int samples);
+
 void Demo_BareBones(const char* output, int samples);
 
 void Demo_Shapes(const char* output, int samples);

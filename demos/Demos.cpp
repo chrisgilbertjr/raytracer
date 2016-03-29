@@ -2,6 +2,34 @@
 #include "Demos.h"
 
 void 
+Demo_Sampler(const char* output, Array<Vector>& positions, Sampler* sampler, int samples)
+{
+    World world(samples);
+    world.SetResolution(100, 100);
+    world.SetBackground(Color::Black());
+    world.SetRaytracer(new PureColor());
+    world.SetSampler(new Hammersley(samples));
+    world.SetCamera(new Pinhole());
+
+    Matte* material;
+    Sphere* sphere;
+
+    for (int i = 0; i < 25000; ++i)
+    {
+        material = new Matte();
+        material->SetColor(Color::Red());
+
+        sphere = new Sphere(sampler->SampleHemisphere()*40.f, 1.0f);
+        //sphere = new Sphere((positions[i]*499.f) - Vector(249.f, 249.f, 0.0f), 1.0f);
+        sphere->SetMaterial(material);
+
+        world.PushObject(sphere);
+    }
+
+    world.Render(Options(EXPORT_BMP, output));
+}
+
+void 
 Demo_BareBones(const char* output, int samples)
 {
     World world(samples);
@@ -243,7 +271,7 @@ Demo_CornellBox(const char* output, int samples)
     world.SetRaytracer(new PathTracer());
     world.SetSampler(new Hammersley(samples));
     world.SetCamera(new Pinhole());
-    world.SetDepth(10);
+    world.SetDepth(6);
 
     Scene_CornellBox(&world);
 

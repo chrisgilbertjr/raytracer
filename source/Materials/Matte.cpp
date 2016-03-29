@@ -178,7 +178,7 @@ Matte::PathShade(ShadeRecord& record) const
     Ray reflected = Ray(record.worldPoint, R);
     const Raytracer* tracer = record.world->GetRaytracer();
 
-    return f * tracer->TraceRay(record.world, reflected, record.depth + 1) * NoR / pdf;
+    return f * tracer->TraceRay(record.world, reflected, record.depth + 1) * NoR / (pdf + EPSILON);
 }
 
 /// --------------------------------------------------------------------------- EOF

@@ -748,10 +748,10 @@ Scene_CornellBox(World* world)
     /// light
     Rectangle* rect;
     Emmisive* emmisive = new Emmisive();
-    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 35.f);
+    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 20.f);
     rect = new Rectangle(Vector(-12.5f, 49.99f, 370.0f), Vector(0.0f, 0.f, -15.f), Vector(25.0f, 0.0f, 0.0f));
     rect->SetMaterial(emmisive);
-    world->PushObject(rect);
+    //world->PushObject(rect);
 
     /// top
     material = new Matte();
@@ -791,10 +791,10 @@ Scene_CornellBox(World* world)
     world->PushObject(rect);
 
     ///// front
-    material = new Matte();
-    rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
-    material->SetDiffuse(Color::White(), 1.0f);
-    rect->SetMaterial(material);
+    //material = new Matte();
+    //rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
+    //material->SetDiffuse(Color::White(), 1.0f);
+    //rect->SetMaterial(material);
     //world->PushObject(rect);
 
 

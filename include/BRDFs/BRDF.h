@@ -10,6 +10,8 @@
 /// forward declaration
 class Sampler;
 
+extern Sampler* g_pathSampler;
+
 /// bidirectional reflectance distruction functions
 /// base class for all lighting equations
 class BRDF

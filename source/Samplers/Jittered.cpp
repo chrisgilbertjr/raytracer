@@ -57,7 +57,7 @@ Jittered::GenerateSamples()
     	{
             for (int j = 0; j < n; ++j)
     		{
-                Vector sample((j+RandReal())/n, (i+RandReal())/n, 0.f);
+                Vector sample(((real)j+RandReal())/(real)n, ((real)i+RandReal())/(real)n, 0.f);
                 m_samples.Push(sample);
     		}
     	}

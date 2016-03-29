@@ -34,6 +34,9 @@ public:
 
     /// generate the samples
     virtual void GenerateSamples();
+
+    virtual Vector SampleUnitSquare();
+    virtual Vector SampleHemisphere();
 };
 
 /// @}

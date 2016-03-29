@@ -45,7 +45,7 @@ PureRandom::GenerateSamples()
     {
         for (int j = 0; j < m_sampleCount; ++j)
         {
-            m_samples.Push(Vector(RandReal(), RandReal(), 0.f));
+            m_samples.Push(Vector(RandReal(0, 1.f), RandReal(0, 1.f), 0.f));
         }
     }
 }

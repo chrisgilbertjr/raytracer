@@ -17,7 +17,7 @@ private:
     /// so the sample given an array of samples
     Vector DoSample(const Array<Vector>& samples);
 
-protected:
+public:
     Array<Vector> m_samples;         /// unit square samples array
     Array<Vector> m_diskSamples;     /// samples on a disk
     Array<Vector> m_hemiSamples;     /// samples on a hemisphere
@@ -75,13 +75,13 @@ public:
     void MapSamplesToSphere();
     
     /// samples the unit square 
-    Vector SampleUnitSquare();
+    virtual Vector SampleUnitSquare();
 
     /// samples the unit disk
     Vector SampleUnitDisk();
 
     /// samples the unit hemisphere
-    Vector SampleHemisphere();
+    virtual Vector SampleHemisphere();
 
     /// samples the unit sphere
     Vector SampleSphere();
