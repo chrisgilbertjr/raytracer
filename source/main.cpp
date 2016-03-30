@@ -28,8 +28,17 @@ main()
     //Demo_CornellBox("14_CornellBox100.bmp",  100);
     //Demo_CornellBox("14_CornellBox200.bmp",  200);
 
-    Demo_CornellBox("14_CornellBox3.bmp", 100);
-    //Demo_CornellBox("14_CornellBox.bmp", 10000);
+    Demo_CornellBox("14_CornellBox50000_10.bmp", 50000);
+    //Sampler* pr = new PureRandom(50, 1);
+    //pr->MapSamplesToHemisphere();
+
+    //for (int i = 0; i < 50; i++)
+    //{
+    //    fprintf(stdout, "%.7f, %.7f, %.7f\n", pr->m_hemiSamples[i].x, pr->m_hemiSamples[i].y, pr->m_hemiSamples[i].z);
+    //}
+
+    //Demo_Sampler("sampler.bmp", pr->m_hemiSamples, pr, 1);
+    while (1) {};
 }
 
 //int 

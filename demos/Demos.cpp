@@ -14,13 +14,12 @@ Demo_Sampler(const char* output, Array<Vector>& positions, Sampler* sampler, int
     Matte* material;
     Sphere* sphere;
 
-    for (int i = 0; i < 25000; ++i)
+    for (int i = 0; i < 50; ++i)
     {
         material = new Matte();
         material->SetColor(Color::Red());
 
-        sphere = new Sphere(sampler->SampleHemisphere()*40.f, 1.0f);
-        //sphere = new Sphere((positions[i]*499.f) - Vector(249.f, 249.f, 0.0f), 1.0f);
+        sphere = new Sphere(sampler->m_hemiSamples[i]*40.f, 1.0f);
         sphere->SetMaterial(material);
 
         world.PushObject(sphere);
@@ -271,7 +270,7 @@ Demo_CornellBox(const char* output, int samples)
     world.SetRaytracer(new PathTracer());
     world.SetSampler(new Hammersley(samples));
     world.SetCamera(new Pinhole());
-    world.SetDepth(6);
+    world.SetDepth(10);
 
     Scene_CornellBox(&world);
 

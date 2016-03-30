@@ -748,10 +748,10 @@ Scene_CornellBox(World* world)
     /// light
     Rectangle* rect;
     Emmisive* emmisive = new Emmisive();
-    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 20.f);
-    rect = new Rectangle(Vector(-12.5f, 49.99f, 370.0f), Vector(0.0f, 0.f, -15.f), Vector(25.0f, 0.0f, 0.0f));
+    emmisive->SetEmmisive(Color(1.0f, 0.73f, 0.4f), 30.f);
+    rect = new Rectangle(Vector(-12.5f, 49.99f, 380.0f), Vector(0.0f, 0.f, -15.f), Vector(25.0f, 0.0f, 0.0f));
     rect->SetMaterial(emmisive);
-    //world->PushObject(rect);
+    world->PushObject(rect);
 
     /// top
     material = new Matte();
@@ -790,7 +790,7 @@ Scene_CornellBox(World* world)
     rect->SetMaterial(material);
     world->PushObject(rect);
 
-    ///// front
+    /// front
     //material = new Matte();
     //rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
     //material->SetDiffuse(Color::White(), 1.0f);
@@ -798,7 +798,7 @@ Scene_CornellBox(World* world)
     //world->PushObject(rect);
 
 
-    /// ** BOXES **
+    ///// ** BOXES **
 
 
     /// back - front
@@ -806,6 +806,7 @@ Scene_CornellBox(World* world)
     rect = new Rectangle(Vector(-28.0f, -50.f, 365.0f), Vector(0.0f, 62.f, 0.f), Vector(29.5f, 0.0f, -8.0f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
+    rect->FlipNormal();
     world->PushObject(rect);
 
     /// back - back
@@ -827,8 +828,10 @@ Scene_CornellBox(World* world)
     rect = new Rectangle(Vector(1.5f, -50.f, 357.0f), Vector(0.0f, 62.f, 0.f), Vector(-6.5f, 0.0f, -12.5f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
+    rect->FlipNormal();
     world->PushObject(rect);
 
+    /// back - top
     material = new Matte();
     rect = new Rectangle(Vector(-28.0f, 12.f, 365.0f), Vector(26.f, 0.0f, -13.0f), Vector(-3.5f, 0.f, -12.75f));
     material->SetDiffuse(Color::White(), 1.0f);
@@ -842,6 +845,7 @@ Scene_CornellBox(World* world)
     rect = new Rectangle(Vector(-2.5f, -50.f, 380.0f), Vector(0.0f, 30.f, 0.f), Vector(29.5f, 0.0f, 6.0f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
+    rect->FlipNormal();
     world->PushObject(rect);
 
     /// front - back
@@ -863,6 +867,7 @@ Scene_CornellBox(World* world)
     rect = new Rectangle(Vector(27.0f, -50.f, 386.0f), Vector(0.0f, 30.f, 0.f), Vector(9.0f, 0.0f, -17.5f));
     material->SetDiffuse(Color::White(), 1.0f);
     rect->SetMaterial(material);
+    rect->FlipNormal();
     world->PushObject(rect);
 
     /// front - top
