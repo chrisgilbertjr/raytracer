@@ -2,6 +2,7 @@
 #include "Cameras\Camera.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
 
 Camera::Camera()
     : m_view(0.f, 0.f, 0.f)
@@ -14,6 +15,7 @@ Camera::Camera()
     , m_exposure(1.f)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Camera::Camera(const Camera& camera)
     : m_view(camera.m_view)
@@ -26,13 +28,16 @@ Camera::Camera(const Camera& camera)
     , m_exposure(camera.m_exposure)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 Camera::~Camera() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Camera& 
 Camera::operator=(Camera camera)
 {
+    /// copy and swap
     Swap<Vector>(m_view, camera.m_view);
     Swap<Vector>(m_eye, camera.m_eye);
     Swap<Vector>(m_up, camera.m_up);
@@ -45,6 +50,7 @@ Camera::operator=(Camera camera)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
 
 Camera* 
 Camera::Clone() const
@@ -53,6 +59,7 @@ Camera::Clone() const
     return NULL;
 }
 
+/// --------------------------------------------------------------------------- Render
 
 void
 Camera::Render(const World* world, const OutputOptions& options)
@@ -60,11 +67,15 @@ Camera::Render(const World* world, const OutputOptions& options)
     Assert(false);
 }
 
+/// --------------------------------------------------------------------------- RenderThreads
+
 void
 Camera::RenderThreads(const World* world, const OutputOptions& options)
 {
     Assert(false);
 }
+
+/// --------------------------------------------------------------------------- ComputeBasis
 
 void 
 Camera::ComputeBasis()
@@ -84,6 +95,7 @@ Camera::ComputeBasis()
             m_v.Set(1.f, 0.f, 0.f);
             m_w.Set(0.f, 1.f, 0.f);
         }
+        /// camera looking up
         else if (m_eye.y < m_view.y)
         {
             m_v.Set(1.f, 0.f, 0.f);
@@ -92,3 +104,5 @@ Camera::ComputeBasis()
         }
     }
 }
+
+/// --------------------------------------------------------------------------- EOF

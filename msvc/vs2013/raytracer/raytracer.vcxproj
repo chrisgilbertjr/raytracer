@@ -172,11 +172,9 @@
     <ClCompile Include="..\..\..\source\Materials\Matte.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Phong.cpp" />
     <ClCompile Include="..\..\..\source\Materials\Reflective.cpp" />
-    <ClCompile Include="..\..\..\source\Objects\CompoundObject.cpp" />
-    <ClCompile Include="..\..\..\source\Objects\ConvexSphere.cpp" />
+    <ClCompile Include="..\..\..\source\Objects\ConcaveSphere.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Cylinder.cpp" />
     <ClCompile Include="..\..\..\source\Objects\LightObject.cpp" />
-    <ClCompile Include="..\..\..\source\Objects\Mesh.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Object.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Plane.cpp" />
     <ClCompile Include="..\..\..\source\Objects\Rectangle.cpp" />

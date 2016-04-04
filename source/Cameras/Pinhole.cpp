@@ -5,10 +5,14 @@
 #include <thread>
 #include <vector>
 
-static real g_display = 0.01f;
-static real g_pixels = 0;
-static real g_count = 0;
+#ifndef NDEBUG
+static real g_display = 0.01f; /// percent to display
+static real g_pixels = 0;      /// pixel count
+static real g_count = 0;       /// pixels completed
+#endif
 static int g_threads = 4;
+
+/// --------------------------------------------------------------------------- constructor
 
 Pinhole::Pinhole()
     : Camera()
@@ -16,6 +20,7 @@ Pinhole::Pinhole()
     , m_zoom(1.f)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Pinhole::Pinhole(const Pinhole& pinhole)
     : Camera(pinhole)
@@ -23,9 +28,11 @@ Pinhole::Pinhole(const Pinhole& pinhole)
     , m_zoom(pinhole.m_zoom)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 Pinhole::~Pinhole() {} 
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Pinhole&
 Pinhole::operator=(Pinhole pinhole)
@@ -38,6 +45,7 @@ Pinhole::operator=(Pinhole pinhole)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
 
 Camera*
 Pinhole::Clone() const
@@ -45,6 +53,7 @@ Pinhole::Clone() const
     return static_cast<Camera*>(new Pinhole(*this));
 }
 
+/// --------------------------------------------------------------------------- ComputeRayDirection
 
 Vector 
 Pinhole::ComputeRayDirection(const Vector& point) const
@@ -53,7 +62,7 @@ Pinhole::ComputeRayDirection(const Vector& point) const
     return Normalize(m_u*point.x + m_v*point.y - m_w*m_distance);
 }
 
-#define PRINT_COLOR(c) fprintf(stdout, "%.7f, %.7f, %.7f\n", c.r, c.g, c.b);
+/// --------------------------------------------------------------------------- Render
 
 void
 Pinhole::Render(const World* world, const OutputOptions& options)
@@ -126,10 +135,14 @@ Pinhole::Render(const World* world, const OutputOptions& options)
     world->Export(buffer, options);
     printf("Export successful!\n\n\n");
 
+#ifndef NDEBUG
     g_display = 0.01f;
     g_pixels = 0;
     g_count = 0;
+#endif
 }
+
+/// --------------------------------------------------------------------------- RenderThreads
 
 void 
 Pinhole::RenderThreads(const World* world, const OutputOptions& options)
@@ -153,8 +166,10 @@ Pinhole::RenderThreads(const World* world, const OutputOptions& options)
     /// create the color buffer used for the output image
     ColorBuffer buffer(width, height, background);
 
+#ifndef NDEBUG
     g_pixels = (real)(height * width);
     g_count = 0.f;
+#endif
 
     std::vector<std::thread> threads;
 
@@ -176,10 +191,14 @@ Pinhole::RenderThreads(const World* world, const OutputOptions& options)
     world->Export(buffer, options);
     printf("Export successful!\n\n\n");
 
+#ifndef NDEBUG
     g_display = 0.01f;
     g_pixels = 0;
     g_count = 0;
+#endif
 }
+
+/// --------------------------------------------------------------------------- ComputePixel
 
 void 
 Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptions& options, int xstart, int ystart)
@@ -229,6 +248,7 @@ Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptio
             /// set the color of the color buffer
             buffer->SetColor(x, y, plane.RemapColor(pixel));
 
+#ifndef NDEBUG
             g_count += 1.0f;
 
             if ((g_count / g_pixels) > g_display)
@@ -236,6 +256,9 @@ Pinhole::ComputePixel(const World* world, ColorBuffer* buffer, const OutputOptio
                 printf("%.1f\n", g_display * 100.f);
                 g_display += 0.01f;
             }
+#endif
         }
     }
 }
+
+/// --------------------------------------------------------------------------- EOF

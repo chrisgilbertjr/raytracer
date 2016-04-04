@@ -22,7 +22,7 @@ PointLight::Attenuation(real distance) const
     return Saturate(att);
 }
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 PointLight::PointLight()
     : m_position(0.f, 0.f, 0.f)
@@ -31,7 +31,7 @@ PointLight::PointLight()
     , m_radius(100.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 PointLight::PointLight(const Vector& position)
     : m_position(position)
@@ -40,7 +40,7 @@ PointLight::PointLight(const Vector& position)
     , m_radius(100.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 PointLight::PointLight(const Color& color, const real intensity)
     : m_position(0.f, 0.f, 0.f)
@@ -49,7 +49,7 @@ PointLight::PointLight(const Color& color, const real intensity)
     , m_radius(100.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 PointLight::PointLight(const Vector& position, const Color& color, real radius, real intensity)
     : m_position(position)
@@ -58,7 +58,7 @@ PointLight::PointLight(const Vector& position, const Color& color, real radius, 
     , m_radius(radius)
 {}
 
-/// --------------------------------------------------------------------------- Copy assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 PointLight::PointLight(const PointLight& light)
     : m_position(light.m_position)
@@ -67,11 +67,11 @@ PointLight::PointLight(const PointLight& light)
     , m_radius(light.m_radius)
 {}
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 PointLight::~PointLight() {}
 
-/// --------------------------------------------------------------------------- Assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 PointLight& 
 PointLight::operator=(PointLight light)

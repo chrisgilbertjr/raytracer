@@ -1,28 +1,28 @@
 
 #include "Materials\Material.h"
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 Material::Material()
     : m_color(Color::Black())
 {}
 
-/// --------------------------------------------------------------------------- Copy constructor
+/// --------------------------------------------------------------------------- copy constructor
 
 Material::Material(const Material& material)
     : m_color(material.m_color)
 {}
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 Material::~Material() {}
 
-/// --------------------------------------------------------------------------- Copy assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Material& 
 Material::operator=(Material material)
 {
-    Assert(false);
+    Swap<Color>(m_color, material.m_color);
     return *this;
 }
 

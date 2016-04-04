@@ -2,21 +2,32 @@
 #include "Materials\Emmisive.h"
 #include "BRDFs\ShadeRecord.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Emmisive::Emmisive()
-    : m_color(Color::White())
+    : Material()
+    , m_color(Color::White())
     , m_intensity(2000.f)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
+
 Emmisive::Emmisive(const Emmisive& emmisive)
-    : m_color(emmisive.m_color)
+    : Material()
+    , m_color(emmisive.m_color)
     , m_intensity(emmisive.m_intensity)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 Emmisive::~Emmisive() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Emmisive& 
 Emmisive::operator=(Emmisive emmisive)
 {
+    /// copy and swap
     Material::operator=(emmisive);
     Swap<Color>(m_color, emmisive.m_color);
     Swap<real>(m_intensity, emmisive.m_intensity);
@@ -24,17 +35,23 @@ Emmisive::operator=(Emmisive emmisive)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Material* 
 Emmisive::Clone() const
 {
     return static_cast<Material*>(new Emmisive(*this));
 }
 
+/// --------------------------------------------------------------------------- Shade
+
 Color 
 Emmisive::Shade(ShadeRecord& record) const
 {
     return this->GetEmmisive();
 }
+
+/// --------------------------------------------------------------------------- AreaLightShade
 
 Color 
 Emmisive::AreaLightShade(ShadeRecord& record) const
@@ -49,14 +66,20 @@ Emmisive::AreaLightShade(ShadeRecord& record) const
     }
 }
 
+/// --------------------------------------------------------------------------- PathShade
+
 Color 
 Emmisive::PathShade(ShadeRecord& record) const
 {
     return this->GetEmmisive();
 }
 
+/// --------------------------------------------------------------------------- GetEmmisive
+
 Color 
 Emmisive::GetEmmisive() const
 {
     return m_color * m_intensity;
 }
+
+/// --------------------------------------------------------------------------- EOF

@@ -3,15 +3,16 @@
 #include "Lights\Light.h"
 #include "World\World.h"
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 Matte::Matte()
-    : m_ambient()
+    : Material()
+    , m_ambient()
     , m_diffuse()
     , m_customTexture(false)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 Matte::Matte(Texture* texture)
     : Material()
@@ -21,15 +22,16 @@ Matte::Matte(Texture* texture)
 {
 }
 
-/// --------------------------------------------------------------------------- Copy constructor
+/// --------------------------------------------------------------------------- copy constructor
 
 Matte::Matte(const Matte& matte)
-    : m_ambient(matte.m_ambient)
+    : Material(matte)
+    , m_ambient(matte.m_ambient)
     , m_diffuse(matte.m_diffuse)
     , m_customTexture(matte.m_customTexture)
 {}
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 Matte::~Matte()
 {
@@ -143,6 +145,7 @@ Matte::AreaLightShade(ShadeRecord& record) const
         {
             bool inShadow = false;
 
+            /// check if the point is in a shadow
             if (light->CastsShadow())
             {
                 inShadow = light->InShadow(Ray(record.worldPoint, L), record);
@@ -150,6 +153,7 @@ Matte::AreaLightShade(ShadeRecord& record) const
 
             if (!inShadow)
             {
+                /// compute the lighting equation
                 radiance += m_diffuse.F(record, L, E)
                          *  light->Radiance(record)
                          *  light->G(record)
@@ -172,12 +176,14 @@ Matte::PathShade(ShadeRecord& record) const
     Vector R;
     Vector E = -record.ray.direction;
 
+    /// sample the lights
     Color f = m_diffuse.SampleF(record, R, E, pdf);
     float NoR = Dot(record.normal, R);
 
     Ray reflected = Ray(record.worldPoint, R);
     const Raytracer* tracer = record.world->GetRaytracer();
 
+    /// compute the lighting equation
     return f * tracer->TraceRay(record.world, reflected, record.depth + 1) * NoR / (pdf + EPSILON);
 }
 

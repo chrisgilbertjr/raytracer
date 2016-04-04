@@ -1,21 +1,23 @@
 
 #include "Lights\AmbientLight.h"
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 AmbientLight::AmbientLight()
-    : m_color(Color::White())
+    : Light()
+    , m_color(Color::White())
     , m_intensity(1.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 AmbientLight::AmbientLight(const Color& color, const real intensity)
-    : m_color(color)
+    : Light()
+    , m_color(color)
     , m_intensity(intensity)
 {}
 
-/// --------------------------------------------------------------------------- Copy constructor
+/// --------------------------------------------------------------------------- copy constructor
 
 AmbientLight::AmbientLight(const AmbientLight& light)
     : Light(light)
@@ -25,14 +27,15 @@ AmbientLight::AmbientLight(const AmbientLight& light)
 
 /// --------------------------------------------------------------------------- Destructor
 
-AmbientLight::~AmbientLight()
-{}
+AmbientLight::~AmbientLight() {}
 
 /// --------------------------------------------------------------------------- Copy assignment operator
 
 AmbientLight& 
 AmbientLight::operator=(AmbientLight light)
 {
+    /// copy and swap
+    Light::operator=(light);
     Swap<Color>(light.m_color, m_color);
     Swap<real>(light.m_intensity, m_intensity);
 

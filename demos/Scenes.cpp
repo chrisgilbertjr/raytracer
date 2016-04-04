@@ -676,13 +676,6 @@ Scene_PathShader(World* world)
     rect->SetMaterial(emmisive04);
     world->PushObject(rect);
 
-    //material = new Matte(checker);
-    //shape = new Sphere(Vector(0.0f, -100.0f, 200.0f), 25.f);
-    //material->SetDiffuse(Color::White(), 1.0f);
-    //material->SetAmbient(Color::White(), 0.0f);
-    //shape->SetMaterial(emmisive05);
-    //world->PushObject(shape);
-
     /// top
     material = new Matte();
     rect = new Rectangle(Vector(-400.f, 200.f, 600.0f), Vector(0.0f, 0.f, -1200.0f), Vector(1200.f, 0.0f, 0.0f));
@@ -790,16 +783,8 @@ Scene_CornellBox(World* world)
     rect->SetMaterial(material);
     world->PushObject(rect);
 
-    /// front
-    //material = new Matte();
-    //rect = new Rectangle(Vector(-width, 50.f, 501.0f), Vector(0.0f, -width2, 0.f), Vector(width2, 0.0f, 0.0f));
-    //material->SetDiffuse(Color::White(), 1.0f);
-    //rect->SetMaterial(material);
-    //world->PushObject(rect);
-
 
     ///// ** BOXES **
-
 
     /// back - front
     material = new Matte();

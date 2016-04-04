@@ -1,6 +1,8 @@
 
 #include "Objects\Rectangle.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Rectangle::Rectangle()
     : Object()
 {
@@ -12,6 +14,8 @@ Rectangle::Rectangle()
     m_v2Sq = m_vertices[2].LengthSquared();
     m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Rectangle::Rectangle(const Vector& a, real width, real height, bool reverse)
     : Object()
@@ -30,6 +34,8 @@ Rectangle::Rectangle(const Vector& a, real width, real height, bool reverse)
     }
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 Rectangle::Rectangle(const Vector& a, const Vector& b, const Vector& c)
     : Object()
 {
@@ -41,6 +47,8 @@ Rectangle::Rectangle(const Vector& a, const Vector& b, const Vector& c)
     m_v2Sq = m_vertices[2].LengthSquared();
     m_area = Sqrt(m_v1Sq) * Sqrt(m_v2Sq);
 }
+
+/// --------------------------------------------------------------------------- copy constructor
 
 Rectangle::Rectangle(const Rectangle& rect)
     : Object(rect)
@@ -54,13 +62,17 @@ Rectangle::Rectangle(const Rectangle& rect)
     m_vertices[2] = rect.m_vertices[2];
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 Rectangle::~Rectangle() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Rectangle& 
 Rectangle::operator=(Rectangle rect)
 {
+    /// copy and swap
     Object::operator=(rect);
-
     Swap<Vector>(m_vertices[0], rect.m_vertices[0]);
     Swap<Vector>(m_vertices[1], rect.m_vertices[1]);
     Swap<Vector>(m_vertices[2], rect.m_vertices[2]);
@@ -72,15 +84,20 @@ Rectangle::operator=(Rectangle rect)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Object* 
 Rectangle::Clone() const
 {
     return static_cast<Object*>(new Rectangle(*this));
 }
 
+/// --------------------------------------------------------------------------- Query
+
 Raycast 
 Rectangle::Query(const Ray& ray, ShadeRecord& record) const
 {
+    /// transform raycast
     Raycast result = Object::InitRaycastRecord(ray, record);
 
     real t = Dot((m_vertices[0] - ray.origin), m_normal) / Dot(ray.direction, m_normal);
@@ -90,6 +107,7 @@ Rectangle::Query(const Ray& ray, ShadeRecord& record) const
         return result;
     }
 
+    /// check if the ray is outside of the rects limits
     Vector p = ray.origin + t * ray.direction;
     Vector d = p - m_vertices[0];
 
@@ -107,11 +125,14 @@ Rectangle::Query(const Ray& ray, ShadeRecord& record) const
         return result;;
     }
 
+    /// collision
     AssignRaycastRecord(result, record, m_normal, p, t);
     ComputeUV(record);
     
     return result;
 }
+
+/// ---------------------------------------------------------------------------
 
 bool 
 Rectangle::ShadowHit(const Ray& ray, float& tmin) const
@@ -123,6 +144,7 @@ Rectangle::ShadowHit(const Ray& ray, float& tmin) const
         return false;
     }
 
+    /// check if the ray is outside of the rects limits
     Vector p = ray.origin + t * ray.direction;
     Vector d = p - m_vertices[0];
 
@@ -140,14 +162,19 @@ Rectangle::ShadowHit(const Ray& ray, float& tmin) const
         return false;
     }
 
+    /// collision
     return true;
 }
+
+/// ---------------------------------------------------------------------------
 
 float 
 Rectangle::pdf(const ShadeRecord& record) const
 {
     return 1.f / m_area;
 }
+
+/// ---------------------------------------------------------------------------
 
 void 
 Rectangle::ComputeUV(ShadeRecord& record) const
@@ -159,3 +186,4 @@ Rectangle::ComputeUV(ShadeRecord& record) const
     record.v = Dot(nu, record.localPoint) / Dot(nv, m_vertices[1]);
 }
 
+/// ---------------------------------------------------------------------------

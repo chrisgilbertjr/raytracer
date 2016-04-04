@@ -1,6 +1,8 @@
 
 #include "Objects\Cylinder.h"
 
+/// --------------------------------------------------------------------------- Quadratic
+
 void 
 Cylinder::Quadratic(const Ray& r, real& a, real& b, real& c, real& d) const
 {
@@ -10,12 +12,17 @@ Cylinder::Quadratic(const Ray& r, real& a, real& b, real& c, real& d) const
     d = b * b - 4.f * a * c;
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 Cylinder::Cylinder()
-    : m_center(0.f)
+    : Object()
+    , m_center(0.f)
     , m_radius(10.f)
     , m_min(0.f)
     , m_max(25.f)
 {}
+
+/// --------------------------------------------------------------------------- copy constructor
 
 Cylinder::Cylinder(const Cylinder& cylinder)
     : Object(cylinder)
@@ -26,6 +33,8 @@ Cylinder::Cylinder(const Cylinder& cylinder)
 {
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 Cylinder::Cylinder(const Vector& center, real height, real radius)
     : Object()
     , m_center(center)
@@ -34,6 +43,8 @@ Cylinder::Cylinder(const Vector& center, real height, real radius)
     , m_max(height)
 {
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Cylinder::Cylinder(const Vector& center, real min, real max, real radius)
     : Object()
@@ -45,12 +56,17 @@ Cylinder::Cylinder(const Vector& center, real min, real max, real radius)
     m_transform.SetPosition(center);
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 Cylinder::~Cylinder()
 {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Cylinder& 
 Cylinder::operator=(Cylinder cylinder)
 {
+    /// copy and swap
     Object::operator=(cylinder);
     Swap<Vector>(m_center, cylinder.m_center);
     Swap<real>(m_radius, cylinder.m_radius);
@@ -60,21 +76,28 @@ Cylinder::operator=(Cylinder cylinder)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Object* 
 Cylinder::Clone() const
 {
     return static_cast<Object*>(new Cylinder(*this));
 }
 
+/// --------------------------------------------------------------------------- Query
+
 Raycast 
 Cylinder::Query(const Ray& ray, ShadeRecord& record) const
 {
+    /// transform raycast
     Ray r = m_transform.TransformRaycast(ray);
     Raycast result = Object::InitRaycastRecord(ray, record);
 
+    /// quad coeffs
     real a, b, c, d;
     Quadratic(r, a, b, c, d);
 
+    ///check for intersections
     if (d >= 0.0f)
     {
         real sDisc = Sqrt(d);
@@ -87,9 +110,11 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
 
             if (y > m_min && y < m_max)
             {
+                /// collision
                 Vector p = ray.direction * t;
                 Vector n = Normalize(Vector((r.origin.x + t * r.direction.x) * (1.f/m_radius), 0.0f, (r.origin.z + t * r.direction.z) * (1.f/m_radius)));
 
+                /// check for inner-collisions
                 if (Dot(-r.direction, n) < 0.f)
                 {
                     n = -n;
@@ -109,9 +134,11 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
 
             if (y > m_min && y < m_max)
             {
+                /// collision
                 Vector p = ray.direction * t; 
                 Vector n = Normalize(Vector((r.origin.x + t * r.direction.x) * (1.f / m_radius), 0.0f, (r.origin.z + t * r.direction.z) * (1.f / m_radius)));
 
+                /// check for inner-collisions
                 if (Dot(-r.direction, n) < 0.f)
                 {
                     n = -n;
@@ -127,14 +154,19 @@ Cylinder::Query(const Ray& ray, ShadeRecord& record) const
     return result;
 }
 
+/// --------------------------------------------------------------------------- ShadowHit
+
 bool 
 Cylinder::ShadowHit(const Ray& ray, float& tmin) const
 {
+    /// transform the ray
     Ray r = m_transform.TransformRaycast(ray);
 
+    /// quad coeffs
     real a, b, c, d;
     Quadratic(r, a, b, c, d);
 
+    /// check for collisions
     if (d >= 0.0f)
     {
         real sDisc = Sqrt(d);
@@ -147,6 +179,7 @@ Cylinder::ShadowHit(const Ray& ray, float& tmin) const
 
             if (y > m_min && y < m_max)
             {
+                /// collision
                 tmin = t;
                 return true;
             }
@@ -160,6 +193,7 @@ Cylinder::ShadowHit(const Ray& ray, float& tmin) const
 
             if (y > m_min && y < m_max)
             {
+                /// collision
                 tmin = t;
                 return true;
             }
@@ -168,6 +202,8 @@ Cylinder::ShadowHit(const Ray& ray, float& tmin) const
 
     return false;
 }
+
+/// ---------------------------------------------------------------------------
 
 void 
 Cylinder::ComputeUV(ShadeRecord& record) const
@@ -184,3 +220,5 @@ Cylinder::ComputeUV(ShadeRecord& record) const
     record.u = phi / (2.f * Pi);
     record.v = ((p.y + 1.f) / 2.f) / (m_max - m_min);
 }
+
+/// ---------------------------------------------------------------------------

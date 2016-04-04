@@ -2,12 +2,16 @@
 #include "Lights\AreaLight.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 AreaLight::AreaLight()
     : m_object(NULL)
     , m_point()
     , m_normal()
     , m_wi()
 {}
+
+/// --------------------------------------------------------------------------- constructor
 
 AreaLight::AreaLight(LightObject* object)
     : m_object(object)
@@ -18,6 +22,8 @@ AreaLight::AreaLight(LightObject* object)
     if (!object) Assert(false);
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 AreaLight::AreaLight(const AreaLight& light)
     : Light(light)
     , m_object(light.m_object)
@@ -26,7 +32,11 @@ AreaLight::AreaLight(const AreaLight& light)
     , m_wi(light.m_wi)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 AreaLight::~AreaLight() { if (m_object) delete m_object; }
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 AreaLight& 
 AreaLight::operator=(AreaLight light)
@@ -41,11 +51,15 @@ AreaLight::operator=(AreaLight light)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Light* 
 AreaLight::Clone() const
 {
     return static_cast<Light*>(new AreaLight(*this));
 }
+
+/// --------------------------------------------------------------------------- GetDirection
 
 Vector 
 AreaLight::GetDirection(ShadeRecord& record)
@@ -56,6 +70,8 @@ AreaLight::GetDirection(ShadeRecord& record)
 
     return m_wi;
 }
+
+/// --------------------------------------------------------------------------- Radiance
 
 Color 
 AreaLight::Radiance(ShadeRecord& record)
@@ -72,11 +88,15 @@ AreaLight::Radiance(ShadeRecord& record)
     }
 }
 
+/// --------------------------------------------------------------------------- CastsShadow
+
 bool 
 AreaLight::CastsShadow() const
 {
     return m_shadows;
 }
+
+/// --------------------------------------------------------------------------- InShadow
 
 bool 
 AreaLight::InShadow(const Ray& ray, ShadeRecord& record) const
@@ -99,6 +119,8 @@ AreaLight::InShadow(const Ray& ray, ShadeRecord& record) const
     return false;
 }
 
+/// --------------------------------------------------------------------------- G
+
 real 
 AreaLight::G(const ShadeRecord& record) const
 {
@@ -108,8 +130,12 @@ AreaLight::G(const ShadeRecord& record) const
     //return Dot(-m_normal, m_wi) / LengthSquared(record.worldPoint - m_point);
 }
 
+/// --------------------------------------------------------------------------- pdf
+
 real 
 AreaLight::pdf(const ShadeRecord& record) const
 {
     return m_object->pdf(record);
 }
+
+/// --------------------------------------------------------------------------- EOF

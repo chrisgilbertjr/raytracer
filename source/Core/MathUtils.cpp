@@ -3,6 +3,8 @@
 
 real shadowEpsilon = 1e-5f;
 
+/// --------------------------------------------------------------------------- ACos
+
 real 
 Acos(real val)
 {
@@ -19,7 +21,9 @@ Acos(real val)
     return acos(val);
 }
 
-/// Vector --------------------------------------------------------------------
+
+/// Vector 
+/// --------------------------------------------------------------------------- constructor
 
 Vector::Vector()
     : x(0)
@@ -28,6 +32,7 @@ Vector::Vector()
     , w(1)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Vector::Vector (const Vector& vector)
     : x(vector.x)
@@ -36,6 +41,7 @@ Vector::Vector (const Vector& vector)
     , w(vector.w)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 Vector::Vector (real val)
     : x(val)
@@ -44,6 +50,7 @@ Vector::Vector (real val)
     , w(1.0)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 Vector::Vector(real x, real y, real z)
     : x(x)
@@ -52,6 +59,7 @@ Vector::Vector(real x, real y, real z)
     , w(1)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 Vector::Vector(real x, real y, real z, real w)
     : x(x)
@@ -60,9 +68,11 @@ Vector::Vector(real x, real y, real z, real w)
     , w(w)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 Vector::~Vector() {}
 
+/// --------------------------------------------------------------------------- set
 
 void Vector::Set(real x, real y, real z)
 {
@@ -71,6 +81,7 @@ void Vector::Set(real x, real y, real z)
     z = z;
 }
 
+/// --------------------------------------------------------------------------- operator=
 
 Vector& Vector::operator=(Vector vector)
 {
@@ -81,6 +92,7 @@ Vector& Vector::operator=(Vector vector)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- operator==
 
 bool 
 Vector::operator==(const Vector& vector) const
@@ -88,6 +100,7 @@ Vector::operator==(const Vector& vector) const
     return Equal(*this, vector);
 }
 
+/// --------------------------------------------------------------------------- operator!=
 
 bool 
 Vector::operator!=(const Vector& vector) const
@@ -95,6 +108,7 @@ Vector::operator!=(const Vector& vector) const
     return !Equal(*this, vector);
 }
 
+/// --------------------------------------------------------------------------- operator*
 
 Vector 
 Vector::operator*(const real scalar) const
@@ -102,6 +116,7 @@ Vector::operator*(const real scalar) const
     return Vector(x*scalar, y*scalar, z*scalar);
 }
 
+/// --------------------------------------------------------------------------- operator+
 
 Vector 
 Vector::operator+(const Vector& vector) const
@@ -109,6 +124,7 @@ Vector::operator+(const Vector& vector) const
     return Vector(x+vector.x, y+vector.y, z+vector.z);
 }
 
+/// --------------------------------------------------------------------------- operator-
 
 Vector 
 Vector::operator-(const Vector& vector) const
@@ -116,6 +132,7 @@ Vector::operator-(const Vector& vector) const
     return Vector(x-vector.x, y-vector.y, z-vector.z);
 }
 
+/// --------------------------------------------------------------------------- operator-()
 
 Vector 
 Vector::operator-() const
@@ -123,6 +140,7 @@ Vector::operator-() const
     return Vector(-x, -y, -z, w);
 }
 
+/// --------------------------------------------------------------------------- Cross
 
 Vector 
 Vector::Cross(const Vector& vector) const
@@ -130,6 +148,7 @@ Vector::Cross(const Vector& vector) const
     return Vector(y*vector.z - z*vector.y, z*vector.x - x*vector.z, x*vector.y - y*vector.x);
 }
 
+/// --------------------------------------------------------------------------- Normalize
 
 void 
 Vector::Normalize(const real epsilon)
@@ -152,6 +171,7 @@ Vector::Normalize(const real epsilon)
     }
 }
 
+/// --------------------------------------------------------------------------- Dot
 
 real 
 Vector::Dot(const Vector& vector) const
@@ -159,6 +179,7 @@ Vector::Dot(const Vector& vector) const
     return x*vector.x + y*vector.y + z*vector.z;
 }
 
+/// --------------------------------------------------------------------------- Length
 
 real 
 Vector::Length() const
@@ -166,6 +187,7 @@ Vector::Length() const
     return Sqrt(this->LengthSquared());
 }
 
+/// --------------------------------------------------------------------------- LengthSquared
 
 real 
 Vector::LengthSquared() const
@@ -173,6 +195,7 @@ Vector::LengthSquared() const
     return x*x + y*y + z*z;
 }
 
+/// --------------------------------------------------------------------------- X
 
 Vector 
 Vector::X()
@@ -180,11 +203,15 @@ Vector::X()
     return Vector(1.f, 0.0f, 0.0f);
 }
 
+/// --------------------------------------------------------------------------- Y
+
 Vector 
 Vector::Y()
 {
     return Vector(0.f, 1.0f, 0.0f);
 }
+
+/// --------------------------------------------------------------------------- Z
 
 Vector 
 Vector::Z()
@@ -192,13 +219,15 @@ Vector::Z()
     return Vector(0.f, 0.0f, 1.0f);
 }
 
-/// ---------------------------------------------------------------------------
 
-/// --------------------------------------------------------------------------- Matrix
+/// Matrix
+/// --------------------------------------------------------------------------- constructor
 
 Matrix::Matrix()
 {
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Matrix::Matrix(real m00, real m01, real m02, real m03,
                real m10, real m11, real m12, real m13,
@@ -211,6 +240,7 @@ Matrix::Matrix(real m00, real m01, real m02, real m03,
     m[12] = m30;  m[13] = m31;  m[14] = m32;  m[15] = m33;
 }
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Matrix::Matrix(const Matrix& M)
 {
@@ -220,7 +250,11 @@ Matrix::Matrix(const Matrix& M)
     m[12] = M.m[12];  m[13] = M.m[13];  m[14] = M.m[14];  m[15] = M.m[15];
 }
 
+/// --------------------------------------------------------------------------- desutrctor
+
 Matrix::~Matrix() {}
+
+/// --------------------------------------------------------------------------- operator=
 
 Matrix& 
 Matrix::operator=(Matrix matrix)
@@ -232,6 +266,8 @@ Matrix::operator=(Matrix matrix)
 
     return *this;
 }
+
+/// --------------------------------------------------------------------------- operator*=
 
 Matrix& 
 Matrix::operator*=(const Matrix& x)
@@ -277,6 +313,8 @@ Matrix::operator*=(const Matrix& x)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- operator+=
+
 Matrix& 
 Matrix::operator+=(const Matrix& matrix)
 {
@@ -286,6 +324,8 @@ Matrix::operator+=(const Matrix& matrix)
     }
     return *this;
 }
+
+/// --------------------------------------------------------------------------- operator-=
 
 Matrix& 
 Matrix::operator-=(const Matrix& matrix)
@@ -297,6 +337,8 @@ Matrix::operator-=(const Matrix& matrix)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- operator*=
+
 Matrix 
 Matrix::operator*=(real scalar)
 {
@@ -307,6 +349,8 @@ Matrix::operator*=(real scalar)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- operator/=
+
 Matrix 
 Matrix::operator/=(real scalar)
 {
@@ -316,6 +360,8 @@ Matrix::operator/=(real scalar)
     }
     return *this;
 }
+
+/// --------------------------------------------------------------------------- operator*
 
 Matrix 
 Matrix::operator*(const Matrix& x) const
@@ -341,6 +387,8 @@ Matrix::operator*(const Matrix& x) const
                   m[12] * x.m[3] + m[13] * x.m[7] + m[14] * x.m[11] + m[15] * x.m[15]);
 }
 
+/// --------------------------------------------------------------------------- operator+
+
 Matrix 
 Matrix::operator+(const Matrix& x) const
 {
@@ -364,6 +412,8 @@ Matrix::operator+(const Matrix& x) const
                   m[14] + x.m[14],
                   m[15] + x.m[15]);
 }
+
+/// --------------------------------------------------------------------------- operator-
 
 Matrix 
 Matrix::operator-(const Matrix& x) const
@@ -389,6 +439,8 @@ Matrix::operator-(const Matrix& x) const
                   m[15] - x.m[15]);
 }
 
+/// --------------------------------------------------------------------------- operator*
+
 Matrix 
 Matrix::operator*(real scalar) const
 {
@@ -412,6 +464,8 @@ Matrix::operator*(real scalar) const
                   m[14] * scalar,
                   m[15] * scalar);
 }
+
+/// --------------------------------------------------------------------------- operator/
 
 Matrix 
 Matrix::operator/(real scalar) const
@@ -447,11 +501,15 @@ Matrix::operator/(real scalar) const
                   m[15] * invScalar);
 }
 
+/// --------------------------------------------------------------------------- operator*
+
 Vector 
 Matrix::operator*(const Vector& point) const
 {
     return this->TransformPoint(point);
 }
+
+/// --------------------------------------------------------------------------- operator-
 
 Matrix 
 Matrix::operator-() const
@@ -462,6 +520,8 @@ Matrix::operator-() const
                   -m[12], -m[13], -m[14], -m[15]);
 }
 
+/// --------------------------------------------------------------------------- TransformPoint
+
 Vector 
 Matrix::TransformPoint(const Vector& point) const
 {
@@ -469,6 +529,8 @@ Matrix::TransformPoint(const Vector& point) const
                    m[4]*point.x + m[5]*point.y + m[ 6]*point.z + m[ 7],
                    m[8]*point.x + m[9]*point.y + m[10]*point.z + m[11]);
 }
+
+/// --------------------------------------------------------------------------- TransformVector
 
 Vector 
 Matrix::TransformVector(const Vector& vector) const
@@ -478,11 +540,15 @@ Matrix::TransformVector(const Vector& vector) const
                    m[8]*vector.x + m[9]*vector.y + m[10]*vector.z);
 }
 
+/// --------------------------------------------------------------------------- TransformRay
+
 Ray 
 Matrix::TransformRay(const Ray& ray) const
 {
     return Ray(TransformPoint(ray.origin), Normalize(TransformVector(ray.direction)));
 }
+
+/// --------------------------------------------------------------------------- TransformRaycast
 
 Ray 
 Matrix::TransformRaycast(const Ray& ray) const
@@ -493,12 +559,16 @@ Matrix::TransformRaycast(const Ray& ray) const
     return r;
 }
 
+/// --------------------------------------------------------------------------- InverseTransformPoint
+
 Vector 
 Matrix::InverseTransformPoint(const Vector& point) const
 {
     Matrix inverse = this->Inverse();
     return inverse.TransformPoint(point);
 }
+
+/// --------------------------------------------------------------------------- InverseTransformVector
 
 Vector 
 Matrix::InverseTransformVector(const Vector& vector) const
@@ -507,11 +577,15 @@ Matrix::InverseTransformVector(const Vector& vector) const
     return inverse.TransformVector(vector);
 }
 
+/// --------------------------------------------------------------------------- InverseTransformRay
+
 Ray 
 Matrix::InverseTransformRay(const Ray& ray) const
 {
     return Ray(InverseTransformPoint(ray.origin), InverseTransformVector(ray.direction));
 }
+
+/// --------------------------------------------------------------------------- Determinant
 
 real 
 Matrix::Determinant() const
@@ -534,6 +608,8 @@ Matrix::Determinant() const
     return s0*c5 - s1*c4 + s2*c3 + s3*c2 - s4*c1 + s5*c0;
 }
 
+/// --------------------------------------------------------------------------- Transpose
+
 Matrix 
 Matrix::Transpose() const
 {
@@ -542,6 +618,8 @@ Matrix::Transpose() const
                    m[ 2],  m[ 6],  m[10],  m[14],
                    m[ 3],  m[ 7],  m[11],  m[15]);
 }
+
+/// --------------------------------------------------------------------------- Inverse
 
 Matrix 
 Matrix::Inverse() const
@@ -595,11 +673,15 @@ Matrix::Inverse() const
         (+ m[ 8] * s3 - m[ 9] * s1 + m[10] * s0) * invDeterminant);
 }
 
+/// --------------------------------------------------------------------------- Invert
+
 void 
 Matrix::Invert()
 {
     *this = this->Inverse();
 }
+
+/// --------------------------------------------------------------------------- SetPosition
 
 void 
 Matrix::SetPosition(const Vector& position) 
@@ -609,11 +691,15 @@ Matrix::SetPosition(const Vector& position)
     m[11] = position.z;
 }
 
+/// --------------------------------------------------------------------------- GetPosition
+
 Vector 
 Matrix::GetPosition() const
 {
     return Vector(m[3], m[7], m[11]);
 }
+
+/// --------------------------------------------------------------------------- Zero
 
 Matrix 
 Matrix::Zero()
@@ -624,11 +710,15 @@ Matrix::Zero()
                   0.0f, 0.0f, 0.0f, 0.0f);
 }
 
+/// --------------------------------------------------------------------------- Identity
+
 Matrix 
 Matrix::Identity()
 {
     return Diagonal(1.f);
 }
+
+/// --------------------------------------------------------------------------- Diagonal
 
 Matrix 
 Matrix::Diagonal(real val)
@@ -638,6 +728,8 @@ Matrix::Diagonal(real val)
                   0.0f, 0.0f, val,  0.0f,
                   0.0f, 0.0f, 0.0f, 1.0f);
 }
+
+/// --------------------------------------------------------------------------- Rotation
 
 Matrix 
 Matrix::Rotation(const Vector& axis, real angle)
@@ -661,6 +753,8 @@ Matrix::Rotation(const Vector& axis, real angle)
     return Matrix::Identity() + s * skew + (1.f - c) * (skew * skew);
 }
 
+/// --------------------------------------------------------------------------- Translation
+
 Matrix 
 Matrix::Translation(const Vector& translate)
 {
@@ -669,6 +763,8 @@ Matrix::Translation(const Vector& translate)
                   0.0f, 0.0f, 1.0f, translate.z,
                   0.0f, 0.0f, 0.0f, 1.0f); 
 }
+
+/// --------------------------------------------------------------------------- Translation
 
 Matrix 
 Matrix::Translation(real x, real y, real z)
@@ -679,6 +775,8 @@ Matrix::Translation(real x, real y, real z)
                   0.0f, 0.0f, 0.0f, 1.0f);
 }
 
+/// --------------------------------------------------------------------------- Scale
+
 Matrix 
 Matrix::Scale(real uniform)
 {
@@ -687,6 +785,8 @@ Matrix::Scale(real uniform)
                   0.0f,    0.0f,    uniform, 0.0f,
                   0.0f,    0.0f,    0.0f,    1.0f);
 }
+
+/// --------------------------------------------------------------------------- Shear
 
 Matrix 
 Matrix::Shear(real x, real y, real z)
@@ -697,46 +797,54 @@ Matrix::Shear(real x, real y, real z)
                   0.0f, 0.0f, 0.0f, 1.0f);
 }
 
+/// --------------------------------------------------------------------------- Transform
+
 Matrix 
 Matrix::Transform(const Vector& translate, const Vector& axis, real angle, real scale)
 {
     return Translation(translate)  * Rotation(axis, angle) * Scale(scale);
 }
 
-/// ---------------------------------------------------------------------------
 
-/// Ray -----------------------------------------------------------------------
+/// Ray
+/// --------------------------------------------------------------------------- constructor
 
 Ray::Ray()
     : origin(0.f)
     , direction(0.f)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Ray::Ray(const Ray& ray)
     : origin(ray.origin)
     , direction(ray.direction)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 Ray::Ray(const Vector& origin, const Vector& direction)
     : origin(origin)
     , direction(direction)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 Ray::~Ray() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Ray& 
 Ray::operator=(Ray ray)
 {
+    /// copy and swap
     Swap<Vector>(origin, ray.origin);
     Swap<Vector>(direction, ray.direction);
 
     return *this;
 }
 
+/// --------------------------------------------------------------------------- operator==
 
 bool 
 Ray::operator==(const Ray& ray)
@@ -744,6 +852,7 @@ Ray::operator==(const Ray& ray)
     return (Equal(origin, ray.origin) && Equal(direction, ray.direction));
 }
 
+/// --------------------------------------------------------------------------- operator!=
 
 bool 
 Ray::operator!=(const Ray& ray)
@@ -751,10 +860,9 @@ Ray::operator!=(const Ray& ray)
     return (!Equal(origin, ray.origin) || !Equal(direction, ray.direction));
 }
 
-/// ---------------------------------------------------------------------------
 
-
-/// MathUtils -----------------------------------------------------------------
+/// MathUtils
+/// --------------------------------------------------------------------------- operator*
 
 Matrix 
 operator*(real scalar, const Matrix& matrix)
@@ -762,11 +870,15 @@ operator*(real scalar, const Matrix& matrix)
     return matrix * scalar;
 }
 
+/// --------------------------------------------------------------------------- operator*
+
 Vector 
 operator*(const Vector& vector, const Matrix& matrix)
 {
     return matrix * vector;
 }
+
+/// --------------------------------------------------------------------------- operator*
 
 Vector 
 operator*(real scalar, const Vector& vector)
@@ -774,12 +886,15 @@ operator*(real scalar, const Vector& vector)
     return vector * scalar;
 }
 
+/// --------------------------------------------------------------------------- Equal
+
 bool 
 Equal(real a, real b, real epsilon)
 {
     return Abs(a - b) <= epsilon;
 }
 
+/// --------------------------------------------------------------------------- Equal
 
 bool 
 Equal(const Vector& a, const Vector& b, real epsilon)
@@ -790,6 +905,7 @@ Equal(const Vector& a, const Vector& b, real epsilon)
            Equal(a.w, b.w, epsilon);
 }
 
+/// --------------------------------------------------------------------------- Add
 
 Vector 
 Add(const Vector& a, const Vector& b)
@@ -797,6 +913,7 @@ Add(const Vector& a, const Vector& b)
     return a + b;
 }
 
+/// --------------------------------------------------------------------------- Sub
 
 Vector 
 Sub(const Vector& a, const Vector& b)
@@ -804,6 +921,7 @@ Sub(const Vector& a, const Vector& b)
     return a - b;
 }
 
+/// --------------------------------------------------------------------------- Mult
 
 Vector 
 Mult(const Vector& a, const real b)
@@ -811,6 +929,7 @@ Mult(const Vector& a, const real b)
     return a * b;
 }
 
+/// --------------------------------------------------------------------------- Mult
 
 Vector 
 Mult(const real a, const Vector& b)
@@ -818,6 +937,7 @@ Mult(const real a, const Vector& b)
     return b * a;
 }
 
+/// --------------------------------------------------------------------------- Normalize
 
 Vector 
 Normalize(Vector vector, const real epsilon)
@@ -827,6 +947,7 @@ Normalize(Vector vector, const real epsilon)
     return vector;
 }
 
+/// --------------------------------------------------------------------------- Cross
 
 Vector 
 Cross(const Vector& a, const Vector& b)
@@ -834,6 +955,7 @@ Cross(const Vector& a, const Vector& b)
     return a.Cross(b);
 }
 
+/// --------------------------------------------------------------------------- Dot
 
 real 
 Dot(const Vector& a, const Vector& b)
@@ -841,6 +963,7 @@ Dot(const Vector& a, const Vector& b)
     return a.Dot(b);
 }
 
+/// --------------------------------------------------------------------------- Length
 
 real 
 Length(const Vector& a)
@@ -848,12 +971,15 @@ Length(const Vector& a)
     return a.Length();
 }
 
+/// --------------------------------------------------------------------------- LengthSquared
 
 real 
 LengthSquared(const Vector& a)
 {
     return a.LengthSquared();
 }
+
+/// --------------------------------------------------------------------------- Clamp
 
 real 
 Clamp(real val, real min, real max)
@@ -870,10 +996,12 @@ Clamp(real val, real min, real max)
     return val;
 }
 
+/// --------------------------------------------------------------------------- Saturate
+
 real 
 Saturate(real val)
 {
     return Clamp(val, 0.f, 1.f);
 }
 
-/// ---------------------------------------------------------------------------
+/// --------------------------------------------------------------------------- EOF

@@ -3,11 +3,16 @@
 #include "Lights\Light.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 CookTorrance::CookTorrance()
-    : m_ambient()
+    : Material()
+    , m_ambient()
     , m_diffuse()
     , m_specular()
 {}
+
+/// --------------------------------------------------------------------------- copy constructor
 
 CookTorrance::CookTorrance(const CookTorrance& ct)
     : Material(ct)
@@ -16,11 +21,16 @@ CookTorrance::CookTorrance(const CookTorrance& ct)
     , m_specular(ct.m_specular)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 CookTorrance::~CookTorrance() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 CookTorrance& 
 CookTorrance::operator=(CookTorrance ct)
 {
+    /// copy and swap
     Material::operator=(ct);
     Swap<Lambertian>(m_ambient, ct.m_ambient);
     Swap<Lambertian>(m_diffuse, ct.m_diffuse);
@@ -29,11 +39,15 @@ CookTorrance::operator=(CookTorrance ct)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Material* 
 CookTorrance::Clone() const
 {
     return static_cast<Material*>(new CookTorrance(*this));
 }
+
+/// --------------------------------------------------------------------------- Shade
 
 Color CookTorrance::Shade(ShadeRecord& record) const
 {
@@ -68,6 +82,7 @@ Color CookTorrance::Shade(ShadeRecord& record) const
         {
             bool inShadow = false;
 
+            /// check if the point is in a shadow
             if (light->CastsShadow())
             {
                 inShadow = light->InShadow(Ray(record.worldPoint, L), record);
@@ -77,6 +92,7 @@ Color CookTorrance::Shade(ShadeRecord& record) const
             {
                 float diffuseIntensity  = 1.f - fresnel(L, N, m_specular.GetIncidence());
 
+                /// compute the lighting equation
                 radiance += (m_diffuse.F(record, L, E) * diffuseIntensity
                          +   m_specular.F(record, L, E)) 
                          *   light->Radiance(record) 
@@ -87,6 +103,8 @@ Color CookTorrance::Shade(ShadeRecord& record) const
 
     return radiance;
 }
+
+/// --------------------------------------------------------------------------- AreaLightShade
 
 Color 
 CookTorrance::AreaLightShade(ShadeRecord& record) const
@@ -122,6 +140,7 @@ CookTorrance::AreaLightShade(ShadeRecord& record) const
         {
             bool inShadow = false;
 
+            /// check if the point is in a shadow
             if (light->CastsShadow())
             {
                 inShadow = light->InShadow(Ray(record.worldPoint, L), record);
@@ -131,6 +150,7 @@ CookTorrance::AreaLightShade(ShadeRecord& record) const
             {
                 float diffuseIntensity  = 1.f - fresnel(L, N, m_specular.GetIncidence());
 
+                /// compute the lighting equation
                 radiance += (m_diffuse.F(record, L, E) * diffuseIntensity
                          +   m_specular.F(record, L, E)) 
                          *   light->Radiance(record) 
@@ -143,3 +163,5 @@ CookTorrance::AreaLightShade(ShadeRecord& record) const
 
     return radiance;
 }
+
+/// ---------------------------------------------------------------------------

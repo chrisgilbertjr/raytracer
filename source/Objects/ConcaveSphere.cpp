@@ -1,20 +1,30 @@
 
 #include "Objects\ConcaveSphere.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 ConcaveSphere::ConcaveSphere()
     : Sphere()
 {}
+
+/// --------------------------------------------------------------------------- constructor
 
 ConcaveSphere::ConcaveSphere(const Vector& center, real radius)
     : Sphere(center, radius)
 {
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 ConcaveSphere::ConcaveSphere(const ConcaveSphere& sphere)
     : Sphere(sphere)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 ConcaveSphere::~ConcaveSphere() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 ConcaveSphere& 
 ConcaveSphere::operator=(ConcaveSphere sphere)
@@ -23,11 +33,15 @@ ConcaveSphere::operator=(ConcaveSphere sphere)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Object* 
 ConcaveSphere::Clone() const
 {
     return static_cast<Object*>(new ConcaveSphere(*this));
 }
+
+/// --------------------------------------------------------------------------- Query
 
 Raycast 
 ConcaveSphere::Query(const Ray& ray, ShadeRecord& record) const
@@ -35,9 +49,11 @@ ConcaveSphere::Query(const Ray& ray, ShadeRecord& record) const
     Ray r = m_transform.TransformRaycast(ray);
     Raycast result = Object::InitRaycastRecord(ray, record);
 
+    /// quad coeffs
     real a, b, c, d;
     Sphere::Quadratic(r, a, b, c, d);
 
+    /// check for intersections
     if (d >= 0.0f)
     {
         real sDisc = Sqrt(d);
@@ -66,10 +82,9 @@ ConcaveSphere::Query(const Ray& ray, ShadeRecord& record) const
     /// no hits, return false
     return result;
 
-    //Raycast raycast = Sphere::Query(ray, record);
-    //record.normal = -record.normal;
-    //return raycast;
 }
+
+/// --------------------------------------------------------------------------- ShadowHit
 
 bool 
 ConcaveSphere::ShadowHit(const Ray& ray, float& tmin) const
@@ -77,8 +92,12 @@ ConcaveSphere::ShadowHit(const Ray& ray, float& tmin) const
     return false;
 }
 
+/// --------------------------------------------------------------------------- pdf
+
 float 
 ConcaveSphere::pdf(const ShadeRecord& record) const
 {
     return Sphere::pdf(record);
 }
+
+/// --------------------------------------------------------------------------- EOF

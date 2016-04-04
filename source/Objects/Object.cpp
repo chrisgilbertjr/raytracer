@@ -1,7 +1,7 @@
 
 #include "Objects\Object.h"
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 Object::Object()
     : m_material(NULL)
@@ -9,7 +9,7 @@ Object::Object()
     SetTransform(Vector(0.f), Vector(0.f), 0.0f, 1.0f);
 }
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 Object::Object(const Vector& position, const Vector& axis, real angle, real scale)
     : m_material(NULL)
@@ -17,14 +17,14 @@ Object::Object(const Vector& position, const Vector& axis, real angle, real scal
     SetTransform(position, axis, angle, scale);
 }
 
-/// --------------------------------------------------------------------------- Copy constructor
+/// --------------------------------------------------------------------------- copy constructor
 
 Object::Object(const Object& object)
     : m_material(object.m_material)
     , m_transform(object.m_transform)
 {}
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 Object::~Object() 
 {
@@ -34,7 +34,7 @@ Object::~Object()
     }
 }
 
-/// --------------------------------------------------------------------------- Copy assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Object& 
 Object::operator=(Object object)

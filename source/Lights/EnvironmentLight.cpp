@@ -6,6 +6,8 @@
 #include "Objects\Object.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 EnvironmentLight::EnvironmentLight()
     : Light()
     , m_material(NULL)
@@ -18,6 +20,8 @@ EnvironmentLight::EnvironmentLight()
     m_sampler->MapSamplesToHemisphere();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 EnvironmentLight::EnvironmentLight(const EnvironmentLight& light)
     : Light(light)
     , m_material(light.m_material)
@@ -29,6 +33,8 @@ EnvironmentLight::EnvironmentLight(const EnvironmentLight& light)
 {
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 EnvironmentLight::~EnvironmentLight()
 {
     if (m_sampler)
@@ -36,6 +42,8 @@ EnvironmentLight::~EnvironmentLight()
         delete m_sampler;
     }
 }
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 EnvironmentLight& 
 EnvironmentLight::operator=(EnvironmentLight light)
@@ -50,11 +58,15 @@ EnvironmentLight::operator=(EnvironmentLight light)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Light* 
 EnvironmentLight::Clone() const
 {
     return static_cast<Light*>(new EnvironmentLight(*this));
 }
+
+/// --------------------------------------------------------------------------- GetDirection
 
 Vector 
 EnvironmentLight::GetDirection(ShadeRecord& record)
@@ -69,17 +81,23 @@ EnvironmentLight::GetDirection(ShadeRecord& record)
     return m_wi;
 }
 
+/// --------------------------------------------------------------------------- Radiance
+
 Color 
 EnvironmentLight::Radiance(ShadeRecord& record)
 {
     return m_material->GetEmmisive();
 }
 
+/// --------------------------------------------------------------------------- CastsShadow
+
 bool 
 EnvironmentLight::CastsShadow() const
 {
     return true;
 }
+
+/// --------------------------------------------------------------------------- InShadow
 
 bool 
 EnvironmentLight::InShadow(const Ray& ray, ShadeRecord& record) const
@@ -100,8 +118,12 @@ EnvironmentLight::InShadow(const Ray& ray, ShadeRecord& record) const
     return false;
 }
 
+/// --------------------------------------------------------------------------- pdf
+
 real 
 EnvironmentLight::pdf(const ShadeRecord& record) const
 {
     return 1.f;
 }
+
+/// --------------------------------------------------------------------------- EOF

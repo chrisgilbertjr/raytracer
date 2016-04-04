@@ -21,8 +21,14 @@ protected:
     bool m_shadows; /// can this light cast shadows
 
 public:
+    /// copy constructor
+    Light(const Light& light);
+
     /// destructor
     virtual ~Light();
+
+    /// copy assignment operator
+    Light& operator=(const Light& light);
 
     /// clone a light object
     virtual Light* Clone() const = 0;

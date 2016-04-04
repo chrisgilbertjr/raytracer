@@ -432,16 +432,7 @@
     <ClCompile Include="..\..\..\source\Raytracers\PathTracer.cpp">
       <Filter>Source Files\Raytracers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\Objects\ConvexSphere.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\Objects\Mesh.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\Objects\Rectangle.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\Objects\CompoundObject.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\Textures\Texture.cpp">
@@ -458,6 +449,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\demos\Demos.cpp">
       <Filter>Source Files\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Objects\ConcaveSphere.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

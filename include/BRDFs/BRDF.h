@@ -10,6 +10,7 @@
 /// forward declaration
 class Sampler;
 
+/// global sampler for path tracing
 extern Sampler* g_pathSampler;
 
 /// bidirectional reflectance distruction functions

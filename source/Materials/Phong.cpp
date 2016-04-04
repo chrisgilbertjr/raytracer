@@ -3,23 +3,34 @@
 #include "Lights\Light.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Phong::Phong()
-    : m_ambient()
+    : Material()
+    , m_ambient()
     , m_diffuse()
     , m_specular()
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
+
 Phong::Phong(const Phong& phong)
-    : m_ambient(phong.m_ambient)
+    : Material()
+    , m_ambient(phong.m_ambient)
     , m_diffuse(phong.m_diffuse)
     , m_specular(phong.m_specular)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 Phong::~Phong() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Phong& 
 Phong::operator=(Phong phong)
 {
+    /// copy and swap
     Material::operator=(phong);
     Swap<Lambertian>(m_ambient, phong.m_ambient);
     Swap<Lambertian>(m_diffuse, phong.m_diffuse);
@@ -28,11 +39,15 @@ Phong::operator=(Phong phong)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Material* 
 Phong::Clone() const
 {
     return static_cast<Material*>(new Phong(*this));
 }
+
+/// --------------------------------------------------------------------------- Shade
 
 Color 
 Phong::Shade(ShadeRecord& record) const
@@ -65,6 +80,7 @@ Phong::Shade(ShadeRecord& record) const
         {
             bool inShadow = false;
 
+            /// check if the point is in a shadow
             if (light->CastsShadow())
             {
                 inShadow = light->InShadow(Ray(record.worldPoint, L), record);
@@ -72,6 +88,7 @@ Phong::Shade(ShadeRecord& record) const
 
             if (!inShadow)
             {
+                /// compute the lighting equation
                 radiance += (m_diffuse.F(record, L, E)
                          +   m_specular.F(record, L, E)) 
                          *   light->Radiance(record)
@@ -82,6 +99,8 @@ Phong::Shade(ShadeRecord& record) const
 
     return radiance;
 }
+
+/// --------------------------------------------------------------------------- AreaLightShade
 
 Color 
 Phong::AreaLightShade(ShadeRecord& record) const
@@ -114,6 +133,7 @@ Phong::AreaLightShade(ShadeRecord& record) const
         {
             bool inShadow = false;
 
+            /// check if the point is in the shadow
             if (light->CastsShadow())
             {
                 inShadow = light->InShadow(Ray(record.worldPoint, L), record);
@@ -121,6 +141,7 @@ Phong::AreaLightShade(ShadeRecord& record) const
 
             if (!inShadow)
             {
+                /// compute the lighting equation
                 radiance += (m_diffuse.F(record, L, E)
                          +   m_specular.F(record, L, E)) 
                          *   light->Radiance(record)
@@ -133,3 +154,5 @@ Phong::AreaLightShade(ShadeRecord& record) const
 
     return radiance;
 }
+
+/// --------------------------------------------------------------------------- EOF

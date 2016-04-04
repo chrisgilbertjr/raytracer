@@ -1,7 +1,7 @@
 
 #include "Lights\DirectionalLight.h"
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 DirectionalLight::DirectionalLight()
     : m_direction(0.f, -1.f, 0.f)
@@ -9,7 +9,7 @@ DirectionalLight::DirectionalLight()
     , m_intensity(1.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 DirectionalLight::DirectionalLight(const Vector& direction)
     : m_direction(direction)
@@ -17,7 +17,7 @@ DirectionalLight::DirectionalLight(const Vector& direction)
     , m_intensity(1.f)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 DirectionalLight::DirectionalLight(const Color& color, const real intensity)
     : m_direction(Vector(0.f, -1.f, 0.f))
@@ -25,7 +25,7 @@ DirectionalLight::DirectionalLight(const Color& color, const real intensity)
     , m_intensity(intensity)
 {}
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 DirectionalLight::DirectionalLight(const Vector& direction, const Color& color, const real intensity)
     : m_direction(direction)
@@ -33,7 +33,7 @@ DirectionalLight::DirectionalLight(const Vector& direction, const Color& color, 
     , m_intensity(intensity)
 {}
 
-/// --------------------------------------------------------------------------- Copy assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 DirectionalLight::DirectionalLight(const DirectionalLight& light)
     : Light(light)
@@ -42,15 +42,17 @@ DirectionalLight::DirectionalLight(const DirectionalLight& light)
     , m_intensity(light.m_intensity)
 {}
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 DirectionalLight::~DirectionalLight() {}
 
-/// --------------------------------------------------------------------------- Assignment operator
+/// --------------------------------------------------------------------------- copy assignment operator
 
 DirectionalLight& 
 DirectionalLight::operator=(DirectionalLight light)
 {
+    /// copy and swap
+    Light::operator=(light);
     Swap<Vector>(m_direction, light.m_direction);
     Swap<Color>(m_color, light.m_color);
     Swap<real>(m_intensity, light.m_intensity);

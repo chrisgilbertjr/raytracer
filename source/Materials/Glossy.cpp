@@ -2,11 +2,15 @@
 #include "Materials\Glossy.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Glossy::Glossy()
     : CookTorrance()
     , m_glossy()
 {
 }
+
+/// --------------------------------------------------------------------------- copy constructor
 
 Glossy::Glossy(const Glossy& glossy)
     : CookTorrance(glossy)
@@ -14,16 +18,23 @@ Glossy::Glossy(const Glossy& glossy)
 {
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 Glossy::~Glossy() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Glossy& 
 Glossy::operator=(Glossy glossy)
 {
+    /// copy and swap
     CookTorrance::operator=(glossy);
     Swap<GlossySpecular>(m_glossy, glossy.m_glossy);
 
     return *this;
 }
+
+/// --------------------------------------------------------------------------- Clone
 
 Material* 
 Glossy::Clone() const
@@ -31,11 +42,15 @@ Glossy::Clone() const
     return static_cast<Material*>(new Glossy(*this));
 }
 
+/// --------------------------------------------------------------------------- Shade
+
 Color 
 Glossy::Shade(ShadeRecord& record) const
 {
     return this->AreaLightShade(record);
 }
+
+/// --------------------------------------------------------------------------- AreaLightShade
 
 Color 
 Glossy::AreaLightShade(ShadeRecord& record) const
@@ -48,11 +63,11 @@ Glossy::AreaLightShade(ShadeRecord& record) const
 
     Color f = m_glossy.SampleF(record, E, R, pdf);
     Vector point = Add(record.worldPoint, record.normal * shadowEpsilon);
-    //Ray ray(record.worldPoint, E);
     Ray ray(point, E);
 
     const Raytracer* tracer = record.world->GetRaytracer();
 
+    /// compute the lighting equation
     Radiance += f 
              *  tracer->TraceRay(record.world, ray, record.depth + 1)
              *  Dot(record.normal, E)
@@ -61,6 +76,8 @@ Glossy::AreaLightShade(ShadeRecord& record) const
     return Radiance;
 }
 
+/// --------------------------------------------------------------------------- SetGlossy
+
 void 
 Glossy::SetGlossy(const Color& color, real intensity, real exp)
 {
@@ -68,3 +85,5 @@ Glossy::SetGlossy(const Color& color, real intensity, real exp)
     m_glossy.SetColor(color);
     m_glossy.SetExp(exp);
 }
+
+/// --------------------------------------------------------------------------- EOF

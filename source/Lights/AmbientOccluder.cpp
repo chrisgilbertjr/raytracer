@@ -6,10 +6,11 @@
 #include "BRDFs\ShadeRecord.h"
 #include "World\World.h"
 
-// ---------------------------------------------------------------------------- Constructor
+// ---------------------------------------------------------------------------- constructor
 
 AmbientOccluder::AmbientOccluder()
-    : m_sampler(new PureRandom(g_samples))
+    : Light()
+    , m_sampler(new PureRandom(g_samples))
     , m_minAmount(Color::Black())
     , m_color(Color::White())
     , m_u(Vector::Y())
@@ -20,10 +21,11 @@ AmbientOccluder::AmbientOccluder()
     m_sampler->MapSamplesToHemisphere();
 }
 
-// ---------------------------------------------------------------------------- Copy constructor
+// ---------------------------------------------------------------------------- copy constructor
 
 AmbientOccluder::AmbientOccluder(const AmbientOccluder& occluder)
-    : m_sampler(occluder.m_sampler ? occluder.m_sampler->Clone() : NULL)
+    : Light()
+    , m_sampler(occluder.m_sampler ? occluder.m_sampler->Clone() : NULL)
     , m_minAmount(occluder.m_minAmount)
     , m_color(occluder.m_color)
     , m_u(occluder.m_u)
@@ -33,7 +35,7 @@ AmbientOccluder::AmbientOccluder(const AmbientOccluder& occluder)
 {
 }
 
-// ---------------------------------------------------------------------------- Destructor
+// ---------------------------------------------------------------------------- destructor
 
 AmbientOccluder::~AmbientOccluder()
 {
@@ -43,7 +45,7 @@ AmbientOccluder::~AmbientOccluder()
     }
 }
 
-// ---------------------------------------------------------------------------- Copy assignment operator
+// ---------------------------------------------------------------------------- copy assignment operator
 
 AmbientOccluder& 
 AmbientOccluder::operator=(AmbientOccluder occluder)
@@ -96,12 +98,15 @@ AmbientOccluder::GetDirection(ShadeRecord& record)
 Color 
 AmbientOccluder::Radiance(ShadeRecord& record)
 {
+    /// compute basis
     m_w = record.normal;
     m_v = Normalize(Cross(m_w, Vector(0.0072f, 1.f, 0.0034f)));
     m_u = Cross(m_w, m_v);
 
+    /// get the shadow ray
     Ray shadowRay = Ray(record.worldPoint, this->GetDirection(record));
 
+    /// check if the ray is in the shadow
     if (this->InShadow(shadowRay, record))
     {
         return m_minAmount * m_color * m_intensity;
@@ -129,6 +134,7 @@ AmbientOccluder::InShadow(const Ray& ray, ShadeRecord& record) const
     const Array<Object*>* objects = record.world->GetObjects();
     int objectCount = objects->GetSize();
 
+    /// check if the shadow ray intersects with each object
     for (int i = 0; i < objectCount; ++i)
     {
         Object* object = objects->operator[](i);
