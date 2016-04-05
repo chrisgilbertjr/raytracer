@@ -2,6 +2,7 @@
 #include "World\ViewingPlane.h"
 #include "Core\MathUtils.h"
 
+/// --------------------------------------------------------------------------- constructor
 
 ViewingPlane::ViewingPlane(int samples)
     : m_width(800)
@@ -14,6 +15,7 @@ ViewingPlane::ViewingPlane(int samples)
     , m_sampler(NULL)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 ViewingPlane::ViewingPlane(const ViewingPlane& plane)
     : m_width(plane.m_width)
@@ -26,6 +28,7 @@ ViewingPlane::ViewingPlane(const ViewingPlane& plane)
     , m_sampler(plane.m_sampler)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 ViewingPlane::ViewingPlane(const int width, const int height)
     : m_width(width)
@@ -38,6 +41,7 @@ ViewingPlane::ViewingPlane(const int width, const int height)
     , m_sampler(NULL)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 ViewingPlane::ViewingPlane(const int width, const int height, const int sampleCount)
     : m_width(width)
@@ -50,6 +54,7 @@ ViewingPlane::ViewingPlane(const int width, const int height, const int sampleCo
     , m_sampler(NULL)
 {}
 
+/// --------------------------------------------------------------------------- constructor
 
 ViewingPlane::ViewingPlane(const int width, const int height, const real gamma, const real pizelSize)
     : m_width(width)
@@ -62,9 +67,11 @@ ViewingPlane::ViewingPlane(const int width, const int height, const real gamma, 
     , m_sampler(NULL)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 ViewingPlane::~ViewingPlane() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 ViewingPlane& 
 ViewingPlane::operator=(ViewingPlane plane)
@@ -81,6 +88,8 @@ ViewingPlane::operator=(ViewingPlane plane)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- RemapColor
+
 Color 
 ViewingPlane::RemapColor(const Color& color) const
 {
@@ -95,3 +104,5 @@ ViewingPlane::RemapColor(const Color& color) const
 
     return remapped;
 }
+
+/// --------------------------------------------------------------------------- EOF

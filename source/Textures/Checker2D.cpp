@@ -1,6 +1,8 @@
 
 #include "Textures\Checker2D.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Checker2D::Checker2D()
     : Texture()
     , m_a(Color::White())
@@ -11,6 +13,8 @@ Checker2D::Checker2D()
     , m_yOffset(0.f)
 {
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Checker2D::Checker2D(real xScale, real yScale, real xOffset, real yOffset)
     : Texture()
@@ -23,6 +27,8 @@ Checker2D::Checker2D(real xScale, real yScale, real xOffset, real yOffset)
 {
 }
 
+/// --------------------------------------------------------------------------- copy assignment operator
+
 Checker2D::Checker2D(const Checker2D& checker)
     : Texture(checker)
     , m_a(checker.m_a)
@@ -34,7 +40,11 @@ Checker2D::Checker2D(const Checker2D& checker)
 {
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 Checker2D::~Checker2D() {}
+ 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Checker2D& 
 Checker2D::operator=(Checker2D checker)
@@ -49,11 +59,15 @@ Checker2D::operator=(Checker2D checker)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Texture* 
 Checker2D::Clone() const
 {
     return static_cast<Texture*>(new Checker2D(*this));
 }
+
+/// --------------------------------------------------------------------------- GetTexel
 
 Color 
 Checker2D::GetTexel(const ShadeRecord& record) const
@@ -62,10 +76,11 @@ Checker2D::GetTexel(const ShadeRecord& record) const
     real v = record.v;
 
     TransformUV(m_xScale, m_yScale, m_xOffset, m_yOffset, u, v);
-    //fprintf(stdout, "%.4f, %.4f\n", u, v);
 
     return ((u < 0.5f)  ?  ((v < 0.5f) ? m_a : m_b)  :  ((v < 0.5f) ? m_b : m_a));
 }
+
+/// --------------------------------------------------------------------------- SetScale
 
 void 
 Checker2D::SetScale(real x, real y)
@@ -74,6 +89,8 @@ Checker2D::SetScale(real x, real y)
     m_yScale = y;
 }
 
+/// --------------------------------------------------------------------------- SetOffset
+
 void 
 Checker2D::SetOffset(real x, real y)
 {
@@ -81,9 +98,13 @@ Checker2D::SetOffset(real x, real y)
     m_yOffset = y;
 }
 
+/// --------------------------------------------------------------------------- SetColors
+
 void 
 Checker2D::SetColors(const Color& a, const Color& b)
 {
     m_a = a;
     m_b = b;
 }
+ 
+/// --------------------------------------------------------------------------- EOF

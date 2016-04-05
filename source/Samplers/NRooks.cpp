@@ -1,6 +1,7 @@
 
 #include "Samplers\NRooks.h"
 
+/// --------------------------------------------------------------------------- constructor
 
 NRooks::NRooks()
     : Sampler()
@@ -8,6 +9,7 @@ NRooks::NRooks()
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 NRooks::NRooks(const int sampleCount)
     : Sampler(sampleCount)
@@ -15,6 +17,7 @@ NRooks::NRooks(const int sampleCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 NRooks::NRooks(const int sampleCount, const int setCount)
     : Sampler(sampleCount, setCount)
@@ -22,14 +25,17 @@ NRooks::NRooks(const int sampleCount, const int setCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
 
 NRooks::NRooks(const NRooks& nrooks)
     : Sampler(nrooks)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 NRooks::~NRooks() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 NRooks& 
 NRooks::operator=(NRooks nrooks)
@@ -38,7 +44,7 @@ NRooks::operator=(NRooks nrooks)
     return *this;
 }
 
-
+/// --------------------------------------------------------------------------- Clone
 
 Sampler* 
 NRooks::Clone() const
@@ -46,6 +52,7 @@ NRooks::Clone() const
     return static_cast<Sampler*>(new NRooks(*this));
 }
 
+/// --------------------------------------------------------------------------- GenerateSamples
 
 void
 NRooks::GenerateSamples()
@@ -62,3 +69,5 @@ NRooks::GenerateSamples()
     this->ShuffleCoordsX();
     this->ShuffleCoordsY();
 }
+
+/// --------------------------------------------------------------------------- EOF

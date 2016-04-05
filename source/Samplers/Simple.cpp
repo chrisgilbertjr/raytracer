@@ -1,11 +1,15 @@
 
 #include "Samplers\Simple.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Simple::Simple()
     : Sampler()
 {
     GenerateSamples();
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Simple::Simple(const int sampleCount)
     : Sampler(sampleCount)
@@ -13,30 +17,43 @@ Simple::Simple(const int sampleCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 Simple::Simple(const int sampleCount, const int setCount)
     : Sampler(sampleCount, setCount)
 {
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 Simple::Simple(const Simple& simple)
     : Sampler(simple)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 Simple::~Simple() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Simple& 
 Simple::operator=(Simple simple)
 {
+    /// copy and swap
     Sampler::operator=(simple);
     return *this;
 }
+
+/// --------------------------------------------------------------------------- Clone
 
 Sampler* 
 Simple::Clone() const
 {
     return static_cast<Sampler*>(new Simple(*this));
 }
+
+/// --------------------------------------------------------------------------- GenerateSamples
 
 void
 Simple::GenerateSamples()
@@ -54,3 +71,5 @@ Simple::GenerateSamples()
     	}
     }
 }
+
+/// --------------------------------------------------------------------------- EOF

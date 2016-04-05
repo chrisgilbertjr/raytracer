@@ -1,7 +1,10 @@
 
 #include "Samplers\Sampler.h"
 
+/// samples per pixel
 int g_samples = 1;
+
+/// --------------------------------------------------------------------------- constructor
 
 Sampler::Sampler()
     : m_samples(83)
@@ -17,6 +20,8 @@ Sampler::Sampler()
     this->SetupShuffledIndices();
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 Sampler::Sampler(int sampleCount)
     : m_samples(sampleCount * 83)
     , m_diskSamples(0)
@@ -30,6 +35,8 @@ Sampler::Sampler(int sampleCount)
 {
     this->SetupShuffledIndices();
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Sampler::Sampler(const int sampleCount, const int setCount)
     : m_samples(sampleCount * setCount)
@@ -45,6 +52,8 @@ Sampler::Sampler(const int sampleCount, const int setCount)
     this->SetupShuffledIndices();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 Sampler::Sampler(const Sampler& sampler)
     : m_samples(sampler.m_samples)
     , m_diskSamples(sampler.m_diskSamples)
@@ -57,7 +66,11 @@ Sampler::Sampler(const Sampler& sampler)
     , m_jump(sampler.m_jump)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 Sampler::~Sampler() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Sampler& 
 Sampler::operator=(Sampler sampler)
@@ -74,6 +87,8 @@ Sampler::operator=(Sampler sampler)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Sampler* 
 Sampler::Clone() const
 {
@@ -83,6 +98,8 @@ Sampler::Clone() const
     return NULL;
 }
 
+/// --------------------------------------------------------------------------- GenerateSamples
+
 void 
 Sampler::GenerateSamples()
 {
@@ -90,6 +107,8 @@ Sampler::GenerateSamples()
     /// i am not using pure virtual functions so i can use the copy and swap idiom
     Assert(false);
 }
+
+/// --------------------------------------------------------------------------- ShuffleCoordsX
 
 void 
 Sampler::ShuffleCoordsX()
@@ -108,6 +127,8 @@ Sampler::ShuffleCoordsX()
     }
 }
 
+/// --------------------------------------------------------------------------- ShuffleCoordsY
+
 void 
 Sampler::ShuffleCoordsY()
 {
@@ -124,6 +145,8 @@ Sampler::ShuffleCoordsY()
     	}
     }
 }
+
+/// --------------------------------------------------------------------------- SetupShuffledIndicies
 
 void 
 Sampler::SetupShuffledIndices()
@@ -148,11 +171,16 @@ Sampler::SetupShuffledIndices()
     }
 }
 
+/// --------------------------------------------------------------------------- MapSamplesToUnitDisk
+
 void 
 Sampler::MapSamplesToUnitDisk()
 {
     /// @TODO!
+    Assert(false);
 }
+
+/// --------------------------------------------------------------------------- MapSamplesToHemisphere
 
 void 
 Sampler::MapSamplesToHemisphere()
@@ -175,6 +203,8 @@ Sampler::MapSamplesToHemisphere()
     }
 }
 
+/// --------------------------------------------------------------------------- MapSamplesToSphere
+
 void 
 Sampler::MapSamplesToSphere()
 {
@@ -194,6 +224,8 @@ Sampler::MapSamplesToSphere()
     }
 }
 
+/// --------------------------------------------------------------------------- DoSample
+
 Vector 
 Sampler::DoSample(const Array<Vector>& samples)
 {
@@ -210,11 +242,15 @@ Sampler::DoSample(const Array<Vector>& samples)
     return samples[m_jump + shuffle];
 }
 
+/// --------------------------------------------------------------------------- SampleUnitSquare
+
 Vector 
 Sampler::SampleUnitSquare()
 {
     return DoSample(m_samples);
 }
+
+/// --------------------------------------------------------------------------- SampleUnitDisk
 
 Vector 
 Sampler::SampleUnitDisk()
@@ -222,14 +258,20 @@ Sampler::SampleUnitDisk()
     return DoSample(m_diskSamples);
 }
 
+/// --------------------------------------------------------------------------- SampleHemisphere
+
 Vector 
 Sampler::SampleHemisphere()
 {
     return DoSample(m_hemiSamples);
 }
 
+/// --------------------------------------------------------------------------- SampleSphere
+
 Vector 
 Sampler::SampleSphere()
 {
     return DoSample(m_sphereSamples);
 }
+
+/// --------------------------------------------------------------------------- EOF

@@ -1,9 +1,4 @@
 
-/// ***************************************************************************************
-/// @TODO: Make sure all constructors call BASE CLASS constructors when cleaining up code!
-///        A lot of copy constructors missed calling base class constructors!
-/// ***************************************************************************************
-
 #include "..\demos\Demos.h"
 
 int 

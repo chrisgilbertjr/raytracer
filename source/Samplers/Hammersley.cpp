@@ -1,6 +1,7 @@
 
 #include "Samplers\Hammersley.h"
 
+/// --------------------------------------------------------------------------- constructor
 
 Hammersley::Hammersley()
     : Sampler()
@@ -8,6 +9,7 @@ Hammersley::Hammersley()
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 Hammersley::Hammersley(const int sampleCount)
     : Sampler(sampleCount)
@@ -15,6 +17,7 @@ Hammersley::Hammersley(const int sampleCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 Hammersley::Hammersley(const int sampleCount, const int setCount)
     : Sampler(sampleCount, setCount)
@@ -22,23 +25,27 @@ Hammersley::Hammersley(const int sampleCount, const int setCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
 
 Hammersley::Hammersley(const Hammersley& hammersley)
     : Sampler(hammersley)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 Hammersley::~Hammersley() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Hammersley&
 Hammersley::operator=(Hammersley hammersley)
 {
+    /// copy and swap
     Sampler::operator=(hammersley);
     return *this;
 }
 
-
+/// --------------------------------------------------------------------------- Clone
 
 Sampler*
 Hammersley::Clone() const
@@ -46,6 +53,7 @@ Hammersley::Clone() const
     return static_cast<Sampler*>(new Hammersley(*this));
 }
 
+/// --------------------------------------------------------------------------- Phi
 
 /// compute Phi, = SUM(j=0, n) a_j*(i)*2^(-j-1)
 /// exp... a0(i)(1/2) + a1(i)(1/4) + a2(i)(1/8)... etc
@@ -65,6 +73,7 @@ Phi(int i)
     return x;
 }
 
+/// --------------------------------------------------------------------------- GenerateSamples
 
 void
 Hammersley::GenerateSamples()
@@ -78,3 +87,5 @@ Hammersley::GenerateSamples()
         }
     }
 }
+
+/// --------------------------------------------------------------------------- EOF

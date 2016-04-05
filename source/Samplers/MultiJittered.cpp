@@ -3,12 +3,15 @@
 #include <vector>
 #include <iostream>
 
+/// --------------------------------------------------------------------------- constructor
+
 MultiJittered::MultiJittered()
     : Sampler()
 {
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 MultiJittered::MultiJittered(const int sampleCount)
     : Sampler(sampleCount)
@@ -16,6 +19,7 @@ MultiJittered::MultiJittered(const int sampleCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 MultiJittered::MultiJittered(const int sampleCount, const int setCount)
     : Sampler(sampleCount, setCount)
@@ -23,14 +27,17 @@ MultiJittered::MultiJittered(const int sampleCount, const int setCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- copy constructor
 
 MultiJittered::MultiJittered(const MultiJittered& jittered)
     : Sampler(jittered)
 {}
 
+/// --------------------------------------------------------------------------- destructor
 
 MultiJittered::~MultiJittered() {}
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 MultiJittered&
 MultiJittered::operator=(MultiJittered jittered)
@@ -39,7 +46,7 @@ MultiJittered::operator=(MultiJittered jittered)
     return *this;
 }
 
-
+/// --------------------------------------------------------------------------- Clone
 
 Sampler*
 MultiJittered::Clone() const
@@ -47,10 +54,15 @@ MultiJittered::Clone() const
     return static_cast<Sampler*>(new MultiJittered(*this));
 }
 
-static int _RandInt()
+/// --------------------------------------------------------------------------- _RandInt
+
+static int 
+_RandInt()
 {
     return rand();
 }
+
+/// --------------------------------------------------------------------------- _RandReal
 
 static real
 _RandReal()
@@ -58,11 +70,15 @@ _RandReal()
     return ((real)_RandInt()) / RAND_MAX;
 }
 
+/// --------------------------------------------------------------------------- _RandReal
+
 static real
 _RandReal(int l, float h)
 {
     return (_RandReal() * (h - l) + l);
 }
+
+/// --------------------------------------------------------------------------- _RandInt
 
 static int
 _RandInt(int l, int h)
@@ -70,10 +86,14 @@ _RandInt(int l, int h)
     return ((int) (_RandReal(0, h - l + 1) + 1));
 }
 
+/// --------------------------------------------------------------------------- GenerateSamples
 
 void
 MultiJittered::GenerateSamples()
 {
+    /// modified function from Ray Tracing from the Ground Up, as i couldn't get it to work correctly
+    /// http://www.raytracegroundup.com/
+ 
     // num_samples needs to be a perfect square
     int num_samples = m_sampleCount;
     int num_sets = m_setCount;
@@ -124,15 +144,15 @@ MultiJittered::GenerateSamples()
     }
 }
 
+/// --------------------------------------------------------------------------- SampleUnitSquare
+
 Vector 
 MultiJittered::SampleUnitSquare()
 {
-    m_count++;
-	if (m_count % m_sampleCount == 0)
-        m_count = 0;
-
-	return m_samples[m_count];
+    return Sampler::SampleUnitSquare();
 }
+
+/// --------------------------------------------------------------------------- SampleHemisphere
 
 Vector 
 MultiJittered::SampleHemisphere()
@@ -149,3 +169,5 @@ MultiJittered::SampleHemisphere()
     /// return the jump offset shuffled index
     return m_hemiSamples[m_jump + shuffle];
 }
+
+/// --------------------------------------------------------------------------- EOF

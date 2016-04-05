@@ -1,15 +1,9 @@
 
-#include "Samplers\MultiJittered.h"
-#include "Samplers\Simple.h"
-#include "Samplers\NRooks.h"
-#include "Samplers\Hammersley.h"
-#include "Samplers\Jittered.h"
 #include "Samplers\PureRandom.h"
 #include "Lights\AmbientLight.h"
 #include "World\World.h"
 #include "BRDFs\BRDF.h"
 #include "qdbmp.h"
-#include <chrono>
 
 /// --------------------------------------------------------------------------- ExportBMP
 
@@ -39,7 +33,7 @@ ExportBMP(const ColorBuffer& buffer, const char* filename)
     BMP_Free(bmp);
 }
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 World::World(int samples)
     : m_viewingPlane(samples)
@@ -55,7 +49,7 @@ World::World(int samples)
     g_pathSampler->MapSamplesToHemisphere();
 }
 
-/// --------------------------------------------------------------------------- Constructor
+/// --------------------------------------------------------------------------- constructor
 
 World::World(Light* ambient, int samples)
     : m_viewingPlane(samples)
@@ -71,7 +65,7 @@ World::World(Light* ambient, int samples)
     g_pathSampler->MapSamplesToHemisphere();
 }
 
-/// --------------------------------------------------------------------------- Copy Constructor
+/// --------------------------------------------------------------------------- copy Constructor
 
 World::World(const World& world)
 {
@@ -79,11 +73,11 @@ World::World(const World& world)
     Assert(false);
 }
 
-/// --------------------------------------------------------------------------- Destructor
+/// --------------------------------------------------------------------------- destructor
 
 World::~World() { this->Free(); }
 
-/// --------------------------------------------------------------------------- Copy Assignment operator
+/// --------------------------------------------------------------------------- copy Assignment operator
 
 World& 
 World::operator=(World world)
@@ -100,15 +94,7 @@ World::Render(const OutputOptions& options) const
 {
     if (m_camera)
     {
-        {
-            //std::chrono::time_point<std::chrono::system_clock> start, end;
-            //start = std::chrono::system_clock::now();
-            m_camera->RenderThreads(this, options);
-            //end = std::chrono::system_clock::now();
-
-            //std::chrono::duration<double> seconds = end - start;
-            //printf("threads %7f seconds\n", seconds.count());
-        }
+        m_camera->RenderThreads(this, options);
     }
 }
 
@@ -123,7 +109,7 @@ World::Export(const ColorBuffer& buffer, const OutputOptions& options) const
     }
 }
 
-/// --------------------------------------------------------------------------- Query Objects
+/// --------------------------------------------------------------------------- QueryObjects
 
 ShadeRecord 
 World::QueryObjects(const Ray& ray) const
@@ -165,6 +151,8 @@ World::QueryObjects(const Ray& ray) const
 void 
 World::Free()
 {
+    /// release all resources
+
     if (m_ambient)
     {
         delete m_ambient;

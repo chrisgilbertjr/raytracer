@@ -1,6 +1,7 @@
 
 #include "World\ColorBuffer.h"
-
+ 
+/// --------------------------------------------------------------------------- constructor
 
 ColorBuffer::ColorBuffer()
     : m_buffer(NULL)
@@ -8,6 +9,7 @@ ColorBuffer::ColorBuffer()
     , m_width(0)
 {}
 
+/// --------------------------------------------------------------------------- copy constructor
 
 ColorBuffer::ColorBuffer(const ColorBuffer& buffer)
 {
@@ -26,6 +28,7 @@ ColorBuffer::ColorBuffer(const ColorBuffer& buffer)
     }
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 ColorBuffer::ColorBuffer(int width, int height)
     : m_buffer(static_cast<Color*>(calloc(height*width, sizeof(Color))))
@@ -35,6 +38,7 @@ ColorBuffer::ColorBuffer(int width, int height)
     this->SetBackground(Color::Black());
 }
 
+/// --------------------------------------------------------------------------- constructor
 
 ColorBuffer::ColorBuffer(int width, int height, const Color& color)
     : m_buffer(static_cast<Color*>(calloc(height*width, sizeof(Color))))
@@ -44,6 +48,7 @@ ColorBuffer::ColorBuffer(int width, int height, const Color& color)
     this->SetBackground(color);
 }
 
+/// --------------------------------------------------------------------------- destructor
 
 ColorBuffer::~ColorBuffer()
 {
@@ -53,10 +58,12 @@ ColorBuffer::~ColorBuffer()
     }
 }
 
+/// --------------------------------------------------------------------------- copy assignment operator
 
 ColorBuffer&
 ColorBuffer::operator=(ColorBuffer buffer)
 {
+    /// copy and swap
     Swap<Color*>(m_buffer, buffer.m_buffer);
     Swap<unsigned>(m_height, buffer.m_height);
     Swap<unsigned>(m_width, buffer.m_width);
@@ -64,6 +71,7 @@ ColorBuffer::operator=(ColorBuffer buffer)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- SetColor
 
 void
 ColorBuffer::SetColor(int x, int y, const Color& color)
@@ -73,6 +81,7 @@ ColorBuffer::SetColor(int x, int y, const Color& color)
     m_buffer[x*(int)m_height + y] = color;
 }
 
+/// --------------------------------------------------------------------------- SetBackground
 
 void 
 ColorBuffer::SetBackground(const Color& color)
@@ -86,6 +95,8 @@ ColorBuffer::SetBackground(const Color& color)
     }
 }
 
+/// --------------------------------------------------------------------------- GetColor
+
 Color 
 ColorBuffer::GetColor(int x, int y) const
 {
@@ -93,3 +104,5 @@ ColorBuffer::GetColor(int x, int y) const
 
     return m_buffer[x*(int)m_height + y];
 }
+
+/// --------------------------------------------------------------------------- EOF

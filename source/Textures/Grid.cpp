@@ -1,6 +1,8 @@
 
 #include "Textures\Grid.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Grid::Grid()
     : Texture()
     , m_a(Color::White())
@@ -13,6 +15,8 @@ Grid::Grid()
     , m_yOffset(0.f)
 {
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 Grid::Grid(real xScale, real yScale, const Color& a, const Color& b, const Color& lines, real xOffset, real yOffset)
     : Texture()
@@ -27,6 +31,8 @@ Grid::Grid(real xScale, real yScale, const Color& a, const Color& b, const Color
 {
 }
 
+/// --------------------------------------------------------------------------- copy constructor
+
 Grid::Grid(const Grid& checker)
     : Texture(checker)
     , m_a(checker.m_a)
@@ -40,7 +46,11 @@ Grid::Grid(const Grid& checker)
 {
 }
 
+/// --------------------------------------------------------------------------- destructor
+
 Grid::~Grid() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Grid& 
 Grid::operator=(Grid checker)
@@ -57,11 +67,15 @@ Grid::operator=(Grid checker)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Texture* 
 Grid::Clone() const
 {
     return static_cast<Texture*>(new Grid(*this));
 }
+
+/// --------------------------------------------------------------------------- GetTexel
 
 Color 
 Grid::GetTexel(const ShadeRecord& record) const
@@ -103,6 +117,8 @@ Grid::GetTexel(const ShadeRecord& record) const
     return m_lines;
 }
 
+/// --------------------------------------------------------------------------- SetScale
+
 void 
 Grid::SetScale(real x, real y)
 {
@@ -110,12 +126,16 @@ Grid::SetScale(real x, real y)
     m_yScale = y;
 }
 
+/// --------------------------------------------------------------------------- SetOffset
+
 void 
 Grid::SetOffset(real x, real y)
 {
     m_xOffset = x;
     m_yOffset = y;
 }
+
+/// --------------------------------------------------------------------------- SetColors
 
 void 
 Grid::SetColors(const Color& a, const Color& b, const Color& lines)
@@ -125,8 +145,12 @@ Grid::SetColors(const Color& a, const Color& b, const Color& lines)
     m_lines = lines;
 }
 
+/// --------------------------------------------------------------------------- SetLinePercentage
+
 void 
 Grid::SetLinePercentage(real percentage)
 {
     m_linePercentage = percentage;
 }
+
+/// --------------------------------------------------------------------------- EOF

@@ -2,11 +2,19 @@
 #include "Raytracers\Whitted.h"
 #include "World\World.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 Whitted::Whitted() {}
+
+/// --------------------------------------------------------------------------- copy constructor
 
 Whitted::Whitted(const Whitted& whitted) {}
 
+/// --------------------------------------------------------------------------- destructor
+
 Whitted::~Whitted() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 Whitted& 
 Whitted::operator=(Whitted whitted)
@@ -15,11 +23,15 @@ Whitted::operator=(Whitted whitted)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Raytracer* 
 Whitted::Clone() const
 {
     return static_cast<Raytracer*>(new Whitted(*this));
 }
+
+/// --------------------------------------------------------------------------- TraceRay
 
 Color 
 Whitted::TraceRay(const World* world, const Ray ray, const int depth) const
@@ -43,3 +55,5 @@ Whitted::TraceRay(const World* world, const Ray ray, const int depth) const
     }
     return world->GetBackground();
 }
+
+/// --------------------------------------------------------------------------- EOF

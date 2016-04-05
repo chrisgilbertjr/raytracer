@@ -1,11 +1,15 @@
 
 #include "Samplers\PureRandom.h"
 
+/// --------------------------------------------------------------------------- constructor
+
 PureRandom::PureRandom()
     : Sampler()
 {
     GenerateSamples();
 }
+
+/// --------------------------------------------------------------------------- constructor
 
 PureRandom::PureRandom(const int sampleCount)
     : Sampler(sampleCount)
@@ -13,17 +17,25 @@ PureRandom::PureRandom(const int sampleCount)
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- constructor
+
 PureRandom::PureRandom(const int sampleCount, const int setCount)
     : Sampler(sampleCount, setCount)
 {
     GenerateSamples();
 }
 
+/// --------------------------------------------------------------------------- copy assignment operator
+
 PureRandom::PureRandom(const PureRandom& random)
     : Sampler(random)
 {}
 
+/// --------------------------------------------------------------------------- destructor
+
 PureRandom::~PureRandom() {}
+
+/// --------------------------------------------------------------------------- copy assignment operator
 
 PureRandom&
 PureRandom::operator=(PureRandom random)
@@ -32,11 +44,15 @@ PureRandom::operator=(PureRandom random)
     return *this;
 }
 
+/// --------------------------------------------------------------------------- Clone
+
 Sampler*
 PureRandom::Clone() const
 {
     return static_cast<Sampler*>(new PureRandom(*this));
 }
+
+/// --------------------------------------------------------------------------- GenerateSamples
 
 void
 PureRandom::GenerateSamples()
@@ -49,3 +65,5 @@ PureRandom::GenerateSamples()
         }
     }
 }
+
+/// --------------------------------------------------------------------------- EOF
