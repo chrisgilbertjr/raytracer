@@ -48,7 +48,6 @@
 #include "Objects\Sphere.h"
 #include "Objects\Rectangle.h"
 #include "Objects\Cylinder.h"
-#include "Objects\CompoundObject.h"
 #include "Objects\LightObject.h"
 #include "Objects\ConcaveSphere.h"
 #include "Objects\SphereLight.h"
