@@ -189,7 +189,6 @@ Pinhole::RenderThreads(const World* world, const OutputOptions& options)
 
     /// export the color buffer according to the output options
     world->Export(buffer, options);
-    printf("Export successful!\n\n\n");
 
 #ifndef NDEBUG
     g_display = 0.01f;

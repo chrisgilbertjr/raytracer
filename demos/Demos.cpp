@@ -1,9 +1,22 @@
 
 #include "Demos.h"
 
+void
+WriteExport(const char* output)
+{
+    printf("\n  %s SUCCESS!\n\n", output);
+}
+
+void
+WriteRenderingExport(const char* output)
+{
+    printf("\n  Rendering - %s\n\n", output);
+}
+
 void 
 Demo_Sampler(const char* output, Array<Vector>& positions, Sampler* sampler, int samples)
 {
+    WriteRenderingExport(output);
     World world(samples);
     world.SetResolution(400, 400);
     world.SetBackground(Color::Black());
@@ -26,11 +39,13 @@ Demo_Sampler(const char* output, Array<Vector>& positions, Sampler* sampler, int
     }
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_BareBones(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(samples);
     world.SetResolution(800, 800);
     world.SetBackground(Color::Black());
@@ -48,11 +63,13 @@ Demo_BareBones(const char* output, int samples)
     Scene_Barebones(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_Shapes(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -70,11 +87,13 @@ Demo_Shapes(const char* output, int samples)
     Scene_Shapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_ShapesMatte(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -92,11 +111,13 @@ Demo_ShapesMatte(const char* output, int samples)
     Scene_Shapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_SpecularSpheres(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientLight(Color::White(), 1.0f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -114,11 +135,13 @@ Demo_SpecularSpheres(const char* output, int samples)
     Scene_SpecularSpheres(&world, false);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_ShadowSpheres(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientLight(Color::White(), 1.0f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -136,11 +159,13 @@ Demo_ShadowSpheres(const char* output, int samples)
     Scene_SpecularSpheres(&world, true);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_TexturedShapes(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientLight(Color::White(), 1.f), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -151,11 +176,13 @@ Demo_TexturedShapes(const char* output, int samples)
     Scene_TexturedShapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_OccluderShapes(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -166,11 +193,13 @@ Demo_OccluderShapes(const char* output, int samples)
     Scene_TexturedShapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_AreaLightShapes(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -181,11 +210,13 @@ Demo_AreaLightShapes(const char* output, int samples)
     Scene_AreaLightShapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_AreaLightShapes2(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder());
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -196,11 +227,13 @@ Demo_AreaLightShapes2(const char* output, int samples)
     Scene_AreaLightShapes2(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_EnvironmentLight(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -211,11 +244,13 @@ Demo_EnvironmentLight(const char* output, int samples)
     Scene_EnvironmentShapes(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_Reflections(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -227,11 +262,13 @@ Demo_Reflections(const char* output, int samples)
     Scene_Reflections(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_Glossy(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -243,11 +280,13 @@ Demo_Glossy(const char* output, int samples)
     Scene_Glossy(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_PathShader(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(800, 400);
     world.SetBackground(Color::Black());
@@ -259,11 +298,13 @@ Demo_PathShader(const char* output, int samples)
     Scene_PathShader(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
 
 void 
 Demo_CornellBox(const char* output, int samples)
 {
+    WriteRenderingExport(output);
     World world(new AmbientOccluder(), samples);
     world.SetResolution(512, 512);
     world.SetBackground(Color::Black());
@@ -275,4 +316,5 @@ Demo_CornellBox(const char* output, int samples)
     Scene_CornellBox(&world);
 
     world.Render(Options(EXPORT_BMP, output));
+    WriteExport(output);
 }
