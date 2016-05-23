@@ -1,3 +1,5 @@
+![alt tag](https://github.com/chrisgilbertjr/raytracer/blob/master/images/13_CornellBox.bmp)
+
 #### Raytracer ####
 A small raytracer built for educational purposes. The raytracer is based on Kevin Suffern's Ray Tracing from the Ground Up. It is written in clean and clear C++. Included is a MS Visual Studio 13 solution (for Windows), and a CMake build step (for Unix) is in the works. I have also included sample images to showcase the basic functionality of the raytracer.
 
