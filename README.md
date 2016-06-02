@@ -8,5 +8,5 @@ A small raytracer built for educational purposes. The raytracer is based on Kevi
 * Multiple BRDF's for diffuse and specular lighting
 * Collection of materials including Matte, Phong, Emmisive, Reflective, Glossy, and Cook-Torrance
 * A few procedural textures such as checkerboard and grid patterns usable on all materials
-* Plethora of lights including ambient, area, directional, point, area, and an ambient occluder.
+* Plethora of lights including ambient, directional, point, area, and an ambient occluder.
 * Array of raytracing techniques such as recursive raytracing and path tracing.
